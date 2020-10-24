@@ -1,0 +1,432 @@
+﻿
+@{
+    ViewBag.Title = "ServiceDetail";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+
+<!-- start page title section -->
+<section class="page-title-section2 bg-img cover-background" data-overlay-dark="7" data-background="../img/bg/bg9.jpg">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Generator Services</h1>
+            </div>
+            <div class="col-md-12">
+                <ul>
+                    <li><a href="@Url.Action("Services", "Service")">Services</a></li>
+                    <li><a href="#">Generator Services</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- end page title section -->
+<!-- start main section -->
+<section class="bg-light-gray" id="SDetail">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="">
+                    <div class="section-heading">
+                        <h2>Book Service</h2>
+                    </div>
+                    <!-- form start -->
+                    <form>
+                        <!-- Form start -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="name">Name</label>
+                                    <input id="name" name="name" type="text" placeholder="Name" class="form-control input-md">
+                                </div>
+                            </div>
+                            <!-- Text input-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="Contact">Contact No</label>
+                                    <input id="Contact" name="Contact" type="number" placeholder="Contact No" class="form-control input-md">
+                                </div>
+                            </div>
+                            <!-- Text input-->
+                            <!-- Text input-->
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="Address">Address</label>
+                                    <textarea class="form-control" id="Address" rows="3"></textarea>
+                                </div>
+                            </div>
+                            <!-- Text input-->
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="Details">Details</label>
+                                    <textarea class="form-control" id="Details" rows="3"></textarea>
+                                </div>
+                            </div>
+                            <!-- Text input-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="date">Preferred Date</label>
+                                    <input id="date" name="date" type="text" placeholder="Preferred Date" class="form-control input-md">
+                                </div>
+                            </div>
+                            <!-- Select Basic -->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="time">Preferred Time</label>
+                                    <select id="time" name="time" class="form-control">
+                                        <option value="8:00 to 9:00">8:00 to 9:00</option>
+                                        <option value="9:00 to 10:00">9:00 to 10:00</option>
+                                        <option value="10:00 to 1:00">10:00 to 1:00</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- Select Basic -->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="Fuel">Fuel Type</label>
+                                    <select id="time" name="Fuel" class="form-control">
+                                        <option value="Petrol">Petrol</option>
+                                        <option value="Diesal">Diesal</option>
+                                        <option value="Gas">Gas</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+
+                            <!-- Select Basic -->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="brands">Brands</label>
+                                    <select id="brands" name="brands" class="form-control">
+                                        <option value="Honda">Honda</option>
+                                        <option value="abc">abc</option>
+                                        <option value="zzz">zzz</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Select Basic -->
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label" for="Power">Engine Power</label>
+                                    <select id="Power" name="Power" class="form-control">
+                                        <option value="500"> 500 -Kav </option>
+                                        <option value="700"> 700 -Kav </option>
+                                        <option value="900"> 900 -Kav </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Select Basic -->
+                            @*<div class="col-md-6 text-center">
+            <div class="form-group">
+                <label class="control-label col-12 text-left p-0" for="Service">Appointment for</label>
+                <button class="btn btn-dark col-2 d-inline" type="button" id="button-addon2">-</button>
+                <select name="Service" class="form-control col-7 d-inline">
+                    <option value="Service1"> Service 1 </option>
+                    <option value="Service2"> Service 2 </option>
+                    <option value="Service3"> Service 3 </option>
+                    <option value="Service3"> Others </option>
+                </select>
+                <button class="btn btn-dark col-2 d-inline" type="button" id="button-addon2">+</button>
+            </div>
+        </div>*@
+
+
+                            @*<div class="col-md-12">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Price Estimate" aria-label="Price Estimate" aria-describedby="button-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-dark" type="button" id="button-addon2">Estimate</button>
+                </div>
+            </div>
+        </div>*@
+                            <div class="col-md-12">
+                                <div class="quform-submit-inner">
+                                    <button class="butn" type="submit"><span>Proceed</span></button>
+                                </div>
+                                <div class="quform-loading-wrap text-left"><span class="quform-loading"></span></div>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- form end -->
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="section-heading">
+                    <h2>Why Appointment with Us</h2>
+                </div>
+                <div class="contact-info sm-margin-30px-bottom">
+                    <div class="item bg-white">
+                        <div class="cont">
+                            <h6 class="margin-5px-bottom font-size16 md-font-size15 xs-font-size14 font-weight-600">24/7 Hours Available</h6>
+                            <p>Integer nec nisi sed mi hendrerit mattis. Vestibulum mi nunc, ultricies quis vehicula et, iaculis in mag</p>
+                        </div>
+                    </div>
+                    <div class="item bg-white">
+                        <div class="cont">
+                            <h6 class="margin-5px-bottom font-size16 md-font-size15 xs-font-size14 font-weight-600">Experienced Staff Available</h6>
+                            <p class="no-margin">uam sit amet mi eu libero fermentum bibendum pulvinar a turpis. Vestibulum quis feugiat risus </p>
+                        </div>
+                    </div>
+                    <div class="item bg-white">
+                        <div class="cont">
+                            <h6 class="margin-5px-bottom font-size16 md-font-size15 xs-font-size14 font-weight-600">Low Price & Fees: </h6>
+                            <p>aesent eu sollicitudin nunc. Cras malesuada vel nisi consequat pretium. Integer auctor element</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end main section -->
+
+<section>
+    <div class="container">
+        <div class="section-heading">
+            <h2>FAQs</h2>
+        </div>
+        <div id="accordion" class="accordion-style3">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            How can i book an appointment?
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body bg-white">
+                        Tempora incidunt ut labore et dolore exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                        sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Is services are reliable ?
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body bg-white">
+                        Neque porro quisquam est quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                        sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            how can i complain service providers on your website ?
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                    <div class="card-body bg-white no-padding-bottom">
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                        sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- start reviews section -->
+<section>
+    <div class="section-heading">
+        <h2>What Our Client Say</h2>
+    </div>
+    <div id="carouselExampleControls" class="carousel slide container" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+
+                            <div class="col-md-2">
+                                <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid">
+                                <p class="text-secondary text-center">15 Minutes Ago</p>
+                            </div>
+                            <div class="col-md-10">
+                                <p>
+                                    <a class="float-left" href="https://maniruzzaman-akash.blogspot.com/p/contact.html"><strong>Maniruzzaman Akash</strong></a>
+                                    <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+                                    <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+                                    <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+                                    <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+
+                                </p>
+                                <div class="clearfix"></div>
+                                <p>Lorem Ipsum is simply dummy text of the pr make  but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid">
+                                <p class="text-secondary text-center">15 Minutes Ago</p>
+                            </div>
+                            <div class="col-md-10">
+                                <p>
+                                    <a class="float-left" href="https://maniruzzaman-akash.blogspot.com/p/contact.html"><strong>Maniruzzaman Akash</strong></a>
+                                    <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+                                    <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+                                    <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+                                    <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+
+                                </p>
+                                <div class="clearfix"></div>
+                                <p>Lorem Ipsum is simply dummy text of the pr make  but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid">
+                                <p class="text-secondary text-center">15 Minutes Ago</p>
+                            </div>
+                            <div class="col-md-10">
+                                <p>
+                                    <a class="float-left" href="https://maniruzzaman-akash.blogspot.com/p/contact.html"><strong>Maniruzzaman Akash</strong></a>
+                                    <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+                                    <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+                                    <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+                                    <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+
+                                </p>
+                                <div class="clearfix"></div>
+                                <p>Lorem Ipsum is simply dummy text of the pr make  but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+</section>
+
+<!-- end reviews section -->
+@*<section id="serviceDt">
+
+        <div class="row">
+            <div class="col-lg-4 bg-light" id="form" style="height:100vh!important;">
+                <div class="container">
+                    <div class="section-heading">
+                        <h3>Service</h3>
+                    </div>
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <input type="text" class="form-control" id="name" placeholder="Name">
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <input type="text" class="form-control" id="contact" placeholder="Contact No">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" id="Address" rows="2" placeholder="Address"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="services">Check services that you want:</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="services">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    Default checkbox
+                                </label>
+                            </div><div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="services">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    Default checkbox
+                                </label>
+                            </div><div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="services">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    Default checkbox
+                                </label>
+                            </div><div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="services">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    Default checkbox
+                                </label>
+                            </div><div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="services">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    Default checkbox
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <select id="Time" class="form-control">
+                                <option selected>Choose Time</option>
+                                <option>10am-12pm</option>
+                                <option>1pm-2pm</option>
+                                <option>2pm-4pm</option>
+                                <option>4pm-6pm</option>
+                                <option>6pm-8pm</option>
+                            </select>
+                        </div>
+
+
+
+                        <div class="form-row align-items-center">
+                            <div class="col-8">
+                                <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="Price">
+                            </div>
+                            <div class="col" style="text-align:left">
+                                <button type="submit" class="btn btn-primary mb-2">Calculate Price</button>
+                            </div>
+                        </div>
+
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+
+                </div>
+            </div>
+            <div class="col-lg-8" >
+
+                <section></section>
+
+            </div>
+        </div>
+
+    </section>*@

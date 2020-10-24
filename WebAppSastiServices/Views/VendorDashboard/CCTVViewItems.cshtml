@@ -1,0 +1,90 @@
+﻿
+@{
+    ViewBag.Title = "ViewItems";
+    Layout = "~/Views/Shared/_LayoutDashboardCCTVVendor.cshtml";
+}
+
+
+
+<!-- start page inner -->
+<div class="page-inner">
+    <div class="page-title">
+        <h3 class="breadcrumb-header">Items</h3>
+    </div>
+    <!-- start page main wrapper -->
+    <div id="main-wrapper">
+        <div class="row">
+            <div class="col-md-12">
+
+
+                <div class="card card-white">
+
+                    <div class="card-body">
+                        <a class="btn btn-primary float-right mb-3" href="@Url.Action("CCTVCreateItems","VendorDashboard")" role="button"><i class="fa fa-plus"></i> Add New Item</a>
+                        <div class="table-responsive invoice-table">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Item#</th>
+                                        <th>Status</th>
+                                        <th>Power Range</th>
+                                        <th>Item Name</th>
+                                        <th>Item Rate</th>
+                                        <th>CreatedDateTime</th>
+                                        <th>CreatedBy</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">#1236</th>
+                                        <td><span class="label label-success">Active</span></td>
+                                        <td>150 KAV</td>
+                                        <td><img src="img/email/1.jpg" alt="" class="rounded-circle mr-3">Oil Fillter </td>
+                                        <td>150</td>
+                                        <td>Jan 1, 2019</td>
+                                        <td>Admin</td>
+                                        <td>
+                                            <div class="btn-group" role="group" aria-label="Basic example">
+                                                <a href="@Url.Action("CCTVEditItems","VendorDashboard")" class="btn btn-secondary"><i class="fas fa-edit"></i>Edit</a>
+
+                                                <a href="@Url.Action("CCTVDeleteItems","VendorDashboard")" class="btn btn-danger"><i class="fas fa-trash"></i>Delete</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">#1236</th>
+                                        <td><span class="label label-success">Active</span></td>
+                                        <td>150 KAV</td>
+                                        <td><img src="img/email/1.jpg" alt="" class="rounded-circle mr-3">Oil Fillter </td>
+                                        <td>150</td>
+                                        <td>Jan 1, 2019</td>
+                                        <td>Admin</td>
+                                        <td>
+                                            <div class="btn-group" role="group" aria-label="Basic example">
+                                                <a href="@Url.Action("CCTVEditItems","VendorDashboard")" class="btn btn-secondary"><i class="fas fa-edit"></i>Edit</a>
+
+                                                <a href="@Url.Action("CCTVDeleteItems","VendorDashboard")" class="btn btn-danger"><i class="fas fa-trash"></i>Delete</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- Row -->
+    </div>
+    <!-- end page main wrapper -->
+    <div class="page-footer">
+        <p>
+            Copyright &copy;
+            <script>document.write(new Date().getFullYear())</script> Crizal All rights reserved.
+        </p>
+    </div>
+</div>
+<!-- end page inner -->

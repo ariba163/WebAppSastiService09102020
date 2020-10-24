@@ -1,0 +1,129 @@
+﻿
+@{
+    ViewBag.Title = "AvailedOrders";
+    Layout = "~/Views/Shared/_LayoutDashboardAdmin.cshtml";
+   
+}
+
+<div class="page-inner">
+    <div class="page-title">
+        <h3 class="breadcrumb-header">Dashboard</h3>
+    </div>
+    <!-- start page main wrapper -->
+    <div id="main-wrapper">
+
+
+        <div class="row">
+
+            <div class="col-lg-12 col-md-12">
+                <div class="card card-white">
+                    <div class="card-heading clearfix">
+                        <h4 class="card-title">Availed Orders</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive invoice-table">
+                            <table id="AvailedOrders" class="display" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Order#</th>
+                                        <th>Customer Name</th>
+                                        <th>Contact</th>
+                                        <th>Address</th>
+                                        <th>Service Type</th>
+                                        <th>Preferred Time</th>
+                                        <th>Preferred Date</th>
+                                        <th>Status</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <div id="ajax-loader" class="LockOn" style="display:none">
+                                    </div>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- end page main wrapper -->
+    <div class="page-footer">
+        <p>
+            Copyright &copy;
+            <script>document.write(new Date().getFullYear())</script> Crizal All rights reserved.
+        </p>
+    </div>
+</div>
+
+
+
+@section scripts{
+    <script src="~/DataTables/js/jquery.dataTables.js"></script>
+    <script>
+
+        $(document).ready(function () {
+             //not take time on first load------start
+            var count = 0;
+            if (count == 0) {
+                ajax();
+                count++;
+            }
+            //not take time on first load------end
+            var Table = $("#AvailedOrders").DataTable();
+
+            function ajax() {
+                $.ajax({
+                    type: "GET",
+                    url: '@Url.Action("AvailedOrdersData")',
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    "beforeSend": function () { $('#ajax-loader').show() },
+                    "complete": function () { $('#ajax-loader').hide() },
+                    success: function (orders) {
+                        //console.log(orders);
+
+
+
+                        orders.map((item, index) => {
+                            Table.row.add([
+                                item.OrderId,
+                                item.CustomerName,
+                                item.Contact,
+                                item.Address,
+                                item.Description,
+                                item.TimeRange,
+                                item.preferredDate,
+                                item.status,
+                                item.btns
+                            ]).draw(false);
+                        });
+                    },
+                    error: function (xhr, status) {
+                        console.log(xhr, status);
+                    }
+                });
+            }
+
+            //Auto Refresh Datatable after 10 seconds---start
+            setInterval(
+                function () {
+                    Table.clear().draw();
+                    ajax();
+                }
+                , 10000);
+
+            //Auto Refresh Dataatble after 10 seconds---end
+
+        });
+
+
+
+    </script>
+
+}

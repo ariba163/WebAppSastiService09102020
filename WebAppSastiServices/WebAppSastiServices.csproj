@@ -1,0 +1,1187 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{132AE12D-BBC6-4100-BA0C-D707907F05A9}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WebAppSastiServices</RootNamespace>
+    <AssemblyName>WebAppSastiServices</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44330</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1404.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1404.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1404.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1404.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebDesign, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1404.0\lib\net40\Microsoft.ReportViewer.WebDesign.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1404.0\lib\net40\Microsoft.ReportViewer.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rotativa.1.6.4\lib\net40\Rotativa.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.7\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.7\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.7\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Antlr3.Runtime.dll" />
+    <Content Include="bin\Antlr3.Runtime.pdb" />
+    <Content Include="bin\de\Microsoft.ReportViewer.Common.resources.dll" />
+    <Content Include="bin\de\Microsoft.ReportViewer.DataVisualization.resources.dll" />
+    <Content Include="bin\de\Microsoft.ReportViewer.Design.resources.dll" />
+    <Content Include="bin\de\Microsoft.ReportViewer.WebDesign.resources.dll" />
+    <Content Include="bin\de\Microsoft.ReportViewer.WebForms.resources.dll" />
+    <Content Include="bin\de\Microsoft.ReportViewer.WinForms.resources.dll" />
+    <Content Include="bin\EntityFramework.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.xml" />
+    <Content Include="bin\EntityFramework.xml" />
+    <Content Include="bin\EnvDTE.dll" />
+    <Content Include="bin\EnvDTE80.dll" />
+    <Content Include="bin\es\Microsoft.ReportViewer.Common.resources.dll" />
+    <Content Include="bin\es\Microsoft.ReportViewer.DataVisualization.resources.dll" />
+    <Content Include="bin\es\Microsoft.ReportViewer.Design.resources.dll" />
+    <Content Include="bin\es\Microsoft.ReportViewer.WebDesign.resources.dll" />
+    <Content Include="bin\es\Microsoft.ReportViewer.WebForms.resources.dll" />
+    <Content Include="bin\es\Microsoft.ReportViewer.WinForms.resources.dll" />
+    <Content Include="bin\fr\Microsoft.ReportViewer.Common.resources.dll" />
+    <Content Include="bin\fr\Microsoft.ReportViewer.DataVisualization.resources.dll" />
+    <Content Include="bin\fr\Microsoft.ReportViewer.Design.resources.dll" />
+    <Content Include="bin\fr\Microsoft.ReportViewer.WebDesign.resources.dll" />
+    <Content Include="bin\fr\Microsoft.ReportViewer.WebForms.resources.dll" />
+    <Content Include="bin\fr\Microsoft.ReportViewer.WinForms.resources.dll" />
+    <Content Include="bin\it\Microsoft.ReportViewer.Common.resources.dll" />
+    <Content Include="bin\it\Microsoft.ReportViewer.DataVisualization.resources.dll" />
+    <Content Include="bin\it\Microsoft.ReportViewer.Design.resources.dll" />
+    <Content Include="bin\it\Microsoft.ReportViewer.WebDesign.resources.dll" />
+    <Content Include="bin\it\Microsoft.ReportViewer.WebForms.resources.dll" />
+    <Content Include="bin\it\Microsoft.ReportViewer.WinForms.resources.dll" />
+    <Content Include="bin\ja\Microsoft.ReportViewer.Common.resources.dll" />
+    <Content Include="bin\ja\Microsoft.ReportViewer.DataVisualization.resources.dll" />
+    <Content Include="bin\ja\Microsoft.ReportViewer.Design.resources.dll" />
+    <Content Include="bin\ja\Microsoft.ReportViewer.WebDesign.resources.dll" />
+    <Content Include="bin\ja\Microsoft.ReportViewer.WebForms.resources.dll" />
+    <Content Include="bin\ja\Microsoft.ReportViewer.WinForms.resources.dll" />
+    <Content Include="bin\ko\Microsoft.ReportViewer.Common.resources.dll" />
+    <Content Include="bin\ko\Microsoft.ReportViewer.DataVisualization.resources.dll" />
+    <Content Include="bin\ko\Microsoft.ReportViewer.Design.resources.dll" />
+    <Content Include="bin\ko\Microsoft.ReportViewer.WebDesign.resources.dll" />
+    <Content Include="bin\ko\Microsoft.ReportViewer.WebForms.resources.dll" />
+    <Content Include="bin\ko\Microsoft.ReportViewer.WinForms.resources.dll" />
+    <Content Include="bin\Microsoft.Build.Framework.dll" />
+    <Content Include="bin\Microsoft.Build.Tasks.Core.dll" />
+    <Content Include="bin\Microsoft.Build.Utilities.Core.dll" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
+    <Content Include="bin\Microsoft.MSXML.dll" />
+    <Content Include="bin\Microsoft.ReportViewer.Common.dll" />
+    <Content Include="bin\Microsoft.ReportViewer.DataVisualization.dll" />
+    <Content Include="bin\Microsoft.ReportViewer.Design.dll" />
+    <Content Include="bin\Microsoft.ReportViewer.ProcessingObjectModel.dll" />
+    <Content Include="bin\Microsoft.ReportViewer.WebDesign.dll" />
+    <Content Include="bin\Microsoft.ReportViewer.WebForms.dll" />
+    <Content Include="bin\Microsoft.ReportViewer.WinForms.dll" />
+    <Content Include="bin\Microsoft.SqlServer.Types.dll" />
+    <Content Include="bin\Microsoft.VisualStudio.ComponentModelHost.dll" />
+    <Content Include="bin\Microsoft.VisualStudio.Data.Core.dll" />
+    <Content Include="bin\Microsoft.VisualStudio.Data.Services.dll" />
+    <Content Include="bin\Microsoft.VisualStudio.Debugger.Interop.11.0.dll" />
+    <Content Include="bin\Microsoft.VisualStudio.Debugger.InteropA.dll" />
+    <Content Include="bin\Microsoft.VisualStudio.GraphModel.dll" />
+    <Content Include="bin\Microsoft.VisualStudio.ManagedInterfaces.dll" />
+    <Content Include="bin\Microsoft.VisualStudio.OLE.Interop.dll" />
+    <Content Include="bin\Microsoft.VisualStudio.ProjectAggregator.dll" />
+    <Content Include="bin\Microsoft.VisualStudio.Shell.Interop.10.0.dll" />
+    <Content Include="bin\Microsoft.VisualStudio.Shell.Interop.11.0.dll" />
+    <Content Include="bin\Microsoft.VisualStudio.Shell.Interop.8.0.dll" />
+    <Content Include="bin\Microsoft.VisualStudio.Shell.Interop.9.0.dll" />
+    <Content Include="bin\Microsoft.VisualStudio.Shell.Interop.dll" />
+    <Content Include="bin\Microsoft.VisualStudio.TemplateWizardInterface.dll" />
+    <Content Include="bin\Microsoft.VisualStudio.TemplateWizardInterface.xml" />
+    <Content Include="bin\Microsoft.VisualStudio.TextManager.Interop.10.0.dll" />
+    <Content Include="bin\Microsoft.VisualStudio.TextManager.Interop.8.0.dll" />
+    <Content Include="bin\Microsoft.VisualStudio.TextManager.Interop.dll" />
+    <Content Include="bin\Microsoft.VisualStudio.VSHelp.dll" />
+    <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="bin\Newtonsoft.Json.dll" />
+    <Content Include="bin\Newtonsoft.Json.xml" />
+    <Content Include="bin\pt\Microsoft.ReportViewer.Common.resources.dll" />
+    <Content Include="bin\pt\Microsoft.ReportViewer.DataVisualization.resources.dll" />
+    <Content Include="bin\pt\Microsoft.ReportViewer.Design.resources.dll" />
+    <Content Include="bin\pt\Microsoft.ReportViewer.WebDesign.resources.dll" />
+    <Content Include="bin\pt\Microsoft.ReportViewer.WebForms.resources.dll" />
+    <Content Include="bin\pt\Microsoft.ReportViewer.WinForms.resources.dll" />
+    <Content Include="bin\Rotativa.dll" />
+    <Content Include="bin\ru\Microsoft.ReportViewer.Common.resources.dll" />
+    <Content Include="bin\ru\Microsoft.ReportViewer.DataVisualization.resources.dll" />
+    <Content Include="bin\ru\Microsoft.ReportViewer.Design.resources.dll" />
+    <Content Include="bin\ru\Microsoft.ReportViewer.WebDesign.resources.dll" />
+    <Content Include="bin\ru\Microsoft.ReportViewer.WebForms.resources.dll" />
+    <Content Include="bin\ru\Microsoft.ReportViewer.WinForms.resources.dll" />
+    <Content Include="bin\stdole.dll" />
+    <Content Include="bin\System.Threading.Tasks.Dataflow.dll" />
+    <Content Include="bin\System.Web.Helpers.dll" />
+    <Content Include="bin\System.Web.Helpers.xml" />
+    <Content Include="bin\System.Web.Mvc.dll" />
+    <Content Include="bin\System.Web.Mvc.xml" />
+    <Content Include="bin\System.Web.Optimization.dll" />
+    <Content Include="bin\System.Web.Optimization.xml" />
+    <Content Include="bin\System.Web.Razor.dll" />
+    <Content Include="bin\System.Web.Razor.xml" />
+    <Content Include="bin\System.Web.Webpages.Deployment.dll" />
+    <Content Include="bin\System.Web.Webpages.Deployment.xml" />
+    <Content Include="bin\System.Web.Webpages.dll" />
+    <Content Include="bin\System.Web.Webpages.Razor.dll" />
+    <Content Include="bin\System.Web.Webpages.Razor.xml" />
+    <Content Include="bin\System.Web.Webpages.xml" />
+    <Content Include="bin\VSLangProj.dll" />
+    <Content Include="bin\VSLangProj2.dll" />
+    <Content Include="bin\VSLangProj80.dll" />
+    <Content Include="bin\WebAppSastiServices.dll" />
+    <Content Include="bin\WebAppSastiServices.pdb" />
+    <Content Include="bin\WebGrease.dll" />
+    <Content Include="bin\zh-CHS\Microsoft.ReportViewer.Common.resources.dll" />
+    <Content Include="bin\zh-CHS\Microsoft.ReportViewer.DataVisualization.resources.dll" />
+    <Content Include="bin\zh-CHS\Microsoft.ReportViewer.Design.resources.dll" />
+    <Content Include="bin\zh-CHS\Microsoft.ReportViewer.WebDesign.resources.dll" />
+    <Content Include="bin\zh-CHS\Microsoft.ReportViewer.WebForms.resources.dll" />
+    <Content Include="bin\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll" />
+    <Content Include="bin\zh-CHT\Microsoft.ReportViewer.Common.resources.dll" />
+    <Content Include="bin\zh-CHT\Microsoft.ReportViewer.DataVisualization.resources.dll" />
+    <Content Include="bin\zh-CHT\Microsoft.ReportViewer.Design.resources.dll" />
+    <Content Include="bin\zh-CHT\Microsoft.ReportViewer.WebDesign.resources.dll" />
+    <Content Include="bin\zh-CHT\Microsoft.ReportViewer.WebForms.resources.dll" />
+    <Content Include="bin\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll" />
+    <Content Include="css\custom1.css" />
+    <Content Include="css\dashboard\custom.css" />
+    <Content Include="css\dashboard\Red.css" />
+    <Content Include="css\dashboard\DarkYellow.css" />
+    <Content Include="css\dashboard\Green.css" />
+    <Content Include="css\dashboard\LightBlue.css" />
+    <Content Include="css\dashboard\DarkBlue.css" />
+    <Content Include="css\dashboard\DarkGray.css" />
+    <Content Include="css\dashboard\styles.css" />
+    <Content Include="css\imagehover.min.css" />
+    <Content Include="css\plugins.css" />
+    <Content Include="css\rev_slider\layers.css" />
+    <Content Include="css\rev_slider\navigation.css" />
+    <Content Include="css\rev_slider\settings.css" />
+    <Content Include="css\rev_slider\typewriter.css" />
+    <Content Include="css\styles-2.css" />
+    <Content Include="css\styles-3.css" />
+    <Content Include="css\styles-4.css" />
+    <Content Include="css\styles-5.css" />
+    <Content Include="css\styles-6.css" />
+    <Content Include="css\styles-7.css" />
+    <Content Include="css\styles-8.css" />
+    <Content Include="css\styles.css" />
+    <Content Include="css\switcher.css" />
+    <Content Include="DataTables\css\dataTables.bootstrap.css" />
+    <Content Include="DataTables\css\jquery.dataTables.css" />
+    <Content Include="DataTables\images\sort_asc.png" />
+    <Content Include="DataTables\images\sort_asc_disabled.png" />
+    <Content Include="DataTables\images\sort_both.png" />
+    <Content Include="DataTables\images\sort_desc.png" />
+    <Content Include="DataTables\images\sort_desc_disabled.png" />
+    <Content Include="DataTables\js\dataTables.bootstrap.js" />
+    <Content Include="DataTables\js\jquery.dataTables.js" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="img\ajax-loader.gif" />
+    <Content Include="img\avatar\avatar-01.jpg" />
+    <Content Include="img\avatar\avatar-02.jpg" />
+    <Content Include="img\avatar\avatar-03.jpg" />
+    <Content Include="img\avatar\avatar-04.jpg" />
+    <Content Include="img\avatar\avatar-05.jpg" />
+    <Content Include="img\avatar\avatar-06.jpg" />
+    <Content Include="img\bg\bg-pattern.png" />
+    <Content Include="img\bg\bg1.jpg" />
+    <Content Include="img\bg\bg11.jpg" />
+    <Content Include="img\bg\bg12.jpg" />
+    <Content Include="img\bg\bg2.jpg" />
+    <Content Include="img\bg\bg3.jpg" />
+    <Content Include="img\bg\bg4.jpg" />
+    <Content Include="img\bg\bg5.jpg" />
+    <Content Include="img\bg\bg6.jpg" />
+    <Content Include="img\bg\bg7.jpg" />
+    <Content Include="img\bg\bg8.jpg" />
+    <Content Include="img\bg\bg9.jpg" />
+    <Content Include="img\bg\black_twill.png" />
+    <Content Include="img\bg\dotted-map.png" />
+    <Content Include="img\bg\error-404.jpg" />
+    <Content Include="img\bg\pagetitle.jpg" />
+    <Content Include="img\bg\shape-01.png" />
+    <Content Include="img\blog\01.png" />
+    <Content Include="img\blog\02.png" />
+    <Content Include="img\blog\03.png" />
+    <Content Include="img\blog\blog-1.jpg" />
+    <Content Include="img\blog\blog-10.jpg" />
+    <Content Include="img\blog\blog-11.jpg" />
+    <Content Include="img\blog\blog-12.jpg" />
+    <Content Include="img\blog\blog-13.jpg" />
+    <Content Include="img\blog\blog-14.jpg" />
+    <Content Include="img\blog\blog-15.jpg" />
+    <Content Include="img\blog\blog-16.jpg" />
+    <Content Include="img\blog\blog-2.jpg" />
+    <Content Include="img\blog\blog-3.jpg" />
+    <Content Include="img\blog\blog-4.jpg" />
+    <Content Include="img\blog\blog-5.jpg" />
+    <Content Include="img\blog\blog-6.jpg" />
+    <Content Include="img\blog\blog-7.jpg" />
+    <Content Include="img\blog\blog-8.jpg" />
+    <Content Include="img\blog\blog-9.jpg" />
+    <Content Include="img\blog\blog-thumb-01.jpg" />
+    <Content Include="img\blog\blog-thumb-02.jpg" />
+    <Content Include="img\blog\blog-thumb-03.jpg" />
+    <Content Include="img\blog\list-1.jpg" />
+    <Content Include="img\content\about-01.jpg" />
+    <Content Include="img\content\about-02.jpg" />
+    <Content Include="img\content\about-03.jpg" />
+    <Content Include="img\content\about-04.jpg" />
+    <Content Include="img\content\about-05.jpg" />
+    <Content Include="img\content\about-06.jpg" />
+    <Content Include="img\content\about-image.jpg" />
+    <Content Include="img\content\about.jpg" />
+    <Content Include="img\content\banner-bg05.png" />
+    <Content Include="img\content\banner9-shape.png" />
+    <Content Include="img\content\coming-soon.png" />
+    <Content Include="img\content\content-01.jpg" />
+    <Content Include="img\content\content-02.jpg" />
+    <Content Include="img\content\content-03.jpg" />
+    <Content Include="img\content\content-04.jpg" />
+    <Content Include="img\content\content-bg.png" />
+    <Content Include="img\content\content-left-01.jpg" />
+    <Content Include="img\content\content-left-02.jpg" />
+    <Content Include="img\content\content-left-03.jpg" />
+    <Content Include="img\content\feature-01.jpg" />
+    <Content Include="img\content\feature-02.jpg" />
+    <Content Include="img\content\feature-03.jpg" />
+    <Content Include="img\content\maintenance-mode.png" />
+    <Content Include="img\content\news-letter.jpg" />
+    <Content Include="img\content\pattern.png" />
+    <Content Include="img\content\project-01.jpg" />
+    <Content Include="img\content\service-01.jpg" />
+    <Content Include="img\content\service-02.jpg" />
+    <Content Include="img\content\service-03.jpg" />
+    <Content Include="img\content\service-04.jpg" />
+    <Content Include="img\content\service-05.jpg" />
+    <Content Include="img\content\service-06.jpg" />
+    <Content Include="img\content\service-07.jpg" />
+    <Content Include="img\content\service-08.jpg" />
+    <Content Include="img\content\service-09.jpg" />
+    <Content Include="img\content\service-10.jpg" />
+    <Content Include="img\content\services\s-1.jpg" />
+    <Content Include="img\content\services\s-2.jpg" />
+    <Content Include="img\content\services\s-3.jpg" />
+    <Content Include="img\content\services\service-1b.jpg" />
+    <Content Include="img\content\services\service-2b.jpg" />
+    <Content Include="img\content\services\service-3b.jpg" />
+    <Content Include="img\content\services\service-4b.jpg" />
+    <Content Include="img\content\services\service-single-01.jpg" />
+    <Content Include="img\content\services\service-single-02.jpg" />
+    <Content Include="img\content\services\service-single-03.jpg" />
+    <Content Include="img\content\signature-black.png" />
+    <Content Include="img\content\signature.png" />
+    <Content Include="img\content\slice-2.png" />
+    <Content Include="img\content\snap-01.jpg" />
+    <Content Include="img\content\snap-02.jpg" />
+    <Content Include="img\content\tab-content-01.jpg" />
+    <Content Include="img\content\tab-content-02.jpg" />
+    <Content Include="img\content\tab-content-03.jpg" />
+    <Content Include="img\content\team-01.jpg" />
+    <Content Include="img\content\team-02.jpg" />
+    <Content Include="img\Dashboard\avatars\chat01.jpg" />
+    <Content Include="img\Dashboard\avatars\chat02.jpg" />
+    <Content Include="img\Dashboard\avatars\chat03.jpg" />
+    <Content Include="img\Dashboard\avatars\chat04.jpg" />
+    <Content Include="img\Dashboard\avatars\chat05.jpg" />
+    <Content Include="img\Dashboard\avatars\chat06.jpg" />
+    <Content Include="img\Dashboard\avatars\chat07.jpg" />
+    <Content Include="img\Dashboard\avatars\lockscreen.jpg" />
+    <Content Include="img\Dashboard\avatars\post01.jpg" />
+    <Content Include="img\Dashboard\avatars\post02.jpg" />
+    <Content Include="img\Dashboard\avatars\post03.jpg" />
+    <Content Include="img\Dashboard\avatars\post04.jpg" />
+    <Content Include="img\Dashboard\avatars\post05.jpg" />
+    <Content Include="img\Dashboard\avatars\profile.jpg" />
+    <Content Include="img\Dashboard\avatars\sug01.jpg" />
+    <Content Include="img\Dashboard\avatars\sug02.jpg" />
+    <Content Include="img\Dashboard\avatars\sug03.jpg" />
+    <Content Include="img\Dashboard\avatars\user-dropdown.jpg" />
+    <Content Include="img\Dashboard\email\1.jpg" />
+    <Content Include="img\Dashboard\email\2.jpg" />
+    <Content Include="img\Dashboard\email\3.jpg" />
+    <Content Include="img\Dashboard\email\4.jpg" />
+    <Content Include="img\Dashboard\email\5.jpg" />
+    <Content Include="img\Dashboard\email\6.jpg" />
+    <Content Include="img\Dashboard\gallery\portfolio01.jpg" />
+    <Content Include="img\Dashboard\gallery\portfolio02.jpg" />
+    <Content Include="img\Dashboard\gallery\portfolio03.jpg" />
+    <Content Include="img\Dashboard\gallery\portfolio04.jpg" />
+    <Content Include="img\Dashboard\gallery\portfolio05.jpg" />
+    <Content Include="img\Dashboard\gallery\portfolio06.jpg" />
+    <Content Include="img\Dashboard\gallery\portfolio07.jpg" />
+    <Content Include="img\Dashboard\gallery\portfolio08.jpg" />
+    <Content Include="img\Dashboard\gallery\portfolio09.jpg" />
+    <Content Include="img\Dashboard\gallery\portfolio10.jpg" />
+    <Content Include="img\Dashboard\gallery\portfolio11.jpg" />
+    <Content Include="img\Dashboard\gallery\portfolio12.jpg" />
+    <Content Include="img\Dashboard\gallery\portfolio13.jpg" />
+    <Content Include="img\Dashboard\gallery\portfolio14.jpg" />
+    <Content Include="img\Dashboard\gallery\portfolio15.jpg" />
+    <Content Include="img\Dashboard\gallery\portfolio16.jpg" />
+    <Content Include="img\Dashboard\gallery\portfolio17.jpg" />
+    <Content Include="img\Dashboard\gallery\portfolio18.jpg" />
+    <Content Include="img\Dashboard\gallery\portfolio19.jpg" />
+    <Content Include="img\Dashboard\gallery\portfolio20.jpg" />
+    <Content Include="img\Dashboard\gallery\portfolio21.jpg" />
+    <Content Include="img\Dashboard\gallery\portfolio22.jpg" />
+    <Content Include="img\Dashboard\gallery\portfolio23.jpg" />
+    <Content Include="img\Dashboard\gallery\portfolio24.jpg" />
+    <Content Include="img\Dashboard\img-zoom.jpg" />
+    <Content Include="img\Dashboard\post-img01.jpg" />
+    <Content Include="img\Dashboard\screen-bg.jpg" />
+    <Content Include="img\Dashboard\signature-black.png" />
+    <Content Include="img\Dashboard\timeline-banner.jpg" />
+    <Content Include="img\logos\9 logo.png" />
+    <Content Include="img\logos\LogoDark.png" />
+    <Content Include="img\logos\LogoLight.png" />
+    <Content Include="img\products\Generators\alternater-fans_10574836_250x250-250x250.jpg" />
+    <Content Include="img\products\Generators\generator-valve.jpg" />
+    <Content Include="img\products\Generators\genset-rb-radiators-500x500.jpg" />
+    <Content Include="img\services\ac.jpg" />
+    <Content Include="img\services\cctv.png" />
+    <Content Include="img\services\powergen.jpg" />
+    <Content Include="img\logos\apple-touch-icon-114x114.png" />
+    <Content Include="img\logos\apple-touch-icon-57x57.png" />
+    <Content Include="img\logos\apple-touch-icon-72x72.png" />
+    <Content Include="img\logos\favicon.png" />
+    <Content Include="img\logos\logo-2-dark.png" />
+    <Content Include="img\logos\logo-2-light.png" />
+    <Content Include="img\logos\logo-color-01.png" />
+    <Content Include="img\logos\logo-color-02.png" />
+    <Content Include="img\logos\logo-color-03.png" />
+    <Content Include="img\logos\logo-color-04.png" />
+    <Content Include="img\logos\logo-color-05.png" />
+    <Content Include="img\logos\logo-color-06.png" />
+    <Content Include="img\logos\logo-color-07.png" />
+    <Content Include="img\logos\logo-color-08.png" />
+    <Content Include="img\logos\logo-dark.png" />
+    <Content Include="img\logos\logo-footer-dark.png" />
+    <Content Include="img\logos\logo-footer.png" />
+    <Content Include="img\logos\logo-inner.png" />
+    <Content Include="img\logos\logo-white.png" />
+    <Content Include="img\logos\logo.png" />
+    <Content Include="img\partners\client-01.png" />
+    <Content Include="img\partners\client-02.png" />
+    <Content Include="img\partners\client-03.png" />
+    <Content Include="img\partners\client-04.png" />
+    <Content Include="img\partners\client-05.png" />
+    <Content Include="img\partners\client-06.png" />
+    <Content Include="img\pattern\pattren1.jpg" />
+    <Content Include="img\pattern\pattren2.jpg" />
+    <Content Include="img\pattern\pattren3.jpg" />
+    <Content Include="img\pattern\pattren4.jpg" />
+    <Content Include="img\pattern\pattren5.jpg" />
+    <Content Include="img\projects\masonry-1.jpg" />
+    <Content Include="img\projects\masonry-10.jpg" />
+    <Content Include="img\projects\masonry-11.jpg" />
+    <Content Include="img\projects\masonry-2.jpg" />
+    <Content Include="img\projects\masonry-3.jpg" />
+    <Content Include="img\projects\masonry-4.jpg" />
+    <Content Include="img\projects\masonry-5.jpg" />
+    <Content Include="img\projects\masonry-6.jpg" />
+    <Content Include="img\projects\masonry-7.jpg" />
+    <Content Include="img\projects\masonry-8.jpg" />
+    <Content Include="img\projects\masonry-9.jpg" />
+    <Content Include="img\projects\pro-1.jpg" />
+    <Content Include="img\projects\pro-10.jpg" />
+    <Content Include="img\projects\pro-11.jpg" />
+    <Content Include="img\projects\pro-12.jpg" />
+    <Content Include="img\projects\pro-13.jpg" />
+    <Content Include="img\projects\pro-14.jpg" />
+    <Content Include="img\projects\pro-15.jpg" />
+    <Content Include="img\projects\pro-16.jpg" />
+    <Content Include="img\projects\pro-17.jpg" />
+    <Content Include="img\projects\pro-18.jpg" />
+    <Content Include="img\projects\pro-19.jpg" />
+    <Content Include="img\projects\pro-2.jpg" />
+    <Content Include="img\projects\pro-20.jpg" />
+    <Content Include="img\projects\pro-21.jpg" />
+    <Content Include="img\projects\pro-22.jpg" />
+    <Content Include="img\projects\pro-23.jpg" />
+    <Content Include="img\projects\pro-24.jpg" />
+    <Content Include="img\projects\pro-3.jpg" />
+    <Content Include="img\projects\pro-4.jpg" />
+    <Content Include="img\projects\pro-5.jpg" />
+    <Content Include="img\projects\pro-6.jpg" />
+    <Content Include="img\projects\pro-7.jpg" />
+    <Content Include="img\projects\pro-8.jpg" />
+    <Content Include="img\projects\pro-9.jpg" />
+    <Content Include="img\projects\project-1b.jpg" />
+    <Content Include="img\projects\project-1c.jpg" />
+    <Content Include="img\projects\project-2b.jpg" />
+    <Content Include="img\projects\project-2c.jpg" />
+    <Content Include="img\projects\project-3b.jpg" />
+    <Content Include="img\projects\project-3c.jpg" />
+    <Content Include="img\projects\project-4b.jpg" />
+    <Content Include="img\projects\project-4c.jpg" />
+    <Content Include="img\projects\project-5b.jpg" />
+    <Content Include="img\projects\project-5c.jpg" />
+    <Content Include="img\projects\project-6b.jpg" />
+    <Content Include="img\projects\project-6c.jpg" />
+    <Content Include="img\projects\single-2.jpg" />
+    <Content Include="img\projects\single.jpg" />
+    <Content Include="img\shop\blog\blog-01.jpg" />
+    <Content Include="img\shop\blog\blog-02.jpg" />
+    <Content Include="img\shop\blog\blog-03.jpg" />
+    <Content Include="img\shop\cart-thumb01.jpg" />
+    <Content Include="img\shop\cart-thumb02.jpg" />
+    <Content Include="img\shop\cart-thumb03.jpg" />
+    <Content Include="img\shop\categories\category-01.jpg" />
+    <Content Include="img\shop\categories\category-02.jpg" />
+    <Content Include="img\shop\categories\category-03.jpg" />
+    <Content Include="img\shop\left-panel-banner.png" />
+    <Content Include="img\shop\offer-banner-01.jpg" />
+    <Content Include="img\shop\payment-options\amex.png" />
+    <Content Include="img\shop\payment-options\discover.png" />
+    <Content Include="img\shop\payment-options\jcb.png" />
+    <Content Include="img\shop\payment-options\mastercard.png" />
+    <Content Include="img\shop\payment-options\paypal.png" />
+    <Content Include="img\shop\payment-options\visa.png" />
+    <Content Include="img\shop\preview\01_product.jpg" />
+    <Content Include="img\shop\preview\02_product.jpg" />
+    <Content Include="img\shop\preview\03_product.jpg" />
+    <Content Include="img\shop\preview\04_product.jpg" />
+    <Content Include="img\shop\product-01.jpg" />
+    <Content Include="img\shop\product-02.jpg" />
+    <Content Include="img\shop\product-03.jpg" />
+    <Content Include="img\shop\product-04.jpg" />
+    <Content Include="img\shop\product-05.jpg" />
+    <Content Include="img\shop\product-06.jpg" />
+    <Content Include="img\shop\product-07.jpg" />
+    <Content Include="img\shop\product-08.jpg" />
+    <Content Include="img\shop\product-09.jpg" />
+    <Content Include="img\shop\products\thumbs\thumb-01.jpg" />
+    <Content Include="img\shop\products\thumbs\thumb-02.jpg" />
+    <Content Include="img\shop\products\thumbs\thumb-03.jpg" />
+    <Content Include="img\shop\products\thumbs\thumb-04.jpg" />
+    <Content Include="img\shop\products\thumbs\thumb-05.jpg" />
+    <Content Include="img\shop\products\thumbs\thumb-06.jpg" />
+    <Content Include="img\shop\products\thumbs\thumb-07.jpg" />
+    <Content Include="img\shop\products\thumbs\thumb-08.jpg" />
+    <Content Include="img\shop\products\thumbs\thumb-09.jpg" />
+    <Content Include="img\shop\slider\slide-01.jpg" />
+    <Content Include="img\shop\slider\slide-02.jpg" />
+    <Content Include="img\shop\thumb-01.jpg" />
+    <Content Include="img\shop\thumb-02.jpg" />
+    <Content Include="img\shop\thumb-03.jpg" />
+    <Content Include="img\shop\thumbs\01_product.jpg" />
+    <Content Include="img\slider\elements\header_edding.png" />
+    <Content Include="img\slider\elements\header_flowerpot.png" />
+    <Content Include="img\slider\elements\header_marker.png" />
+    <Content Include="img\slider\elements\header_paperclip.png" />
+    <Content Include="img\slider\elements\header_papers.png" />
+    <Content Include="img\slider\elements\header_pen.png" />
+    <Content Include="img\slider\elements\header_penpot.png" />
+    <Content Include="img\slider\elements\header_tablet.png" />
+    <Content Include="img\slider\elements\transparent.png" />
+    <Content Include="img\slider\slide1.jpg" />
+    <Content Include="img\slider\slide10.jpg" />
+    <Content Include="img\slider\slide11.jpg" />
+    <Content Include="img\slider\slide12.jpg" />
+    <Content Include="img\slider\slide13.jpg" />
+    <Content Include="img\slider\slide14.jpg" />
+    <Content Include="img\slider\slide16.jpg" />
+    <Content Include="img\slider\slide17.jpg" />
+    <Content Include="img\slider\slide18.jpg" />
+    <Content Include="img\slider\slide19.jpg" />
+    <Content Include="img\slider\slide2.jpg" />
+    <Content Include="img\slider\slide20.jpg" />
+    <Content Include="img\slider\slide21.jpg" />
+    <Content Include="img\slider\slide22.jpg" />
+    <Content Include="img\slider\slide23.jpg" />
+    <Content Include="img\slider\slide3.jpg" />
+    <Content Include="img\slider\slide4.jpg" />
+    <Content Include="img\slider\slide5.jpg" />
+    <Content Include="img\slider\slide6 %281%29.jpg" />
+    <Content Include="img\slider\slide6.jpg" />
+    <Content Include="img\slider\slide7.jpg" />
+    <Content Include="img\slider\slide8.jpg" />
+    <Content Include="img\slider\slide9.jpg" />
+    <Content Include="img\slider\slider-shape.png" />
+    <Content Include="img\services\SolarPower.jpg" />
+    <Content Include="img\services\SolarSystem.jpg" />
+    <Content Include="img\services\ups.png" />
+    <Content Include="img\team\team-01.jpg" />
+    <Content Include="img\team\team-02.jpg" />
+    <Content Include="img\team\team-03.jpg" />
+    <Content Include="img\team\team-04.jpg" />
+    <Content Include="img\team\team-05.jpg" />
+    <Content Include="img\team\team-06.jpg" />
+    <Content Include="img\team\team-07.jpg" />
+    <Content Include="img\team\team-08.jpg" />
+    <Content Include="img\team\team-09.jpg" />
+    <Content Include="img\team\team-10.jpg" />
+    <Content Include="img\team\team-11.jpg" />
+    <Content Include="img\team\teammember-01.jpg" />
+    <Content Include="img\team\teammember-02.jpg" />
+    <Content Include="img\team\teammember-03.jpg" />
+    <Content Include="img\team\teammember-04.jpg" />
+    <Content Include="img\team\teammember-05.jpg" />
+    <Content Include="img\team\teammember-06.jpg" />
+    <Content Include="img\team\teammember-07.jpg" />
+    <Content Include="img\team\teammember-08.jpg" />
+    <Content Include="img\testmonials\t-1.jpg" />
+    <Content Include="img\testmonials\t-10.jpg" />
+    <Content Include="img\testmonials\t-11.jpg" />
+    <Content Include="img\testmonials\t-12.jpg" />
+    <Content Include="img\testmonials\t-2.jpg" />
+    <Content Include="img\testmonials\t-3.jpg" />
+    <Content Include="img\testmonials\t-4.jpg" />
+    <Content Include="img\testmonials\t-5.jpg" />
+    <Content Include="img\testmonials\t-6.jpg" />
+    <Content Include="img\testmonials\t-7.jpg" />
+    <Content Include="img\testmonials\t-8.jpg" />
+    <Content Include="img\testmonials\t-9.jpg" />
+    <Content Include="img\thumbs\t-1.jpg" />
+    <Content Include="img\thumbs\t-2.jpg" />
+    <Content Include="img\thumbs\t-3.jpg" />
+    <Content Include="js\core.min.js" />
+    <Content Include="js\custom\site.js" />
+    <Content Include="js\Dashboard\custom.js" />
+    <Content Include="js\Dashboard\main.js" />
+    <Content Include="js\Dashboard\pages\calendar-event.js" />
+    <Content Include="js\Dashboard\pages\chart.js" />
+    <Content Include="js\Dashboard\pages\dashboard.js" />
+    <Content Include="js\Dashboard\pages\email.js" />
+    <Content Include="js\Dashboard\pages\form-elements.js" />
+    <Content Include="js\Dashboard\pages\form-file-upload.js" />
+    <Content Include="js\Dashboard\pages\form-image-zoom.js" />
+    <Content Include="js\Dashboard\pages\form-wizard.js" />
+    <Content Include="js\Dashboard\pages\gallery.js" />
+    <Content Include="js\Dashboard\pages\maps-vector.js" />
+    <Content Include="js\Dashboard\pages\table-data.js" />
+    <Content Include="js\Dashboard\pages\timeline.js" />
+    <Content Include="js\Dashboard\pages\todo.js" />
+    <Content Include="js\Dashboard\pages\ui-modals.js" />
+    <Content Include="js\Dashboard\pages\ui-nestable.js" />
+    <Content Include="js\Dashboard\pages\ui-notifications.js" />
+    <Content Include="js\Dashboard\pages\ui-tree-view.js" />
+    <Content Include="js\jquery-3.3.1.min.js" />
+    <Content Include="js\jquery.hammer.min.js" />
+    <Content Include="js\main.js" />
+    <Content Include="js\rev_slider\extensions\revolution.addon.typewriter.min.js" />
+    <Content Include="js\rev_slider\extensions\revolution.extension.actions.min.js" />
+    <Content Include="js\rev_slider\extensions\revolution.extension.carousel.min.js" />
+    <Content Include="js\rev_slider\extensions\revolution.extension.kenburn.min.js" />
+    <Content Include="js\rev_slider\extensions\revolution.extension.layeranimation.min.js" />
+    <Content Include="js\rev_slider\extensions\revolution.extension.migration.min.js" />
+    <Content Include="js\rev_slider\extensions\revolution.extension.navigation.min.js" />
+    <Content Include="js\rev_slider\extensions\revolution.extension.parallax.min.js" />
+    <Content Include="js\rev_slider\extensions\revolution.extension.slideanims.min.js" />
+    <Content Include="js\rev_slider\extensions\revolution.extension.video.min.js" />
+    <Content Include="js\rev_slider\jquery.themepunch.revolution.min.js" />
+    <Content Include="js\rev_slider\jquery.themepunch.tools.min.js" />
+    <Content Include="js\setup.js" />
+    <Content Include="js\xzoom.js" />
+    <Content Include="Models\DB\ModelSastiService.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelSastiService.edmx</DependentUpon>
+      <LastGenOutput>ModelSastiService.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\DB\ModelSastiService.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelSastiService.edmx</DependentUpon>
+      <LastGenOutput>ModelSastiService.cs</LastGenOutput>
+    </Content>
+    <Content Include="plugins\bootstrap-clockpicker\css\bootstrap-clockpicker.min.css" />
+    <Content Include="plugins\bootstrap-clockpicker\js\bootstrap-clockpicker.min.js" />
+    <Content Include="plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.css" />
+    <Content Include="plugins\bootstrap-colorpicker\js\bootstrap-colorpicker.js" />
+    <Content Include="plugins\bootstrap-datepicker\css\datepicker.css" />
+    <Content Include="plugins\bootstrap-datepicker\js\bootstrap-datepicker.js" />
+    <Content Include="plugins\bootstrap-tagsinput\bootstrap-tagsinput.css" />
+    <Content Include="plugins\bootstrap-tagsinput\bootstrap-tagsinput.min.js" />
+    <Content Include="plugins\bootstrap-tagsinput\src\bootstrap-tagsinput-angular.js" />
+    <Content Include="plugins\bootstrap-wizard\jquery.bootstrap.wizard.min.js" />
+    <Content Include="plugins\bootstrap\css\bootstrap.min.css" />
+    <Content Include="plugins\bootstrap\js\bootstrap.min.js" />
+    <Content Include="plugins\chartjs\chart.min.js" />
+    <Content Include="plugins\d3\d3.min.js" />
+    <Content Include="plugins\datatables\css\jquery.datatables.min.css" />
+    <Content Include="plugins\datatables\css\jquery.datatables_themeroller.css" />
+    <Content Include="plugins\datatables\images\sort_asc.png" />
+    <Content Include="plugins\datatables\images\sort_both.png" />
+    <Content Include="plugins\datatables\images\sort_desc.png" />
+    <Content Include="plugins\datatables\js\jquery.datatables.min.js" />
+    <Content Include="plugins\dropzone\dropzone.min.css" />
+    <Content Include="plugins\elevatezoom\jquery.elevatezoom-3.0.8.min.js" />
+    <Content Include="plugins\flot\jquery.flot.min.js" />
+    <Content Include="plugins\flot\jquery.flot.pie.min.js" />
+    <Content Include="plugins\flot\jquery.flot.resize.min.js" />
+    <Content Include="plugins\flot\jquery.flot.symbol.min.js" />
+    <Content Include="plugins\flot\jquery.flot.time.min.js" />
+    <Content Include="plugins\flot\jquery.flot.tooltip.min.js" />
+    <Content Include="plugins\font-awesome\css\font-awesome.min.css" />
+    <Content Include="plugins\full-calendar\core\main.css" />
+    <Content Include="plugins\full-calendar\core\main.min.js" />
+    <Content Include="plugins\full-calendar\daygrid\main.css" />
+    <Content Include="plugins\full-calendar\daygrid\main.min.js" />
+    <Content Include="plugins\full-calendar\interaction\main.min.js" />
+    <Content Include="plugins\full-calendar\list\main.css" />
+    <Content Include="plugins\full-calendar\list\main.min.js" />
+    <Content Include="plugins\full-calendar\timegrid\main.css" />
+    <Content Include="plugins\full-calendar\timegrid\main.min.js" />
+    <Content Include="plugins\gridgallery\css\component.css" />
+    <Content Include="plugins\gridgallery\js\cbpgridgallery.js" />
+    <Content Include="plugins\gridgallery\js\classie.js" />
+    <Content Include="plugins\gridgallery\js\imagesloaded.pkgd.min.js" />
+    <Content Include="plugins\gridgallery\js\masonry.pkgd.min.js" />
+    <Content Include="plugins\gridgallery\js\modernizr.custom.js" />
+    <Content Include="plugins\icomoon\style.css" />
+    <Content Include="plugins\jquery-cropper\css\cropper.css" />
+    <Content Include="plugins\jquery-cropper\css\main.css" />
+    <Content Include="plugins\jquery-cropper\img\picture.jpg" />
+    <Content Include="plugins\jquery-cropper\js\common.js" />
+    <Content Include="plugins\jquery-cropper\js\cropper.js" />
+    <Content Include="plugins\jquery-cropper\js\jquery-cropper.js" />
+    <Content Include="plugins\jquery-cropper\js\main.js" />
+    <Content Include="plugins\jquery-slimscroll\jquery.slimscroll.min.js" />
+    <Content Include="plugins\jquery-validation\jquery.validate.min.js" />
+    <Content Include="plugins\jquery\jquery-3.1.0.min.js" />
+    <Content Include="plugins\jqvmap\jquery.vmap.min.js" />
+    <Content Include="plugins\jqvmap\jqvmap.css" />
+    <Content Include="plugins\jqvmap\maps\jquery.vmap.world.js" />
+    <Content Include="plugins\jstree\jstree.min.js" />
+    <Content Include="plugins\jstree\themes\default\32px.png" />
+    <Content Include="plugins\jstree\themes\default\style.css" />
+    <Content Include="plugins\jstree\themes\default\throbber.gif" />
+    <Content Include="plugins\nestable\jquery.nestable.js" />
+    <Content Include="plugins\nestable\nestable.css" />
+    <Content Include="plugins\nvd3\build\nv.d3.css" />
+    <Content Include="plugins\nvd3\nv.d3.js" />
+    <Content Include="plugins\nvd3\nv.d3.min.css" />
+    <Content Include="plugins\nvd3\nv.d3.min.js" />
+    <Content Include="plugins\plupload\js\jquery.plupload.queue\css\jquery.plupload.queue.css" />
+    <Content Include="plugins\plupload\js\jquery.plupload.queue\jquery.plupload.queue.min.js" />
+    <Content Include="plugins\plupload\js\plupload.full.min.js" />
+    <Content Include="plugins\popper\js\popper.min.js" />
+    <Content Include="plugins\summernote-master\summernote.css" />
+    <Content Include="plugins\summernote-master\summernote.min.js" />
+    <Content Include="plugins\switchery\switchery.min.css" />
+    <Content Include="plugins\switchery\switchery.min.js" />
+    <Content Include="plugins\toastr\toastr.min.css" />
+    <Content Include="plugins\toastr\toastr.min.js" />
+    <Content Include="plugins\uniform\css\default.css" />
+    <Content Include="plugins\uniform\images\default\sprite.png" />
+    <Content Include="plugins\uniform\js\jquery.uniform.standalone.js" />
+    <Content Include="plugins\vertical-timeline\css\style.css" />
+    <Content Include="plugins\vertical-timeline\js\main.js" />
+    <Content Include="plugins\vertical-timeline\js\modernizr.js" />
+    <Content Include="quform\css\base.css" />
+    <Content Include="quform\images\captcha-refresh-icon.png" />
+    <Content Include="quform\images\captcha\courier-new-light.png" />
+    <Content Include="quform\images\close.png" />
+    <Content Include="quform\images\default-loading.gif" />
+    <Content Include="quform\images\error.png" />
+    <Content Include="quform\images\success.png" />
+    <Content Include="quform\js\plugins.js" />
+    <Content Include="quform\js\scripts.js" />
+    <Content Include="plugins\bootstrap-colorpicker\css\src\less\colorpicker.less" />
+    <Content Include="plugins\font-awesome\fonts\fa-brands-400.woff2" />
+    <Content Include="plugins\font-awesome\fonts\fa-regular-400.woff2" />
+    <Content Include="plugins\font-awesome\fonts\fa-solid-900.woff2" />
+    <Content Include="plugins\icomoon\fonts\icomoon.ttf" />
+    <Content Include="js\Dashboard\pages\ajax_roots.json" />
+    <Content Include="Report\Invoice.aspx" />
+    <Content Include="Rotativa\wkhtmltopdf.exe" />
+    <Content Include="SastaServicesDBDataSet.xsc">
+      <DependentUpon>SastaServicesDBDataSet.xsd</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\DB\ModelSastiService.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelSastiService.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\DB\ModelSastiService.edmx.diagram">
+      <DependentUpon>ModelSastiService.edmx</DependentUpon>
+    </Content>
+    <Content Include="App_Browsers\qt.browser" />
+    <Content Include="bin\WebAppSastiServices.dll.config" />
+    <None Include="SastaServicesDBDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SastaServicesDBDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="SastaServicesDBDataSet.xss">
+      <DependentUpon>SastaServicesDBDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="SastaServicesDBDataSet1.xsc">
+      <DependentUpon>SastaServicesDBDataSet1.xsd</DependentUpon>
+    </Content>
+    <None Include="SastaServicesDBDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SastaServicesDBDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="SastaServicesDBDataSet1.xss">
+      <DependentUpon>SastaServicesDBDataSet1.xsd</DependentUpon>
+    </Content>
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="search\search.css" />
+    <Content Include="search\search.js" />
+    <Content Include="video\bg-video.mp4" />
+    <Content Include="video\vide-bg-img.jpg" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AboutController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminDashboardController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ServicesController.cs" />
+    <Compile Include="Controllers\ShopController.cs" />
+    <Compile Include="Controllers\SupplierDashboardController.cs" />
+    <Compile Include="Controllers\UserDashboardController.cs" />
+    <Compile Include="Controllers\VendorDashboardController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\ModelSastiService.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelSastiService.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\ModelSastiService.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelSastiService.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\ModelSastiService.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelSastiService.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\ReportInvoice_Result.cs">
+      <DependentUpon>ModelSastiService.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\STPBanner.cs">
+      <DependentUpon>ModelSastiService.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\STPBannerOffer.cs">
+      <DependentUpon>ModelSastiService.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\STPCustomerSupport.cs">
+      <DependentUpon>ModelSastiService.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\STPPrefferedTime.cs">
+      <DependentUpon>ModelSastiService.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\STPProductBrand.cs">
+      <DependentUpon>ModelSastiService.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\STPProductType.cs">
+      <DependentUpon>ModelSastiService.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\STPQuickCall.cs">
+      <DependentUpon>ModelSastiService.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\STPService.cs">
+      <DependentUpon>ModelSastiService.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\STPServiceProductItem.cs">
+      <DependentUpon>ModelSastiService.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\STPServicesFuelType.cs">
+      <DependentUpon>ModelSastiService.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\STPServicesUnitType.cs">
+      <DependentUpon>ModelSastiService.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\STPServiceType.cs">
+      <DependentUpon>ModelSastiService.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\STPStatu.cs">
+      <DependentUpon>ModelSastiService.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\STPStatusType.cs">
+      <DependentUpon>ModelSastiService.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\StpUser.cs">
+      <DependentUpon>ModelSastiService.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\StpUserType.cs">
+      <DependentUpon>ModelSastiService.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\TRNCustomerOrder.cs">
+      <DependentUpon>ModelSastiService.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\TRNCustomerOrders_STPProductItems.cs">
+      <DependentUpon>ModelSastiService.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\TRNCustomerOrders_STPServices.cs">
+      <DependentUpon>ModelSastiService.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\TRNInvoice.cs">
+      <DependentUpon>ModelSastiService.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\TRNSubscription.cs">
+      <DependentUpon>ModelSastiService.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Email.cs" />
+    <Compile Include="Models\EntityManager\UserManager.cs" />
+    <Compile Include="Models\Extended\STPOrder.cs" />
+    <Compile Include="Models\Extended\TRNCustomerOrder.cs" />
+    <Compile Include="Models\ViewModel\GetInTouch.cs" />
+    <Compile Include="Models\ViewModel\UserLoginView.cs" />
+    <Compile Include="Models\ViewModel\UserRegisterView.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Report\Invoice.aspx.cs">
+      <DependentUpon>Invoice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Report\Invoice.aspx.designer.cs">
+      <DependentUpon>Invoice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SastaServicesDBDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SastaServicesDBDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="SastaServicesDBDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SastaServicesDBDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Security\Crypto.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="fonts\et-line.woff" />
+    <Content Include="fonts\fa-brands-400.woff2" />
+    <Content Include="fonts\fa-regular-400.woff2" />
+    <Content Include="fonts\fa-solid-900.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\revicons\revicons.woff" />
+    <Content Include="fonts\themify.woff" />
+    <Content Include="img\content\profile.pdf" />
+    <None Include="packages.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_LayoutPage.cshtml" />
+    <Content Include="Views\Services\Service.cshtml" />
+    <Content Include="Views\About\AboutUs.cshtml" />
+    <Content Include="Views\Shop\Products.cshtml" />
+    <Content Include="Views\Shop\ProductGrid.cshtml" />
+    <Content Include="Views\Shop\ProductDetail.cshtml" />
+    <Content Include="Views\Shop\ShopCart.cshtml" />
+    <Content Include="Views\Shop\ShopCheckout.cshtml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Services\ServiceDetail.cshtml" />
+    <Content Include="Views\Shared\_LayoutDashboardAdmin.cshtml" />
+    <Content Include="Views\AdminDashboard\Index.cshtml" />
+    <Content Include="Views\AdminDashboard\AdminProfile.cshtml" />
+    <Content Include="Views\AdminDashboard\Email.cshtml" />
+    <Content Include="Views\AdminDashboard\Login.cshtml" />
+    <Content Include="Views\AdminDashboard\Invoice.cshtml" />
+    <Content Include="Views\AdminDashboard\Maps.cshtml" />
+    <Content Include="Views\AdminDashboard\LockScreen.cshtml" />
+    <Content Include="Views\Shared\_LayoutDashboardAuthentication.cshtml" />
+    <Content Include="Views\AdminDashboard\Register.cshtml" />
+    <Content Include="Views\SupplierDashboard\Email.cshtml" />
+    <Content Include="Views\SupplierDashboard\Index.cshtml" />
+    <Content Include="Views\SupplierDashboard\Invoice.cshtml" />
+    <Content Include="Views\SupplierDashboard\LockScreen.cshtml" />
+    <Content Include="Views\SupplierDashboard\Login.cshtml" />
+    <Content Include="Views\SupplierDashboard\Maps.cshtml" />
+    <Content Include="Views\SupplierDashboard\SupplierProfile.cshtml" />
+    <Content Include="Views\SupplierDashboard\Register.cshtml" />
+    <Content Include="Views\UserDashboard\Email.cshtml" />
+    <Content Include="Views\UserDashboard\Index.cshtml" />
+    <Content Include="Views\UserDashboard\Invoice.cshtml" />
+    <Content Include="Views\UserDashboard\LockScreen.cshtml" />
+    <Content Include="Views\UserDashboard\Login.cshtml" />
+    <Content Include="Views\UserDashboard\Maps.cshtml" />
+    <Content Include="Views\UserDashboard\UserProfile.cshtml" />
+    <Content Include="Views\UserDashboard\Register.cshtml" />
+    <Content Include="Views\VendorDashboard\GeneratorsEmail.cshtml" />
+    <Content Include="Views\VendorDashboard\GeneratorsIndex.cshtml" />
+    <Content Include="Views\VendorDashboard\GeneratorsInvoice.cshtml" />
+    <Content Include="Views\VendorDashboard\GeneratorsLockScreen.cshtml" />
+    <Content Include="Views\VendorDashboard\GeneratorsLogin.cshtml" />
+    <Content Include="Views\VendorDashboard\GeneratorsMaps.cshtml" />
+    <Content Include="Views\VendorDashboard\GeneratorsProfile.cshtml" />
+    <Content Include="Views\VendorDashboard\GeneratorsRegister.cshtml" />
+    <Content Include="Views\Shared\_LayoutDashboardSupplier.cshtml" />
+    <Content Include="Views\Shared\_LayoutDashboardGeneratorsVendor.cshtml" />
+    <Content Include="Views\Shared\_LayoutDashboardUser.cshtml" />
+    <Content Include="Views\VendorDashboard\GeneratorsViewServices.cshtml" />
+    <Content Include="Views\VendorDashboard\GeneratorsCreateServices.cshtml" />
+    <Content Include="Views\VendorDashboard\GeneratorsEditServices.cshtml" />
+    <Content Include="Views\VendorDashboard\GeneratorsDeleteServices.cshtml" />
+    <Content Include="Views\VendorDashboard\GeneratorsOrders.cshtml" />
+    <Content Include="Views\VendorDashboard\GeneratorsViewItems.cshtml" />
+    <Content Include="Views\VendorDashboard\GeneratorsCreateItems.cshtml" />
+    <Content Include="Views\VendorDashboard\GeneratorsEditItems.cshtml" />
+    <Content Include="Views\VendorDashboard\GeneratorsDeleteItems.cshtml" />
+    <Content Include="Views\Shared\_LayoutDashboardACVendor.cshtml" />
+    <Content Include="Views\VendorDashboard\ACCreateItems.cshtml" />
+    <Content Include="Views\VendorDashboard\ACCreateServices.cshtml" />
+    <Content Include="Views\VendorDashboard\ACDeleteItems.cshtml" />
+    <Content Include="Views\VendorDashboard\ACDeleteServices.cshtml" />
+    <Content Include="Views\VendorDashboard\ACEditItems.cshtml" />
+    <Content Include="Views\VendorDashboard\ACEditServices.cshtml" />
+    <Content Include="Views\VendorDashboard\ACEmail.cshtml" />
+    <Content Include="Views\VendorDashboard\ACIndex.cshtml" />
+    <Content Include="Views\VendorDashboard\ACLockScreen.cshtml" />
+    <Content Include="Views\VendorDashboard\ACLogin.cshtml" />
+    <Content Include="Views\VendorDashboard\ACMaps.cshtml" />
+    <Content Include="Views\VendorDashboard\ACOrders.cshtml" />
+    <Content Include="Views\VendorDashboard\ACProfile.cshtml" />
+    <Content Include="Views\VendorDashboard\ACRegister.cshtml" />
+    <Content Include="Views\VendorDashboard\ACViewItems.cshtml" />
+    <Content Include="Views\VendorDashboard\ACViewServices.cshtml" />
+    <Content Include="Views\VendorDashboard\CCTVCreateItems.cshtml" />
+    <Content Include="Views\VendorDashboard\CCTVCreateServices.cshtml" />
+    <Content Include="Views\VendorDashboard\CCTVDeleteItems.cshtml" />
+    <Content Include="Views\VendorDashboard\CCTVDeleteServices.cshtml" />
+    <Content Include="Views\VendorDashboard\CCTVEditItems.cshtml" />
+    <Content Include="Views\VendorDashboard\CCTVEditServices.cshtml" />
+    <Content Include="Views\VendorDashboard\CCTVEmail.cshtml" />
+    <Content Include="Views\VendorDashboard\CCTVIndex.cshtml" />
+    <Content Include="Views\VendorDashboard\CCTVInvoice.cshtml" />
+    <Content Include="Views\VendorDashboard\CCTVLockScreen.cshtml" />
+    <Content Include="Views\VendorDashboard\CCTVLogin.cshtml" />
+    <Content Include="Views\VendorDashboard\CCTVMaps.cshtml" />
+    <Content Include="Views\VendorDashboard\CCTVOrders.cshtml" />
+    <Content Include="Views\VendorDashboard\CCTVProfile.cshtml" />
+    <Content Include="Views\VendorDashboard\CCTVRegister.cshtml" />
+    <Content Include="Views\VendorDashboard\CCTVViewItems.cshtml" />
+    <Content Include="Views\VendorDashboard\CCTVViewServices.cshtml" />
+    <Content Include="Views\Shared\_LayoutDashboardCCTVVendor.cshtml" />
+    <Content Include="Views\Shared\_LayoutDashboardSolarSysVendor.cshtml" />
+    <Content Include="Views\VendorDashboard\UPSCreateItems.cshtml" />
+    <Content Include="Views\VendorDashboard\UPSCreateServices.cshtml" />
+    <Content Include="Views\VendorDashboard\UPSDeleteItems.cshtml" />
+    <Content Include="Views\VendorDashboard\UPSDeleteServices.cshtml" />
+    <Content Include="Views\VendorDashboard\UPSEditItems.cshtml" />
+    <Content Include="Views\VendorDashboard\UPSEditServices.cshtml" />
+    <Content Include="Views\VendorDashboard\UPSEmail.cshtml" />
+    <Content Include="Views\VendorDashboard\UPSIndex.cshtml" />
+    <Content Include="Views\VendorDashboard\UPSInvoice.cshtml" />
+    <Content Include="Views\VendorDashboard\UPSLockScreen.cshtml" />
+    <Content Include="Views\VendorDashboard\UPSLogin.cshtml" />
+    <Content Include="Views\VendorDashboard\UPSMaps.cshtml" />
+    <Content Include="Views\VendorDashboard\UPSOrders.cshtml" />
+    <Content Include="Views\VendorDashboard\UPSProfile.cshtml" />
+    <Content Include="Views\VendorDashboard\SolarSysProfile.cshtml" />
+    <Content Include="Views\VendorDashboard\SolarSysCreateItems.cshtml" />
+    <Content Include="Views\VendorDashboard\SolarSysCreateServices.cshtml" />
+    <Content Include="Views\VendorDashboard\SolarSysDeleteItems.cshtml" />
+    <Content Include="Views\VendorDashboard\SolarSysDeleteServices.cshtml" />
+    <Content Include="Views\VendorDashboard\SolarSysEditItems.cshtml" />
+    <Content Include="Views\VendorDashboard\SolarSysEditServices.cshtml" />
+    <Content Include="Views\VendorDashboard\SolarSysEmail.cshtml" />
+    <Content Include="Views\VendorDashboard\SolarSysIndex.cshtml" />
+    <Content Include="Views\VendorDashboard\SolarSysInvoice.cshtml" />
+    <Content Include="Views\VendorDashboard\SolarSysLockScreen.cshtml" />
+    <Content Include="Views\VendorDashboard\SolarSysLogin.cshtml" />
+    <Content Include="Views\VendorDashboard\SolarSysMaps.cshtml" />
+    <Content Include="Views\VendorDashboard\SolarSysOrders.cshtml" />
+    <Content Include="Views\Shared\_LayoutDashboardUPSVendor.cshtml" />
+    <Content Include="Views\AdminDashboard\Vendor.cshtml" />
+    <Content Include="Views\AdminDashboard\Supplier.cshtml" />
+    <Content Include="Views\Home\CustomerOrder.cshtml" />
+    <Content Include="Views\Home\ForgotPassword.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Home\pvGetInTouch.cshtml" />
+    <Content Include="Views\Home\pvQuickCall.cshtml" />
+    <Content Include="Views\Home\PVservices.cshtml" />
+    <Content Include="Views\Home\Register.cshtml" />
+    <Content Include="Views\AdminDashboard\AvailedOrders.cshtml" />
+    <Content Include="Views\AdminDashboard\OrderDelete.cshtml" />
+    <Content Include="Views\AdminDashboard\OrderDetails.cshtml" />
+    <Content Include="Views\AdminDashboard\OrderEdit.cshtml" />
+    <Content Include="Views\VendorDashboard\ACAvailedOrder.cshtml" />
+    <Content Include="Views\VendorDashboard\AvailOrder.cshtml" />
+    <Content Include="Views\AdminDashboard\InvItems.cshtml" />
+    <Content Include="Views\AdminDashboard\InvService.cshtml" />
+    <Content Include="Views\Shared\error.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\AdminDashboard\PrintInvoice.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Views\Dashboard\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Report\Report1.rdlc" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>7729</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44330/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,337 @@
+﻿
+@{
+    ViewBag.Title = "Invoice";
+    Layout = "~/Views/Shared/_LayoutDashboardSolarSysVendor.cshtml";
+}
+<!-- start page inner -->
+<div class="page-inner">
+    <div class="page-title">
+        <h3 class="breadcrumb-header d-inline">Invoice</h3>
+        <button class="btn btn-outline-dark float-right"><i class="fa fa-print"></i> Print</button>
+    </div>
+    <!-- start page main wrapper -->
+    <div id="main-wrapper">
+        <div class="card card-white">
+            <p class="text-right">Order#: <span class="text-black-50"> 12345 </span></p>
+            <!--Client_info start-->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-white">
+                        <div class="card-body">
+                            <div class="row">
+
+                                <div class="col-md-12" id="Client_info">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <p>Client Name: <span class="float-right text-black-50">abc </span></p>
+                                            <p>Address: <span class="float-right text-black-50">jasdlfjlkasdjflaksd</span></p>
+                                            <p>Contact: <span class="float-right text-black-50">09834328095</span></p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>Service Category/Type: <span class="float-right text-black-50">AC</span></p>
+                                            <p>AC Type: <span class="float-right text-black-50">Split</span></p>
+                                            <p>Unit: <span class="float-right text-black-50">1.5 tones</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Client_info end-->
+            <!--Add service and item start-->
+            <!-- Row -->
+            <div class="row">
+                <div class="col-md-12" id="Add">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card card-white">
+                                <div class="card-heading clearfix">
+                                    <h4 class="card-title">Add Services</h4>
+                                </div>
+                                <div class="card-body">
+
+                                    <div>
+                                        <div class="row">
+                                            <div class="col-12" id="AddService">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-5 col-form-label">Service Name</label>
+                                                    <div class="col-sm-7">
+                                                        <select class="form-control">
+                                                            <option>1</option>
+                                                            <option>2</option>
+                                                            <option>3</option>
+                                                            <option>4</option>
+                                                            <option>5</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-5 col-form-label">Charges</label>
+                                                    <div class="col-sm-7">
+                                                        <input type="text" class="form-control" value="20000" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-5 col-form-label">Discount(if any)</label>
+                                                    <div class="col-sm-7">
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <button class="btn btn-outline-primary float-right" type="submit">Add</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card card-white">
+                                <div class="card-heading clearfix">
+                                    <h4 class="card-title">Add Items</h4>
+                                </div>
+                                <div class="card-body">
+
+                                    <div>
+                                        <div class="row">
+                                            <div class="col-12" id="AddItem">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-5 col-form-label">Item Name</label>
+                                                    <div class="col-sm-7">
+                                                        <select class="form-control">
+                                                            <option>1</option>
+                                                            <option>2</option>
+                                                            <option>3</option>
+                                                            <option>4</option>
+                                                            <option>5</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-5 col-form-label">Item No</label>
+                                                    <div class="col-sm-7">
+                                                        <select class="form-control">
+                                                            <option>1</option>
+                                                            <option>2</option>
+                                                            <option>3</option>
+                                                            <option>4</option>
+                                                            <option>5</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-5 col-form-label">Qty</label>
+                                                    <div class="col-sm-7">
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-5 col-form-label">Rate</label>
+                                                    <div class="col-sm-7">
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <button class="btn btn-outline-primary float-right" type="submit">Add</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Add service and item end-->
+            <!-- Row -->
+            <div class="row">
+                <div class="col-md-12" id="List">
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <div class="card card-white">
+                                <div class="card-heading clearfix">
+                                    <h4 class="card-title">Services Added</h4>
+                                </div>
+                                <div class="card-body">
+
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Service Name</th>
+                                                    <th>Service Charges</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">1</th>
+                                                    <td>Table cell</td>
+                                                    <td>Table cell</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">2</th>
+                                                    <td>Table cell</td>
+                                                    <td>Table cell</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">3</th>
+                                                    <td>Table cell</td>
+                                                    <td>Table cell</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">4</th>
+                                                    <td>Table cell</td>
+                                                    <td>Table cell</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">5</th>
+                                                    <td>Table cell</td>
+                                                    <td>Table cell</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">6</th>
+                                                    <td>Table cell</td>
+                                                    <td>Table cell</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card card-white">
+                                <div class="card-heading clearfix">
+                                    <h4 class="card-title">Items Added</h4>
+                                </div>
+                                <div class="card-body">
+
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Item Name</th>
+                                                    <th>Item Charges</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">1</th>
+                                                    <td>Table cell</td>
+                                                    <td>Table cell</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">2</th>
+                                                    <td>Table cell</td>
+                                                    <td>Table cell</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">3</th>
+                                                    <td>Table cell</td>
+                                                    <td>Table cell</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">4</th>
+                                                    <td>Table cell</td>
+                                                    <td>Table cell</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">5</th>
+                                                    <td>Table cell</td>
+                                                    <td>Table cell</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">6</th>
+                                                    <td>Table cell</td>
+                                                    <td>Table cell</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Row -->
+
+            </div>
+            <!-- Row -->
+            <div class="row">
+                <div class="col-md-12" id="Bill">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <div class="card card-white">
+                                <div class="card-heading clearfix">
+                                    <h4 class="card-title">Total Charges</h4>
+                                </div>
+                                <div class="card-body">
+
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Description</th>
+                                                    <th>Charges</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">1</th>
+                                                    <td>Service Charges</td>
+                                                    <td>20000</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">2</th>
+                                                    <td>Item Charges</td>
+                                                    <td>90000</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">3</th>
+                                                    <td>Asaan Service Charges</td>
+                                                    <td>2000</td>
+                                                </tr>
+                                                <tr class="border-bottom border-double border-color-dark-gray">
+                                                    <th scope="row"></th>
+                                                    <td>Total</td>
+                                                    <td>112000</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 text-right" >
+                            <h4 class="m-t-lg">Thank you!</h4>
+                            <p>
+                                Voluptas sit aspernatur aut odit aut fugit consequur.
+                                <br>Sed ut perspiciatis unde omnis iste natus
+                                <br>Minim veniam, quis nostrud exercitation ullamco laboris.
+                            </p>
+                            <img src="~/img/Dashboard/signature-black.png" class="m-t-lg" alt="">
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Row -->
+            </div>
+            <!-- end page main wrapper -->
+        </div>
+
+        <div class="page-footer">
+            <p>
+                Copyright &copy;
+                <script>document.write(new Date().getFullYear())</script> Crizal All rights reserved.
+            </p>
+        </div>
+    </div>
+    <!-- end page inner -->

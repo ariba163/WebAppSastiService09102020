@@ -1,0 +1,41 @@
+﻿/*Dashboard main screen task list*/
+#ActiveOrders .todo-item span {
+    font-size: 20px !important;
+}
+/*invoice styling*/
+#Add .card-white {
+    height: 320px;
+}
+
+.LockOn {
+    display: block;
+    visibility: visible;
+    position: absolute;
+    z-index: 999;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+    vertical-align: bottom;
+    padding-top: 20%;
+    filter: alpha(opacity=75);
+    opacity: 0.75;
+    font-size: large;
+    color: blue;
+    font-style: italic;
+    font-weight: 400;
+    background-image: url("../../img/ajax-loader.gif");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+
+/*xs screen*/
+@media(max-width: 575px) {
+    /*invoice styling*/
+    #Add .card-white {
+        height: auto;
+    }
+}

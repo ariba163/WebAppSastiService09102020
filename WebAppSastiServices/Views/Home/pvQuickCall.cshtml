@@ -1,0 +1,33 @@
+﻿<!-- form start -->
+
+@using (Html.BeginForm("pvQuickCall", "Home", FormMethod.Post, new { @class = "quform", @enctype = "multipart/form-data" }))
+{
+    <!-- Form start -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label class="control-label" for="name">Name</label>
+                @Html.TextBox("Name", null, new { @placeholder = "Your name here", @id = "name" })
+                @*<input id="name" name="name" type="text" placeholder="Name" class="form-control input-md">*@
+            </div>
+        </div>
+        <!-- Text input-->
+        <div class="col-md-12">
+            <div class="form-group">
+                <label class="control-label" for="Contact">Contact No</label>
+
+                @Html.TextBox("Contact", null, new { @placeholder = "Your Contact here", @id = "Contact" })
+                @*<input id="Contact" name="Contact" type="number" placeholder="Contact No" class="form-control input-md">*@
+            </div>
+        </div>
+        <!-- Text input-->
+        <div class="modal-footer">
+            <div class="col-md-12">
+
+                <button class="butn" type="submit"><span>Proceed</span></button>
+                <button class="butn" data-dismiss="modal"><span>Close</span></button>
+            </div>
+        </div>
+    </div>
+}
+<!-- form end -->

@@ -1,0 +1,39 @@
+﻿@model WebAppSastiServices.Models.DB.TRNCustomerOrder
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AvailOrder</title>
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-6">
+            <p>Order#: <span class="float-right text-black-50">@Model.OrderId </span></p>
+            <p>Client Name: <span class="float-right text-black-50">@Model.CustomerName </span></p>
+            <p>Address: <span class="float-right text-black-50">@Model.Address</span></p>
+            <p>Contact: <span class="float-right text-black-50">@Model.Contact</span></p>
+            <p>Order Status: <span class="float-right text-black-50">@Model.STPStatu.Description</span></p>
+        </div>
+        <div class="col-md-6">
+            <p>Service Category/Type: <span class="float-right text-black-50">@Model.STPServiceType.ServiceTypeName</span></p>
+            <p>AC Type: <span class="float-right text-black-50">@Model.STPServicesFuelType.Options</span></p>
+            <p>Unit: <span class="float-right text-black-50">@Model.STPServicesUnitType.Options</span></p>
+            <p>Order Description: <span class="float-right text-black-50">@Model.OrderDescription</span></p>
+            <p>Preffered Date: <span class="float-right text-black-50">@Model.preferredDate</span></p>
+            <p>Preffered Time: <span class="float-right text-black-50">@Model.STPPrefferedTime.TimeRange</span></p>
+
+        </div>
+        @using (Html.BeginForm("AvailOrder", "VendorDashboard", FormMethod.Post))
+        {
+            @Html.EditorFor(model => model.OrderId, new { htmlAttributes = new { @class = "form-control input-md", @type = "hidden", @value = @Model.OrderId } })
+
+            <button class="btn btn-primary" type="submit"><span>Avail</span></button>
+        }
+    </div>
+</body>
+</html>

@@ -1,0 +1,147 @@
+﻿@model WebAppSastiServices.Models.DB.TRNCustomerOrder
+
+
+
+
+
+<div class="modal fade" id="exampleModalLongService1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="background:#61616161;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Service Name</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="section-heading">
+                    <h2>Book Service</h2>
+                </div>
+                <!-- form start -->
+
+                @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "quform", @enctype = "multipart/form-data" }))
+                {
+
+
+                    <!-- Form start -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label" for="name">Name</label>
+                                @Html.TextBoxFor(m => m.CustomerName, new { @placeholder = "Name", @id = "name", @type = "text", @class = "form-control input-md" })
+                                @*<input id="name" name="name" type="text" placeholder="Name" class="form-control input-md">*@
+                            </div>
+                        </div>
+                        <!-- Text input-->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label" for="Contact">Contact No</label>
+                                @Html.TextBoxFor(m => m.Contact, new { @placeholder = "Contact No", @id = "Contact", @type = "number", @class = "form-control input-md" })
+                                @*<input id="Contact" name="Contact" type="number" placeholder="Contact No" class="form-control input-md">*@
+                            </div>
+                        </div>
+                        <!-- Text input-->
+                        <!-- Text input-->
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="Address">Address</label>
+                                @Html.TextAreaFor(m => m.Address, new { @class = "form-control", @id = "Address", @placeholder = "Address", @rows = "3" })
+                                @* <textarea class="form-control" id="Address" rows="3"></textarea>*@
+                            </div>
+                        </div>
+                        <!-- Text input-->
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="Details">Details</label>
+                                @Html.TextAreaFor(m => m.OrderDescription, new { @class = "form-control", @id = "Details", @placeholder = "Details", @rows = "3" })
+                                @*<textarea class="form-control" id="Details" rows="3"></textarea>*@
+                            </div>
+                        </div>
+                        <!-- Text input-->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label" for="date">Preferred Date</label>
+                                @Html.TextBoxFor(m => m.preferredDate, new { @placeholder = "Preferred Date", @id = "Date", @type = "date", @class = "form-control input-md" })
+                                @*<input id="date" name="date" type="date" placeholder="Preferred Date" class="form-control input-md">*@
+                            </div>
+                        </div>
+                        <!-- Select Basic -->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label" for="time">Preferred Time</label>
+                                @Html.DropDownList("TimeRange", ViewBag.TimeRange as SelectList, new { @class = "form-control", @placeholder = "Select Time Range" })
+
+                                @*<select id="time" name="time" class="form-control">
+                                        <option value="8:00 to 9:00">8:00 to 9:00</option>
+                                        <option value="9:00 to 10:00">9:00 to 10:00</option>
+                                        <option value="10:00 to 1:00">10:00 to 1:00</option>
+                                    </select>*@
+                            </div>
+                        </div>
+                        <!-- Select Basic -->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label" for="Fuel">Fuel Type</label>
+                                @*@Html.DropDownList("Dependent", ViewBag.Dependent as SelectList, new { @class = "form-control", @placeholder = "Select Type" })*@
+
+                                <select id="cmbDependent" name="cmbDependent" class="form-control">
+                                </select>
+
+                            </div>
+                        </div>
+
+
+                        <!-- Select Basic -->
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label" for="Power">Power</label>
+                                @* @Html.DropDownList("PowerRange", ViewBag.PowerRange as SelectList, new { @class = "form-control", @placeholder = "Select PowerRange" })*@
+                                <select id="cmbPowerRange" name="cmbPowerRange" class="form-control">
+                                </select>
+                            </div>
+                        </div>
+
+                        <input type="text" style="display:none" name="ServiceTypeID" value="" id="txtServiceTypeID" />
+
+
+
+                        <!-- Select Basic -->
+                        @*<div class="col-md-6 text-center">
+                                <div class="form-group">
+                                    <label class="control-label col-12 text-left p-0" for="Service">Appointment for</label>
+                                    <button class="btn btn-dark col-2 d-inline" type="button" id="button-addon2">-</button>
+                                    <select name="Service" class="form-control col-7 d-inline">
+                                        <option value="Service1"> Service 1 </option>
+                                        <option value="Service2"> Service 2 </option>
+                                        <option value="Service3"> Service 3 </option>
+                                        <option value="Service3"> Others </option>
+                                    </select>
+                                    <button class="btn btn-dark col-2 d-inline" type="button" id="button-addon2">+</button>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-12">
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="Price Estimate" aria-label="Price Estimate" aria-describedby="button-addon2">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-dark" type="button" id="button-addon2">Estimate</button>
+                                    </div>
+                                </div>
+                            </div>*@
+
+                        <div class="modal-footer">
+                            <div class="col-md-12">
+
+                                <button class="butn" type="submit"><span>Proceed</span></button>
+                                <button class="butn" data-dismiss="modal"><span>Close</span></button>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+                <!-- form end -->
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,90 @@
+﻿
+@{
+    ViewBag.Title = "ViewItems";
+    Layout = "~/Views/Shared/_LayoutDashboardACVendor.cshtml";
+}
+
+<!-- start page inner -->
+<div class="page-inner">
+    <div class="page-title">
+        <h3 class="breadcrumb-header">Items</h3>
+    </div>
+    <!-- start page main wrapper -->
+    <div id="main-wrapper">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="card card-white">
+                    <div class="card-body">
+                        <a class="btn btn-primary float-right mb-3" href="@Url.Action("ACCreateItems","VendorDashboard")" role="button"><i class="fa fa-plus"></i> Add New Item</a>
+                        <div class="table-responsive invoice-table">
+                            <table class="table" id="Services">
+                                <thead>
+                                    <tr>
+                                        <th>Product Name</th>
+                                        <th>Model No</th>
+                                        <th>Brand Name</th>
+                                        <th>Fuel Type</th>
+                                        <th>Unit Type</th>
+                                        <th>Cost Price</th>
+                                        <th>Selling Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <div id="ajax-loader" class="LockOn" style="display:none">
+                                    </div>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Row -->
+    </div>
+    <!-- end page main wrapper -->
+    <div class="page-footer">
+        <p>
+            Copyright &copy;
+            <script>document.write(new Date().getFullYear())</script> Crizal All rights reserved.
+        </p>
+    </div>
+</div>
+<!-- end page inner -->
+
+@section scripts{
+    <script>
+
+        $(document).ready(function () {
+            var Table = $("#Services").DataTable();
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("ACItemsData")',
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                "beforeSend": function () { $('#ajax-loader').show() },
+                "complete": function () { $('#ajax-loader').hide() },
+                success: function (products) {
+                    console.log(products);
+
+                    products.map((item, index) => {
+
+                        Table.row.add([
+                            item.ProductName,
+                            item.ItemNo,
+                            item.BrandName,
+                            item.FuelType,
+                            item.UnitType,
+                            item.CostPrice,
+                            item.SellingPrice
+                        ]).draw(false);
+                    });
+                },
+                error: function (xhr, status) {
+                    console.log(xhr, status);
+                }
+            });
+             });
+
+    </script>
+}

@@ -1,0 +1,23 @@
+﻿@model IEnumerable<WebAppSastiServices.Models.DB.STPServiceType>
+
+
+
+
+@foreach (var item in Model)
+{
+
+    <div class="col-lg-4 col-md-6 margin-30px-bottom xs-margin-20px-bottom">
+        <div class="feature-box-02">
+            <div class="img-box IDinfo" data-id="@item.ID" data-toggle="modal" onclick="OpenModelForm(@item.ID)" id="@item.ID"><img src="@item.ImageFilePath" alt=""></div>
+            <div class="feature-textbox padding-25px-all sm-padding-20px-tb sm-padding-15px-lr text-center bg-light-gray">
+                <h4 class="title font-size16 sm-font-size15 font-weight-600 alt-font margin-10px-bottom">@item.ServiceTypeName</h4>
+                <p class="feature-desc sm-font-size14 sm-line-height-26 sm-margin-15px-bottom serviceContent">@item.Description </p>
+                <a class="read-more" href="@Url.Action("ServiceDetail","Services")"><i class="fa fa-play-circle"></i> read more</a>
+
+            </div>
+        </div>
+    </div>
+
+}
+
+@*data-target="#exampleModalLongService1"*@

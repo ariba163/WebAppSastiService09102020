@@ -1,0 +1,121 @@
+﻿@model WebAppSastiServices.Models.DB.TRNCustomerOrder
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+</head>
+<body>
+
+        @using (Html.BeginForm("OrderEdit", "AdminDashboard", FormMethod.Post))
+        {
+    <div class="row col-md-12">
+        @Html.AntiForgeryToken()
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.EditorFor(model => model.OrderId, new { htmlAttributes = new { @class = "form-control", @value = Model.OrderId,@type="hidden" } })
+        @Html.EditorFor(model => model.ServiceTypeId, new { htmlAttributes = new { @class = "form-control", @value = Model.ServiceTypeId,@type="hidden" } })
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.CustomerName, "Name", htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.CustomerName, new { htmlAttributes = new { @class = "form-control", @placeholder = Model.CustomerName } })
+                @Html.ValidationMessageFor(model => model.CustomerName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Contact, htmlAttributes: new { @class = "control-label" })
+
+                @Html.EditorFor(model => model.Contact, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Contact, "", new { @class = "text-danger" })
+
+            </div>
+        </div>
+
+
+        <div class="col-md-12">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", @value = Model.Address } })
+                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                @Html.LabelFor(model => model.OrderDescription, "Description", htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.OrderDescription, new { htmlAttributes = new { @class = "form-control", @value = Model.Address } })
+                @Html.ValidationMessageFor(model => model.OrderDescription, "", new { @class = "text-danger" })
+
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.preferredDate, "Preferred Date", htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.preferredDate, new { htmlAttributes = new { @class = "form-control", @value = Model.preferredDate } })
+                @Html.ValidationMessageFor(model => model.preferredDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.preferredTimeID, "Preferred Time", htmlAttributes: new { @class = "control-label" })
+                @Html.DropDownList("preferredTimeID", (SelectList)ViewBag.preferredTime, htmlAttributes: new { @class = "form-control", @value = Model.STPPrefferedTime.TimeRange })
+                @Html.ValidationMessageFor(model => model.preferredTimeID, "", new { @class = "text-danger" })
+
+            </div>
+        </div>
+
+
+
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.FuelTypeId, "Fuel", htmlAttributes: new { @class = "control-label" })
+                @Html.DropDownList("FuelTypeId", (SelectList)ViewBag.FuelType, htmlAttributes: new { @class = "form-control", @value = Model.STPServicesFuelType.Options })
+                @Html.ValidationMessageFor(model => model.FuelTypeId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.UnitTypeId, "Unit", htmlAttributes: new { @class = "control-label" })
+                @Html.DropDownList("UnitTypeId", (SelectList)ViewBag.UnitType, htmlAttributes: new { @class = "form-control", @value = Model.STPServicesUnitType.Options })
+                @Html.ValidationMessageFor(model => model.UnitTypeId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.OrderStatusId, "Order Status", htmlAttributes: new { @class = "control-label" })
+                @Html.DropDownList("OrderStatusId", (SelectList)ViewBag.status, htmlAttributes: new { @class = "form-control", @value = Model.STPStatu.Description })
+                @Html.ValidationMessageFor(model => model.OrderStatusId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.CreateOn, "Order Created On", htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.CreateOn, new { htmlAttributes = new { @class = "form-control", @value = Model.CreateOn } })
+                @Html.ValidationMessageFor(model => model.CreateOn, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <button class="btn btn-outline-secondary d-inline" type="submit"><span>Edit</span></button>
+                <button class="btn btn-outline-secondary d-inline" data-dismiss="modal"><span>Close</span></button>
+            </div>
+        </div>
+    </div>
+        }
+</body>
+</html>

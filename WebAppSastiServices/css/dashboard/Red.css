@@ -1,0 +1,40 @@
+﻿.logo-box, .page-header .navbar-default, .scroll-to-top, .btn-info, .btn-primary {
+    background: rgb(234 67 53);
+}
+.btn-info {
+    border:0;
+}
+    .btn-info:hover, .btn-primary:hover {
+        background:#797979;
+        border: 0;
+    }
+.page-sidebar-menu .has-sub > a.active, .page-sidebar-menu .has-sub > a.active, .page-sidebar-menu li.has-sub a.active i.accordion-icon, .page-sidebar-menu .has-sub a.active i {
+    color: #000000;
+}
+    .form-control:focus {
+    border-color: #a2a2a2;
+    box-shadow: 0 0 0 0.2rem #8e8e8e40;
+}
+.btn-outline-primary, .email-menu ul li.active a {
+    color: rgb(234 67 53);
+    border-color: rgb(234 67 53);
+}
+.email-menu ul li a {
+    color: #797979;
+}
+.scroll-to-top :visited, .scroll-to-top :hover, .btn-primary {
+    border: #fff
+}
+.scroll-to-top :visited, .scroll-to-top :hover, .breadcrumb-header {
+    color: rgb(234 67 53);
+}
+
+.page-sidebar-menu ul li.menu-divider {
+    background: #797979;
+    
+}
+.btn-outline-primary:not(:disabled):not(.disabled).active, .btn-outline-primary:not(:disabled):not(.disabled):active, .show > .btn-outline-primary.dropdown-toggle, .btn-outline-primary:hover {
+    color: #fff;
+    background-color: rgb(234 67 53);
+    border-color: rgb(234 67 53);
+}
