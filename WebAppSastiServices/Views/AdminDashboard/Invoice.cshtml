@@ -13,7 +13,8 @@
                                     title: "Invoice Saved",
                                     icon: "success",
                             });
-        window.location.href = "/AdminDashboard/PrintInvoice?invId=" + @Html.Raw(Json.Encode(ViewBag.InvoiceID));
+        
+        window.location.href = "/AdminDashboard/GeneratePDF?invId=" + @Html.Raw(Json.Encode(ViewBag.InvoiceID));
 
     </script>
 }

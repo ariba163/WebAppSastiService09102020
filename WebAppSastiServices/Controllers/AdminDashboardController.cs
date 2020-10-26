@@ -352,33 +352,38 @@ namespace WebAppSastiServices.Controllers
 
         public ActionResult PrintInvoice(int invId)
         {
-            //var result = (from o in db.TRNCustomerOrders
-            //              join t in db.STPPrefferedTimes on o.preferredTimeID equals t.ID
-            //              join s in db.STPServiceTypes on o.ServiceTypeId equals s.ID
-            //              join st in db.STPStatus on o.OrderStatusId equals st.ID
-            //              join f in db.STPServicesFuelTypes on o.FuelTypeId equals f.ID
-            //              join u in db.STPServicesUnitTypes on o.UnitTypeId equals u.ID
-            //              select new
-            //              {
-            //                  OrderId = o.OrderId,
-            //                  CustomerName = o.CustomerName,
-            //                  Contact = o.Contact,
-            //                  Address = o.Address,
-            //                  Description = s.ServiceTypeName,
-            //                  TimeRange = t.TimeRange,
-            //                  preferredDate = o.preferredDate,
-            //                  status = st.Description, 
-            //                  FuelType =f.Options,
-            //                  unitType =u.Options
-            //              }).ToList();
-            try {
+            try
+            {
 
-                var results = from d in db.TRNInvoices
-                              join o in db.TRNCustomerOrders on d.STPOrdersID equals o.OrderId
-                              join s in db.TRNCustomerOrders_STPServices on o.OrderId equals s.TRNCustomerOrderID
-                              join p in db.TRNCustomerOrders_STPProductItems on o.OrderId equals p.TRNCustomerOrderID
+
+                var results =(from d in db.TRNInvoices
                               where (d.ID == invId)
-                              select d;  
+                              select d).SingleOrDefault();
+
+                if(results != null)
+                {
+                    int OrderID = results.STPOrdersID;
+
+
+                    var row1 = (from d in db.TRNCustomerOrders_STPServices
+                              where d.TRNCustomerOrderID == OrderID
+                              select d).ToList();
+
+                    ViewBag.ServiceData = row1;
+
+                    var row2 = (from d in db.TRNCustomerOrders_STPProductItems
+                              where d.TRNCustomerOrderID == OrderID
+                              select d).ToList();
+
+                    ViewBag.ProductData = row2;
+                    
+
+
+                }
+
+                
+                             
+                           
 
 
                 return View(results);
