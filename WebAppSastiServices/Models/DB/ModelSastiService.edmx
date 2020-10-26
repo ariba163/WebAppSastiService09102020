@@ -199,6 +199,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TRNCustomerOrderID" Type="int" Nullable="false" />
           <Property Name="STPProductItemsID" Type="int" Nullable="false" />
+          <Property Name="QTY" Type="int" />
         </EntityType>
         <EntityType Name="TRNCustomerOrders_STPServices">
           <Key>
@@ -207,6 +208,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TRNCustomerOrderID" Type="int" Nullable="false" />
           <Property Name="STPServicesID" Type="int" Nullable="false" />
+          <Property Name="Rate" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="TRNInvoice">
           <Key>
@@ -973,6 +975,7 @@
           <Property Name="STPProductItemsID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="STPServiceProductItem" Relationship="SastaServicesDBModel.FK_TRNCustomerOrders_STPProductItems_STPServiceProductItems" FromRole="TRNCustomerOrders_STPProductItems" ToRole="STPServiceProductItem" />
           <NavigationProperty Name="TRNCustomerOrder" Relationship="SastaServicesDBModel.FK_TRNCustomerOrders_STPProductItems_TRNCustomerOrders" FromRole="TRNCustomerOrders_STPProductItems" ToRole="TRNCustomerOrder" />
+          <Property Name="QTY" Type="Int32" />
         </EntityType>
         <EntityType Name="TRNCustomerOrders_STPServices">
           <Key>
@@ -983,6 +986,7 @@
           <Property Name="STPServicesID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="STPService" Relationship="SastaServicesDBModel.FK_TRNCustomerOrders_STPServices_STPServices" FromRole="TRNCustomerOrders_STPServices" ToRole="STPService" />
           <NavigationProperty Name="TRNCustomerOrder" Relationship="SastaServicesDBModel.FK_TRNCustomerOrders_STPServices_TRNCustomerOrders" FromRole="TRNCustomerOrders_STPServices" ToRole="TRNCustomerOrder" />
+          <Property Name="Rate" Type="Decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="TRNInvoice">
           <Key>
@@ -1487,6 +1491,7 @@
           <EntitySetMapping Name="TRNCustomerOrders_STPProductItems">
             <EntityTypeMapping TypeName="SastaServicesDBModel.TRNCustomerOrders_STPProductItems">
               <MappingFragment StoreEntitySet="TRNCustomerOrders_STPProductItems">
+                <ScalarProperty Name="QTY" ColumnName="QTY" />
                 <ScalarProperty Name="STPProductItemsID" ColumnName="STPProductItemsID" />
                 <ScalarProperty Name="TRNCustomerOrderID" ColumnName="TRNCustomerOrderID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -1496,6 +1501,7 @@
           <EntitySetMapping Name="TRNCustomerOrders_STPServices">
             <EntityTypeMapping TypeName="SastaServicesDBModel.TRNCustomerOrders_STPServices">
               <MappingFragment StoreEntitySet="TRNCustomerOrders_STPServices">
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
                 <ScalarProperty Name="STPServicesID" ColumnName="STPServicesID" />
                 <ScalarProperty Name="TRNCustomerOrderID" ColumnName="TRNCustomerOrderID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />

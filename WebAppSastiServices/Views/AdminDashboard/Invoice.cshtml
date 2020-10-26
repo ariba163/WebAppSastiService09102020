@@ -187,6 +187,7 @@ else if (message == "ItemSuccess")
                                                     <th>Item Name</th>
                                                     <th>Model No</th>
                                                     <th>Item Charges</th>
+                                                    <th>Qty</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -447,9 +448,16 @@ else if (message == "ItemSuccess")
             var ModelNo = $("#ModelNo option:selected").text();
             var OrderId = @Model.OrderId;
             var SellingPrice = $("#SellingPrice").val();
+
+
+            var QTY = $("#QTY").val();
+            //console.log(QTY);
+
+
              var data = JSON.stringify({
                  'ModelNoId': ModelNoId,
-                 'OrderId': OrderId
+                 'OrderId': OrderId,
+                 'QTY':QTY
              });
 
             //console.log(data);
@@ -462,16 +470,16 @@ else if (message == "ItemSuccess")
                                 //console.log("data Add");
                                 ItemCount++;
                                 $("#ItemsCount span").html(ItemCount);
-                                ItemsRatetotal += parseInt(SellingPrice);
+                                ItemsRatetotal += parseInt(SellingPrice) * QTY;
                                 //console.log(ItemsRatetotal);
 
                                 //show data on table
-                                $('#ItemTable tbody').append('<tr><td>' + ItemCount + '</td><td>' + ItemName + '</td><td>' + ModelNo + '</td><td>' + SellingPrice + '</td></tr>');
+                                $('#ItemTable tbody').append('<tr><td>' + ItemCount + '</td><td>' + ItemName + '</td><td>' + ModelNo + '</td><td>' + SellingPrice + '</td><td>' + QTY + '</td></tr>');
 
                                 $("#ItemCharges").html(ItemsRatetotal);
 
 
-                                total += parseInt(SellingPrice);
+                                total += parseInt(SellingPrice) * QTY;
                                 $('#Total').html(total);
                             },
                             error: function (data) {
@@ -494,9 +502,7 @@ else if (message == "ItemSuccess")
 
              var data = JSON.stringify({
                  'ServiceID': ServiceID,
-                 'OrderID': OrderId,
-                 'ServiceName':ServiceName,
-                 'ServiceRate':ServiceRate
+                 'OrderID': OrderId
              });
 
             //console.log(data);
@@ -507,23 +513,23 @@ else if (message == "ItemSuccess")
                             contentType: 'application/json',
                             success: function (data) {
                                 //console.log("Service Add");
-
+                                
                                 ServiceRatetotal += parseInt(ServiceRate);
 
                                 //counter start
                                 ServiceCount++;
                                 $("#ServiceCount span").html(ServiceCount);
                                 //counter start
-
-
-                                //show data on table start
-                                $('#SerTable tbody').append('<tr><td>' + ServiceCount + '</td><td>' + ServiceName + '</td><td>' + ServiceRate + '</td></tr>');
-                                //show data on table end
-
+                                
                                 //data edit in total charges div start
                                 var PlatformCharges = ServiceRatetotal * 2 / 100;
                                 var ServicePlatform = ServiceRatetotal + PlatformCharges;
                                 //console.log(ServicePlatform);
+
+                                //show data on table start
+                                $('#SerTable tbody').append('<tr><td>' + ServiceCount + '</td><td>' + ServiceName + '</td><td>' + ServicePlatform + '</td></tr>');
+                                //show data on table end
+
 
                                 $("#SerCharges").html(ServicePlatform);
 

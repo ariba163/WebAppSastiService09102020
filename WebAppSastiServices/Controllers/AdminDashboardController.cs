@@ -25,18 +25,18 @@ namespace WebAppSastiServices.Controllers
             bool isAdmin = (from d in db.StpUsers
                                 where (d.ID == ID && d.StpUserType.UserType == "Admin")
                                 select d).Any();
-           
-           
 
-            //if (isAdmin)
-            //{
+
+
+            if (isAdmin)
+            {
                 return View();
-            //}
-            //else
-            //{
-            //    TempData["Message"] = "Not Valid User";
-            //    return Redirect(Url.Action("Login", "Account"));
-            //}
+            }
+            else
+            {
+                TempData["Message"] = "Not Valid User";
+                return Redirect(Url.Action("Login", "Account"));
+            }
         }
         public ActionResult LatestActOrders()
         {
@@ -254,10 +254,17 @@ namespace WebAppSastiServices.Controllers
         [HttpPost]
         public JsonResult PostServices(int ServiceID, int OrderID)
         {
+            var serviceRate = (from d in db.STPServices
+                              where d.ID == ServiceID
+                              select d.ServiceRate).FirstOrDefault();
+            var PlatformCharges = (serviceRate * 2 / 100);
+            var Total = serviceRate + PlatformCharges;
+
             TRNCustomerOrders_STPServices s = new TRNCustomerOrders_STPServices()
             {
                 STPServicesID = ServiceID,
-                TRNCustomerOrderID = OrderID
+                TRNCustomerOrderID = OrderID,
+                Rate = Total
             };
             db.TRNCustomerOrders_STPServices.Add(s);
             db.SaveChanges();
@@ -268,12 +275,13 @@ namespace WebAppSastiServices.Controllers
         }
         
         [HttpPost]
-        public JsonResult PostItem(int ModelNoId, int OrderID)
+        public JsonResult PostItem(int ModelNoId, int OrderID,int QTY)
         {
             TRNCustomerOrders_STPProductItems p = new TRNCustomerOrders_STPProductItems()
             {
                 STPProductItemsID = ModelNoId,
-                TRNCustomerOrderID = OrderID
+                TRNCustomerOrderID = OrderID,
+                QTY= QTY
             };
             db.TRNCustomerOrders_STPProductItems.Add(p);
             db.SaveChanges();

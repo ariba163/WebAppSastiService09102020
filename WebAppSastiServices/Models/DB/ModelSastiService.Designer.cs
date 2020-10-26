@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'D:\WebAppSastiService09102020-master\WebAppSastiServices\Models\DB\ModelSastiService.edmx'. 
+﻿// T4 code generation is enabled for model 'D:\WebAppSastiService26102020\WebAppSastiServices\Models\DB\ModelSastiService.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

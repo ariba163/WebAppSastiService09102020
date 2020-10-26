@@ -23,16 +23,10 @@
 
 
 
-    <div class="container" style="margin:auto 0;">
+    <div class="container" style="margin-top:20px;">
         @if (Model != null)
         {
 
-            @*<div class="container">
-                <div style="width:100%;position:relative;height:200px;">
-                    <div style="background:#808080;width:50%;height:200px;position:absolute;left:0;"><h1>Hello</h1></div>
-                    <div style="background:#ffd800;width:50%;height:200px;position:absolute;right:0;"><h1>World</h1></div>
-                </div>
-            </div>*@
 
             @*<div class="row m-5 ">
                 <a href="GeneratePDF?invId=@Model.ID" class="btn btn-primary float-right"> PDF/Print </a>
@@ -91,21 +85,23 @@
                                             <td>@count</td>
                                             <td>@item.STPService.ServiceName (Service)  </td>
                                             <td></td>
-                                            <td>@item.STPService.ServiceRate</td>
-                                            <td>@item.STPService.ServiceRate</td>
+                                            <td>@item.Rate</td>
+                                            <td>@item.Rate</td>
                                         </tr>
                                     }
 
                                     foreach (var item in (IEnumerable<TRNCustomerOrders_STPProductItems>)ViewBag.ProductData)
                                     {
                                         count++;
-
+                                        var Total = @item.STPServiceProductItem.SellingPrice * @item.QTY;
                                         <tr>
                                             <td>@count</td>
                                             <td>@item.STPServiceProductItem.ServiceProductName (Items)  </td>
+                                            @*<td>@item.QTY</td>*@
                                             <td></td>
                                             <td>@item.STPServiceProductItem.SellingPrice</td>
                                             <td>@item.STPServiceProductItem.SellingPrice</td>
+                                            @*<td> @Total </td>*@
                                         </tr>
                                     }
                                 }
