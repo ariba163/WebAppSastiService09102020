@@ -130,7 +130,8 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ServiceTypeName" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="Description" Type="nvarchar" MaxLength="150" />
+          <Property Name="DetailedDescription" Type="nvarchar(max)" />
           <Property Name="Datetime" Type="datetime" />
           <Property Name="IsAvailible" Type="bit" Nullable="false" />
           <Property Name="ImageFilePath" Type="nvarchar(max)" />
@@ -165,7 +166,7 @@
           <Property Name="IsEmailActive" Type="bit" Nullable="false" />
           <Property Name="ActivationCode" Type="uniqueidentifier" Nullable="false" />
           <Property Name="ResetPasswordCode" Type="nvarchar" MaxLength="100" />
-          <Property Name="STPUserTypeID" Type="tinyint" Nullable="false" />
+          <Property Name="STPUserTypeID" Type="tinyint" />
         </EntityType>
         <EntityType Name="StpUserType">
           <Key>
@@ -426,7 +427,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_StpUser_StpUserType">
-          <End Role="StpUserType" Type="Self.StpUserType" Multiplicity="1">
+          <End Role="StpUserType" Type="Self.StpUserType" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="StpUser" Type="Self.StpUser" Multiplicity="*" />
@@ -886,7 +887,8 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ServiceTypeName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="DetailedDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Datetime" Type="DateTime" Precision="3" />
           <Property Name="IsAvailible" Type="Boolean" Nullable="false" />
           <Property Name="ImageFilePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -929,7 +931,7 @@
           <Property Name="IsEmailActive" Type="Boolean" Nullable="false" />
           <Property Name="ActivationCode" Type="Guid" Nullable="false" />
           <Property Name="ResetPasswordCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="STPUserTypeID" Type="Byte" Nullable="false" />
+          <Property Name="STPUserTypeID" Type="Byte" />
           <NavigationProperty Name="StpUserType" Relationship="SastaServicesDBModel.FK_StpUser_StpUserType" FromRole="StpUser" ToRole="StpUserType" />
         </EntityType>
         <EntityType Name="StpUserType">
@@ -973,9 +975,9 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TRNCustomerOrderID" Type="Int32" Nullable="false" />
           <Property Name="STPProductItemsID" Type="Int32" Nullable="false" />
+          <Property Name="QTY" Type="Int32" />
           <NavigationProperty Name="STPServiceProductItem" Relationship="SastaServicesDBModel.FK_TRNCustomerOrders_STPProductItems_STPServiceProductItems" FromRole="TRNCustomerOrders_STPProductItems" ToRole="STPServiceProductItem" />
           <NavigationProperty Name="TRNCustomerOrder" Relationship="SastaServicesDBModel.FK_TRNCustomerOrders_STPProductItems_TRNCustomerOrders" FromRole="TRNCustomerOrders_STPProductItems" ToRole="TRNCustomerOrder" />
-          <Property Name="QTY" Type="Int32" />
         </EntityType>
         <EntityType Name="TRNCustomerOrders_STPServices">
           <Key>
@@ -984,9 +986,9 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TRNCustomerOrderID" Type="Int32" Nullable="false" />
           <Property Name="STPServicesID" Type="Int32" Nullable="false" />
+          <Property Name="Rate" Type="Decimal" Precision="18" Scale="2" />
           <NavigationProperty Name="STPService" Relationship="SastaServicesDBModel.FK_TRNCustomerOrders_STPServices_STPServices" FromRole="TRNCustomerOrders_STPServices" ToRole="STPService" />
           <NavigationProperty Name="TRNCustomerOrder" Relationship="SastaServicesDBModel.FK_TRNCustomerOrders_STPServices_TRNCustomerOrders" FromRole="TRNCustomerOrders_STPServices" ToRole="TRNCustomerOrder" />
-          <Property Name="Rate" Type="Decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="TRNInvoice">
           <Key>
@@ -1229,7 +1231,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_StpUser_StpUserType">
-          <End Type="SastaServicesDBModel.StpUserType" Role="StpUserType" Multiplicity="1">
+          <End Type="SastaServicesDBModel.StpUserType" Role="StpUserType" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Type="SastaServicesDBModel.StpUser" Role="StpUser" Multiplicity="*" />
@@ -1420,6 +1422,7 @@
                 <ScalarProperty Name="ImageFilePath" ColumnName="ImageFilePath" />
                 <ScalarProperty Name="IsAvailible" ColumnName="IsAvailible" />
                 <ScalarProperty Name="Datetime" ColumnName="Datetime" />
+                <ScalarProperty Name="DetailedDescription" ColumnName="DetailedDescription" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="ServiceTypeName" ColumnName="ServiceTypeName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />

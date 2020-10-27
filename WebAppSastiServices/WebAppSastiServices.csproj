@@ -429,6 +429,7 @@
     <Content Include="img\Dashboard\signature-black.png" />
     <Content Include="img\Dashboard\timeline-banner.jpg" />
     <Content Include="img\logos\9 logo.png" />
+    <Content Include="img\logos\Final-Kaam-Waley.png" />
     <Content Include="img\logos\LogoDark.png" />
     <Content Include="img\logos\LogoLight.png" />
     <Content Include="img\products\Generators\alternater-fans_10574836_250x250-250x250.jpg" />
@@ -827,7 +828,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminDashboardController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
@@ -840,6 +840,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="HelperClass\UserAuth.cs" />
     <Compile Include="Models\DB\ModelSastiService.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -965,7 +966,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_LayoutPage.cshtml" />
     <Content Include="Views\Services\Service.cshtml" />
-    <Content Include="Views\About\AboutUs.cshtml" />
     <Content Include="Views\Shop\Products.cshtml" />
     <Content Include="Views\Shop\ProductGrid.cshtml" />
     <Content Include="Views\Shop\ProductDetail.cshtml" />
@@ -1094,7 +1094,6 @@
     <Content Include="Views\Home\pvGetInTouch.cshtml" />
     <Content Include="Views\Home\pvQuickCall.cshtml" />
     <Content Include="Views\Home\PVservices.cshtml" />
-    <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\AdminDashboard\AvailedOrders.cshtml" />
     <Content Include="Views\AdminDashboard\OrderDelete.cshtml" />
     <Content Include="Views\AdminDashboard\OrderDetails.cshtml" />
@@ -1106,6 +1105,7 @@
     <Content Include="Views\Shared\error.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\AdminDashboard\PrintInvoice.cshtml" />
+    <Content Include="Views\Home\AboutUs.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

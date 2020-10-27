@@ -27,6 +27,7 @@ namespace WebAppSastiServices.Models.DB
         public int ID { get; set; }
         public string ServiceTypeName { get; set; }
         public string Description { get; set; }
+        public string DetailedDescription { get; set; }
         public Nullable<System.DateTime> Datetime { get; set; }
         public bool IsAvailible { get; set; }
         public string ImageFilePath { get; set; }

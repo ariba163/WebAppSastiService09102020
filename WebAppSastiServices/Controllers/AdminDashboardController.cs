@@ -10,12 +10,30 @@ using WebAppSastiServices.Models.DB;
 
 namespace WebAppSastiServices.Controllers
 {
+
     public class AdminDashboardController : Controller
     {
+        
+
         SastaServicesDBEntities db = new SastaServicesDBEntities();
+
+
         // GET: AdminDashboard
         public ActionResult Index()
         {
+            //if (Session["UserRole"] != null)
+            //{
+
+            //    if (Session["UserRole"].ToString() != "Admin")
+            //    {
+            //       return Redirect(Url.Action("Index", "Home"));
+            //    }
+            //}
+            //else
+            //{
+            //  return  Redirect(Url.Action("Index", "Home"));
+            //}
+
             ViewBag.Message = TempData["Message"];
             int? ID = Convert.ToInt32(Session["UserID"]);
             if (Session["UserID"] == null)
@@ -23,8 +41,8 @@ namespace WebAppSastiServices.Controllers
                 ID = null;
             }
             bool isAdmin = (from d in db.StpUsers
-                                where (d.ID == ID && d.StpUserType.UserType == "Admin")
-                                select d).Any();
+                            where (d.ID == ID && d.StpUserType.UserType == "Admin")
+                            select d).Any();
 
 
 
@@ -37,6 +55,12 @@ namespace WebAppSastiServices.Controllers
                 TempData["Message"] = "Not Valid User";
                 return Redirect(Url.Action("Login", "Account"));
             }
+            return View();
+        }
+
+        public ActionResult QuickCallRequest()
+        {
+            return View();
         }
         public ActionResult LatestActOrders()
         {

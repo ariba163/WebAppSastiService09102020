@@ -1,4 +1,4 @@
-﻿
+﻿@*@model WebAppSastiServices.Models.DB.STPServiceType*@
 @{
     ViewBag.Title = "ServiceDetail";
     Layout = "~/Views/Shared/_LayoutPage.cshtml";
@@ -34,132 +34,19 @@
                         <h2>Book Service</h2>
                     </div>
                     <!-- form start -->
-                    <form>
-                        <!-- Form start -->
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label" for="name">Name</label>
-                                    <input id="name" name="name" type="text" placeholder="Name" class="form-control input-md">
-                                </div>
-                            </div>
-                            <!-- Text input-->
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label" for="Contact">Contact No</label>
-                                    <input id="Contact" name="Contact" type="number" placeholder="Contact No" class="form-control input-md">
-                                </div>
-                            </div>
-                            <!-- Text input-->
-                            <!-- Text input-->
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="Address">Address</label>
-                                    <textarea class="form-control" id="Address" rows="3"></textarea>
-                                </div>
-                            </div>
-                            <!-- Text input-->
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="Details">Details</label>
-                                    <textarea class="form-control" id="Details" rows="3"></textarea>
-                                </div>
-                            </div>
-                            <!-- Text input-->
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label" for="date">Preferred Date</label>
-                                    <input id="date" name="date" type="text" placeholder="Preferred Date" class="form-control input-md">
-                                </div>
-                            </div>
-                            <!-- Select Basic -->
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label" for="time">Preferred Time</label>
-                                    <select id="time" name="time" class="form-control">
-                                        <option value="8:00 to 9:00">8:00 to 9:00</option>
-                                        <option value="9:00 to 10:00">9:00 to 10:00</option>
-                                        <option value="10:00 to 1:00">10:00 to 1:00</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <!-- Select Basic -->
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label" for="Fuel">Fuel Type</label>
-                                    <select id="time" name="Fuel" class="form-control">
-                                        <option value="Petrol">Petrol</option>
-                                        <option value="Diesal">Diesal</option>
-                                        <option value="Gas">Gas</option>
-                                    </select>
-                                </div>
-                            </div>
 
+                    @{Html.RenderAction("CustomerOrder", "Home", new { serviceTypeId = @Model.ID});}
 
-
-                            <!-- Select Basic -->
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label" for="brands">Brands</label>
-                                    <select id="brands" name="brands" class="form-control">
-                                        <option value="Honda">Honda</option>
-                                        <option value="abc">abc</option>
-                                        <option value="zzz">zzz</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <!-- Select Basic -->
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label class="control-label" for="Power">Engine Power</label>
-                                    <select id="Power" name="Power" class="form-control">
-                                        <option value="500"> 500 -Kav </option>
-                                        <option value="700"> 700 -Kav </option>
-                                        <option value="900"> 900 -Kav </option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <!-- Select Basic -->
-                            @*<div class="col-md-6 text-center">
-            <div class="form-group">
-                <label class="control-label col-12 text-left p-0" for="Service">Appointment for</label>
-                <button class="btn btn-dark col-2 d-inline" type="button" id="button-addon2">-</button>
-                <select name="Service" class="form-control col-7 d-inline">
-                    <option value="Service1"> Service 1 </option>
-                    <option value="Service2"> Service 2 </option>
-                    <option value="Service3"> Service 3 </option>
-                    <option value="Service3"> Others </option>
-                </select>
-                <button class="btn btn-dark col-2 d-inline" type="button" id="button-addon2">+</button>
-            </div>
-        </div>*@
-
-
-                            @*<div class="col-md-12">
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Price Estimate" aria-label="Price Estimate" aria-describedby="button-addon2">
-                <div class="input-group-append">
-                    <button class="btn btn-dark" type="button" id="button-addon2">Estimate</button>
-                </div>
-            </div>
-        </div>*@
-                            <div class="col-md-12">
-                                <div class="quform-submit-inner">
-                                    <button class="butn" type="submit"><span>Proceed</span></button>
-                                </div>
-                                <div class="quform-loading-wrap text-left"><span class="quform-loading"></span></div>
-                            </div>
-                        </div>
-                    </form>
                     <!-- form end -->
                 </div>
             </div>
             <div class="col-md-6 col-sm-12">
                 <div class="section-heading">
-                    <h2>Why Appointment with Us</h2>
+                    <h2>@Model.ServiceTypeName</h2>
                 </div>
+                <p>
+                    @Model.DetailedDescription
+                </p>
                 <div class="contact-info sm-margin-30px-bottom">
                     <div class="item bg-white">
                         <div class="cont">

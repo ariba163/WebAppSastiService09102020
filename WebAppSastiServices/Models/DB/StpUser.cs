@@ -25,7 +25,7 @@ namespace WebAppSastiServices.Models.DB
         public bool IsEmailActive { get; set; }
         public System.Guid ActivationCode { get; set; }
         public string ResetPasswordCode { get; set; }
-        public byte STPUserTypeID { get; set; }
+        public Nullable<byte> STPUserTypeID { get; set; }
     
         public virtual StpUserType StpUserType { get; set; }
     }

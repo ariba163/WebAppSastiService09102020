@@ -1,6 +1,6 @@
 /*-----------------------------------------------------------------------------------
 
-    Theme Name: Crizal - Responsive Admin Dashboard Template
+    Theme Name: Kaam Waley - Responsive Admin Dashboard Template
     Description: Responsive Admin Dashboard Template
     Author: Chitrakoot Web
        

@@ -42,6 +42,7 @@ else if (message == "LogInSuccess")
 
 
 <!-- Packages Service-->
+@*
 <div class="modal fade" id="exampleModalLongPackage1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="background:#61616161;">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -203,7 +204,7 @@ else if (message == "LogInSuccess")
             </div>
         </div>
     </div>
-</div>
+</div>*@
 <!--end packages Service-->
 <!--start side quick call-->
 <a id="quickCall">
@@ -530,76 +531,15 @@ else if (message == "LogInSuccess")
                     <div class="row">
                         <div class="section-heading">
                             <h3 class="text-uppercase">Services</h3>
-                            <p>Business consulting excepteur sint occaecat cupidatat coBusiness consulting excepteur sint occaecat cupidatat conBusiness consulting excepteur sint occaecat cupidatat cosBusiness consulting excepteur sint occaecat cupidatat coulting non proident, sunt inng excepteur sint occaecat cupidatat consulting non proident, sunt in culpa qui officia deserunt laborum market.</p>
+                            <p>
+                                KaamWaley is a service providing company and intends to add value to its customer’s lives. To
+                                book an appointment, you may fill our form available on our website. A customer representative
+                                will contact you shortly.
+                            </p>
 
                         </div>
                         @{Html.RenderAction("PVservices");}
-                        @*<div class="col-lg-4 col-md-6 margin-30px-bottom xs-margin-20px-bottom">
-                                <div class="feature-box-02">
-                                    <div class="img-box" data-toggle="modal" data-target="#exampleModalLongService1" id="serviceOne"><img src="~/img/content/service-02.jpg" alt=""></div>
-                                    <div class="feature-textbox padding-25px-all sm-padding-20px-tb sm-padding-15px-lr text-center bg-light-gray">
-                                        <h4 class="title font-size16 sm-font-size15 font-weight-600 alt-font margin-10px-bottom">What We Do</h4>
-                                        <p class="feature-desc sm-font-size14 sm-line-height-26 sm-margin-15px-bottom serviceContent">we help you to grow up your best business and solution for your impressive projects. up your best business and solution for your impressive  up your best business and solution for your impressive  up your best business and solution for your impressive  up your best business and solution for your impressive  up your best business and solution for your impressive  up your best business and solution for your impressive  up your best business and solution for your impressive  up your best business and solution for your impressive </p>
-                                        <a class="read-more" href="@Url.Action("ServiceDetail","Services")"><i class="fa fa-play-circle"></i> read more</a>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 margin-30px-bottom xs-margin-20px-bottom">
-                                <div class="feature-box-02">
-                                    <div class="img-box" data-toggle="modal" data-target="#exampleModalLongService1" id="serviceOne"><img src="~/img/content/service-02.jpg" alt=""></div>
-                                    <div class="feature-textbox padding-25px-all sm-padding-20px-tb sm-padding-15px-lr text-center bg-light-gray">
-                                        <h4 class="title font-size16 sm-font-size15 font-weight-600 alt-font margin-10px-bottom">What We Do</h4>
-                                        <p class="feature-desc sm-font-size14 sm-line-height-26 sm-margin-15px-bottom serviceContent">we help you to grow up your best business and solution for your impressive projects.</p>
-                                        <a class="read-more" href="@Url.Action("ServiceDetail","Services")"><i class="fa fa-play-circle"></i> read more</a>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 margin-30px-bottom xs-margin-20px-bottom">
-                                <div class="feature-box-02">
-                                    <div class="img-box" data-toggle="modal" data-target="#exampleModalLongService1" id="serviceOne"><img src="~/img/content/service-02.jpg" alt=""></div>
-                                    <div class="feature-textbox padding-25px-all sm-padding-20px-tb sm-padding-15px-lr text-center bg-light-gray">
-                                        <h4 class="title font-size16 sm-font-size15 font-weight-600 alt-font margin-10px-bottom">What We Do</h4>
-                                        <p class="feature-desc sm-font-size14 sm-line-height-26 sm-margin-15px-bottom serviceContent">we help you to grow up your best business and solution for your impressive projects.</p>
-                                        <a class="read-more" href="@Url.Action("ServiceDetail","Services")"><i class="fa fa-play-circle"></i> read more</a>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 margin-30px-bottom xs-margin-20px-bottom">
-                                <div class="feature-box-02">
-                                    <div class="img-box" data-toggle="modal" data-target="#exampleModalLongService1" id="serviceOne"><img src="~/img/content/service-02.jpg" alt=""></div>
-                                    <div class="feature-textbox padding-25px-all sm-padding-20px-tb sm-padding-15px-lr text-center bg-light-gray">
-                                        <h4 class="title font-size16 sm-font-size15 font-weight-600 alt-font margin-10px-bottom">What We Do</h4>
-                                        <p class="feature-desc sm-font-size14 sm-line-height-26 sm-margin-15px-bottom serviceContent">we help you to grow up your best business and solution for your impressive projects.</p>
-                                        <a class="read-more" href="@Url.Action("ServiceDetail","Services")"><i class="fa fa-play-circle"></i> read more</a>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 margin-30px-bottom xs-margin-20px-bottom">
-                                <div class="feature-box-02">
-                                    <div class="img-box" data-toggle="modal" data-target="#exampleModalLongService1" id="serviceOne"><img src="~/img/content/service-02.jpg" alt=""></div>
-                                    <div class="feature-textbox padding-25px-all sm-padding-20px-tb sm-padding-15px-lr text-center bg-light-gray">
-                                        <h4 class="title font-size16 sm-font-size15 font-weight-600 alt-font margin-10px-bottom">What We Do</h4>
-                                        <p class="feature-desc sm-font-size14 sm-line-height-26 sm-margin-15px-bottom serviceContent">we help you to grow up your best business and solution for your impressive projects.</p>
-                                        <a class="read-more" href="@Url.Action("ServiceDetail","Services")"><i class="fa fa-play-circle"></i> read more</a>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 margin-30px-bottom xs-margin-20px-bottom">
-                                <div class="feature-box-02">
-                                    <div class="img-box" data-toggle="modal" data-target="#exampleModalLongService1" id="serviceOne"><img src="~/img/content/service-02.jpg" alt=""></div>
-                                    <div class="feature-textbox padding-25px-all sm-padding-20px-tb sm-padding-15px-lr text-center bg-light-gray">
-                                        <h4 class="title font-size16 sm-font-size15 font-weight-600 alt-font margin-10px-bottom">What We Do</h4>
-                                        <p class="feature-desc sm-font-size14 sm-line-height-26 sm-margin-15px-bottom serviceContent">we help you to grow up your best business and solution for your impressive projects.</p>
-                                        <a class="read-more" href="@Url.Action("ServiceDetail","Services")"><i class="fa fa-play-circle"></i> read more</a>
-
-                                    </div>
-                                </div>
-                            </div>*@
+                        
                         <!-- end -->
                     </div>
                 </div>
@@ -799,7 +739,7 @@ else if (message == "LogInSuccess")
     <section>
         <div class="container">
             <div class="section-heading">
-                <h3 class="text-uppercase">The Best Packages For You</h3>
+                <h3 class="text-uppercase">The Best Packages For You Will Coming Soon</h3>
                 <p class="width-55 sm-width-75 xs-width-95 center-col">Business consulting excepteur sint occaecat cupidatat consulting non proident, sunt in culpa qui officia deserunt laborum market.</p>
             </div>
 
@@ -992,14 +932,14 @@ else if (message == "LogInSuccess")
                             <span class="icon"><i class="fas fa-phone text-theme-color"></i></span>
                             <div class="cont">
                                 <h6 class="margin-5px-bottom font-size16 md-font-size15 xs-font-size14 font-weight-600">Phone: </h6>
-                                <p>(+92) 123 456 789</p>
+                                <p>021 34527965</p>
                             </div>
                         </div>
                         <div class="item bg-white">
                             <span class="icon"><i class="fas fa-map-marker-alt text-theme-color"></i></span>
                             <div class="cont">
                                 <h6 class="margin-5px-bottom font-size16 md-font-size15 xs-font-size14 font-weight-600">Address: </h6>
-                                <p class="no-margin">3389 Eglinton Avenue, Windermere, </p>
+                                <p class="no-margin">suite# 304 & 307, anum blessings, KCHSU, Sharah e faisal, Karachi. </p>
                                 <p class="no-margin">Regina ST, London, SK 8GH.</p>
                             </div>
                         </div>
@@ -1007,7 +947,7 @@ else if (message == "LogInSuccess")
                             <span class="icon"><i class="fas fa-envelope text-theme-color"></i></span>
                             <div class="cont">
                                 <h6 class="margin-5px-bottom font-size16 md-font-size15 xs-font-size14 font-weight-600">Email: </h6>
-                                <p>emailaddress@domain.com</p>
+                                <p>info@KaamWaley.com</p>
                             </div>
                         </div>
                     </div>
@@ -1019,7 +959,7 @@ else if (message == "LogInSuccess")
     </section>
     <!-- end contact info section -->
     <!-- start clients section -->
-    <div class="section-clients bg-light-gray">
+    @*<div class="section-clients bg-light-gray">
         <div class="container">
             <div class="owl-carousel owl-theme clients" id="clients">
                 <div class="item"><img alt="partner-image" src="~/img/partners/client-01.png"></div>
@@ -1030,7 +970,7 @@ else if (message == "LogInSuccess")
                 <div class="item"><img alt="partner-image" src="~/img/partners/client-06.png"></div>
             </div>
         </div>
-    </div>
+    </div>*@
     <!-- end clients section -->
 
 </div>

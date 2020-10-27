@@ -28,6 +28,13 @@ namespace WebAppSastiServices.Controllers
             }
             return View();
         }
+
+
+        [HttpGet]
+        public ActionResult AboutUs()
+        {
+            return View();
+        }
         public ActionResult Contact()
         {
             return View();
@@ -256,4 +263,5 @@ namespace WebAppSastiServices.Controllers
         }
 
     }
+
 }

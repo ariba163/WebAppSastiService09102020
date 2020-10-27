@@ -89,6 +89,28 @@ namespace WebAppSastiServices.Controllers
         {
 
             db.Configuration.ProxyCreationEnabled = false;
+            //string serviceName = "";
+
+            //if (Session["UserRole"] != null)
+            //{ 
+
+            //    if (Session["UserRole"].ToString() != "Admin" || Session["UserRole"].ToString() != "VendorAC")
+            //    {
+            //        return Redirect(Url.Action("Index", "Home"));
+            //    }
+            //    else
+            //    {
+            //        if(Session["User"].ToString() == "VendorAC")
+            //        {
+            //            serviceName = "Air Condition";
+            //        }
+
+            //    }
+            //}
+            //else
+            //{
+            //    return Redirect(Url.Action("Index", "Home"));
+            //}
 
             var result = (from o in db.TRNCustomerOrders
                           join t in db.STPPrefferedTimes on o.preferredTimeID equals t.ID

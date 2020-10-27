@@ -1,5 +1,10 @@
 ﻿
-
+.info {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
 /* serviceDetail*/
 #SDetail .item .cont {
     margin-left: 0!important;

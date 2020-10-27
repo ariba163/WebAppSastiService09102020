@@ -44,6 +44,7 @@ namespace WebAppSastiServices.Controllers
                     stpUser.IsEmailVerified = false;
                     stpUser.IsEmailActive = false;
                     stpUser.ActivationCode = Guid.NewGuid();
+                    stpUser.STPUserTypeID = 1 ;
                     db.StpUsers.Add(stpUser);
                     db.SaveChanges();
 
@@ -53,7 +54,7 @@ namespace WebAppSastiServices.Controllers
             }
             else
             {
-
+                return View(user);
             }
             return View(user);
         }
@@ -61,10 +62,10 @@ namespace WebAppSastiServices.Controllers
         [HttpGet]
         public ActionResult Login()
         {
-
             ViewBag.Message=TempData["Message"] ;
             return View();
         }
+
 
         [HttpPost]
         public ActionResult Login(UserLoginView u)
@@ -83,24 +84,29 @@ namespace WebAppSastiServices.Controllers
                         {
                             int id = UserManager.GetUserIDByUsername(u.UserName);
                             Session["UserID"] = id;
-
                             string UserType = db.StpUsers.Find(id).StpUserType.UserType;
+                            Session["UserRole"] = UserType;
+
 
                             if (UserType == "User")
                             {
                                 TempData["Message"] = "LogInSuccess";
-                                return Redirect(Url.Action("Index", "Home")); 
+                                return Redirect(Url.Action("Index", "Home"));
                             }
                             else if (UserType == "Admin")
                             {
                                 TempData["Message"] = "LogInSuccess";
-                                return Redirect(Url.Action("Index", "AdminDashboard")); 
+                                return Redirect(Url.Action("Index", "AdminDashboard"));
                             }
-                            
-
                         }
 
                         else
+         
+                        
+                        
+                        
+                        
+                        
                         {
                             ViewBag.Message = "Invalid";
                         }

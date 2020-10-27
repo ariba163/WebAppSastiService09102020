@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<WebAppSastiServices.Models.DB.STPServiceType>
 @{
     ViewBag.Title = "Services";
     Layout = "~/Views/Shared/_LayoutPage.cshtml";
@@ -27,52 +27,20 @@
 <section id="Services">
     <div class="container">
         <div class="row">
+            @foreach(var item in Model)
+            {
             <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 margin-30px-bottom sm-margin-20px-bottom">
                 <div class="hovereffect">
-                    <img class="img-responsive" src="~/img/projects/project-6b.jpg" alt="">
+                    <img class="img-responsive" id="@item.ID" src="@item.ImageFilePath" style="height:100%;" alt="">
                     <div class="overlay">
-                        <h2>Generator Services</h2>
-                        <a class="info" href="@Url.Action("ServiceDetail","Services")">boris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cu</a>
+                        <h2>@item.ServiceTypeName</h2>
+                        <a class="info" href="@Url.Action("ServiceDetail","Services",new {serviceTypeID=item.ID })">@item.Description</a>
                     </div>
                 </div>
-              
-            </div><div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 margin-30px-bottom sm-margin-20px-bottom">
-                <div class="hovereffect">
-                    <img class="img-responsive" src="~/img/projects/project-4b.jpg" alt="">
-                    <div class="overlay">
-                        <h2>AC Services</h2>
-                        <a class="info" href="@Url.Action("ServiceDetail","Services")">boris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cu</a>
-                    </div>
-                </div>
-              
-            </div><div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 margin-30px-bottom sm-margin-20px-bottom">
-                <div class="hovereffect">
-                    <img class="img-responsive" src="~/img/projects/project-2b.jpg" alt="">
-                    <div class="overlay">
-                        <h2>CCTV Services</h2>
-                        <a class="info" href="@Url.Action("ServiceDetail","Services")">boris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cu</a>
-                    </div>
-                </div>
-              
-            </div><div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 margin-30px-bottom sm-margin-20px-bottom">
-                <div class="hovereffect">
-                    <img class="img-responsive" src="~/img/projects/project-1b.jpg" alt="">
-                    <div class="overlay">
-                        <h2>UPS Services</h2>
-                        <a class="info" href="@Url.Action("ServiceDetail","Services")">boris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cu</a>
-                    </div>
-                </div>
-              
-            </div><div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 margin-30px-bottom sm-margin-20px-bottom">
-                <div class="hovereffect">
-                    <img class="img-responsive" src="~/img/projects/project-5b.jpg" alt="">
-                    <div class="overlay">
-                        <h2>Solar Sys Services</h2>
-                        <a class="info" href="@Url.Action("ServiceDetail","Services")">boris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cu</a>
-                    </div>
-                </div>
-              
+
             </div>
+            }
+           
         </div>
 
 
