@@ -1,13 +1,17 @@
-﻿<!-- form start -->
+﻿@model WebAppSastiServices.Models.ViewModel.QuickCall
+<!-- form start -->
 
-@using (Html.BeginForm("pvQuickCall", "Home", FormMethod.Post, new { @class = "quform", @enctype = "multipart/form-data" }))
+@using (Html.BeginForm("pvQuickCall", "Home", FormMethod.Post, new { @class = "quform" }))
 {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <!-- Form start -->
     <div class="row">
         <div class="col-md-12">
             <div class="form-group">
                 <label class="control-label" for="name">Name</label>
-                @Html.TextBox("Name", null, new { @placeholder = "Your name here", @id = "name" })
+                @Html.TextBoxFor(model => model.Name, new { htmlAttributes = new { @class = "form-control input-md" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                 @*<input id="name" name="name" type="text" placeholder="Name" class="form-control input-md">*@
             </div>
         </div>
@@ -15,8 +19,8 @@
         <div class="col-md-12">
             <div class="form-group">
                 <label class="control-label" for="Contact">Contact No</label>
-
-                @Html.TextBox("Contact", null, new { @placeholder = "Your Contact here", @id = "Contact" })
+                @Html.TextBoxFor(model => model.Contact, new { htmlAttributes = new { @class = "form-control input-md" } })
+                @Html.ValidationMessageFor(model => model.Contact, "", new { @class = "text-danger" })
                 @*<input id="Contact" name="Contact" type="number" placeholder="Contact No" class="form-control input-md">*@
             </div>
         </div>
@@ -25,9 +29,43 @@
             <div class="col-md-12">
 
                 <button class="butn" type="submit"><span>Proceed</span></button>
-                <button class="butn" data-dismiss="modal"><span>Close</span></button>
+                <a class="butn text-light" onclick="CloseForm()"><span>Close</span></a>
+
             </div>
         </div>
     </div>
 }
+
+@if (Session["Message"] != null)
+{
+    if (Session["Message"].ToString() == "QCallSucceed")
+    {
+        <script src="~/js/jquery-3.3.1.min.js"></script>
+        <script src="~/js/custom/site.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script type="text/javascript">
+            swal({
+                title: "Quick Call Request sent successfully",
+                icon: "success",
+            });
+            CloseForm();
+        </script>
+        Session["Message"] = "";
+    }
+    if(Session["Message"].ToString() == "QCallFailed")
+    {
+        <script src="~/js/jquery-3.3.1.min.js"></script>
+        <script src="~/js/custom/site.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script type="text/javascript">
+            swal({
+                title: "Quick Call Request can't sent",
+                icon: "error",
+            });
+            CloseForm();
+        </script>
+        Session["Message"] = "";
+    }
+}
+
 <!-- form end -->

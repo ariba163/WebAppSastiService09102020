@@ -1,20 +1,32 @@
-﻿
-.info {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+﻿.navbar-brand img {
+    max-height: 80px;
 }
-/* serviceDetail*/
-#SDetail .item .cont {
-    margin-left: 0!important;
+.scrollHeader .navbar-nav li:hover a, .navbar-nav li:hover a {
+    color: #f6c924;
 }
-/*banner side customer review*/
+
+@media screen and (min-width: 992px) {
+    .scrollHeader .navbar-brand img {
+        max-height: 55px;
+    }
+}
+
+    .info {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    /* serviceDetail*/
+    #SDetail .item .cont {
+        margin-left: 0 !important;
+    }
+    /*banner side customer review*/
 #rev_slider_151_1_wrapper #reviewBanner {
     position: absolute;
     height: 250px;
     right: 0;
-    bottom: 0;
+    bottom: 10px;
     z-index: 999;
     color: #fff;
     background: rgba(255, 255, 255, 0.05);
@@ -22,67 +34,71 @@
     overflow: hidden;
 }
 
-#reviewBanner .section-heading {
-    margin-bottom:20px;
-}
-#reviewBanner img {
-    border: 2px solid #86bc42
-}
+    #reviewBanner .section-heading {
+        margin-bottom: 20px;
+    }
+
+    #reviewBanner img {
+        border: 2px solid #096ab2
+    }
 
 
 
-/*home side button*/
+    /*home side button*/
 
 #quickCall {
     padding: 10px 10px;
-    background-color: black;
+    background-color: #096ab2;
     color: white;
     transform: rotate(90deg);
     position: fixed;
-    top: 190px;
+    top: 250px;
     font-size: 19px;
-    right: -55px;
+    right: -60px;
     cursor: pointer;
     z-index: 999;
     font-weight: 600;
 }
 
-#QuickCallForm {
-    width: 350px;
-    cursor: default;
-    height: auto;
-    padding: 30px 20px;
-    position: fixed;
-    top: 130px;
-    right: -360px;
-    background: #f7faff;
-    border: 4px solid #fff;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.7), 0 6px 20px 0 rgba(0, 0, 0, 0.49);
-    z-index: 1000;
-    transition: right .35s ease-in-out;
-}
-
-#quickCallClose {
-    position: absolute;
-    top: 0;
-    color: aliceblue;
-    left: 0;
-    padding: 5px 10px;
-    font-size: 20px;
-    background: #282b2d;
-}
-/*modal*/
-.modal-backdrop {
-    z-index: -1;
-}
-.modal-dialog {
-    margin: 5rem auto 1.75rem auto;
-}
-@media (min-width: 576px) {
-    .modal-dialog {
-        max-width: 600px;
+    #QuickCallForm {
+        width: 350px;
+        cursor: default;
+        height: auto;
+        padding: 30px 20px;
+        position: fixed;
+        top: 170px;
+        right: -370px;
+        background: #f7faff;
+        border: 4px solid #fff;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.7), 0 6px 20px 0 rgba(0, 0, 0, 0.49);
+        z-index: 1000;
+        transition: right .35s ease-in-out;
     }
-}
+
+    #quickCallClose {
+        position: absolute;
+        top: 0;
+        color: aliceblue;
+        left: 0;
+        padding: 5px 10px;
+        font-size: 20px;
+        background: #282b2d;
+    }
+    /*modal*/
+    .modal-backdrop {
+        z-index: -1;
+    }
+
+    .modal-dialog {
+        margin: 5rem auto 1.75rem auto;
+    }
+
+    @media (min-width: 576px) {
+        .modal-dialog {
+            max-width: 600px;
+        }
+    }
+
     .modal-content {
         box-shadow: 3px 2px 20px 0px #ffffff;
     }
@@ -101,7 +117,7 @@
 
         #Services .hovereffect:hover {
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.7), 0 6px 20px 0 rgba(0, 0, 0, 0.49);
-            border: 4px solid #86bc42;
+            border: 4px solid #096ab2;
         }
 
 
@@ -135,7 +151,7 @@
         }
 
         .hovereffect:hover .overlay {
-            background-color: #86bc4296;
+            background-color: #096ab296;
         }
 
         .hovereffect img {

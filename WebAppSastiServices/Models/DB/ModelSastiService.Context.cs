@@ -34,7 +34,8 @@ namespace WebAppSastiServices.Models.DB
         public virtual DbSet<STPProductBrand> STPProductBrands { get; set; }
         public virtual DbSet<STPProductType> STPProductTypes { get; set; }
         public virtual DbSet<STPQuickCall> STPQuickCalls { get; set; }
-        public virtual DbSet<STPServiceProductItem> STPServiceProductItems { get; set; }
+        public virtual DbSet<StpRole> StpRoles { get; set; }
+        public virtual DbSet<STPRolesCategory> STPRolesCategories { get; set; }
         public virtual DbSet<STPService> STPServices { get; set; }
         public virtual DbSet<STPServicesFuelType> STPServicesFuelTypes { get; set; }
         public virtual DbSet<STPServicesUnitType> STPServicesUnitTypes { get; set; }
@@ -42,12 +43,12 @@ namespace WebAppSastiServices.Models.DB
         public virtual DbSet<STPStatu> STPStatus { get; set; }
         public virtual DbSet<STPStatusType> STPStatusTypes { get; set; }
         public virtual DbSet<StpUser> StpUsers { get; set; }
-        public virtual DbSet<StpUserType> StpUserTypes { get; set; }
         public virtual DbSet<TRNCustomerOrder> TRNCustomerOrders { get; set; }
         public virtual DbSet<TRNCustomerOrders_STPProductItems> TRNCustomerOrders_STPProductItems { get; set; }
         public virtual DbSet<TRNCustomerOrders_STPServices> TRNCustomerOrders_STPServices { get; set; }
         public virtual DbSet<TRNInvoice> TRNInvoices { get; set; }
         public virtual DbSet<TRNSubscription> TRNSubscriptions { get; set; }
+        public virtual DbSet<STPServiceProductItem> STPServiceProductItems { get; set; }
     
         public virtual ObjectResult<ReportInvoice_Result> ReportInvoice()
         {

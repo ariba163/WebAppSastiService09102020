@@ -18,5 +18,6 @@ namespace WebAppSastiServices.Models.DB
         public string Name { get; set; }
         public string Contact { get; set; }
         public System.DateTime createdDateTime { get; set; }
+        public Nullable<int> STPStatusID { get; set; }
     }
 }

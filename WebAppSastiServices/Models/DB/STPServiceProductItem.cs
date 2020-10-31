@@ -24,7 +24,7 @@ namespace WebAppSastiServices.Models.DB
         public string ServiceProductName { get; set; }
         public string ServiceModelNo { get; set; }
         public string ServiceProductDescription { get; set; }
-        public int STPProductBrandID { get; set; }
+        public Nullable<int> STPProductBrandID { get; set; }
         public bool IsAvailible { get; set; }
         public System.DateTime CreatedDateTime { get; set; }
         public string ImageFilePath { get; set; }

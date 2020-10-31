@@ -248,10 +248,13 @@
     <Content Include="css\dashboard\styles.css" />
     <Content Include="css\imagehover.min.css" />
     <Content Include="css\plugins.css" />
+    <Content Include="css\plugins.min.css" />
     <Content Include="css\rev_slider\layers.css" />
+    <Content Include="css\rev_slider\layers.min.css" />
     <Content Include="css\rev_slider\navigation.css" />
     <Content Include="css\rev_slider\settings.css" />
     <Content Include="css\rev_slider\typewriter.css" />
+    <Content Include="css\rev_slider\typewriter.min.css" />
     <Content Include="css\styles-2.css" />
     <Content Include="css\styles-3.css" />
     <Content Include="css\styles-4.css" />
@@ -270,6 +273,7 @@
     <Content Include="DataTables\images\sort_desc_disabled.png" />
     <Content Include="DataTables\js\dataTables.bootstrap.js" />
     <Content Include="DataTables\js\jquery.dataTables.js" />
+    <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="img\ajax-loader.gif" />
@@ -429,8 +433,16 @@
     <Content Include="img\Dashboard\signature-black.png" />
     <Content Include="img\Dashboard\timeline-banner.jpg" />
     <Content Include="img\logos\9 logo.png" />
+    <Content Include="img\logos\attachments\Kaamwaley.com Logo.png" />
+    <Content Include="img\logos\attachments\logo 86x86.png" />
+    <Content Include="img\logos\attachments\logo white text 86x86.png" />
+    <Content Include="img\logos\attachments\Logo-favicon.png" />
+    <Content Include="img\logos\favicon.ico" />
     <Content Include="img\logos\Final-Kaam-Waley.png" />
     <Content Include="img\logos\LogoDark.png" />
+    <Content Include="img\logos\logofaviconvector\86 pixel height white.png" />
+    <Content Include="img\logos\logofaviconvector\86 pixel height.png" />
+    <Content Include="img\logos\logofaviconvector\favicon.ico" />
     <Content Include="img\logos\LogoLight.png" />
     <Content Include="img\products\Generators\alternater-fans_10574836_250x250-250x250.jpg" />
     <Content Include="img\products\Generators\generator-valve.jpg" />
@@ -766,6 +778,7 @@
     <Content Include="plugins\vertical-timeline\js\main.js" />
     <Content Include="plugins\vertical-timeline\js\modernizr.js" />
     <Content Include="quform\css\base.css" />
+    <Content Include="quform\css\base.min.css" />
     <Content Include="quform\images\captcha-refresh-icon.png" />
     <Content Include="quform\images\captcha\courier-new-light.png" />
     <Content Include="quform\images\close.png" />
@@ -820,6 +833,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="search\search.css" />
     <Content Include="search\search.js" />
+    <Content Include="search\search.min.js" />
     <Content Include="video\bg-video.mp4" />
     <Content Include="video\vide-bg-img.jpg" />
     <Content Include="Web.config" />
@@ -880,6 +894,12 @@
     <Compile Include="Models\DB\STPQuickCall.cs">
       <DependentUpon>ModelSastiService.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DB\StpRole.cs">
+      <DependentUpon>ModelSastiService.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\STPRolesCategory.cs">
+      <DependentUpon>ModelSastiService.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DB\STPService.cs">
       <DependentUpon>ModelSastiService.tt</DependentUpon>
     </Compile>
@@ -904,9 +924,6 @@
     <Compile Include="Models\DB\StpUser.cs">
       <DependentUpon>ModelSastiService.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DB\StpUserType.cs">
-      <DependentUpon>ModelSastiService.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\DB\TRNCustomerOrder.cs">
       <DependentUpon>ModelSastiService.tt</DependentUpon>
     </Compile>
@@ -927,6 +944,7 @@
     <Compile Include="Models\Extended\STPOrder.cs" />
     <Compile Include="Models\Extended\TRNCustomerOrder.cs" />
     <Compile Include="Models\ViewModel\GetInTouch.cs" />
+    <Compile Include="Models\ViewModel\QuickCall.cs" />
     <Compile Include="Models\ViewModel\UserLoginView.cs" />
     <Compile Include="Models\ViewModel\UserRegisterView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1106,6 +1124,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\AdminDashboard\PrintInvoice.cshtml" />
     <Content Include="Views\Home\AboutUs.cshtml" />
+    <Content Include="Views\AdminDashboard\QuickCallRequest.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1125,6 +1144,9 @@
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />

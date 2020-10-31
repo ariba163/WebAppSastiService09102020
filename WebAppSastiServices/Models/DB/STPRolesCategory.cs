@@ -12,17 +12,19 @@ namespace WebAppSastiServices.Models.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class StpUserType
+    public partial class STPRolesCategory
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public StpUserType()
+        public STPRolesCategory()
         {
             this.StpUsers = new HashSet<StpUser>();
         }
     
-        public byte ID { get; set; }
-        public string UserType { get; set; }
+        public int ID { get; set; }
+        public string Description { get; set; }
+        public int STPRolesID { get; set; }
     
+        public virtual StpRole StpRole { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<StpUser> StpUsers { get; set; }
     }

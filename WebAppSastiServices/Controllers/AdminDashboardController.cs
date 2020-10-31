@@ -21,18 +21,6 @@ namespace WebAppSastiServices.Controllers
         // GET: AdminDashboard
         public ActionResult Index()
         {
-            //if (Session["UserRole"] != null)
-            //{
-
-            //    if (Session["UserRole"].ToString() != "Admin")
-            //    {
-            //       return Redirect(Url.Action("Index", "Home"));
-            //    }
-            //}
-            //else
-            //{
-            //  return  Redirect(Url.Action("Index", "Home"));
-            //}
 
             ViewBag.Message = TempData["Message"];
             int? ID = Convert.ToInt32(Session["UserID"]);
@@ -41,26 +29,43 @@ namespace WebAppSastiServices.Controllers
                 ID = null;
             }
             bool isAdmin = (from d in db.StpUsers
-                            where (d.ID == ID && d.StpUserType.UserType == "Admin")
+                            where (d.ID == ID && d.StpRole.Description == "Admin")
                             select d).Any();
 
 
 
             if (isAdmin)
             {
+                Session["IsAdmin"] = "true";
                 return View();
             }
             else
             {
-                TempData["Message"] = "Not Valid User";
+                TempData["Message"] = "NotAdmin";
                 return Redirect(Url.Action("Login", "Account"));
             }
+        }
+
+        public ActionResult QuickCallRequest() {
+
             return View();
         }
 
-        public ActionResult QuickCallRequest()
+        public ActionResult QuickCallData()
         {
-            return View();
+            var Requests = (from d in db.STPQuickCalls
+                            orderby d.createdDateTime descending
+                            select new 
+                            {
+                                ID=d.ID,
+                                UserName= d.Name,
+                                UserContact=d.Contact,
+                                CreatedDateTime=d.createdDateTime,
+                                btns= "<div><a type='button' class='btn btn-primary text-light' onclick=OpenEditForm(" + d.ID + ") id='Edit'><i class='far fa-edit'></i> </a></div>"
+                            }
+                            ).ToList();
+
+            return Json(Requests, JsonRequestBehavior.AllowGet);
         }
         public ActionResult LatestActOrders()
         {
@@ -185,6 +190,14 @@ namespace WebAppSastiServices.Controllers
 
         }
 
+        public ActionResult Register()
+        {
+            ViewBag.Roles = new SelectList(db.StpRoles,"ID","Description");
+            ViewBag.RolesCategories = new SelectList(db.STPRolesCategories,"ID","Description");
+
+            return View();
+        }
+
         public ActionResult Email()
         {
             return View();
@@ -205,10 +218,6 @@ namespace WebAppSastiServices.Controllers
         {
             return View();
         }
-        public ActionResult Register()
-        {
-            return View();
-        }
         public ActionResult LockScreen()
         {
             return View();
@@ -221,7 +230,6 @@ namespace WebAppSastiServices.Controllers
 
             return View();
         }
-
         [HttpPost]
         public ActionResult getSerValue(int ID)
         {
@@ -232,8 +240,6 @@ namespace WebAppSastiServices.Controllers
 
             return Json(results, JsonRequestBehavior.AllowGet);
         }
-
-
         public ActionResult InvItems(int fuelTypeID, int unitTypeID)
         {
             ViewBag.Products = new SelectList(db.STPServiceProductItems.Where(f => f.UnitTypeId == unitTypeID && f.FuelTypeId == fuelTypeID), "ID", "ServiceProductName");
@@ -246,8 +252,6 @@ namespace WebAppSastiServices.Controllers
 
             return View();
         }
-
-
         [HttpPost]
         public ActionResult getItemNo(int ID, int fuelTypeID, int unitTypeID)
         {
@@ -379,9 +383,6 @@ namespace WebAppSastiServices.Controllers
 
             return View(order);
         }
-
-
-
         public ActionResult PrintInvoice(int invId)
         {
             try
@@ -412,11 +413,6 @@ namespace WebAppSastiServices.Controllers
 
 
                 }
-
-                
-                             
-                           
-
 
                 return View(results);
             }

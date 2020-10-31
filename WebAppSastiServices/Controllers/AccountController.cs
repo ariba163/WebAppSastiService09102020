@@ -44,7 +44,8 @@ namespace WebAppSastiServices.Controllers
                     stpUser.IsEmailVerified = false;
                     stpUser.IsEmailActive = false;
                     stpUser.ActivationCode = Guid.NewGuid();
-                    stpUser.STPUserTypeID = 1 ;
+                    stpUser.STPRolesID = 1;
+                    stpUser.STPRolesCategoriesID = 17;
                     db.StpUsers.Add(stpUser);
                     db.SaveChanges();
 
@@ -56,7 +57,6 @@ namespace WebAppSastiServices.Controllers
             {
                 return View(user);
             }
-            return View(user);
         }
 
         [HttpGet]
@@ -65,6 +65,14 @@ namespace WebAppSastiServices.Controllers
             ViewBag.Message=TempData["Message"] ;
             return View();
         }
+
+
+        public ActionResult Logout()
+        {
+            Session.Abandon();
+            return RedirectToAction("Index", "Home");
+        }
+
 
 
         [HttpPost]
@@ -80,33 +88,57 @@ namespace WebAppSastiServices.Controllers
                         string hashedPass = UserManager.GetHashedPassByUsername(u.UserName);
                         string UserPass = Crypto.Hash(u.Password);
 
-                        if (Equals(hashedPass, UserPass)) 
+                        if (Equals(hashedPass, UserPass))
                         {
                             int id = UserManager.GetUserIDByUsername(u.UserName);
                             Session["UserID"] = id;
-                            string UserType = db.StpUsers.Find(id).StpUserType.UserType;
-                            Session["UserRole"] = UserType;
+                            Session["UserName"] = u.UserName;
 
+                            string Role = db.StpUsers.Find(id).StpRole.Description;
+                            int RoleID = db.StpUsers.Find(id).StpRole.ID;
+                            int RoleCategoryID = db.StpUsers.Find(id).STPRolesCategory.ID;
+                            string RoleCategory = db.StpUsers.Find(id).STPRolesCategory.Description;
+                            Session["RoleID"] = RoleID;
 
-                            if (UserType == "User")
+                            string Message = "";
+
+                            if (Role == "User")
                             {
-                                TempData["Message"] = "LogInSuccess";
+                                Message = "LogInSuccess";
+
+
                                 return Redirect(Url.Action("Index", "Home"));
                             }
-                            else if (UserType == "Admin")
+                            else if (Role == "Admin")
                             {
-                                TempData["Message"] = "LogInSuccess";
+                                Message = "LogInSuccess";
                                 return Redirect(Url.Action("Index", "AdminDashboard"));
                             }
+
+                            else if (Role == "Vendor")
+                            {
+                                var serviceType = "";
+
+                                if (RoleCategory == "Air Condition") { serviceType = "Air Condition"; }
+                                else if (RoleCategory == "UPS") { serviceType = "UPS"; }
+                                else if (RoleCategory == "Generator") { serviceType = "Generator"; }
+                                else if (RoleCategory == "Solar System") { serviceType = "Solar System"; }
+                                else if (RoleCategory == "CCTV") { serviceType = "CCTV Camera"; }
+
+                                Session["serviceType"] = serviceType;
+                                return Redirect(Url.Action("ACIndex", "VendorDashboard"));
+
+                            }
+                            else if (Role == "Supplier")
+                            {
+
+                            }
+
+                            TempData["Message"] = Message;
+                            Session["RoleCategoryID"] = RoleCategoryID;
                         }
 
                         else
-         
-                        
-                        
-                        
-                        
-                        
                         {
                             ViewBag.Message = "Invalid";
                         }
@@ -115,7 +147,7 @@ namespace WebAppSastiServices.Controllers
 
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 ViewBag.Message = "Error";
             }

@@ -97,19 +97,31 @@ namespace WebAppSastiServices.Controllers
         }
 
         [HttpPost]
-        public RedirectResult pvQuickCall(string Name,String Contact)
+        [ValidateAntiForgeryToken]
+        public PartialViewResult pvQuickCall(QuickCall q)
         {
 
-            STPQuickCall Qcall = new STPQuickCall() 
+            if (q != null)
             {
-                Name = Name,
-                Contact = Contact
-            };
+                STPQuickCall Qcall = new STPQuickCall()
+                {
+                    Name = q.Name,
+                    Contact = q.Contact
+                };
 
-            db.STPQuickCalls.Add(Qcall);
-            db.SaveChanges();
+                db.STPQuickCalls.Add(Qcall);
+                db.SaveChanges();
 
-            return Redirect(Url.Action("Index", "Home"));
+
+                Session["Message"] = "QCallSucceed";
+              
+                
+            }
+            else {
+
+                Session["Message"] = "QCallFailed";
+            }
+            return PartialView();
         }
 
         

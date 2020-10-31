@@ -39,13 +39,24 @@ else if (message == "Error")
         });
     </script>
 }
-else if (message == "Not Valid User")
+else if (message == "NotAdmin")
 {
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript">
         swal({
             title: "Error",
             text: "Your credentials is not for admin",
+            icon: "error",
+        });
+    </script>
+}
+else if (message == "NotVendor")
+{
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript">
+        swal({
+            title: "Error",
+            text: "Your credentials is not for vendor",
             icon: "error",
         });
     </script>
@@ -143,7 +154,7 @@ else if (message == "RegisterSuccess")
 
                         <button type="submit" class="butn theme btn-block margin-20px-top"><span>Login</span></button>
                         <div class="text-center text-small margin-20px-top">
-                            <span>Don't have an account yet? <a href="@Url.Action("Register", "Account")" style="color: #86bc42;">Register</a></span>
+                            <span>Don't have an account yet? <a href="@Url.Action("Register", "Account")" style="color: #096ab2;">Register</a></span>
                         </div>
 
                     }

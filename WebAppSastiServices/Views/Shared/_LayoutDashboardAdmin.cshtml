@@ -1,7 +1,6 @@
 ﻿
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
     <!-- metas -->
@@ -80,11 +79,11 @@
                                 <span>Availed Orders</span>
                             </a>
                         </li>
-                        @*<li>
+                        <li>
                             <a href="@Url.Action("QuickCallRequest","AdminDashboard")">
                                 <span>Quick Call Requests</span>
                             </a>
-                        </li>*@
+                        </li>
                         @*<li>
             <a href="#!">
                 <i class="menu-icon icon-flash_on"></i><span>UI Kits</span><i class="accordion-icon fa fa-angle-left"></i>
@@ -108,11 +107,11 @@
                                 <i class="menu-icon icon-layers"></i><span>Vendors</span><i class="accordion-icon fa fa-angle-left"></i>
                             </a>
                             <ul>
-                                <li><a href="@Url.Action("GeneratorsIndex","VendorDashboard")">Generators</a></li>
-                                <li><a href="@Url.Action("CCTVIndex","VendorDashboard")">CCTV</a></li>
-                                <li><a href="@Url.Action("UPSIndex","VendorDashboard")">UPS</a></li>
-                                <li><a href="@Url.Action("SolarSysIndex","VendorDashboard")">Solar System</a></li>
-                                <li><a href="@Url.Action("ACIndex","VendorDashboard")">AC</a></li>
+                                <li><a href="~/VendorDashboard/ChooseService?ServiceName=AC">AC</a></li>
+                                <li><a href="~/VendorDashboard/ChooseService?ServiceName=CCTV">CCTV</a></li>
+                                <li><a href="~/VendorDashboard/ChooseService?ServiceName=UPS">UPS</a></li>
+                                <li><a href="~/VendorDashboard/ChooseService?ServiceName=SolarSys">Solar System</a></li>
+                                <li><a href="~/VendorDashboard/ChooseService?ServiceName=Generator">Generator</a></li>
                             </ul>
                         </li>
                         <li>

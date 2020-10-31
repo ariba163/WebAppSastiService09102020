@@ -16,7 +16,7 @@
     <title>Asan Service.pk</title>
 
     <!-- favicon -->
-    <link rel="shortcut icon" href="~/img/logos/favicon.png">
+    <link rel="shortcut icon" href="~/img/logos/logofaviconvector/favicon.ico">
     <link rel="apple-touch-icon" href="~/img/logos/apple-touch-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="72x72" href="~/img/logos/apple-touch-icon-72x72.png">
     <link rel="apple-touch-icon" sizes="114x114" href="~/img/logos/apple-touch-icon-114x114.png">
@@ -90,7 +90,7 @@
 
                                     <div class="navbar-header navbar-header-custom">
                                         <!-- start logo -->
-                                        <a href="@Url.Action("Index", "Home")" class="navbar-brand"><img id="logo" src="~/img/logos/Final-Kaam-Waley.png" alt="logo"></a>
+                                        <a href="@Url.Action("Index", "Home")" class="navbar-brand"><img id="logo" src="~/img/logos/logofaviconvector/86 pixel height white.png" alt="logo"></a>
                                         <!-- end logo -->
                                     </div>
 
@@ -106,15 +106,15 @@
                                             <a href="@Url.Action("Service", "Services")">Services</a>
                                         </li>
                                         @*<li>
-                                            <a href="#!">Shop</a>
-                                            <ul>
-                                                <li><a href="@Url.Action("Products", "Shop")">Products</a></li>
-                                                <li><a href="@Url.Action("ProductGrid", "Shop")">Product Grid</a></li>
-                                                <li><a href="@Url.Action("ProductDetail", "Shop")">Product Detail</a></li>
-                                                <li><a href="@Url.Action("ShopCart", "Shop")">Shop Cart</a></li>
-                                                <li><a href="@Url.Action("ShopCheckout", "Shop")">Shop Checkout</a></li>
-                                            </ul>
-                                        </li>*@
+            <a href="#!">Shop</a>
+            <ul>
+                <li><a href="@Url.Action("Products", "Shop")">Products</a></li>
+                <li><a href="@Url.Action("ProductGrid", "Shop")">Product Grid</a></li>
+                <li><a href="@Url.Action("ProductDetail", "Shop")">Product Detail</a></li>
+                <li><a href="@Url.Action("ShopCart", "Shop")">Shop Cart</a></li>
+                <li><a href="@Url.Action("ShopCheckout", "Shop")">Shop Checkout</a></li>
+            </ul>
+        </li>*@
 
                                         <li>
                                             <a href="@Url.Action("AboutUs", "Home")">About Us</a>
@@ -125,10 +125,35 @@
                                             <a href="@Url.Action("Contact", "Home")">Contact Us</a>
                                         </li>
 
-                                        <li>
-                                            <a href="@Url.Action("Login", "Account")">Login</a>
-                                        </li>
-                                        
+
+                                        @if (Session["RoleID"] != null)
+                                        {
+                                            if (Session["RoleID"].ToString() == "0")
+                                            {
+                                                <li><a href="@Url.Action("Index","Admin")">Admin Dashboard</a></li>
+
+                                            }
+
+                                            if (Session["RoleID"].ToString() == "2")
+                                            {
+                                                <li><a href="@Url.Action("Index","Supplier")">Supplier Dashboard</a></li>
+                                            }
+
+                                            if (Session["RoleID"].ToString() == "3")
+                                            {
+                                                <li><a href="@Url.Action("Index","Vendor")">Vendor Dashboard</a></li>
+
+                                            }
+
+                                            <li><a href="@Url.Action("Logout","Account")">Logout</a></li>
+
+                                        }
+                                        else
+                                        {
+                                            <li><a href="@Url.Action("Login","Account")">Login</a></li>
+
+                                        }
+
                                     </ul>
 
 
