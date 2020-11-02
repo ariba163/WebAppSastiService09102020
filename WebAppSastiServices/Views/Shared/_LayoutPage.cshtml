@@ -13,7 +13,7 @@
     <meta name="description" content="Kaam Waley - Multipurpose Responsive + Admin" />
 
     <!-- title  -->
-    <title>Asan Service.pk</title>
+    <title>Kaam Waley</title>
 
     <!-- favicon -->
     <link rel="shortcut icon" href="~/img/logos/logofaviconvector/favicon.ico">
@@ -130,18 +130,18 @@
                                         {
                                             if (Session["RoleID"].ToString() == "0")
                                             {
-                                                <li><a href="@Url.Action("Index","Admin")">Admin Dashboard</a></li>
+                                                <li><a href="@Url.Action("Index","AdminDashboard")">Admin Dashboard</a></li>
 
                                             }
 
                                             if (Session["RoleID"].ToString() == "2")
                                             {
-                                                <li><a href="@Url.Action("Index","Supplier")">Supplier Dashboard</a></li>
+                                                <li><a href="@Url.Action("Index","SupplierDashboard")">Supplier Dashboard</a></li>
                                             }
 
                                             if (Session["RoleID"].ToString() == "3")
                                             {
-                                                <li><a href="@Url.Action("Index","Vendor")">Vendor Dashboard</a></li>
+                                                <li><a href="@Url.Action("Index","VendorDashboard")">Vendor Dashboard</a></li>
 
                                             }
 

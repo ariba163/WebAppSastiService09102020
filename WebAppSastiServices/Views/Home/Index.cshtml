@@ -1,7 +1,6 @@
 ﻿@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutPage.cshtml";
-
     string message = @ViewBag.Message;
 }
 
@@ -16,7 +15,6 @@
     <script>
 
         function OpenModelForm(ServiceTypeID) {
-            debugger;
             var id = ServiceTypeID;
             $('#exampleModal .modal-body').html('Loading.....');
             var options = { "backdrop": "static", keyboard: true };
@@ -280,7 +278,7 @@ else if (message == "error")
     <!-- start revolution slideshow-->
     <div id="rev_slider_151_1_wrapper" class="rev_slider_wrapper fullscreen-container" data-alias="blur-effect-slider" data-source="gallery" style="background-color:#2d3032;padding:0px;">
         <!-- START REVOLUTION SLIDER 5.4.1 fullscreen mode -->
-        <div id="rev_slider_151_1" class="rev_slider fullscreenbanner" style="display:none;" data-version="5.4.1">
+        @* <div id="rev_slider_151_1" class="rev_slider fullscreenbanner" style="display:none;" data-version="5.4.1">
             <ul>
                 <!-- SLIDE  -->
                 <li data-index="rs-411" data-transition="fadethroughtransparent" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="default" data-rotate="0" data-fstransition="fade"
@@ -499,82 +497,13 @@ else if (message == "error")
 
 
             <div class="tp-bannertimer" style="height: 10px; background-color: rgba(255, 255, 255, 0.25);"></div>
-        </div>
+        </div>*@
+        <video autoplay muted loop style="width:100%;">
+            <source src="~/video/HomeVideo.mp4" type="video/mp4" />
+        </video>
         <div id="reviewBanner" class="col-lg-5 d-lg-block d-md-none d-sm-none" style="">
-            <div class="section-heading">
-                <h5 class="text-uppercase" style="color:white">What Our Client Say</h5>
-            </div>
-            <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fhiba.sajjad.946%2Fposts%2F216967873180545&show_text=true&width=552&height=194&appId" width="552" height="194" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
-                            @*<div class="row">
-                                <div class="col-md-2">
-                                    <img src="~/img/avatar/avatar-01.jpg" class="rounded-circle" style="">
-                                </div>
-                                <div class="col-md-10">
-
-
-                                    <a style="color:white" href="https://maniruzzaman-akash.blogspot.com/p/contact.html"><strong>Maniruzzaman Akash</strong></a>
-
-                                    <span class="float-right"><i class="text-warning fa fa-star"></i></span>
-                                    <span class="float-right"><i class="text-warning fa fa-star"></i></span>
-                                    <span class="float-right"><i class="text-warning fa fa-star"></i></span>
-                                    <span class="float-right"><i class="text-warning fa fa-star"></i></span>
-
-                                    <div class="clearfix"></div>
-
-                                    <p>kasjfdaaaaaahnology of implementing multi purpose projects is putting your project successfhnology of implementing multi purpose projects is putting your project successfhnology of implementing multi purpose projects is putting your project successfaa</p>
-                                </div>
-                            </div>*@
-                    </div>
-                    <div class="carousel-item">
-                        <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fhiba.sajjad.946%2Fposts%2F216967873180545&show_text=true&width=552&height=194&appId" width="552" height="194" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
-                        @*<div class="row">
-            <div class="col-md-2">
-                <img src="~/img/avatar/avatar-02.jpg" class="rounded-circle" style="">
-            </div>
-            <div class="col-md-10">
-
-
-                <a style="color:white" href="https://maniruzzaman-akash.blogspot.com/p/contact.html"><strong>Maniruzzaman Akash</strong></a>
-
-                <span class="float-right"><i class="text-warning fa fa-star"></i></span>
-                <span class="float-right"><i class="text-warning fa fa-star"></i></span>
-                <span class="float-right"><i class="text-warning fa fa-star"></i></span>
-                <span class="float-right"><i class="text-warning fa fa-star"></i></span>
-
-                <div class="clearfix"></div>
-
-                <p>kasjfdaaaaaahnology of implementing multi purpose projects is putting your project successfhnology of implementing multi purpose projects is putting your project successfhnology of implementing multi purpose projects is putting your project successfaa</p>
-            </div>
-        </div>*@
-                    </div>
-                    <div class="carousel-item">
-                        <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fhiba.sajjad.946%2Fposts%2F216967873180545&show_text=true&width=552&height=194&appId" width="552" height="194" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
-
-                        @*<div class="row">
-            <div class="col-md-2">
-                <img src="~/img/avatar/avatar-02.jpg" class="rounded-circle" style="">
-            </div>
-            <div class="col-md-10">
-
-
-                <a style="color:white" href="https://maniruzzaman-akash.blogspot.com/p/contact.html"><strong>Maniruzzaman Akash</strong></a>
-
-                <span class="float-right"><i class="text-warning fa fa-star"></i></span>
-                <span class="float-right"><i class="text-warning fa fa-star"></i></span>
-                <span class="float-right"><i class="text-warning fa fa-star"></i></span>
-                <span class="float-right"><i class="text-warning fa fa-star"></i></span>
-
-                <div class="clearfix"></div>
-
-                <p>kasjfdaaaaaahnology of implementing multi purpose projects is putting your project successfhnology of implementing multi purpose projects is putting your project successfhnology of implementing multi purpose projects is putting your project successfaa</p>
-            </div>
-        </div>*@
-                    </div>
-                </div>
-            </div>
+            <script src="https://apps.elfsight.com/p/platform.js" defer></script>
+            <div class="elfsight-app-891be47f-f968-485f-b882-141bab11e9a7"></div>
 
         </div>
     </div>

@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using WebAppSastiServices.Models;
 using WebAppSastiServices.Models.DB;
+using WebAppSastiServices.Models.EntityManager;
+using WebAppSastiServices.Models.ViewModel;
     
 
 namespace WebAppSastiServices.Controllers
@@ -190,11 +193,73 @@ namespace WebAppSastiServices.Controllers
 
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Register(RegisterVendorSupplierView user)
+        {
+
+            if (ModelState.IsValid)
+            {
+
+                var isEmailExist = UserManager.IsEmailExist(user.EmailID);
+                var isNameExist = UserManager.IsUsernameExist(user.UserName);
+                if (isEmailExist)
+                {
+                    ModelState.AddModelError("EmailExist", "Email Already Exist");
+                    return View(user);
+                }
+                else if (isNameExist)
+                {
+                    ModelState.AddModelError("UserNameExist", "UserName Already Exist");
+                    return View(user);
+                }
+                else
+                {
+                    StpUser stpUser = new StpUser();
+                    stpUser.UserName = user.UserName;
+                    stpUser.EmailID = user.EmailID;
+                    stpUser.Password = Crypto.Hash(user.Password);
+                    stpUser.Contact = user.Contact;
+                    stpUser.Address = user.Address;
+                    stpUser.CreatedDate = System.DateTime.Now;
+                    stpUser.IsEmailVerified = false;
+                    stpUser.IsEmailActive = false;
+                    stpUser.ActivationCode = Guid.NewGuid();
+                    stpUser.STPRolesID = user.STPRolesID;
+                    stpUser.STPRolesCategoriesID = user.STPRolesCategoriesID;
+                    db.StpUsers.Add(stpUser);
+                    db.SaveChanges();
+
+                    TempData["Message"] = "RegisterSuccess";
+                    return View("Index");
+                }
+            }
+            else
+            {
+                return View(user);
+            }
+
+        }
+
+        public ActionResult getRoleCategories(int RoleID)
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+
+            var roleCategories = (from d in db.STPRolesCategories
+                                  where d.STPRolesID == RoleID
+                                  select d).ToList();
+
+            return Json(roleCategories, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult Register()
         {
             ViewBag.Roles = new SelectList(db.StpRoles,"ID","Description");
-            ViewBag.RolesCategories = new SelectList(db.STPRolesCategories,"ID","Description");
+            List<SelectListItem> Categories = new List<SelectListItem>() {
+                new SelectListItem() {Value="0", Text="- Select Role Category -" },
+           };
 
+            ViewBag.STPRolesCategoriesID = Categories;
             return View();
         }
 

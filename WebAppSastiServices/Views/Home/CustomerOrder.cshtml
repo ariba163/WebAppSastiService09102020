@@ -74,7 +74,7 @@
                         <div class="col-md-6">
                             <div class="form-group col-md-12">
                                 @Html.LabelFor(model => model.preferredDate, "Preferred Date", htmlAttributes: new { @class = "control-label" })
-                                @Html.EditorFor(model => model.preferredDate, new { htmlAttributes = new { Type = "date", @class = "form-control", @max=@DateTime.Now.ToString("dd/MM/yyyy")} })
+                                @Html.EditorFor(model => model.preferredDate, new { htmlAttributes = new { Type = "date", @class = "form-control", @min = DateTime.Now.ToString("yyyy-MM-dd") } })
                                 @Html.ValidationMessageFor(model => model.preferredDate, "", new { @class = "text-danger" })
                             </div>
                         </div>

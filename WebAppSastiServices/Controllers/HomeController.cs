@@ -46,6 +46,7 @@ namespace WebAppSastiServices.Controllers
 
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult pvGetInTouch(GetInTouch g)
         {
 
@@ -57,7 +58,7 @@ namespace WebAppSastiServices.Controllers
                                    DateTime.Now.Hour.ToString() +
                                    DateTime.Now.Minute.ToString() +
                                    DateTime.Now.Second.ToString();
-
+                try { 
 
                 SendEmail("sastiService123@gmail.com",
                           "aribajawed163@gmail.com", //Email of customer support employee
@@ -86,11 +87,18 @@ namespace WebAppSastiServices.Controllers
                 db.STPCustomerSupports.Add(cp);
                 db.SaveChanges();
 
+                    return View("Index");
+                }
+                catch
+                {
+                    return PartialView(g);
+                }
+
             }
-            return PartialView();
+            return PartialView(g);
         }
 
-
+        [HttpGet]
         public PartialViewResult pvQuickCall()
         {
             return PartialView();

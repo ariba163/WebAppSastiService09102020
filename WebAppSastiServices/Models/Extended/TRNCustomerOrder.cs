@@ -35,7 +35,7 @@ namespace WebAppSastiServices.Models.DB
         [Display(Name = "Address")]
         public string Address { get; set; }
         [Required]
-        [Display(Name = "Address")]
+        [Display(Name = "Description")]
         public string OrderDescription { get; set; }
 
         [Required]

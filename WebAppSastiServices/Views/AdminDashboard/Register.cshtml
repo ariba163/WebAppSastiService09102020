@@ -1,4 +1,4 @@
-﻿@model WebAppSastiServices.Models.DB.StpUser
+﻿@model WebAppSastiServices.Models.ViewModel.RegisterVendorSupplierView
 @{
     ViewBag.Title = "Register";
     Layout = "~/Views/Shared/_LayoutDashboardAdmin.cshtml";
@@ -13,188 +13,141 @@
     <!-- start page main wrapper -->
     <div id="main-wrapper">
         <div class="card card-white">
-            @using (Html.BeginForm("ACCreateServices", "VendorDashboard", FormMethod.Post))
+            @using (Html.BeginForm("Register", "AdminDashboard", FormMethod.Post))
             {
+                @Html.AntiForgeryToken()
+                <div class="row m-b-lg">
 
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home3" role="tabpanel">
-                        <div class="row m-b-lg">
-                            <div class="col-md-12">
-                                <div class="row">
-                                    <div class="form-group col-md-6">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-
-                                        @Html.LabelFor(model => model.UserName, "User Name", htmlAttributes: new { @class = "control-label" })
-                                        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control input-md",@placeholder="Enter User Name" } })
-                                        @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
-
-                                        @*<label for="exampleInputName">User Name</label>
-                                        <input type="text" class="form-control" name="exampleInputName" id="exampleInputName" placeholder="Enter User Name">*@
-                                    </div>
-                                    <div class="form-group col-md-6">
-
-                                        @Html.LabelFor(model => model.Contact, "Contact", htmlAttributes: new { @class = "control-label" })
-                                        @Html.EditorFor(model => model.Contact, new { htmlAttributes = new { @class = "form-control input-md", @placeholder = "Enter Contact no" } })
-                                        @Html.ValidationMessageFor(model => model.Contact, "", new { @class = "text-danger" })
-
-                                        @*<label for="exampleContactNo">Contact</label>
-                                        <input type="text" class="form-control" name="exampleContactNo" id="exampleContactNo" placeholder="Enter Contact no">*@
-                                    </div>
-
-                                    <div class="form-group col-md-12">
-
-                                        @Html.LabelFor(model => model.EmailID, "Email", htmlAttributes: new { @class = "control-label" })
-                                        @Html.EditorFor(model => model.EmailID, new { htmlAttributes = new { @class = "form-control input-md", @placeholder = "Enter email" } })
-                                        @Html.ValidationMessageFor(model => model.EmailID, "", new { @class = "text-danger" })
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="form-group col-md-6">
 
 
-                                        @*<label for="exampleInputEmail">Email address</label>
-                                        <input type="email" class="form-control" name="exampleInputEmail" id="exampleInputEmail" placeholder="Enter email">*@
-                                    </div>
-                                    <div class="form-group col-md-6">
+                                @Html.LabelFor(model => model.UserName, "User Name", htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control input-md", @placeholder = "Enter User Name" } })
+                                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
 
-                                        @Html.LabelFor(model => model.Password)
-
-                                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Password here" } })
-                                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-
-                                        @*<label for="exampleInputPassword1">Password</label>
-                                        <input type="password" class="form-control" name="exampleInputPassword1" id="exampleInputPassword1" placeholder="Password">*@
-                                    </div>
-                                    <div class="form-group col-md-6">
-
-                                        @*@Html.LabelFor(model => model.ConfirmPassword)
-
-                                        @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control", @placeholder = "Confirm password here" } })
-                                        @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
-
-                                            *@
-
-                                        @*<label for="exampleInputPassword2">Confirm Password</label>
-                                        <input type="password" class="form-control" name="exampleInputPassword2" id="exampleInputPassword2" placeholder="Confirm Password">*@
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <div class="form-group row">
-
-                                            @Html.LabelFor(model => model.STPRolesID, "Select Role", htmlAttributes: new { @class = "control-label" })
-                                            @Html.DropDownList("ID", (SelectList)ViewBag.Roles, "- Select Your Role -", htmlAttributes: new { @class = "form-control" })
-                                            @Html.ValidationMessageFor(model => model.STPRolesID, "", new { @class = "text-danger" })
-
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <div class="form-group row">
-                                            <label class="col-sm-6 col-form-label">Category Roles</label>
-                                            <div class="col-sm-12">
-                                                <select class="form-control">
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
-                                                    <option>5</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group col-md-12">
-                                        <label for="exampleInputAdress">Address</label>
-                                        <input type="password" class="form-control" name="exampleInputAdress" id="exampleInputAdress" placeholder="Enter Address">
-                                    </div>
-
-                                </div>
+                                @*<label for="exampleInputName">User Name</label>
+            <input type="text" class="form-control" name="exampleInputName" id="exampleInputName" placeholder="Enter User Name">*@
                             </div>
+                            <div class="form-group col-md-6">
+
+                                @Html.LabelFor(model => model.Contact, "Contact", htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Contact, new { htmlAttributes = new { @class = "form-control input-md", @placeholder = "Enter Contact no" } })
+                                @Html.ValidationMessageFor(model => model.Contact, "", new { @class = "text-danger" })
+
+                                @*<label for="exampleContactNo">Contact</label>
+            <input type="text" class="form-control" name="exampleContactNo" id="exampleContactNo" placeholder="Enter Contact no">*@
+                            </div>
+
+                            <div class="form-group col-md-12">
+
+                                @Html.LabelFor(model => model.EmailID, "Email", htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.EmailID, new { htmlAttributes = new { @class = "form-control input-md", @placeholder = "Enter email" } })
+                                @Html.ValidationMessageFor(model => model.EmailID, "", new { @class = "text-danger" })
+
+
+                                @*<label for="exampleInputEmail">Email address</label>
+            <input type="email" class="form-control" name="exampleInputEmail" id="exampleInputEmail" placeholder="Enter email">*@
+                            </div>
+                            <div class="form-group col-md-6">
+
+                                @Html.LabelFor(model => model.Password)
+
+                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Password here" } })
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+                                @*<label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" name="exampleInputPassword1" id="exampleInputPassword1" placeholder="Password">*@
+                            </div>
+                            <div class="form-group col-md-6">
+
+                                @Html.LabelFor(model => model.ConfirmPassword)
+
+                                @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control", @placeholder = "Confirm password here" } })
+                                @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+
+
+
+                                @*<label for="exampleInputPassword2">Confirm Password</label>
+            <input type="password" class="form-control" name="exampleInputPassword2" id="exampleInputPassword2" placeholder="Confirm Password">*@
+                            </div>
+                            <div class="form-group col-md-6">
+
+                                @Html.LabelFor(model => model.STPRolesID, "Select Role", htmlAttributes: new { @class = "control-label" })
+                                @Html.DropDownList("STPRolesID", (SelectList)ViewBag.Roles, "- Select Your Role -", htmlAttributes: new { @class = "form-control" ,@id="RoleID"})
+                                @Html.ValidationMessageFor(model => model.STPRolesID, "", new { @class = "text-danger" })
+
+                            </div>
+                            <div class="form-group col-md-6">
+
+                                @Html.LabelFor(model => model.STPRolesCategoriesID, "Select Role Category", htmlAttributes: new { @class = "control-label" })
+                                @Html.DropDownList("STPRolesCategoriesID",null, htmlAttributes: new { @class = "form-control" ,@id="RolesCategories"})
+                                @Html.ValidationMessageFor(model => model.STPRolesCategoriesID, "", new { @class = "text-danger" })
+
+                            </div>
+
+                            <div class="form-group col-md-12">
+
+                                @Html.LabelFor(model => model.Address, "Address", htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control input-md", @placeholder = "Enter Your Address" } })
+                                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                            </div>
+
                         </div>
                     </div>
-
-                    <div class="tab-pane fade" id="profile3" role="tabpanel">
-                        <div class="row m-b-lg">
-                            <div class="col-md-3">
-                                <div>
-                                    <address>
-                                        <strong>Twitter, Inc.</strong><br>
-                                        795 Folsom Ave, Suite 600<br>
-                                        San Francisco, CA 94107<br>
-                                        <abbr title="Phone">P:</abbr> (123) 456-7890
-                                    </address>
-                                    <address>
-                                        <strong>Full Name</strong><br>
-                                        <a href="mailto:#">first.last@example.com</a>
-                                    </address>
-                                </div>
-                            </div>
-                            <div class="col-md-9">
-                                <div class="form-group">
-                                    <label for="exampleInputProductName">Product Name</label>
-                                    <input type="text" class="form-control" name="exampleInputProductName" id="exampleInputProductName" placeholder="Product Name">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputProductId">Product ID</label>
-                                    <input type="text" class="form-control" name="exampleInputProductId" id="exampleInputProductId" placeholder="Product ID">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputQuantity">Quantity</label>
-                                    <input type="number" min="1" max="5" class="form-control" name="exampleInputQuantity" id="exampleInputQuantity" placeholder="Quantity">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="contact3" role="tabpanel">
-                        <div class="row m-b-lg">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="exampleInputCard">Card Number</label>
-                                    <div class="row">
-                                        <div class="col-lg-7 col-md-6 mb-sm-4 mb-md-0">
-                                            <input type="text" class="form-control" name="exampleInputCard" id="exampleInputCard" placeholder="Card Number">
-                                        </div>
-                                        <div class="col-lg-5 col-md-6">
-                                            <input type="text" class="form-control" name="exampleInputSecurity" id="exampleInputSecurity" placeholder="Security Code">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputHolder">Card Holders Name</label>
-                                    <input type="text" class="form-control" name="exampleInputHolder" id="exampleInputHolder" placeholder="Card Holders Name">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputExpiration">Expiration</label>
-                                    <input type="text" class="form-control date-picker" name="exampleInputExpiration" id="exampleInputExpiration" placeholder="Expiration">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputCsv">CSV</label>
-                                    <input type="text" class="form-control" name="exampleInputCsv" id="exampleInputCsv" placeholder="CSV">
-                                </div>
-                                <div class="form-group">
-                                    <label class="f-s-12">By pressing Next You will Agree to the Payment <a href="#">Terms & Conditions</a></label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="finish3" role="tabpanel">
-                        <h3 style="margin-top:25px;">Thank You!</h3>
-                        <div class="alert alert-success m-t-sm m-b-lg" role="alert">
-                            Congratulations! You got the last step.
-                        </div>
-                    </div>
-                    <ul class="pagination wizard">
-                        <li class="previous"><a href="#" class="btn btn-outline-primary">Previous</a></li>
-                        <li class="next ml-auto"><a href="#" class="btn btn-outline-primary">Next</a></li>
-                    </ul>
                 </div>
+                <ul class="pagination wizard">
+                    <li class="previous"><a href="#" class="btn btn-outline-primary">Previous</a></li>
+                    <li class="next ml-auto"><button type="submit" class="btn btn-outline-primary">Next</button></li>
+                </ul>
             }
-            </div>
-    </div>
-        <!-- end page main wrapper -->
-        <div class="page-footer">
-            <p>
-                Copyright &copy;
-                <script>document.write(new Date().getFullYear())</script> Kaam Waley All rights reserved.
-            </p>
         </div>
     </div>
+    <!-- end page main wrapper -->
+    <div class="page-footer">
+        <p>
+            Copyright &copy;
+            <script>document.write(new Date().getFullYear())</script> Kaam Waley All rights reserved.
+        </p>
+    </div>
+</div>
 <!-- end page inner -->
+@section scripts{
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script>
+        
+        //data bind with dropdown change start----------------
+        $("#RoleID").change(function () {
+           
+            var ID = this.value;
+            $("#RolesCategories").empty();
+                    //console.log("reach");
+                    $.ajax({
+                            url: "/AdminDashboard/getRoleCategories",
+                            data: { "RoleID": ID },
+                            type: "Post",
+                            dataType: "json",
+                            success: function (response) {
+                                $.each(response, function (index, value) {
 
+                                    $("#RolesCategories").append(
+                                    $('<option></option>').val(value.ID).html(value.Description));
+
+                                });
+
+                            },
+                        error: function (data) {
+                            console.log(data);
+                            }
+                        });
+
+                });
+    </script>
+}
 
 
 

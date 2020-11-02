@@ -13,7 +13,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WebAppSastiServices</RootNamespace>
     <AssemblyName>WebAppSastiServices</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort>44330</IISExpressSSLPort>
@@ -23,6 +23,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -80,6 +81,7 @@
     <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Rotativa.1.6.4\lib\net40\Rotativa.dll</HintPath>
     </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -88,19 +90,17 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
     </Reference>
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
     </Reference>
@@ -300,29 +300,6 @@
     <Content Include="img\bg\error-404.jpg" />
     <Content Include="img\bg\pagetitle.jpg" />
     <Content Include="img\bg\shape-01.png" />
-    <Content Include="img\blog\01.png" />
-    <Content Include="img\blog\02.png" />
-    <Content Include="img\blog\03.png" />
-    <Content Include="img\blog\blog-1.jpg" />
-    <Content Include="img\blog\blog-10.jpg" />
-    <Content Include="img\blog\blog-11.jpg" />
-    <Content Include="img\blog\blog-12.jpg" />
-    <Content Include="img\blog\blog-13.jpg" />
-    <Content Include="img\blog\blog-14.jpg" />
-    <Content Include="img\blog\blog-15.jpg" />
-    <Content Include="img\blog\blog-16.jpg" />
-    <Content Include="img\blog\blog-2.jpg" />
-    <Content Include="img\blog\blog-3.jpg" />
-    <Content Include="img\blog\blog-4.jpg" />
-    <Content Include="img\blog\blog-5.jpg" />
-    <Content Include="img\blog\blog-6.jpg" />
-    <Content Include="img\blog\blog-7.jpg" />
-    <Content Include="img\blog\blog-8.jpg" />
-    <Content Include="img\blog\blog-9.jpg" />
-    <Content Include="img\blog\blog-thumb-01.jpg" />
-    <Content Include="img\blog\blog-thumb-02.jpg" />
-    <Content Include="img\blog\blog-thumb-03.jpg" />
-    <Content Include="img\blog\list-1.jpg" />
     <Content Include="img\content\about-01.jpg" />
     <Content Include="img\content\about-02.jpg" />
     <Content Include="img\content\about-03.jpg" />
@@ -379,6 +356,7 @@
     <Content Include="img\content\tab-content-03.jpg" />
     <Content Include="img\content\team-01.jpg" />
     <Content Include="img\content\team-02.jpg" />
+    <Content Include="img\Dashboard\2757.jpg" />
     <Content Include="img\Dashboard\avatars\chat01.jpg" />
     <Content Include="img\Dashboard\avatars\chat02.jpg" />
     <Content Include="img\Dashboard\avatars\chat03.jpg" />
@@ -433,43 +411,17 @@
     <Content Include="img\Dashboard\signature-black.png" />
     <Content Include="img\Dashboard\timeline-banner.jpg" />
     <Content Include="img\logos\9 logo.png" />
-    <Content Include="img\logos\attachments\Kaamwaley.com Logo.png" />
-    <Content Include="img\logos\attachments\logo 86x86.png" />
-    <Content Include="img\logos\attachments\logo white text 86x86.png" />
-    <Content Include="img\logos\attachments\Logo-favicon.png" />
     <Content Include="img\logos\favicon.ico" />
     <Content Include="img\logos\Final-Kaam-Waley.png" />
-    <Content Include="img\logos\LogoDark.png" />
     <Content Include="img\logos\logofaviconvector\86 pixel height white.png" />
     <Content Include="img\logos\logofaviconvector\86 pixel height.png" />
     <Content Include="img\logos\logofaviconvector\favicon.ico" />
-    <Content Include="img\logos\LogoLight.png" />
     <Content Include="img\products\Generators\alternater-fans_10574836_250x250-250x250.jpg" />
     <Content Include="img\products\Generators\generator-valve.jpg" />
     <Content Include="img\products\Generators\genset-rb-radiators-500x500.jpg" />
     <Content Include="img\services\ac.jpg" />
     <Content Include="img\services\cctv.png" />
     <Content Include="img\services\powergen.jpg" />
-    <Content Include="img\logos\apple-touch-icon-114x114.png" />
-    <Content Include="img\logos\apple-touch-icon-57x57.png" />
-    <Content Include="img\logos\apple-touch-icon-72x72.png" />
-    <Content Include="img\logos\favicon.png" />
-    <Content Include="img\logos\logo-2-dark.png" />
-    <Content Include="img\logos\logo-2-light.png" />
-    <Content Include="img\logos\logo-color-01.png" />
-    <Content Include="img\logos\logo-color-02.png" />
-    <Content Include="img\logos\logo-color-03.png" />
-    <Content Include="img\logos\logo-color-04.png" />
-    <Content Include="img\logos\logo-color-05.png" />
-    <Content Include="img\logos\logo-color-06.png" />
-    <Content Include="img\logos\logo-color-07.png" />
-    <Content Include="img\logos\logo-color-08.png" />
-    <Content Include="img\logos\logo-dark.png" />
-    <Content Include="img\logos\logo-footer-dark.png" />
-    <Content Include="img\logos\logo-footer.png" />
-    <Content Include="img\logos\logo-inner.png" />
-    <Content Include="img\logos\logo-white.png" />
-    <Content Include="img\logos\logo.png" />
     <Content Include="img\partners\client-01.png" />
     <Content Include="img\partners\client-02.png" />
     <Content Include="img\partners\client-03.png" />
@@ -793,11 +745,7 @@
     <Content Include="plugins\font-awesome\fonts\fa-solid-900.woff2" />
     <Content Include="plugins\icomoon\fonts\icomoon.ttf" />
     <Content Include="js\Dashboard\pages\ajax_roots.json" />
-    <Content Include="Report\Invoice.aspx" />
     <Content Include="Rotativa\wkhtmltopdf.exe" />
-    <Content Include="SastaServicesDBDataSet.xsc">
-      <DependentUpon>SastaServicesDBDataSet.xsd</DependentUpon>
-    </Content>
     <EntityDeploy Include="Models\DB\ModelSastiService.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ModelSastiService.Designer.cs</LastGenOutput>
@@ -807,25 +755,6 @@
     </Content>
     <Content Include="App_Browsers\qt.browser" />
     <Content Include="bin\WebAppSastiServices.dll.config" />
-    <None Include="SastaServicesDBDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>SastaServicesDBDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <Content Include="SastaServicesDBDataSet.xss">
-      <DependentUpon>SastaServicesDBDataSet.xsd</DependentUpon>
-    </Content>
-    <Content Include="SastaServicesDBDataSet1.xsc">
-      <DependentUpon>SastaServicesDBDataSet1.xsd</DependentUpon>
-    </Content>
-    <None Include="SastaServicesDBDataSet1.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>SastaServicesDBDataSet1.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <Content Include="SastaServicesDBDataSet1.xss">
-      <DependentUpon>SastaServicesDBDataSet1.xsd</DependentUpon>
-    </Content>
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -835,6 +764,7 @@
     <Content Include="search\search.js" />
     <Content Include="search\search.min.js" />
     <Content Include="video\bg-video.mp4" />
+    <Content Include="video\HomeVideo.mp4" />
     <Content Include="video\vide-bg-img.jpg" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -945,26 +875,10 @@
     <Compile Include="Models\Extended\TRNCustomerOrder.cs" />
     <Compile Include="Models\ViewModel\GetInTouch.cs" />
     <Compile Include="Models\ViewModel\QuickCall.cs" />
+    <Compile Include="Models\ViewModel\RegisterVendorSupplierView.cs" />
     <Compile Include="Models\ViewModel\UserLoginView.cs" />
     <Compile Include="Models\ViewModel\UserRegisterView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Report\Invoice.aspx.cs">
-      <DependentUpon>Invoice.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Report\Invoice.aspx.designer.cs">
-      <DependentUpon>Invoice.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SastaServicesDBDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SastaServicesDBDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="SastaServicesDBDataSet1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SastaServicesDBDataSet1.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Security\Crypto.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -992,7 +906,6 @@
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Services\ServiceDetail.cshtml" />
-    <Content Include="Views\Shared\_LayoutDashboardAdmin.cshtml" />
     <Content Include="Views\AdminDashboard\Index.cshtml" />
     <Content Include="Views\AdminDashboard\AdminProfile.cshtml" />
     <Content Include="Views\AdminDashboard\Email.cshtml" />
@@ -1018,26 +931,9 @@
     <Content Include="Views\UserDashboard\Maps.cshtml" />
     <Content Include="Views\UserDashboard\UserProfile.cshtml" />
     <Content Include="Views\UserDashboard\Register.cshtml" />
-    <Content Include="Views\VendorDashboard\GeneratorsEmail.cshtml" />
-    <Content Include="Views\VendorDashboard\GeneratorsIndex.cshtml" />
-    <Content Include="Views\VendorDashboard\GeneratorsInvoice.cshtml" />
-    <Content Include="Views\VendorDashboard\GeneratorsLockScreen.cshtml" />
-    <Content Include="Views\VendorDashboard\GeneratorsLogin.cshtml" />
-    <Content Include="Views\VendorDashboard\GeneratorsMaps.cshtml" />
-    <Content Include="Views\VendorDashboard\GeneratorsProfile.cshtml" />
-    <Content Include="Views\VendorDashboard\GeneratorsRegister.cshtml" />
     <Content Include="Views\Shared\_LayoutDashboardSupplier.cshtml" />
     <Content Include="Views\Shared\_LayoutDashboardGeneratorsVendor.cshtml" />
     <Content Include="Views\Shared\_LayoutDashboardUser.cshtml" />
-    <Content Include="Views\VendorDashboard\GeneratorsViewServices.cshtml" />
-    <Content Include="Views\VendorDashboard\GeneratorsCreateServices.cshtml" />
-    <Content Include="Views\VendorDashboard\GeneratorsEditServices.cshtml" />
-    <Content Include="Views\VendorDashboard\GeneratorsDeleteServices.cshtml" />
-    <Content Include="Views\VendorDashboard\GeneratorsOrders.cshtml" />
-    <Content Include="Views\VendorDashboard\GeneratorsViewItems.cshtml" />
-    <Content Include="Views\VendorDashboard\GeneratorsCreateItems.cshtml" />
-    <Content Include="Views\VendorDashboard\GeneratorsEditItems.cshtml" />
-    <Content Include="Views\VendorDashboard\GeneratorsDeleteItems.cshtml" />
     <Content Include="Views\Shared\_LayoutDashboardACVendor.cshtml" />
     <Content Include="Views\VendorDashboard\ACCreateItems.cshtml" />
     <Content Include="Views\VendorDashboard\ACCreateServices.cshtml" />
@@ -1055,53 +951,8 @@
     <Content Include="Views\VendorDashboard\ACRegister.cshtml" />
     <Content Include="Views\VendorDashboard\ACViewItems.cshtml" />
     <Content Include="Views\VendorDashboard\ACViewServices.cshtml" />
-    <Content Include="Views\VendorDashboard\CCTVCreateItems.cshtml" />
-    <Content Include="Views\VendorDashboard\CCTVCreateServices.cshtml" />
-    <Content Include="Views\VendorDashboard\CCTVDeleteItems.cshtml" />
-    <Content Include="Views\VendorDashboard\CCTVDeleteServices.cshtml" />
-    <Content Include="Views\VendorDashboard\CCTVEditItems.cshtml" />
-    <Content Include="Views\VendorDashboard\CCTVEditServices.cshtml" />
-    <Content Include="Views\VendorDashboard\CCTVEmail.cshtml" />
-    <Content Include="Views\VendorDashboard\CCTVIndex.cshtml" />
-    <Content Include="Views\VendorDashboard\CCTVInvoice.cshtml" />
-    <Content Include="Views\VendorDashboard\CCTVLockScreen.cshtml" />
-    <Content Include="Views\VendorDashboard\CCTVLogin.cshtml" />
-    <Content Include="Views\VendorDashboard\CCTVMaps.cshtml" />
-    <Content Include="Views\VendorDashboard\CCTVOrders.cshtml" />
-    <Content Include="Views\VendorDashboard\CCTVProfile.cshtml" />
-    <Content Include="Views\VendorDashboard\CCTVRegister.cshtml" />
-    <Content Include="Views\VendorDashboard\CCTVViewItems.cshtml" />
-    <Content Include="Views\VendorDashboard\CCTVViewServices.cshtml" />
     <Content Include="Views\Shared\_LayoutDashboardCCTVVendor.cshtml" />
     <Content Include="Views\Shared\_LayoutDashboardSolarSysVendor.cshtml" />
-    <Content Include="Views\VendorDashboard\UPSCreateItems.cshtml" />
-    <Content Include="Views\VendorDashboard\UPSCreateServices.cshtml" />
-    <Content Include="Views\VendorDashboard\UPSDeleteItems.cshtml" />
-    <Content Include="Views\VendorDashboard\UPSDeleteServices.cshtml" />
-    <Content Include="Views\VendorDashboard\UPSEditItems.cshtml" />
-    <Content Include="Views\VendorDashboard\UPSEditServices.cshtml" />
-    <Content Include="Views\VendorDashboard\UPSEmail.cshtml" />
-    <Content Include="Views\VendorDashboard\UPSIndex.cshtml" />
-    <Content Include="Views\VendorDashboard\UPSInvoice.cshtml" />
-    <Content Include="Views\VendorDashboard\UPSLockScreen.cshtml" />
-    <Content Include="Views\VendorDashboard\UPSLogin.cshtml" />
-    <Content Include="Views\VendorDashboard\UPSMaps.cshtml" />
-    <Content Include="Views\VendorDashboard\UPSOrders.cshtml" />
-    <Content Include="Views\VendorDashboard\UPSProfile.cshtml" />
-    <Content Include="Views\VendorDashboard\SolarSysProfile.cshtml" />
-    <Content Include="Views\VendorDashboard\SolarSysCreateItems.cshtml" />
-    <Content Include="Views\VendorDashboard\SolarSysCreateServices.cshtml" />
-    <Content Include="Views\VendorDashboard\SolarSysDeleteItems.cshtml" />
-    <Content Include="Views\VendorDashboard\SolarSysDeleteServices.cshtml" />
-    <Content Include="Views\VendorDashboard\SolarSysEditItems.cshtml" />
-    <Content Include="Views\VendorDashboard\SolarSysEditServices.cshtml" />
-    <Content Include="Views\VendorDashboard\SolarSysEmail.cshtml" />
-    <Content Include="Views\VendorDashboard\SolarSysIndex.cshtml" />
-    <Content Include="Views\VendorDashboard\SolarSysInvoice.cshtml" />
-    <Content Include="Views\VendorDashboard\SolarSysLockScreen.cshtml" />
-    <Content Include="Views\VendorDashboard\SolarSysLogin.cshtml" />
-    <Content Include="Views\VendorDashboard\SolarSysMaps.cshtml" />
-    <Content Include="Views\VendorDashboard\SolarSysOrders.cshtml" />
     <Content Include="Views\Shared\_LayoutDashboardUPSVendor.cshtml" />
     <Content Include="Views\AdminDashboard\Vendor.cshtml" />
     <Content Include="Views\AdminDashboard\Supplier.cshtml" />
@@ -1125,6 +976,7 @@
     <Content Include="Views\AdminDashboard\PrintInvoice.cshtml" />
     <Content Include="Views\Home\AboutUs.cshtml" />
     <Content Include="Views\AdminDashboard\QuickCallRequest.cshtml" />
+    <Content Include="Views\Shared\_LayoutDashboardAdmin.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1137,9 +989,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Report\Report1.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
