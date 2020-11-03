@@ -359,7 +359,7 @@
                     Table.clear().draw();
                     ajax();
                 }
-                , 10000);
+                , 120000);
             
             //Auto Refresh Datatable after 10 seconds---end
              });
@@ -383,7 +383,6 @@
                 "beforeSend": function () { $('#ajax-loader').show() },
                 "complete": function () { $('#ajax-loader').hide() },
                 success: function (data) {
-                    debugger;
                     //$('#exampleModal .ajax-loader').hide();
                     $('#OrderModal .modal-body').html(data);
                 },
@@ -411,7 +410,6 @@
                 "beforeSend": function () { $('#ajax-loader').show() },
                 "complete": function () { $('#ajax-loader').hide() },
                 success: function (data) {
-                    debugger;
                     //$('#exampleModal .ajax-loader').hide();
                     $('#OrderModal .modal-body').html(data);
                 },

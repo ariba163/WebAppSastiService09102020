@@ -257,17 +257,40 @@ else if (message == "RegisterSuccess")
                 }
             });
             }
+
+            function SessionEnd() 
+            {
+                $.ajax({
+                type: "GET",
+                url: '@Url.Action("SessionEnd")',
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                    success: function (response) {
+                        console.log(response);
+                        if (response ==  "Continue") {
+
+                        }
+                },
+                error:function(){
+                }
+              });
+            }
+
+
             //Auto Refresh Datatable after 10 seconds---start
             setInterval(
                 function () {
                     Table.clear().draw();
                     ajax();
+                    SessionEnd();
                 }
-                , 10000);
+                , 5000);
 
             //Auto Refresh Dataatble after 10 seconds---end
         });
 
+
+            
 
 
             function OpenDetailForm(ID) {
@@ -290,7 +313,6 @@ else if (message == "RegisterSuccess")
                 "beforeSend": function () { $('#ajax-loader').show() },
                 "complete": function () { $('#ajax-loader').hide() },
                 success: function (data) {
-                    debugger;
                     //$('#exampleModal .ajax-loader').hide();
                     $('#OrderModal .modal-body').html(data);
                 },
@@ -320,7 +342,6 @@ else if (message == "RegisterSuccess")
                 "beforeSend": function () { $('#ajax-loader').show() },
                 "complete": function () { $('#ajax-loader').hide() },
                 success: function (data) {
-                    debugger;
                     //$('#exampleModal .ajax-loader').hide();
                     $('#OrderModal .modal-body').html(data);
                 },
@@ -350,7 +371,6 @@ else if (message == "RegisterSuccess")
                 "beforeSend": function () { $('#ajax-loader').show() },
                 "complete": function () { $('#ajax-loader').hide() },
                 success: function (data) {
-                    debugger;
                     console.log(data);
                     //$('#exampleModal .ajax-loader').hide();
                     $('#OrderModal .modal-body').html(data);

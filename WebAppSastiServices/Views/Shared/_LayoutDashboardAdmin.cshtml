@@ -10,14 +10,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="keywords" content="admin,dashboard" />
-    <meta name="description" content="Crizal - Responsive Admin Dashboard Template" />
+    <meta name="description" content="Kaam Waley - Responsive Admin Dashboard Template" />
 
     <!-- title  -->
-    <title>Crizal </title>
+    <title>Kaam Waley </title>
 
     <!-- favicon -->
-    <link rel="shortcut icon" href="~/img/Dashboard/logos/favicon.png">
-    <link rel="shortcut icon" href="~/img/Dashboard/logos/favicon.png">
+    <link rel="shortcut icon" href="~/img/logos/logofaviconvector/favicon.ico">
     <link rel="apple-touch-icon" href="~/img/Dashboard/logos/apple-touch-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="72x72" href="~/img/Dashboard/logos/apple-touch-icon-72x72.png">
     <link rel="apple-touch-icon" sizes="114x114" href="~/img/logos/apple-touch-icon-114x114.png">
@@ -77,27 +76,10 @@
                         </li>
                         <li>
                             <a href="@Url.Action("AvailedOrders","AdminDashboard")">
-                                <span>Availed Orders</span>
+                                <span>Billing</span>
                             </a>
                         </li>
-                        @*<li>
-            <a href="#!">
-                <i class="menu-icon icon-flash_on"></i><span>UI Kits</span><i class="accordion-icon fa fa-angle-left"></i>
-            </a>
-            <ul>
-                <li><a href="ui-alerts.html">Alerts</a></li>
-                <li><a href="ui-accordion.html">Accordion</a></li>
-                <li><a href="ui-buttons.html">Buttons</a></li>
-                <li><a href="ui-icons.html">Icons</a></li>
-                <li><a href="ui-typography.html">Typography</a></li>
-                <li><a href="ui-notifications.html">Notifications</a></li>
-                <li><a href="ui-modals.html">Modals</a></li>
-                <li><a href="ui-progress.html">Progress Bars</a></li>
-                <li><a href="ui-tabs.html">Tabs</a></li>
-                <li><a href="ui-tree-view.html">Tree View</a></li>
-                <li><a href="ui-nestable.html">Nestable</a></li>
-            </ul>
-        </li>*@
+                        <li><a href="@Url.Action("Register","AdminDashboard")"><span>Register</span></a></li>
                         <li>
                             <a href="#!">
                                 <i class="menu-icon icon-layers"></i><span>Vendors</span><i class="accordion-icon fa fa-angle-left"></i>
@@ -155,29 +137,10 @@
                 <i class="menu-icon icon-my_location"></i><span>Maps</span><i class="accordion-icon"></i>
             </a>
         </li>*@
-                        <li>
-                            <a href="#!">
-                                <i class="menu-icon icon-star"></i><span>Extra</span><i class="accordion-icon fa fa-angle-left"></i>
-                            </a>
-                            <ul>
-                                <li><a href="@Url.Action("Invoice","AdminDashboard")">Invoice</a></li>
-                                @*<li><a href="404.html">404 Page</a></li>
-                <li><a href="500.html">500 Page</a></li>*@
-                                <li><a href="@Url.Action("Profile","AdminDashboard")">Profile</a></li>
-                                <li><a href="@Url.Action("Login","AdminDashboard")">Login</a></li>
-                                <li><a href="@Url.Action("Register","AdminDashboard")">Register</a></li>
-                                <li><a href="@Url.Action("Lockscreen","AdminDashboard")">Lockscreen</a></li>
-                                @*<li><a href="todo.html">Todo</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="pricing-tables.html">Pricing Tables</a></li>
-                <li><a href="timeline.html">Timeline</a></li>
-                <li><a href="calendar.html">Calendar</a></li>*@
-                            </ul>
-                        </li>
                         <li class="menu-divider"></li>
                         <li>
                             <a href="#!">
-                                <i class="menu-icon icon-public"></i><span>Changelog</span><span class="label label-danger">1.0</span>
+                                 <i class="fas fa-power-off"></i> by<span> 9Soft Solution</span>
                             </a>
                         </li>
                     </ul>
@@ -205,7 +168,7 @@
                         <div class="navbar-header">
                             <div class="logo-sm">
                                 <a href="#!" id="sidebar-toggle-button"><i class="fa fa-bars"></i></a>
-                                <a class="logo-box" href="@Url.Action("Index","AdminDashboard")"><span>Crizal</span></a>
+                                <a class="logo-box" href="@Url.Action("Index","AdminDashboard")"><span>Kaam Waley</span></a>
                             </div>
                             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                                 <i class="fa fa-angle-down"></i>
@@ -514,19 +477,12 @@
 
     <!-- float pie -->
     <script src="~/js/Dashboard/pages/dashboard.js"></script>
-
-
     <!-- DataTable scripts   -->
-
     <script src="~/DataTables/js/jquery.dataTables.js"></script>
     <script src="~/js/Dashboard/pages/dashboard.js"></script>
-
-
     <!-- custom scripts -->
     <script src="~/js/Dashboard/main.js"></script>
     <script src="~/js/Dashboard/custom.js"></script>
     @RenderSection("scripts", required: false)
-
 </body>
-
 </html>

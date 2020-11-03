@@ -39,6 +39,7 @@ namespace WebAppSastiServices.Controllers
         {
             return View();
         }
+        [HttpGet]
         public PartialViewResult pvGetInTouch()
         {
             return PartialView();
@@ -86,8 +87,9 @@ namespace WebAppSastiServices.Controllers
 
                 db.STPCustomerSupports.Add(cp);
                 db.SaveChanges();
+                TempData["Message"] = "Emailsuccess";
 
-                    return View("Index");
+                    return RedirectToAction("Index");
                 }
                 catch
                 {
@@ -95,7 +97,10 @@ namespace WebAppSastiServices.Controllers
                 }
 
             }
-            return PartialView(g);
+            else
+            {
+                return PartialView(g);
+            }
         }
 
         [HttpGet]
@@ -106,30 +111,37 @@ namespace WebAppSastiServices.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public PartialViewResult pvQuickCall(QuickCall q)
+        public ActionResult pvQuickCall(QuickCall q)
         {
 
-            if (q != null)
+            if (ModelState.IsValid)
             {
-                STPQuickCall Qcall = new STPQuickCall()
+                try
                 {
-                    Name = q.Name,
-                    Contact = q.Contact
-                };
 
-                db.STPQuickCalls.Add(Qcall);
-                db.SaveChanges();
+                    STPQuickCall Qcall = new STPQuickCall()
+                    {
+                        Name = q.Name,
+                        Contact = q.Contact
+                    };
+
+                    db.STPQuickCalls.Add(Qcall);
+                    db.SaveChanges();
+                    Session["Message"] = "QCallSucceed";
+                    return RedirectToAction("Index");
+                }
+                catch
+                {
+                    Session["Message"] = "QCallFailed";
+                }
 
 
-                Session["Message"] = "QCallSucceed";
-              
-                
             }
             else {
 
                 Session["Message"] = "QCallFailed";
             }
-            return PartialView();
+            return View();
         }
 
         

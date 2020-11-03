@@ -4,9 +4,6 @@
     Layout = "~/Views/Shared/_LayoutPage.cshtml";
     string message = @ViewBag.Message;
 }
-
-
-
 @if (message == "success")
 {
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -16,8 +13,7 @@
             icon: "success",
         });
     </script>
-}
-else if (message == "Invalid")
+}else if (message == "Invalid")
 {
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript">
@@ -27,8 +23,7 @@ else if (message == "Invalid")
             icon: "error",
         });
     </script>
-}
-else if (message == "Error")
+}else if (message == "Error")
 {
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript">
@@ -38,8 +33,7 @@ else if (message == "Error")
             icon: "error",
         });
     </script>
-}
-else if (message == "NotAdmin")
+}else if (message == "NotAdmin")
 {
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript">
@@ -49,8 +43,7 @@ else if (message == "NotAdmin")
             icon: "error",
         });
     </script>
-}
-else if (message == "NotVendor")
+}else if (message == "NotVendor")
 {
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript">
@@ -72,8 +65,6 @@ else if (message == "RegisterSuccess")
         });
     </script>
 }
-
-
 <!-- start page title section -->
 <section class="page-title-section2 bg-img cover-background" data-overlay-dark="7" data-background="../img/bg/bg9.jpg">
     <div class="container">
@@ -89,7 +80,6 @@ else if (message == "RegisterSuccess")
                 </ul>
             </div>
         </div>
-
     </div>
 </section>
 <!-- end page title section -->
@@ -98,71 +88,40 @@ else if (message == "RegisterSuccess")
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-10 col-lg-7 col-xl-6">
-
                 <div class="common-block">
-
                     <div class="line-title">
                         <h3>Login</h3>
                     </div>
-
                     @using (Html.BeginForm("Login", "Account", FormMethod.Post))
                     {
 
                         @Html.AntiForgeryToken()
-
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                         <div class="row">
                             <div class="col-sm-12 margin-10px-bottom">
-
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.UserName, "User Name", htmlAttributes: new { @class = "control-label" })
                                     @Html.TextBoxFor(model => model.UserName, new { @class = "form-control input-md", @placeholder = "Your User Name here" })
                                     @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
-                                    @*<label>Email Address</label>
-                                        <input maxlength="50" type="email" name="email" placeholder="Your email here">*@
                                 </div>
-
                             </div>
-
                             <div class="col-sm-12 margin-10px-bottom">
-
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.Password, "Password", htmlAttributes: new { @class = "control-label" })
                                     @Html.TextBoxFor(model => model.Password, new { @class = "form-control input-md", @placeholder = "Your password here", @type = "password" })
                                     @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                                    @*<label>Password </label>
-                                        <input type="password" name="password" placeholder="Your password here">*@
                                 </div>
-
                             </div>
-
                         </div>
-
-                        @*<div class="row">
-                                <div class="col-sm-6 margin-10px-bottom">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="login-remember">
-                                        <label class="custom-control-label" for="login-remember">Keep me signed in</label>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 text-left text-sm-right">
-                                    <a href="@Url.Action("ForgotPassword", "Home")" class="m-link-muted">Forgot password?</a>
-                                </div>
-
-                            </div>*@
-
                         <button type="submit" class="butn theme btn-block margin-20px-top"><span>Login</span></button>
                         <div class="text-center text-small margin-20px-top">
                             <span>Don't have an account yet? <a href="@Url.Action("Register", "Account")" style="color: #096ab2;">Register</a></span>
                         </div>
-
                     }
                 </div>
-
             </div>
         </div>
-
     </div>
 </section>
 <!-- end  section -->

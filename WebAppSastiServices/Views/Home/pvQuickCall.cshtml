@@ -12,7 +12,6 @@
                 <label class="control-label" for="name">Name</label>
                 @Html.TextBoxFor(model => model.Name, new { htmlAttributes = new { @class = "form-control input-md" } })
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-                @*<input id="name" name="name" type="text" placeholder="Name" class="form-control input-md">*@
             </div>
         </div>
         <!-- Text input-->
@@ -21,7 +20,6 @@
                 <label class="control-label" for="Contact">Contact No</label>
                 @Html.TextBoxFor(model => model.Contact, new { htmlAttributes = new { @class = "form-control input-md" } })
                 @Html.ValidationMessageFor(model => model.Contact, "", new { @class = "text-danger" })
-                @*<input id="Contact" name="Contact" type="number" placeholder="Contact No" class="form-control input-md">*@
             </div>
         </div>
         <!-- Text input-->

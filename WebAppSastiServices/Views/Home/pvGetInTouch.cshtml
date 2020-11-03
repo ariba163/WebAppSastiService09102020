@@ -3,7 +3,7 @@
     Layout = null;
 }
 
-@using (Html.BeginForm("pvGetInTouch", "Home", FormMethod.Post, new { }))
+@using (Html.BeginForm("pvGetInTouch", "Home", FormMethod.Post, new { @class="quform"}))
 {
     <div class="quform-elements">
 
@@ -19,8 +19,6 @@
                         @Html.LabelFor(model => model.Name, "Name", htmlAttributes: new { @class = "control-label" })
                         @Html.TextBoxFor(model => model.Name, new { htmlAttributes = new { @class = "form-control input-md" } })
                         @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-                        @*@Html.TextBox("Name", null, new { @placeholder = "Your name here", @id = "name" })*@
-                        @*<input id="name" type="text" name="name" placeholder="Your name here" />*@
                     </div>
                 </div>
 
@@ -33,8 +31,6 @@
                         @Html.LabelFor(model => model.Email, "Email", htmlAttributes: new { @class = "control-label" })
                         @Html.TextBoxFor(model => model.Email, new { htmlAttributes = new { @class = "form-control input-md" } })
                         @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-                        @*@Html.TextBox("Email", null, new { @placeholder = "Your email here", @id = "email" })*@
-                        @*<input id="email" type="text" name="email" placeholder="Your email here" />*@
                     </div>
                 </div>
             </div>
@@ -46,8 +42,6 @@
                         @Html.LabelFor(model => model.Subject, "Subject", htmlAttributes: new { @class = "control-label" })
                         @Html.TextBoxFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control input-md" } })
                         @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
-                        @*@Html.TextBox("Subject", null, new { @placeholder = "Your subject here", @id = "subject" })*@
-                        @*<input id="subject" type="text" name="subject" placeholder="Your subject here" />*@
                     </div>
                 </div>
 
@@ -60,8 +54,6 @@
                         @Html.LabelFor(model => model.ContactNo, "Contact No", htmlAttributes: new { @class = "control-label" })
                         @Html.TextBoxFor(model => model.ContactNo, new { htmlAttributes = new { @class = "form-control input-md" } })
                         @Html.ValidationMessageFor(model => model.ContactNo, "", new { @class = "text-danger" })
-                        @*@Html.TextBox("Phone", null, new { @placeholder = "Your phone number", @id = "phone" })*@
-                        @*<input id="phone" type="text" name="phone" placeholder="Your phone number" />*@
                     </div>
                 </div>
 
@@ -74,48 +66,19 @@
                         @Html.LabelFor(model => model.Message, "Tells us your query !", htmlAttributes: new { @class = "control-label" })
                         @Html.TextAreaFor(model => model.Message, new { htmlAttributes = new { @class = "form-control input-md", @rows = "5" } })
                         @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
-                        @*@Html.TextBox("Message", null, new { @placeholder = "Tell us a few words", @id = "message", @rows = "5" })*@
-                        @*<textarea id="message" name="message" rows="5" placeholder="Tell us a few words"></textarea>*@
                     </div>
                 </div>
             </div>
             <!-- End Textarea element -->
-            <!-- Begin Captcha element -->
-            @*<div class="col-md-12">
-                    <div class="quform-element">
-                        <div class="form-group">
-                            <div class="quform-input">
-                                @Html.TextBox("type_the_word", null, new { @placeholder = "Type the below word", @id = "type_the_word" })
-                                <input id="type_the_word" type="text" name="type_the_word" placeholder="Type the below word" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="quform-captcha">
-                                <div class="quform-captcha-inner">
-                                    <img src="~/quform/images/captcha/courier-new-light.png" alt="" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>*@
-            <!-- End Captcha element -->
             <!-- Begin Submit button -->
             <div class="col-md-12">
                 <div class="quform-submit-inner">
                     <button class="butn" type="submit"><span>Submit comment</span></button>
                 </div>
-                <div class="quform-loading-wrap text-left"><span class="quform-loading"></span></div>
             </div>
             <!-- End Submit button -->
 
         </div>
 
     </div>
-
-}
-
-@section scripts{
-
-    <script src="~/Scripts/jquery.validate.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 }

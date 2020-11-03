@@ -1,11 +1,8 @@
 ﻿@model WebAppSastiServices.Models.DB.STPServiceProductItem
-
 @{
     Layout = null;
 }
-
 <!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -18,42 +15,22 @@
                 <h4 class="card-title">Add Items</h4>
             </div>
             <div class="card-body">
-
                 <div>
                     <div class="row">
                         <div class="col-12" id="AddItem">
-
                             <p id="ItemsCount">Item Add: <span></span></p>
-
-
                                 <div class="form-group row">
                                     @Html.LabelFor(model => model.ServiceProductName, "Product Name", htmlAttributes: new { @class = "col-sm-5 col-form-label" })
                                     <div class="col-sm-7">
                                         @Html.DropDownList("ServiceProductName", (SelectList)ViewBag.Products,"- Select product name -", htmlAttributes: new { @class = "form-control" , @id="ItemName"})
                                         @Html.ValidationMessageFor(model => model.ServiceProductName, "", new { @class = "text-danger" })
                                     </div>
-
-
-                                </div>
+                                 </div>
                                 <div class="form-group row">
                                     @Html.Label("Model No", htmlAttributes: new { @class = "col-sm-5 col-form-label" })
                                     <div class="col-sm-7">
                                         @Html.DropDownList("ModelNo", (SelectList)ViewBag.ItemNo, htmlAttributes: new { @class = "form-control", @id = "ModelNo" })
-                                        @*@Html.TextBox("ItemNo", null, new { @class = "form-control", @disabled = "disabled", @id = "ItemNo" })
-                                         @Html.ValidationMessageFor(model => model.ItemNo, "", new { @class = "text-danger" })*@
-
-
                                     </div>
-                                    @*<label class="col-sm-5 col-form-label">Item No</label>
-                                        <div class="col-sm-7">
-                                            <select class="form-control">
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                            </select>
-                                        </div>*@
                                 </div>
                                 <div class="form-group row">
 
@@ -62,11 +39,6 @@
                                         @Html.TextBox("SellingPrice", null, new { @class = "form-control", @disabled = "disabled", @id = "SellingPrice" })
                                         @Html.ValidationMessageFor(model => model.SellingPrice, "", new { @class = "text-danger" })
                                     </div>
-
-                                    @*<label class="col-sm-5 col-form-label">Qty</label>
-                                    <div class="col-sm-7">
-                                        <input type="text" class="form-control">
-                                    </div>*@
                                 </div>
                                 <div class="form-group row">
                                     @Html.Label( "Product QTY", htmlAttributes: new { @class = "col-sm-5 col-form-label" })
@@ -76,16 +48,11 @@
                                     </div>
                                 </div>
                                 <button class="btn btn-outline-primary float-right" onclick="btnItemPost()">Add</button>
-
-
-
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 </body>
 </html>

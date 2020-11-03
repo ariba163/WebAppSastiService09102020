@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace WebAppSastiServices.Models.DB
 {
@@ -60,6 +61,8 @@ namespace WebAppSastiServices.Models.DB
         [Display(Name = "Order Status")]
         public int OrderStatusId { get; set; }
         public DateTime? CreateOn { get; set; }
+
+
 
     }
 }

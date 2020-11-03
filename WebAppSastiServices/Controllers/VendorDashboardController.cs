@@ -19,7 +19,6 @@ namespace WebAppSastiServices.Controllers
         // GET: VendorDashboard
         public ActionResult ACIndex()
         {
-
             
             ViewBag.Message = TempData["Message"];
             int? ID = Convert.ToInt32(Session["UserID"]);
@@ -44,7 +43,6 @@ namespace WebAppSastiServices.Controllers
 
         }
 
-        //href="VendorDashboard/ChooseService?ServiceName=AirCondition"
 
         public ActionResult ChooseService(string ServiceName)
         {
@@ -198,20 +196,6 @@ namespace WebAppSastiServices.Controllers
         {
             return View();
         }
-
-        public ActionResult ACLogin()
-        {
-            return View();
-        }
-        public ActionResult ACRegister()
-        {
-            return View();
-        }
-        public ActionResult ACLockScreen()
-        {
-            return View();
-        }
-
         public ActionResult ACServiceData()
         {
 
@@ -253,14 +237,13 @@ namespace WebAppSastiServices.Controllers
 
         public ActionResult ACViewServices()
         {
+            ViewBag.Message = TempData["Message"];
             return View();
         }
         [HttpGet]
         public ActionResult ACCreateServices()
         {
-
             string serviceType = Session["serviceType"].ToString();
-
             if (serviceType != null)
             {
                 ViewBag.UnitType = new SelectList(db.STPServicesUnitTypes.Where(s => s.STPServiceType.ServiceTypeName == serviceType), "ID", "Options");
@@ -275,29 +258,36 @@ namespace WebAppSastiServices.Controllers
             return View();
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult ACCreateServices(service obj)
         {
-
             string serviceType = Session["serviceType"].ToString();
-
             if (serviceType != null)
             {
-
-                STPService service = new STPService()
+                if (ModelState.IsValid)
                 {
-                    ServiceName = obj.ServiceName,
-                    ServiceDescrption = obj.ServiceDescription,
-                    STPServiceTypeID = db.STPServiceTypes.Where(d => d.ServiceTypeName == serviceType).Select(d => d.ID).FirstOrDefault(),
-                    IsAvailible = true,
-                    FuelTypeId = obj.FuelTypeId,
-                    UnitTypeId = obj.UnitTypeId,
-                    ServiceRate = obj.ServiceRate,
-                    CreatedDateTime = System.DateTime.Now
-                };
-                db.STPServices.Add(service);
-                db.SaveChanges();
-
-
+                    try
+                    {
+                        STPService service = new STPService()
+                        {
+                            ServiceName = obj.ServiceName,
+                            ServiceDescrption = obj.ServiceDescription,
+                            STPServiceTypeID = db.STPServiceTypes.Where(d => d.ServiceTypeName == serviceType).Select(d => d.ID).FirstOrDefault(),
+                            IsAvailible = true,
+                            FuelTypeId = obj.FuelTypeId,
+                            UnitTypeId = obj.UnitTypeId,
+                            ServiceRate = obj.ServiceRate,
+                            CreatedDateTime = System.DateTime.Now
+                        };
+                        db.STPServices.Add(service);
+                        db.SaveChanges();
+                        TempData["Message"] = "AddService";
+                    }
+                    catch
+                    {
+                        TempData["Message"] = "NotAddservice";
+                    }
+                }
             }
             return Redirect(Url.Action("ACViewServices", "VendorDashboard"));
 

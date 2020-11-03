@@ -1,8 +1,35 @@
 ﻿
 @{
     ViewBag.Title = "ViewServices";
-    Layout = "~/Views/Shared/_LayoutDashboardACVendor.cshtml";
+    Layout = "~/Views/Shared/_LayoutDashboardACVendor.cshtml";;
+    string message = @ViewBag.Message;
 }
+
+@if (message == "AddService")
+{
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript">
+        //swal("Order sent successfully", "", "success");
+        swal({
+            title: "Order sent successfully",
+            icon: "success",
+        });
+    </script>
+}
+else if (message == "NotAddservice")
+{
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript">
+        swal({
+            title: "OOPS! Order can't sent",
+            text: "Please Try again.",
+            icon: "error",
+        });
+    </script>
+}
+
+
+
 <!-- start page inner -->
 <div class="page-inner">
     <div class="page-title">

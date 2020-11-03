@@ -1,11 +1,9 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Invoice";
     Layout = "~/Views/Shared/_LayoutDashboardAdmin.cshtml";
     string message = @ViewBag.Message;
 }
-@if (message == "InvoiceSuccess")
-{
+@if (message == "InvoiceSuccess"){
 <script src="~/js/jquery-3.3.1.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript">
@@ -17,9 +15,7 @@
         window.location.href = "/AdminDashboard/GeneratePDF?invId=" + @Html.Raw(Json.Encode(ViewBag.InvoiceID));
 
     </script>
-}
-else if (message == "Invoiced")
-{
+}else if (message == "Invoiced"){
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript">
         swal({
@@ -28,9 +24,7 @@ else if (message == "Invoiced")
         icon: "error",
     });
     </script>
-}
-else if (message == "InvoiceError")
-{
+}else if (message == "InvoiceError"){
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript">
                 swal({
@@ -39,9 +33,7 @@ else if (message == "InvoiceError")
                     icon: "error",
                 });
     </script>
-}
-else if (message == "InvoiceErr")
-{
+}else if (message == "InvoiceErr"){
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript">
                 swal({
@@ -50,9 +42,7 @@ else if (message == "InvoiceErr")
                     icon: "error",
                 });
     </script>
-}
-else if (message == "ItemsError")
-{
+}else if (message == "ItemsError"){
     <script type="text/javascript">
                 swal({
                     title: "OOPS! Items not add",
@@ -60,9 +50,7 @@ else if (message == "ItemsError")
                 icon: "error",
             });
     </script>
-}
-else if (message == "ServiceError")
-{
+}else if (message == "ServiceError"){
     <script type="text/javascript">
                 swal({
                     title: "OOPS! Service not add",
@@ -70,18 +58,14 @@ else if (message == "ServiceError")
                 icon: "error",
             });
     </script>
-}
-else if (message == "ServiceSuccess")
-{
+}else if (message == "ServiceSuccess"){
     <script type="text/javascript">
                 swal({
                     title: "Service added",
                 icon: "success",
             });
     </script>
-}
-else if (message == "ItemSuccess")
-{
+}else if (message == "ItemSuccess"){
     <script type="text/javascript">
                 swal({
                     title: "Item added",
@@ -90,14 +74,10 @@ else if (message == "ItemSuccess")
     </script>
 }
 
-
-
-
 <div class="page-inner">
     <div class="page-title">
         <h3 class="breadcrumb-header d-inline">Invoice</h3>
         <a href="~/ReportInvoice.aspx" class="btn btn-outline-dark float-right"><i class="fa fa-print"> Print </i> </a>
-
     </div>
     <!-- start page main wrapper -->
     <div id="main-wrapper">
@@ -269,126 +249,13 @@ else if (message == "ItemSuccess")
         <div class="page-footer">
             <p>
                 Copyright &copy;
-                <script>document.write(new Date().getFullYear())</script>
- Kaam Waley All rights reserved.
-            </ p >
-        </ div >
-    </ div >
+                <script>document.write(new Date().getFullYear())</script> Kaam Waley All rights reserved.</p>
+        </div>
+    </div>
     < !--end page inner -->
     < !--start page inner -->
-@*<div class="page-inner">
-        <div class="page-title">
-            <h3 class="breadcrumb-header">Invoice</h3>
-        </div>
-        <!-- start page main wrapper -->
-        <div id="main-wrapper">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card card-white">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <h3 class="m-b-md m-t-xxs"><b>Company</b></h3>
-                                    <address>
-                                        London<br>
-                                        P: (+44) 123 456 789
-                                    </address>
-                                </div>
-                                <div class="col-md-8 text-right">
-                                    <h3 class="m-t-xs">Invoice</h3>
-                                    <button type="button" class="btn btn-outline-primary"><i class="fa fa-print"></i> Print</button>
-                                </div>
-                                <div class="col-md-12">
-                                    <hr>
-                                    <p>
-                                        <strong>Invoice to</strong>
-                                        <br> Keir Prestonly
-                                        <br> Regina ST,
-                                        <br> London, SK 8GH.
-                                    </p>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="table-responsive">
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th>Item</th>
-                                                    <th>Description</th>
-                                                    <th>Quantity</th>
-                                                    <th>Price</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Brochure Design</td>
-                                                    <td>13</td>
-                                                    <td>$1157</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>Basic Template</td>
-                                                    <td>02</td>
-                                                    <td>$2394</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>Wordpress Theme</td>
-                                                    <td>04</td>
-                                                    <td>$9080</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>4</td>
-                                                    <td>HTML Template</td>
-                                                    <td>02</td>
-                                                    <td>$8105</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <h4 class="m-t-lg">Thank you!</h4>
-                                    <p>
-                                        Voluptas sit aspernatur aut odit aut fugit consequur.
-                                        <br>Sed ut perspiciatis unde omnis iste natus
-                                        <br>Minim veniam, quis nostrud exercitation ullamco laboris.
-                                    </p>
-                                    <img src="~/img/Dashboard/signature-black.png" class="m-t-lg" alt="">
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="text-right m-t-lg">
-                                        <h4 class="no-m m-t-sm">Subtotal</h4>
-                                        <h2 class="no-m">$20736</h2>
-                                        <hr>
-                                        <h4 class="no-m m-t-sm">Shipping</h4>
-                                        <h2 class="no-m">$400</h2>
-                                        <hr>
-                                        <h4 class="no-m m-t-md text-success">Total</h4>
-                                        <h1 class="no-m text-success">$21136</h1>
-                                        <hr>
-                                        <button class="btn btn-info">Submit your invoice</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Row -->
-        </div>
-        <!-- end page main wrapper -->
-        <div class="page-footer">
-            <p>Copyright &copy;
-            <script>document.write(new Date().getFullYear())</script> Kaam Waley All rights reserved.</p>
-        </div>
-    </div>*@
-<!-- end page inner -->
 </div>
-
-
 @section scripts{
-
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
         //data bind with dropdown change start----------------
@@ -435,11 +302,7 @@ else if (message == "ItemSuccess")
                 });
         //data bind with dropdown change end----------------
 
-
-
         var total = 0;
-
-
         //Item Add start-------------
         var ItemsRatetotal =0;
         var ItemCount = 0;
@@ -488,7 +351,6 @@ else if (message == "ItemSuccess")
                             }
                         });
         }
-
         //Item Add end-------------
 
         //Services Add start-------------

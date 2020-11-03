@@ -4,41 +4,21 @@
     Layout = null;
     int count = 0;
 }
-
 <!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>PrintInvoice</title>
     <link rel="stylesheet" href="~/plugins/bootstrap/css/bootstrap.min.css" />
-    <style>
-       
-    </style>
 </head>
-
 <body>
- 
-
-
-
-
     <div class="container" style="height:1300px;position:relative">
-        @if (Model != null)
-        {
-
-
-            @*<div class="row m-5 ">
-                <a href="GeneratePDF?invId=@Model.ID" class="btn btn-primary float-right"> PDF/Print </a>
-            </div>*@
-
-
+        @if (Model != null){
             <div class="card">
                 <div class="p-5" style="width:100%;position:relative;height:150px;">
                     <div style="width:50%;height:200px;position:absolute;left:20px;">
                         <img src="http://via.placeholder.com/400x90?text=logo">
                     </div>
-
                     <div class="text-right" style="width:50%;height:200px;position:absolute;right:20px;">
                         <p class="font-weight-bold mb-1">Invoice #@Model.ID</p>
                         <p class="text-muted">@System.DateTime.Now.ToString("MM/dd/yyyy hh:mm tt")</p>
@@ -46,7 +26,6 @@
                 </div>
                 <hr>
                 <h3 class="mb-4 text-center">Client Information</h3>
-
                 <div class="p-3" style="width:100%;position:relative;height:150px;">
                     <div style="width:50%;height:200px;position:absolute;left:20px;">
                         <p class="mb-1"><span class="text-muted">Name:  &nbsp; &nbsp;</span> @Model.TRNCustomerOrder.CustomerName</p>
@@ -54,14 +33,11 @@
                         <p class="mb-1"><span class="text-muted">Email:&nbsp; &nbsp; &nbsp;</span> @Model.TRNCustomerOrder.Email</p>
                         <p class="mb-1"><span class="text-muted">Address:&nbsp;</span> @Model.TRNCustomerOrder.Address</p>
                     </div>
-
                     <div class="text-right" style="width:50%;height:200px;position:absolute;right:20px;">
                         <p class="mb-1"><span class="text-muted">Order#: </span> @Model.STPOrdersID</p>
                         <p class="mb-1"><span class="text-muted">UnitType: </span> @Model.TRNCustomerOrder.STPServicesUnitType.Options</p>
                     </div>
                 </div>
-
-
                 <div class="row p-3">
                     <div class="col-md-12">
                         <table class="table">
@@ -80,7 +56,6 @@
                                     foreach (var item in (IEnumerable<TRNCustomerOrders_STPServices>)ViewBag.ServiceData)
                                     {
                                         count++;
-
                                         <tr>
                                             <td>@count</td>
                                             <td>@item.STPService.ServiceName (Service)  </td>
@@ -89,7 +64,6 @@
                                             <td>@item.Rate</td>
                                         </tr>
                                     }
-
                                     foreach (var item in (IEnumerable<TRNCustomerOrders_STPProductItems>)ViewBag.ProductData)
                                     {
                                         count++;
@@ -97,11 +71,9 @@
                                         <tr>
                                             <td>@count</td>
                                             <td>@item.STPServiceProductItem.ServiceProductName (Items)  </td>
-                                            @*<td>@item.QTY</td>*@
                                             <td></td>
                                             <td>@item.STPServiceProductItem.SellingPrice</td>
                                             <td>@item.STPServiceProductItem.SellingPrice</td>
-                                            @*<td> @Total </td>*@
                                         </tr>
                                     }
                                 }
@@ -119,13 +91,6 @@
                     <div class="h2 font-weight-light">Rs. @Model.TotalAmount</div>
                 </div>
             </div>
-
-
-        <div style="bottom:0;position:absolute;">
-            <hr class="bg-dark"/>
-            @*footer*@
-        </div>
-
         }
         else
         {
@@ -134,8 +99,5 @@
             </script>
         }
     </div>
-
-
-  
 </body>
 </html>

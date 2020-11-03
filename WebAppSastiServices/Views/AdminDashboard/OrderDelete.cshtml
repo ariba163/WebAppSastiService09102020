@@ -2,12 +2,9 @@
 @{
     Layout = null;
 }
-
 <!DOCTYPE html>
-
 <html>
 <head>
-
 </head>
 <body>
     <div class="row">
@@ -25,12 +22,10 @@
             <p>Order Description: <span class="float-right text-black-50">@Model.OrderDescription</span></p>
             <p>Preffered Date: <span class="float-right text-black-50">@Model.preferredDate</span></p>
             <p>Preffered Time: <span class="float-right text-black-50">@Model.STPPrefferedTime.TimeRange</span></p>
-
         </div>
         @using (Html.BeginForm("OrderDelete", "AdminDashboard", FormMethod.Post))
         {
             @Html.EditorFor(model => model.OrderId, new { htmlAttributes = new { @class = "form-control input-md", @type = "hidden", @value = @Model.OrderId } })
-
             <button class="btn btn-danger" type="submit"><span>Delete</span></button>
         }
     </div>

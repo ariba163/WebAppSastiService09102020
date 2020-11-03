@@ -3,17 +3,12 @@
     Layout = "~/Views/Shared/_LayoutPage.cshtml";
     string message = @ViewBag.Message;
 }
-
 <div id="fb-root"></div>
 @section scripts{
-
     @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Scripts/jquery.validate.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
-
-
     <script>
-
         function OpenModelForm(ServiceTypeID) {
             var id = ServiceTypeID;
             $('#exampleModal .modal-body').html('Loading.....');
@@ -38,13 +33,9 @@
                 }
             });
         }
-
     </script>
 }
-
-
-@if (message == "success")
-{
+@if (message == "success"){
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript">
         //swal("Order sent successfully", "", "success");
@@ -53,9 +44,7 @@
             icon: "success",
         });
     </script>
-}
-else if (message == "error")
-{
+}else if (message == "error"){
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript">
         swal({
@@ -64,9 +53,7 @@ else if (message == "error")
             icon: "error",
         });
     </script>
-}
-@if (message == "LogInSuccess")
-{
+}@if (message == "LogInSuccess"){
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript">
         swal({
@@ -74,9 +61,15 @@ else if (message == "error")
             icon: "success",
         });
     </script>
-}
-@if (message == "QCallSucceed")
-{
+}@if (message == "Emailsuccess"){
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript">
+        swal({
+            title: "Email sent successfully !",
+            icon: "success",
+        });
+    </script>
+}@if (message == "QCallSucceed"){
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript">
         swal({
@@ -86,181 +79,12 @@ else if (message == "error")
         CloseForm();
     </script>
 }
-
-
-
-
-
-<!-- Packages Service-->
-@*
-    <div class="modal fade" id="exampleModalLongPackage1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="background:#61616161;">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Package Name</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="section-heading">
-                        <h2>Book Service</h2>
-                    </div>
-                    <!-- form start -->
-                    <form>
-                        <!-- Form start -->
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label" for="name">Name</label>
-                                    <input id="name" name="name" type="text" placeholder="Name" class="form-control input-md">
-                                </div>
-                            </div>
-                            <!-- Text input-->
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label" for="Contact">Contact No</label>
-                                    <input id="Contact" name="Contact" type="number" placeholder="Contact No" class="form-control input-md">
-                                </div>
-                            </div>
-                            <!-- Text input-->
-                            <!-- Text input-->
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="Address">Address</label>
-                                    <textarea class="form-control" id="Address" rows="3"></textarea>
-                                </div>
-                            </div>
-                            <!-- Text input-->
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="Details">Details</label>
-                                    <textarea class="form-control" id="Details" rows="3"></textarea>
-                                </div>
-                            </div>
-                            <!-- Text input-->
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label" for="date">Preferred Date</label>
-                                    <input id="date" name="date" type="text" placeholder="Preferred Date" class="form-control input-md">
-                                </div>
-                            </div>
-                            <!-- Select Basic -->
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label" for="time">Preferred Time</label>
-                                    <select id="time" name="time" class="form-control">
-                                        <option value="8:00 to 9:00">8:00 to 9:00</option>
-                                        <option value="9:00 to 10:00">9:00 to 10:00</option>
-                                        <option value="10:00 to 1:00">10:00 to 1:00</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <!-- Select Basic -->
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label font-size16 md-font-size15 xs-font-size14 font-weight-600" for="appointmentfor">Services included</label>
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item" style="background-color: #ffffff00;padding:0;border:0;">
-                                            <!-- Default checked -->
-                                            <div class="custom-control" style="padding-left: 0;">
-                                                <label class="" for="check1">Service 1</label>
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item" style="background-color: #ffffff00;padding:0;border:0;">
-                                            <!-- Default checked -->
-                                            <div class="custom-control" style="padding-left: 0;">
-                                                <label class="" for="check2">Service 2</label>
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item" style="background-color: #ffffff00;padding:0;border:0;">
-                                            <!-- Default checked -->
-                                            <div class="custom-control" style="padding-left: 0;">
-                                                <label class="" for="check3">Service 3</label>
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item" style="background-color: #ffffff00;padding:0;border:0;">
-                                            <!-- Default checked -->
-                                            <div class="custom-control" style="padding-left: 0;">
-                                                <label class="" for="check4">Service 4</label>
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item" style="background-color: #ffffff00;padding:0;border:0;">
-                                            <!-- Default checked -->
-                                            <div class="custom-control" style="padding-left: 0;">
-                                                <label class="" for="check5">Service 5</label>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                    </>
-                                </div>
-                            </div><div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label font-size16 md-font-size15 xs-font-size14 font-weight-600" for="appointmentfor">Items included</label>
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item" style="background-color: #ffffff00;padding:0;border:0;">
-                                            <!-- Default checked -->
-                                            <div class="custom-control" style="padding-left: 0;">
-                                                <label class="" for="check1">Item 1</label>
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item" style="background-color: #ffffff00;padding:0;border:0;">
-                                            <!-- Default checked -->
-                                            <div class="custom-control" style="padding-left: 0;">
-                                                <label class="" for="check2">Item 2</label>
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item" style="background-color: #ffffff00;padding:0;border:0;">
-                                            <!-- Default checked -->
-                                            <div class="custom-control" style="padding-left: 0;">
-                                                <label class="" for="check3">Item 3</label>
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item" style="background-color: #ffffff00;padding:0;border:0;">
-                                            <!-- Default checked -->
-                                            <div class="custom-control" style="padding-left: 0;">
-                                                <label class="" for="check4">Item 4</label>
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item" style="background-color: #ffffff00;padding:0;border:0;">
-                                            <!-- Default checked -->
-                                            <div class="custom-control" style="padding-left: 0;">
-                                                <label class="" for="check5">Item 5</label>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                    </>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Price Estimate" aria-label="Price Estimate" aria-describedby="button-addon2" disabled>
-                                    <div class="input-group-append">
-                                        <button class="btn btn-dark" type="button" id="button-addon2">Estimate</button>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </form>
-                    <!-- form end -->
-                </div>
-                <div class="modal-footer">
-                    <div class="col-md-12">
-
-                        <button class="butn" type="submit"><span>Proceed</span></button>
-                        <button class="butn" data-dismiss="modal"><span>Close</span></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>*@
+<!--start packages Service-->
 <!--end packages Service-->
 <!--start side quick call-->
 <a id="quickCall">
     Get a Quick Call
 </a>
-
 <div id="QuickCallForm">
     <div class="section-heading">
         <h2>Get a Quick Call</h2>
@@ -269,235 +93,15 @@ else if (message == "error")
     <span id="quickCallClose" onclick="CloseForm()">&times;</span>
 
 
-    @{Html.RenderAction("pvQuickCall");}
+    @Html.Partial("pvQuickCall")
+    @*@{Html.RenderAction("pvQuickCall");}*@
 </div>
-
 <!--end side quick call-->
 
 <div class="wrapModal">
     <!-- start revolution slideshow-->
     <div id="rev_slider_151_1_wrapper" class="rev_slider_wrapper fullscreen-container" data-alias="blur-effect-slider" data-source="gallery" style="background-color:#2d3032;padding:0px;">
-        <!-- START REVOLUTION SLIDER 5.4.1 fullscreen mode -->
-        @* <div id="rev_slider_151_1" class="rev_slider fullscreenbanner" style="display:none;" data-version="5.4.1">
-            <ul>
-                <!-- SLIDE  -->
-                <li data-index="rs-411" data-transition="fadethroughtransparent" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="default" data-rotate="0" data-fstransition="fade"
-                    data-fsmasterspeed="1000" data-fsslotamount="7" data-saveperformance="off" data-title="One" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10=""
-                    data-description="">
 
-                    <!-- overlay -->
-                    <div class="opacity-extra-medium bg-black z-index-1"></div>
-
-                    <!-- MAIN IMAGE -->
-                    <img src="~/img/services/powergen.jpg" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="6" class="rev-slidebg" data-no-retina>
-
-                    <!-- LAYERS -->
-                    <div id="rrzt_411" class="rev_row_zone rev_row_zone_top" style="z-index: 9;">
-
-                        <!-- LAYER NR. 1 -->
-                        <div class="tp-caption  " id="slide-411-layer-14" data-x="['left','left','left','left']" data-hoffset="['100','100','100','100']" data-voffset="['100','100','100','100']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="row" data-columnbreak="2"
-                             data-basealign="slide" data-responsive_offset="on" data-responsive="off" data-frames='[{"delay":10,"speed":300,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-                             data-margintop="[0,0,0,0]" data-marginright="[0,0,0,0]" data-marginbottom="[0,0,0,0]" data-marginleft="[0,0,0,0]" data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[240,175,200,150]" data-paddingright="[100,50,40,40]"
-                             data-paddingbottom="[0,0,0,0]" data-paddingleft="[100,50,40,40]" style="z-index: 9; white-space: nowrap; font-size: 20px; line-height: 22px; font-weight: 400; color: rgba(255, 255, 255, 1.00);">
-
-                            <!-- LAYER NR. 2 -->
-                            <div class="tp-caption  " id="slide-411-layer-15" data-x="['left','left','left','left']" data-hoffset="['100','100','100','100']" data-y="['top','top','top','top']" data-voffset="['100','100','100','100']" data-width="none" data-height="none" data-whitespace="nowrap"
-                                 data-type="column" data-responsive_offset="on" data-responsive="off" data-frames='[{"delay":"+0","speed":300,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-                                 data-columnwidth="100%" data-margintop="[0,0,0,0]" data-marginright="[0,0,0,0]" data-marginbottom="[0,0,0,0]" data-marginleft="[0,0,0,0]" data-textAlign="['inherit','inherit','center','center']" data-paddingtop="[0,0,0,0]"
-                                 data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 10; width: 100%;">
-
-                                <!-- LAYER NR. 3 -->
-                                <div class="tp-caption   tp-resizeme  alt-font" id="slide-411-layer-1" data-x="['left','left','center','center']" data-hoffset="['0','0','0','0']" data-y="['top','top','top','top']" data-voffset="['0','0','230','110']" data-fontsize="['110','90','72','70']"
-                                     data-lineheight="['100','90','80','70']" data-width="none" data-height="none" data-whitespace="['nowrap','nowrap','nowrap','normal']" data-type="text" data-basealign="slide" data-responsive_offset="on" data-frames='[{"delay":"+290","speed":2000,"frame":"0","from":"y:50px;opacity:0;fb:20px;","to":"o:1;fb:0;","ease":"Power4.easeOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;fb:0;","ease":"Power3.easeInOut"}]'
-                                     data-margintop="[0,0,0,0]" data-marginright="[0,0,0,0]" data-marginbottom="[30,20,30,30]" data-marginleft="[0,0,0,0]" data-textAlign="['inherit','inherit','center','center']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,40,40]"
-                                     data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,40,40]" style="z-index: 11; white-space: nowrap; font-size: 110px; line-height: 100px; font-weight: 400; color: rgba(255, 255, 255, 1.00); display: inline-block;">
-                                    You are in
-                                    <br />good hands
-                                </div>
-
-                                <!-- LAYER NR. 4 -->
-                                <div class="tp-caption   tp-resizeme" id="slide-411-layer-2" data-x="['left','left','center','center']" data-hoffset="['0','50','0','0']" data-y="['top','top','top','top']" data-voffset="['0','430','460','290']" data-fontsize="['40','30','32','24']" data-lineheight="['50','40','48','30']"
-                                     data-width="['640','360','100%','100%']" data-height="none" data-whitespace="normal" data-type="text" data-basealign="slide" data-responsive_offset="on" data-frames='[{"delay":"+490","speed":2000,"frame":"0","from":"y:50px;opacity:0;fb:20px;","to":"o:1;fb:0;","ease":"Power4.easeOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;fb:0;","ease":"Power3.easeInOut"}]'
-                                     data-margintop="[0,0,0,0]" data-marginright="[0,0,0,0]" data-marginbottom="[40,30,40,40]" data-marginleft="[0,0,0,0]" data-textAlign="['inherit','inherit','center','center']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]"
-                                     data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 12; min-width: 640px; max-width: 640px; white-space: normal; font-size: 40px; line-height: 50px; font-weight: 300; color: rgba(255, 255, 255, 1.00); display: block;">The best choice for your successful business</div>
-
-                                <!-- LAYER NR. 5 -->
-                                <a href="@Url.Action("Service", "Services")" class="tp-caption rev-btn  tp-resizeme butn theme white-hover" id="slide-411-layer-13" data-x="['left','left','center','center']" data-hoffset="['0','50','0','0']" data-y="['top','top','top','top']" data-voffset="['0','540','590','400']"
-                                   data-width="none" data-height="none" data-whitespace="['normal','nowrap','nowrap','nowrap']" data-type="button" data-actions='' data-basealign="slide" data-responsive_offset="on" data-frames='[{"delay":"+690","speed":2000,"frame":"0","from":"y:50px;opacity:0;fb:20px;","to":"o:1;fb:0;","ease":"Power4.easeOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;fb:0;","ease":"Power3.easeInOut"},{"frame":"hover","speed":"0","ease":"Linear.easeNone","to":"o:1;rX:0;rY:0;rZ:0;z:0;fb:0;"}]'
-                                   data-margintop="[0,0,0,0]" data-marginright="[0,0,0,0]" data-marginbottom="[0,0,0,0]" data-marginleft="[0,0,0,0]" data-textAlign="['inherit','inherit','inherit','inherit']" style="z-index: 9; display: inline-block; white-space: nowrap; outline:none;letter-spacing:1px;cursor:pointer;"><span>TAKE SERVICES</span></a>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </li>
-                <!-- SLIDE  -->
-                <li data-index="rs-412" data-transition="fadethroughtransparent" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="default" data-rotate="0" data-saveperformance="off"
-                    data-title="Two" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
-
-                    <!-- overlay -->
-                    <div class="opacity-extra-medium bg-black z-index-1"></div>
-
-                    <!-- MAIN IMAGE -->
-                    <img src="~/img/services/AC.jpg" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="6" class="rev-slidebg" data-no-retina>
-                    <!-- LAYERS -->
-                    <div id="rrzt_412" class="rev_row_zone rev_row_zone_top" style="z-index: 5;">
-
-                        <!-- LAYER NR. 10 -->
-                        <div class="tp-caption  " id="slide-412-layer-14" data-x="['left','left','left','left']" data-hoffset="['100','100','100','100']" data-y="['top','top','top','top']" data-voffset="['100','100','100','100']" data-width="none" data-height="none" data-whitespace="nowrap"
-                             data-type="row" data-columnbreak="2" data-basealign="slide" data-responsive_offset="on" data-responsive="off" data-frames='[{"delay":10,"speed":300,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-                             data-margintop="[0,0,0,0]" data-marginright="[0,0,0,0]" data-marginbottom="[0,0,0,0]" data-marginleft="[0,0,0,0]" data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[240,175,200,150]" data-paddingright="[100,50,40,40]"
-                             data-paddingbottom="[0,0,0,0]" data-paddingleft="[100,50,40,40]" style="z-index: 5; white-space: nowrap; font-size: 20px; line-height: 22px; font-weight: 400; color: rgba(255, 255, 255, 1.00);">
-                            <!-- LAYER NR. 11 -->
-                            <div class="tp-caption  " id="slide-412-layer-15" data-x="['left','left','left','left']" data-hoffset="['100','100','100','100']" data-y="['top','top','top','top']" data-voffset="['100','100','100','100']" data-width="none" data-height="none" data-whitespace="nowrap"
-                                 data-type="column" data-responsive_offset="on" data-responsive="off" data-frames='[{"delay":"+0","speed":300,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-                                 data-columnwidth="100%" data-margintop="[0,0,0,0]" data-marginright="[0,0,0,0]" data-marginbottom="[0,0,0,0]" data-marginleft="[0,0,0,0]" data-textAlign="['inherit','inherit','center','center']" data-paddingtop="[0,0,0,0]"
-                                 data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 6; width: 100%;">
-                                <!-- LAYER NR. 12 -->
-                                <div class="tp-caption   tp-resizeme  alt-font" id="slide-412-layer-1" data-x="['left','left','center','center']" data-hoffset="['0','0','0','0']" data-y="['top','top','top','top']" data-voffset="['0','0','230','110']" data-fontsize="['110','90','72','70']"
-                                     data-lineheight="['100','90','80','70']" data-width="['none','none','none','399']" data-height="none" data-whitespace="['nowrap','nowrap','nowrap','normal']" data-type="text" data-basealign="slide" data-responsive_offset="on"
-                                     data-frames='[{"delay":"+290","speed":2000,"frame":"0","from":"y:50px;opacity:0;fb:20px;","to":"o:1;fb:0;","ease":"Power4.easeOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;fb:0;","ease":"Power3.easeInOut"}]'
-                                     data-margintop="[0,0,0,0]" data-marginright="[0,0,0,0]" data-marginbottom="[30,20,30,30]" data-marginleft="[0,0,0,0]" data-textAlign="['inherit','inherit','center','center']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,40,40]"
-                                     data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,40,40]" style="z-index: 7; white-space: nowrap; font-size: 110px; line-height: 100px; font-weight: 400; color: rgba(255, 255, 255, 1.00); display: inline-block;">
-                                    We deliver
-                                    <br /> best results
-                                </div>
-
-                                <!-- LAYER NR. 13 -->
-                                <div class="tp-caption   tp-resizeme" id="slide-412-layer-2" data-x="['left','left','center','center']" data-hoffset="['0','50','0','0']" data-y="['top','top','top','top']" data-voffset="['0','430','460','290']" data-fontsize="['40','30','32','24']" data-lineheight="['50','40','48','30']"
-                                     data-width="['640','360','100%','100%']" data-height="none" data-whitespace="normal" data-type="text" data-basealign="slide" data-responsive_offset="on" data-frames='[{"delay":"+490","speed":2000,"frame":"0","from":"y:50px;opacity:0;fb:20px;","to":"o:1;fb:0;","ease":"Power4.easeOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;fb:0;","ease":"Power3.easeInOut"}]'
-                                     data-margintop="[0,0,0,0]" data-marginright="[0,0,0,0]" data-marginbottom="[40,30,40,40]" data-marginleft="[0,0,0,0]" data-textAlign="['inherit','inherit','center','center']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]"
-                                     data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 8; min-width: 640px; max-width: 640px; white-space: normal; font-size: 40px; line-height: 50px; font-weight: 300; color: rgba(255, 255, 255, 1.00); display: block;">Your priorities have always remained the same</div>
-
-                                <!-- LAYER NR. 14 -->
-                                <a href="@Url.Action("Service", "Services")" class="tp-caption rev-btn  tp-resizeme butn theme white-hover" id="slide-412-layer-13" data-x="['left','left','center','center']" data-hoffset="['0','50','0','0']" data-y="['top','top','top','top']" data-voffset="['0','540','590','400']"
-                                   data-width="none" data-height="none" data-whitespace="['normal','nowrap','nowrap','nowrap']" data-type="button" data-actions='' data-basealign="slide" data-responsive_offset="on" data-frames='[{"delay":"+690","speed":2000,"frame":"0","from":"y:50px;opacity:0;fb:20px;","to":"o:1;fb:0;","ease":"Power4.easeOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;fb:0;","ease":"Power3.easeInOut"},{"frame":"hover","speed":"0","ease":"Linear.easeNone","to":"o:1;rX:0;rY:0;rZ:0;z:0;fb:0;"}]'
-                                   data-margintop="[0,0,0,0]" data-marginright="[0,0,0,0]" data-marginbottom="[0,0,0,0]" data-marginleft="[0,0,0,0]" data-textAlign="['inherit','inherit','inherit','inherit']" style="z-index: 9; display: inline-block; white-space: nowrap; outline:none;letter-spacing:1px;cursor:pointer;"><span>TAKE SERVICES</span></a>
-                            </div>
-                        </div>
-                    </div>
-
-                </li>
-                <!-- SLIDE  -->
-                <li data-index="rs-413" data-transition="fadethroughtransparent" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="default" data-rotate="0" data-saveperformance="off"
-                    data-title="Three" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
-
-                    <!-- overlay -->
-                    <div class="opacity-extra-medium bg-black z-index-1"></div>
-
-                    <!-- MAIN IMAGE -->
-                    <img src="~/img/services/SolarSystem.jpg" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="6" class="rev-slidebg" data-no-retina>
-                    <!-- LAYERS -->
-                    <div id="rrzt_413" class="rev_row_zone rev_row_zone_top" style="z-index: 5;">
-
-                        <!-- LAYER NR. 19 -->
-                        <div class="tp-caption  " id="slide-413-layer-14" data-x="['left','left','left','left']" data-hoffset="['100','100','100','100']" data-y="['top','top','top','top']" data-voffset="['100','100','100','100']" data-width="none" data-height="none" data-whitespace="nowrap"
-                             data-type="row" data-columnbreak="2" data-basealign="slide" data-responsive_offset="on" data-responsive="off" data-frames='[{"delay":10,"speed":300,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-                             data-margintop="[0,0,0,0]" data-marginright="[0,0,0,0]" data-marginbottom="[0,0,0,0]" data-marginleft="[0,0,0,0]" data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[240,175,200,150]" data-paddingright="[100,50,40,40]"
-                             data-paddingbottom="[0,0,0,0]" data-paddingleft="[100,50,40,40]" style="z-index: 5; white-space: nowrap; font-size: 20px; line-height: 22px; font-weight: 400; color: rgba(255, 255, 255, 1.00);">
-                            <!-- LAYER NR. 20 -->
-                            <div class="tp-caption  " id="slide-413-layer-15" data-x="['left','left','left','left']" data-hoffset="['100','100','100','100']" data-y="['top','top','top','top']" data-voffset="['100','100','100','100']" data-width="none" data-height="none" data-whitespace="nowrap"
-                                 data-type="column" data-responsive_offset="on" data-responsive="off" data-frames='[{"delay":"+0","speed":300,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-                                 data-columnwidth="100%" data-margintop="[0,0,0,0]" data-marginright="[0,0,0,0]" data-marginbottom="[0,0,0,0]" data-marginleft="[0,0,0,0]" data-textAlign="['inherit','inherit','center','center']" data-paddingtop="[0,0,0,0]"
-                                 data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 6; width: 100%;">
-                                <!-- LAYER NR. 21 -->
-                                <div class="tp-caption   tp-resizeme  alt-font" id="slide-413-layer-1" data-x="['left','left','center','center']" data-hoffset="['0','0','0','0']" data-y="['top','top','top','top']" data-voffset="['0','0','230','110']" data-fontsize="['110','90','72','70']"
-                                     data-lineheight="['100','90','80','70']" data-width="none" data-height="none" data-whitespace="['nowrap','nowrap','nowrap','normal']" data-type="text" data-basealign="slide" data-responsive_offset="on" data-frames='[{"delay":"+290","speed":2000,"frame":"0","from":"y:50px;opacity:0;fb:20px;","to":"o:1;fb:0;","ease":"Power4.easeOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;fb:0;","ease":"Power3.easeInOut"}]'
-                                     data-margintop="[0,0,0,0]" data-marginright="[0,0,0,0]" data-marginbottom="[30,20,30,30]" data-marginleft="[0,0,0,0]" data-textAlign="['inherit','inherit','center','center']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,40,40]"
-                                     data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,40,40]" style="z-index: 7; white-space: nowrap; font-size: 110px; line-height: 100px; font-weight: 400; color: rgba(255, 255, 255, 1.00); display: inline-block;">
-                                    We take care
-                                    <br />of the future
-                                </div>
-
-                                <!-- LAYER NR. 22 -->
-                                <div class="tp-caption   tp-resizeme" id="slide-413-layer-2" data-x="['left','left','center','center']" data-hoffset="['0','50','0','0']" data-y="['top','top','top','top']" data-voffset="['0','430','460','290']" data-fontsize="['40','30','32','24']" data-lineheight="['50','40','48','30']"
-                                     data-width="['640','360','100%','100%']" data-height="none" data-whitespace="normal" data-type="text" data-basealign="slide" data-responsive_offset="on" data-frames='[{"delay":"+490","speed":2000,"frame":"0","from":"y:50px;opacity:0;fb:20px;","to":"o:1;fb:0;","ease":"Power4.easeOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;fb:0;","ease":"Power3.easeInOut"}]'
-                                     data-margintop="[0,0,0,0]" data-marginright="[0,0,0,0]" data-marginbottom="[40,30,40,40]" data-marginleft="[0,0,0,0]" data-textAlign="['inherit','inherit','center','center']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]"
-                                     data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 8; min-width: 640px; max-width: 640px; white-space: normal; font-size: 40px; line-height: 50px; font-weight: 300; color: rgba(255, 255, 255, 1.00); display: block;">We added many new features in the update.</div>
-
-                                <!-- LAYER NR. 23 -->
-                                <a class="tp-caption rev-btn  tp-resizeme butn theme white-hover" href="@Url.Action("Service", "Services")" id="slide-413-layer-13" data-x="['left','left','center','center']" data-hoffset="['0','50','0','0']" data-y="['top','top','top','top']" data-voffset="['0','540','590','400']"
-                                   data-width="none" data-height="none" data-whitespace="['normal','nowrap','nowrap','nowrap']" data-type="button" data-actions='' data-basealign="slide" data-responsive_offset="on" data-frames='[{"delay":"+690","speed":2000,"frame":"0","from":"y:50px;opacity:0;fb:20px;","to":"o:1;fb:0;","ease":"Power4.easeOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;fb:0;","ease":"Power3.easeInOut"},{"frame":"hover","speed":"0","ease":"Linear.easeNone","to":"o:1;rX:0;rY:0;rZ:0;z:0;fb:0;"}]'
-                                   data-margintop="[0,0,0,0]" data-marginright="[0,0,0,0]" data-marginbottom="[0,0,0,0]" data-marginleft="[0,0,0,0]" data-textAlign="['inherit','inherit','inherit','inherit']" style="z-index: 9; display: inline-block; white-space: nowrap; outline:none;letter-spacing:1px;cursor:pointer;"><span>TAKE SERVICES</span></a>
-                            </div>
-                        </div>
-                    </div>
-
-                </li>
-            </ul>
-            <div style="" class="tp-static-layers">
-
-                <!-- LAYER NR. 28 -->
-                <div class="tp-caption   tp-static-layer" id="slider-151-layer-29" data-x="['right','right','right','right']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','bottom','bottom']" data-voffset="['-50','-50','119','119']" data-width="['260','260','200','70']"
-                     data-height="none" data-whitespace="nowrap" data-visibility="['on','on','on','off']" data-type="text" data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-startslide="0" data-endslide="2" data-frames='[{"delay":10,"speed":300,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-                     data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 17; min-width: 260px; max-width: 260px; white-space: nowrap; font-size: 15px; line-height: 15px; font-weight: 500; color: rgba(255, 255, 255, 1.00);">
-                    1
-                    <div class="blurslider-line" style="display:inline-block;width:40px;height:1px;background:#fff;margin: 10px 20px 4px 15px;"></div>Power Generators
-                </div>
-
-                <!-- LAYER NR. 29 -->
-                <div class="tp-caption tp-shape tp-shapewrapper  tp-static-layer" id="slider-151-layer-22" data-x="['right','right','right','right']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','bottom','bottom']" data-voffset="['-50','-50','102','102']"
-                     data-width="['300','300','240','30%']" data-height="50" data-whitespace="nowrap" data-visibility="['on','on','on','off']" data-type="shape" data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-startslide="0"
-                     data-endslide="2" data-frames='[{"delay":"bytrigger","speed":800,"frame":"0","from":"x:[-100%];","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power4.easeOut"},{"delay":"bytrigger","speed":500,"frame":"999","to":"x:[-100%];opacity:1;","mask":"x:0;y:0;s:inherit;e:inherit;","ease":"Power4.easeOut"}]'
-                     data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" data-blendmode="overlay" data-lasttriggerstate="reset"
-                     style="z-index: 18;background-color:rgba(0, 0, 0, 0.25);cursor:pointer;"></div>
-
-                <!-- LAYER NR. 30 -->
-                <div class="tp-caption tp-shape tp-shapewrapper  tp-static-layer" id="slider-151-layer-21" data-x="['right','right','right','right']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','bottom','bottom']" data-voffset="['-50','-50','102','102']"
-                     data-width="['300','300','240','30%']" data-height="50" data-whitespace="nowrap" data-visibility="['on','on','on','off']" data-type="shape" data-actions='[{"event":"mouseenter","action":"startlayer","layer":"slider-151-layer-22","delay":""},{"event":"mouseleave","action":"stoplayer","layer":"slider-151-layer-22","delay":""},{"event":"click","action":"jumptoslide","slide":"rs-411","delay":""}]'
-                     data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-startslide="0" data-endslide="2" data-frames='[{"delay":10,"speed":1000,"frame":"0","from":"x:[-100%];","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power4.easeOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"},{"frame":"hover","speed":"0","ease":"Power4.easeOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(0, 0, 0, 1.00);bs:solid;bw:0 0 0 0;"}]'
-                     data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" data-blendmode="overlay" style="z-index: 19;background-color:rgba(255, 255, 255, 0.05);border-color:rgba(0, 0, 0, 0);cursor:pointer;">
-                </div>
-
-                <!-- LAYER NR. 31 -->
-                <div class="tp-caption   tp-static-layer" id="slider-151-layer-28" data-x="['right','right','right','right']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','bottom','bottom']" data-voffset="['0','0','68','68']" data-width="['260','260','200','70']"
-                     data-height="none" data-whitespace="nowrap" data-visibility="['on','on','on','off']" data-type="text" data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-startslide="0" data-endslide="2" data-frames='[{"delay":10,"speed":300,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-                     data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 20; min-width: 260px; max-width: 260px; white-space: nowrap; font-size: 15px; line-height: 15px; font-weight: 500; color: rgba(255, 255, 255, 1.00);">
-                    2
-                    <div class="blurslider-line" style="display:inline-block;width:40px;height:1px;background:#fff;margin: 10px 20px 4px 15px;"></div>Air-Condtion
-                </div>
-
-                <!-- LAYER NR. 32 -->
-                <div class="tp-caption tp-shape tp-shapewrapper  tp-static-layer" id="slider-151-layer-24" data-x="['right','right','right','right']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','bottom','bottom']" data-voffset="['1','1','51','51']" data-width="['300','300','240','30%']"
-                     data-height="50" data-whitespace="nowrap" data-visibility="['on','on','on','off']" data-type="shape" data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-startslide="0" data-endslide="2" data-frames='[{"delay":"bytrigger","speed":800,"frame":"0","from":"x:[-100%];","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power4.easeOut"},{"delay":"bytrigger","speed":500,"frame":"999","to":"x:[-100%];opacity:1;","mask":"x:0;y:0;s:inherit;e:inherit;","ease":"Power4.easeOut"}]'
-                     data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" data-blendmode="overlay" data-lasttriggerstate="reset"
-                     style="z-index: 21;background-color:rgba(0, 0, 0, 0.25);cursor:pointer;"></div>
-
-                <!-- LAYER NR. 33 -->
-                <div class="tp-caption tp-shape tp-shapewrapper  tp-static-layer" id="slider-151-layer-23" data-x="['right','right','right','right']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','bottom','bottom']" data-voffset="['1','1','51','51']" data-width="['300','300','240','30%']"
-                     data-height="50" data-whitespace="nowrap" data-visibility="['on','on','on','off']" data-type="shape" data-actions='[{"event":"mouseenter","action":"startlayer","layer":"slider-151-layer-24","delay":""},{"event":"mouseleave","action":"stoplayer","layer":"slider-151-layer-24","delay":""},{"event":"click","action":"jumptoslide","slide":"rs-412","delay":""}]'
-                     data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-startslide="0" data-endslide="2" data-frames='[{"delay":10,"speed":1000,"frame":"0","from":"x:[-100%];","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power4.easeOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"},{"frame":"hover","speed":"0","ease":"Power4.easeOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(0, 0, 0, 1.00);bs:solid;bw:0 0 0 0;"}]'
-                     data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" data-blendmode="overlay" style="z-index: 22;background-color:rgba(255, 255, 255, 0.05);border-color:rgba(0, 0, 0, 0);cursor:pointer;">
-                </div>
-
-                <!-- LAYER NR. 34 -->
-                <div class="tp-caption   tp-static-layer" id="slider-151-layer-27" data-x="['right','right','right','right']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','bottom','bottom']" data-voffset="['50','50','17','17']" data-width="['260','260','200','70']"
-                     data-height="none" data-whitespace="nowrap" data-visibility="['on','on','on','off']" data-type="text" data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-startslide="0" data-endslide="2" data-frames='[{"delay":10,"speed":300,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-                     data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 23; min-width: 260px; max-width: 260px; white-space: nowrap; font-size: 15px; line-height: 15px; font-weight: 500; color: rgba(255, 255, 255, 1.00);">
-                    3
-                    <div class="blurslider-line" style="display:inline-block;width:40px;height:1px;background:#fff;margin: 10px 20px 4px 15px;"></div>Solar System
-                </div>
-
-                <!-- LAYER NR. 35 -->
-                <div class="tp-caption tp-shape tp-shapewrapper  tp-static-layer" id="slider-151-layer-26" data-x="['right','right','right','right']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','bottom','bottom']" data-voffset="['52','52','0','0']" data-width="['300','300','240','30%']"
-                     data-height="50" data-whitespace="nowrap" data-visibility="['on','on','on','off']" data-type="shape" data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-startslide="0" data-endslide="2" data-frames='[{"delay":"bytrigger","speed":800,"frame":"0","from":"x:[-100%];","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power4.easeOut"},{"delay":"bytrigger","speed":500,"frame":"999","to":"x:[-100%];opacity:1;","mask":"x:0;y:0;s:inherit;e:inherit;","ease":"Power4.easeOut"}]'
-                     data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" data-blendmode="overlay" data-lasttriggerstate="reset"
-                     style="z-index: 24;background-color:rgba(0, 0, 0, 0.25);cursor:pointer;"></div>
-
-                <!-- LAYER NR. 36 -->
-                <div class="tp-caption tp-shape tp-shapewrapper  tp-static-layer" id="slider-151-layer-25" data-x="['right','right','right','right']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','bottom','bottom']" data-voffset="['52','52','0','0']" data-width="['300','300','240','30%']"
-                     data-height="50" data-whitespace="nowrap" data-visibility="['on','on','on','off']" data-type="shape" data-actions='[{"event":"mouseenter","action":"startlayer","layer":"slider-151-layer-26","delay":""},{"event":"mouseleave","action":"stoplayer","layer":"slider-151-layer-26","delay":""},{"event":"click","action":"jumptoslide","slide":"rs-413","delay":""}]'
-                     data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-startslide="0" data-endslide="2" data-frames='[{"delay":10,"speed":1000,"frame":"0","from":"x:[-100%];","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power4.easeOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"},{"frame":"hover","speed":"0","ease":"Power4.easeOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(0, 0, 0, 1.00);bs:solid;bw:0 0 0 0;"}]'
-                     data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" data-blendmode="overlay" style="z-index: 25;background-color:rgba(255, 255, 255, 0.05);border-color:rgba(0, 0, 0, 0);cursor:pointer;">
-                </div>
-            </div>
-
-
-
-
-            <div class="tp-bannertimer" style="height: 10px; background-color: rgba(255, 255, 255, 0.25);"></div>
-        </div>*@
         <video autoplay muted loop style="width:100%;">
             <source src="~/video/HomeVideo.mp4" type="video/mp4" />
         </video>
@@ -529,43 +133,7 @@ else if (message == "error")
                     </div>
                 </div>
                 <!-- Product block start-->
-                @*  <div class="col-lg-12 col-md-12 col-sm-12 pt-sm-2 mt-lg-0 mt-md-5 mt-sm-4" style="border:2px solid #096ab2" id="product">
-
-                        <!-- slider start-->
-                        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img class="d-block w-100" src="~/img/content/service-01.jpg" alt="First slide">
-                                </div>
-                                <div class="carousel-item">
-                                    <img class="d-block w-100" src="~/img/content/service-02.jpg" alt="Second slide">
-                                </div>
-                                <div class="carousel-item">
-                                    <img class="d-block w-100" src="~/img/content/service-03.jpg" alt="Third slide">
-                                </div>
-
-                            </div>
-                            <div class="section-heading" style="padding-top:30px">
-                                <h3 class="text-uppercase">Products</h3>
-                                <p>Business consulting excepteur sint occaecat cupidatat consulting non proident, sunt in culpa quiBusiness consulting excepteur sint occaecat cupidatat consulting non proident, sunt in culpa quiBusiness consulting excepteur sint occaecat cupidatat consulting non proident, sunt in culpa quiBusiness consulting excepteur sint occaecat cupidatat consulting non proident, sunt in culpa quiBusiness consulting excepteur sint occaecat cupidatat consulting non proident, sunt in culpa quiBusiness consulting excepteur sint occaecat cupidatat consulting non proident, sunt in culpa quiBusiness consulting excepteur sint occaecat cupidatat consulting non proident, sunt in culpa quiBusiness consulting excepteur sint occaecat cupidatat consulting non proident, sunt in culpa quiBusiness consulting excepteur sint occaecat cupidatat consulting non proident, sunt in culpa qui officia deserunt laborum market.</p>
-
-                                <a class="read-more" href="#"><i class="fa fa-play-circle"></i> read more</a>
-                            </div>
-                            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
-
-
-                        </div>
-                        <!-- slider end-->
-
-                    </div>
-                *@
+               
                 <!-- Product block end-->
             </div>
         </div>
@@ -573,152 +141,13 @@ else if (message == "error")
 
     <!--end products and services block-->
     <!-- start about us section -->
-    @*<section class="padding-40px-bottom sm-padding-20px-bottom">
-
-            <div class="container">
-
-                <div class="section-heading">
-                    <h3 class="text-uppercase">Services</h3>
-                    <p class="width-55 sm-width-75 xs-width-95 center-col">Business consulting excepteur sint occaecat cupidatat consulting non proident, sunt in culpa qui officia deserunt laborum market.</p>
-                </div>
-
-                <div class="row">
-
-                    <!--start item-->
-                    <div class="col-md-4">
-                        <div class="feature-box-02">
-                            <div class="img-box"><img src="~/img/content/service-01.jpg" alt="" /></div>
-                            <div class="feature-textbox padding-25px-all sm-padding-20px-tb sm-padding-15px-lr text-center bg-light-gray">
-                                <h4 class="title font-size16 sm-font-size15 font-weight-600 alt-font margin-10px-bottom">Who We Are</h4>
-                                <p class="feature-desc sm-font-size14 sm-line-height-26 sm-margin-15px-bottom serviceContent">we help you to grow up your best business and solution for your impressive projects.</p>
-                                <a class="read-more" href="#!"><i class="fa fa-play-circle"></i> read more</a>
-
-                            </div>
-                        </div>
-                    </div>
-                    <!--end item-->
-                    <!--start item-->
-                    <div class="col-md-4">
-                        <div class="feature-box-02">
-                            <div class="img-box"><img src="~/img/content/service-02.jpg" alt="" /></div>
-                            <div class="feature-textbox padding-25px-all sm-padding-20px-tb sm-padding-15px-lr text-center bg-light-gray">
-                                <h4 class="title font-size16 sm-font-size15 font-weight-600 alt-font margin-10px-bottom">What We Do</h4>
-                                <p class="feature-desc sm-font-size14 sm-line-height-26 sm-margin-15px-bottom serviceContent">we help you to grow up your best business and solution for your impressive projects.</p>
-                                <a class="read-more" href="#!"><i class="fa fa-play-circle"></i> read more</a>
-
-                            </div>
-                        </div>
-                    </div>
-                    <!--end item-->
-                    <!--start item-->
-                    <div class="col-md-4">
-                        <div class="feature-box-02">
-                            <div class="img-box"><img src="~/img/content/service-03.jpg" alt="" /></div>
-                            <div class="feature-textbox padding-25px-all sm-padding-20px-tb sm-padding-15px-lr text-center bg-light-gray">
-                                <h4 class="title font-size16 sm-font-size15 font-weight-600 alt-font margin-10px-bottom">Our Success</h4>
-                                <p class="feature-desc sm-font-size14 sm-line-height-26 sm-margin-15px-bottom serviceContent">we help you to grow up your best business and solution for your impressive projects.</p>
-                                <a class="read-more" href="#!"><i class="fa fa-play-circle"></i> read more</a>
-
-                            </div>
-                        </div>
-                    </div>
-                    <!--end item-->
-
-                </div>
-
-            </div>
-        </section>*@
+  
     <!-- end about us section -->
     <!-- start service section -->
-    @*<section>
-            <div class="container">
-                <div class="section-heading">
-                    <h3 class="text-uppercase">Products</h3>
-                    <p class="width-55 sm-width-75 xs-width-95 center-col">Business consulting excepteur sint occaecat cupidatat consulting non proident, sunt in culpa qui officia deserunt laborum market.</p>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4 col-md-6 margin-30px-bottom xs-margin-20px-bottom">
-                        <div class="services-block-three h-100">
-                            <a href="#!" class="h-100">
-                                <div class="padding-15px-bottom">
-                                    <i class="icon-tools"></i>
-                                </div>
-                                <h4>Contant Marketing</h4>
-                                <p>Exhaustive technology of implementing multi purpose projects is putting your project successful.</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 margin-30px-bottom xs-margin-20px-bottom">
-                        <div class="services-block-three h-100">
-                            <a href="#!" class="h-100">
-                                <div class="padding-15px-bottom">
-                                    <i class="icon-layers"></i>
-                                </div>
-                                <h4>Saving Investments</h4>
-                                <p>Exhaustive technology of implementing multi purpose projects is putting your project successful.</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="services-block-three col-lg-4 col-md-6 margin-30px-bottom xs-margin-20px-bottom">
-                        <div class="services-block-three h-100">
-                            <a href="#!" class="h-100">
-                                <div class="padding-15px-bottom">
-                                    <i class="icon-gears"></i>
-                                </div>
-                                <h4>Detail Report</h4>
-                                <p>Exhaustive technology of implementing multi purpose projects is putting your project successful.</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="services-block-three col-lg-4 col-md-6 sm-margin-30px-bottom xs-margin-20px-bottom">
-                        <div class="services-block-three h-100">
-                            <a href="#!" class="h-100">
-                                <div class="padding-15px-bottom">
-                                    <i class="icon-mobile"></i>
-                                </div>
-                                <h4>Investment Plan</h4>
-                                <p>Exhaustive technology of implementing multi purpose projects is putting your project successful.</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="services-block-three col-lg-4 col-md-6 xs-margin-20px-bottom">
-                        <div class="services-block-three h-100">
-                            <a href="#!" class="h-100">
-                                <div class="padding-15px-bottom">
-                                    <i class="icon-presentation"></i>
-                                </div>
-                                <h4>Media Marketing</h4>
-                                <p>Exhaustive technology of implementing multi purpose projects is putting your project successful.</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="services-block-three col-lg-4 col-md-6">
-                        <div class="services-block-three h-100">
-                            <a href="#!" class="h-100">
-                                <div class="padding-15px-bottom">
-                                    <i class="icon-genius"></i>
-                                </div>
-                                <h4>Finance Analysis</h4>
-                                <p>Exhaustive technology of implementing multi purpose projects is putting your project successful.</p>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- end -->
-                </div>
-
-            </div>
-        </section>*@
+   
     <!-- end service section -->
     <!-- start advice section -->
-    @*<section class="parallax" data-overlay-dark="7" data-background="../img/bg/bg1.jpg">
-            <div class="container text-center">
-                <div class="section-heading half white">
-                    <h4>Are you looking for professional advice?</h4>
-                    <p>Our best service providers are offering free inspection.</p>
-                </div>
-                <a href="#!" class="butn theme white-hover"><span>Contact Us</span></a>
-            </div>
-        </section>*@
+   
     <!-- end advice section -->
     <!-- start pricing table -->
     <section>
@@ -735,12 +164,12 @@ else if (message == "error")
                     <div class="col-lg-4 sm-margin-30px-bottom">
                         <div class="single-plan text-center" data-toggle="modal" data-target="#exampleModalLongPackage1" id="PackageOne">
                             <div class="head-plan bg-dark-gray">
-                                <h4 class="font-size22 sm-font-size20 xs-font-size18">Classic</h4>
+                                <h4 class="font-size22 sm-font-size20 xs-font-size18">Silver</h4>
                             </div>
                             <div class="body-plan">
                                 <div class="price-plan">
                                     <h3><sup>$</sup>49</h3>
-                                    <span>Per Month</span>
+                                    <span>Monthly</span>
                                     <i class="icon-briefcase"></i>
                                 </div>
                                 <div class="feat-plan">
@@ -762,12 +191,12 @@ else if (message == "error")
                     <div class="col-lg-4 sm-margin-30px-bottom">
                         <div class="single-plan text-center">
                             <div class="head-plan bg-theme">
-                                <h4 class="font-size22 sm-font-size20 xs-font-size18">Popular</h4>
+                                <h4 class="font-size22 sm-font-size20 xs-font-size18">Golden</h4>
                             </div>
                             <div class="body-plan">
                                 <div class="price-plan">
                                     <h3><sup>$</sup>39</h3>
-                                    <span>Per Month</span>
+                                    <span>Quaterly</span>
                                     <i class="icon-lightbulb"></i>
                                 </div>
                                 <div class="feat-plan">
@@ -793,14 +222,14 @@ else if (message == "error")
                             </div>
                             <div class="body-plan">
                                 <div class="price-plan">
-                                    <h3><sup>$</sup>59</h3>
-                                    <span>Per Month</span>
+                                    <h3><sup>Rs.</sup>30,000</h3>
+                                    <span>Annually</span>
                                     <i class="icon-layers"></i>
                                 </div>
                                 <div class="feat-plan">
                                     <ul>
-                                        <li>Business Analysing</li>
-                                        <li>Finance Analysing</li>
+                                        <li>Free Service/Labor Charges</li>
+                                        <li></li>
                                         <li>Training & Workshop</li>
                                     </ul>
                                 </div>
@@ -812,88 +241,11 @@ else if (message == "error")
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
-
-
         </div>
     </section>
     <!-- end pricing table -->
-    <!-- start testmonials section -->
-    @*<section class="testimonials-section bg-light-gray">
-            <div class="container">
-
-                <div class="section-heading">
-                    <h3 class="text-uppercase">What Our Client Say</h3>
-                </div>
-
-                <div class="width-85 xs-width-100 center-col">
-                    <div class="testimonial-style4 owl-carousel owl-theme">
-
-                        <div class="testimonial-grid bg-white">
-
-                            <div class="testmonial-holder">
-                                <img src="~/img/testmonials/t-4.jpg" alt="">
-                            </div>
-
-                            <div class="details">
-                                <i class="fas fa-quote-left font-size32 opacity1 margin-20px-bottom sm-margin-15px-bottom"></i>
-                                <p class="width-85 xs-width-95">Rchitecto beatae vitae dicta sunt explicabo. Nemo enimipsam voluptatea quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptanesciunt.</p>
-
-                                <div class="client-info">
-                                    <h4 class="font-size18 md-font-size17 sm-font-size16 font-weight-600 no-margin">Stepha Kruse</h4>
-                                    <span class="text-uppercase text-theme-color font-size12 letter-spacing-1">Marketing Lead</span>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="testimonial-grid bg-white">
-
-                            <div class="testmonial-holder">
-                                <img src="~/img/testmonials/t-5.jpg" alt="">
-                            </div>
-
-                            <div class="details">
-                                <i class="fas fa-quote-left font-size32 opacity1 margin-20px-bottom sm-margin-15px-bottom"></i>
-                                <p class="width-85 xs-width-95">Beatae rchitecto vitae dicta sunt explicabo. Nemo enimipsam voluptatea quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptanesciunt.</p>
-
-                                <div class="client-info">
-                                    <h4 class="font-size18 md-font-size17 sm-font-size16 font-weight-600 no-margin">Dunican keithly</h4>
-                                    <span class="text-uppercase text-theme-color font-size12 letter-spacing-1">Networking Lead</span>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="testimonial-grid bg-white">
-
-                            <div class="testmonial-holder">
-                                <img src="~/img/testmonials/t-6.jpg" alt="">
-                            </div>
-
-                            <div class="details">
-                                <i class="fas fa-quote-left font-size32 opacity1 margin-20px-bottom sm-margin-15px-bottom"></i>
-                                <p class="width-85 xs-width-95">Explicabo chitecto beatae vitae dicta sunt. Nemo enimipsam voluptatea quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptanesciunt.</p>
-
-                                <div class="client-info">
-                                    <h4 class="font-size18 md-font-size17 sm-font-size16 font-weight-600 no-margin">Alivin Corondo</h4>
-                                    <span class="text-uppercase text-theme-color font-size12 letter-spacing-1">Networking Lead</span>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </section>*@
-    <!-- end testmonials section -->
     <!-- start contact info section -->
     <section class="bg-light-gray" data-scroll-index="6">
         <div class="container">
@@ -925,7 +277,6 @@ else if (message == "error")
                             <div class="cont">
                                 <h6 class="margin-5px-bottom font-size16 md-font-size15 xs-font-size14 font-weight-600">Address: </h6>
                                 <p class="no-margin">suite# 304 & 307, anum blessings, KCHSU, Sharah e faisal, Karachi. </p>
-                                <p class="no-margin">Regina ST, London, SK 8GH.</p>
                             </div>
                         </div>
                         <div class="item bg-white">
@@ -944,23 +295,8 @@ else if (message == "error")
     </section>
     <!-- end contact info section -->
     <!-- start clients section -->
-    @*<div class="section-clients bg-light-gray">
-            <div class="container">
-                <div class="owl-carousel owl-theme clients" id="clients">
-                    <div class="item"><img alt="partner-image" src="~/img/partners/client-01.png"></div>
-                    <div class="item"><img alt="partner-image" src="~/img/partners/client-02.png"></div>
-                    <div class="item"><img alt="partner-image" src="~/img/partners/client-03.png"></div>
-                    <div class="item"><img alt="partner-image" src="~/img/partners/client-04.png"></div>
-                    <div class="item"><img alt="partner-image" src="~/img/partners/client-05.png"></div>
-                    <div class="item"><img alt="partner-image" src="~/img/partners/client-06.png"></div>
-                </div>
-            </div>
-        </div>*@
     <!-- end clients section -->
-
 </div>
-
-
 <div class="modal fadeIn" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="background:#61616161;">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

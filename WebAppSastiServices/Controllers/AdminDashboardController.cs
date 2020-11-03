@@ -105,6 +105,24 @@ namespace WebAppSastiServices.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult SessionEnd()
+        {
+            string SessionStatus;
+
+            if(Session["UserID"] != null)
+            {
+                SessionStatus = "Continue";
+            }
+            else
+            {
+                SessionStatus = "Stop";
+            }
+
+            return Json(SessionStatus, JsonRequestBehavior.AllowGet);
+
+        }
+
+
         public ActionResult OrderDetails(int? ID)
         {
             var details = (from d in db.TRNCustomerOrders
@@ -142,7 +160,6 @@ namespace WebAppSastiServices.Controllers
             ViewBag.preferredTime = new SelectList(db.STPPrefferedTimes, "ID", "TimeRange");
             ViewBag.status = new SelectList(db.STPStatus.Where(s => s.STPStatusType.Description == "Orders"), "ID", "Description");
 
-
             var details = (from d in db.TRNCustomerOrders
                            where (d.OrderId == ID)
                            select d).SingleOrDefault();
@@ -150,14 +167,26 @@ namespace WebAppSastiServices.Controllers
             return View(details);
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult OrderEdit(TRNCustomerOrder order)
         {
-
-
+            if (ModelState.IsValid) {
+                try { 
             db.Entry(order).State = EntityState.Modified;
             db.SaveChanges();
 
             return Redirect(Url.Action("Index", "AdminDashboard"));
+                }
+                catch
+                {
+                    return View(order);
+                }
+            }
+            else
+            {
+                return View(order);
+            }
+
         }
 
         public ActionResult AvailedOrders()
@@ -276,14 +305,6 @@ namespace WebAppSastiServices.Controllers
         //    return View();
         //}
         public ActionResult AdminProfile()
-        {
-            return View();
-        }
-        public ActionResult Login()
-        {
-            return View();
-        }
-        public ActionResult LockScreen()
         {
             return View();
         }
@@ -496,9 +517,5 @@ namespace WebAppSastiServices.Controllers
         }
 
 
-        public ActionResult Maps()
-        {
-            return View();
-        }
     }
 }
