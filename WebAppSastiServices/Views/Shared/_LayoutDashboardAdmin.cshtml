@@ -38,7 +38,6 @@
     <link rel="stylesheet" href="~/css/dashboard/custom.css" />
 
 
-
     @RenderSection("styles", required: false)
 
 </head>
@@ -104,43 +103,11 @@
                                 <li><a href="@Url.Action("SuppliersAC","AdminDashboard")">AC</a></li>
                             </ul>
                         </li>
-                        @*
-        <li>
-            <a href="#!">
-                <i class="menu-icon icon-code"></i><span>Forms</span><i class="accordion-icon fa fa-angle-left"></i>
-            </a>
-            <ul>
-                <li><a href="form-elements.html">Elements</a></li>
-                <li><a href="form-wizard.html">Form Wizard</a></li>
-                <li><a href="form-file-upload.html">File Upload</a></li>
-                <li><a href="form-image-crop.html">Image Crop</a></li>
-                <li><a href="form-image-zoom.html">Image Zoom</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="#!">
-                <i class="menu-icon icon-format_list_bulleted"></i><span>Tables</span><i class="accordion-icon fa fa-angle-left"></i>
-            </a>
-            <ul>
-                <li><a href="table-static.html">Static</a></li>
-                <li><a href="table-responsive.html">Responsive</a></li>
-                <li><a href="table-data.html">Data Tables</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="charts.html">
-                <i class="menu-icon icon-show_chart"></i><span>Charts</span>
-            </a>
-        </li>
-        <li>
-            <a href="#!">
-                <i class="menu-icon icon-my_location"></i><span>Maps</span><i class="accordion-icon"></i>
-            </a>
-        </li>*@
+
                         <li class="menu-divider"></li>
                         <li>
                             <a href="#!">
-                                 <i class="fas fa-power-off"></i> by<span> 9Soft Solution</span>
+                                <i class="fas fa-power-off"></i> by<span> 9Soft Solution</span>
                             </a>
                         </li>
                     </ul>
@@ -483,6 +450,26 @@
     <!-- custom scripts -->
     <script src="~/js/Dashboard/main.js"></script>
     <script src="~/js/Dashboard/custom.js"></script>
+
+    <script>
+        setInterval(function ()
+        {
+             $.ajax({
+                type: "GET",
+                url: '@Url.Action("SessionEnd","Account")',
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                "beforeSend": function () { $('#ajax-loader').show() },
+                "complete": function () { $('#ajax-loader').hide() },
+                success: function (orders) {
+
+                },
+                error: function (xhr, status) {
+                   
+                }
+            });
+        }, 30000);
+    </script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

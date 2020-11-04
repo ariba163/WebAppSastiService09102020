@@ -7,6 +7,8 @@ using WebAppSastiServices.Models.ViewModel;
 using WebAppSastiServices.Models.EntityManager;
 using WebAppSastiServices.Models.DB;
 using System.Web.Helpers;
+using System.Collections;
+using System.Web.Caching;
 
 namespace WebAppSastiServices.Controllers
 {
@@ -73,6 +75,19 @@ namespace WebAppSastiServices.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        public ActionResult SessionEnd()
+        {
+            //Session["DateStart"] != null{
+            //    Session["DateStart"]
+            //    if ((Session["DateStart"]DateTime.Now.TimeOfDay)>=20) {
+            //        Session.Abandon();
+            //        Dispose();
+            //    }
+            
+            //}
+            return RedirectToAction("Index", "Home");
+
+        }
 
 
         [HttpPost]

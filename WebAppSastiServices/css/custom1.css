@@ -4,7 +4,9 @@
 .scrollHeader .navbar-nav li:hover a, .navbar-nav li:hover a {
     color: #f6c924;
 }
-
+#top-bar {
+    background: #595959bf!important;
+}
 @media screen and (min-width: 992px) {
     .scrollHeader .navbar-brand img {
         max-height: 55px;

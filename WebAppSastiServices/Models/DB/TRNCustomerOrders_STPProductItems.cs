@@ -19,7 +19,7 @@ namespace WebAppSastiServices.Models.DB
         public int STPProductItemsID { get; set; }
         public Nullable<int> QTY { get; set; }
     
-        public virtual TRNCustomerOrder TRNCustomerOrder { get; set; }
         public virtual STPServiceProductItem STPServiceProductItem { get; set; }
+        public virtual TRNCustomerOrder TRNCustomerOrder { get; set; }
     }
 }

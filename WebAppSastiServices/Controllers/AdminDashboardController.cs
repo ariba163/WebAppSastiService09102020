@@ -152,6 +152,7 @@ namespace WebAppSastiServices.Controllers
 
             return Redirect(Url.Action("Index", "AdminDashboard"));
         }
+        [HttpGet]
         public ActionResult OrderEdit(int? ID)
         {
             var serviceID = (from d in db.TRNCustomerOrders where (d.OrderId == ID) select d.ServiceTypeId).FirstOrDefault();
@@ -170,23 +171,25 @@ namespace WebAppSastiServices.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult OrderEdit(TRNCustomerOrder order)
         {
-            if (ModelState.IsValid) {
-                try { 
+            try
+            {
+                if (ModelState.IsValid) 
+                {
+               
             db.Entry(order).State = EntityState.Modified;
             db.SaveChanges();
 
             return Redirect(Url.Action("Index", "AdminDashboard"));
                 }
-                catch
+                else
                 {
                     return View(order);
                 }
             }
-            else
+            catch
             {
                 return View(order);
             }
-
         }
 
         public ActionResult AvailedOrders()
@@ -283,7 +286,7 @@ namespace WebAppSastiServices.Controllers
 
         public ActionResult Register()
         {
-            ViewBag.Roles = new SelectList(db.StpRoles,"ID","Description");
+            ViewBag.Roles = new SelectList(db.StpRoles.Where(d=>d.Description!="Admin"),"ID","Description");
             List<SelectListItem> Categories = new List<SelectListItem>() {
                 new SelectListItem() {Value="0", Text="- Select Role Category -" },
            };
