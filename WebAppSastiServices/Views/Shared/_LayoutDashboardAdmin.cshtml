@@ -450,26 +450,19 @@
     <!-- custom scripts -->
     <script src="~/js/Dashboard/main.js"></script>
     <script src="~/js/Dashboard/custom.js"></script>
-
     <script>
         setInterval(function ()
         {
-             $.ajax({
-                type: "GET",
+            $.ajax({
                 url: '@Url.Action("SessionEnd","Account")',
-                dataType: "json",
-                contentType: "application/json; charset=utf-8",
-                "beforeSend": function () { $('#ajax-loader').show() },
-                "complete": function () { $('#ajax-loader').hide() },
-                success: function (orders) {
-
-                },
-                error: function (xhr, status) {
-                   
+                dataType:'json',
+                success: function (data) {
+                    if (data == true) {window.location.href = "Account/Login";}
                 }
-            });
+                 })
         }, 30000);
     </script>
+
     @RenderSection("scripts", required: false)
 </body>
 </html>

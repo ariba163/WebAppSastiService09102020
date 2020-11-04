@@ -75,18 +75,29 @@ namespace WebAppSastiServices.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult SessionEnd()
+        public JsonResult SessionEnd()
         {
-            //Session["DateStart"] != null{
-            //    Session["DateStart"]
-            //    if ((Session["DateStart"]DateTime.Now.TimeOfDay)>=20) {
-            //        Session.Abandon();
-            //        Dispose();
-            //    }
-            
-            //}
-            return RedirectToAction("Index", "Home");
-
+            if(Session["RoleID"] != null || Session["LoggedInTime"] != null)
+            {
+                DateTime loggedInTime = Convert.ToDateTime(Session["LoggedInTime"]);
+                TimeSpan elapsedtimespan = DateTime.Now.Subtract(loggedInTime);
+                int elapsedtime = Convert.ToInt32(elapsedtimespan.TotalMinutes);
+                elapsedtime = 25;
+                if (elapsedtime >= 20) 
+                {
+                    Session.Abandon();
+                    Dispose();
+                    return Json(true,JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(false , JsonRequestBehavior.DenyGet);
+                }
+            }
+            else
+            {
+                return Json(false, JsonRequestBehavior.DenyGet);
+            }
         }
 
 
@@ -114,6 +125,7 @@ namespace WebAppSastiServices.Controllers
                             int RoleCategoryID = db.StpUsers.Find(id).STPRolesCategory.ID;
                             string RoleCategory = db.StpUsers.Find(id).STPRolesCategory.Description;
                             Session["RoleID"] = RoleID;
+                            Session["LoggedInTime"] = DateTime.Now;
 
                             string Message = "";
 
