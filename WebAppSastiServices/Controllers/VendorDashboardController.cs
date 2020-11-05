@@ -13,11 +13,8 @@ namespace WebAppSastiServices.Controllers
     {
         SastaServicesDBEntities db = new SastaServicesDBEntities();
       
-
-
-        //------AC start--------------
         // GET: VendorDashboard
-        public ActionResult ACIndex()
+        public ActionResult Index()
         {
             
             ViewBag.Message = TempData["Message"];
@@ -75,10 +72,10 @@ namespace WebAppSastiServices.Controllers
             }
 
             Session["serviceType"] = value;
-            return RedirectToAction("ACIndex");
+            return RedirectToAction("Index");
         }
 
-        public ActionResult ACLatestActOrders()
+        public ActionResult LatestActOrders()
         {
             string serviceType = Session["serviceType"].ToString();
 
@@ -116,12 +113,12 @@ namespace WebAppSastiServices.Controllers
             }
         
     }
-        public ActionResult ACAvailedOrder()
+        public ActionResult AvailedOrder()
         {
             return View();
         }
 
-        public ActionResult ACAvailedOrdersData()
+        public ActionResult AvailedOrdersData()
         {
 
             string serviceType = Session["serviceType"].ToString();
@@ -186,17 +183,10 @@ namespace WebAppSastiServices.Controllers
                                    select d.ID).First();
             db.SaveChanges();
 
-            return Redirect(Url.Action("ACIndex", "VendorDashboard"));
+            return Redirect(Url.Action("Index", "VendorDashboard"));
         }
-        public ActionResult ACEmail()
-        {
-            return View();
-        }
-        public ActionResult ACProfile()
-        {
-            return View();
-        }
-        public ActionResult ACServiceData()
+
+        public ActionResult ServiceData()
         {
 
 
@@ -235,7 +225,7 @@ namespace WebAppSastiServices.Controllers
 
         }
 
-        public ActionResult ACViewServices()
+        public ActionResult ViewServices()
         {
             ViewBag.Message = TempData["Message"];
             return View();
@@ -259,7 +249,7 @@ namespace WebAppSastiServices.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ACCreateServices(service obj)
+        public ActionResult CreateServices(service obj)
         {
             string serviceType = Session["serviceType"].ToString();
             if (serviceType != null)
@@ -289,7 +279,7 @@ namespace WebAppSastiServices.Controllers
                     }
                 }
             }
-            return Redirect(Url.Action("ACViewServices", "VendorDashboard"));
+            return Redirect(Url.Action("ViewServices", "VendorDashboard"));
 
         }
 
@@ -304,16 +294,8 @@ namespace WebAppSastiServices.Controllers
             public decimal ServiceRate { get; set; }
         }
 
-        public ActionResult ACEditServices()
-        {
-            return View();
-        }
-        public ActionResult ACDeleteServices()
-        {
-            return View();
-        }
 
-        public ActionResult ACItemsData()
+        public ActionResult ItemsData()
         {
 
 
@@ -342,7 +324,7 @@ namespace WebAppSastiServices.Controllers
             }
             else { return Json(new { products = false }, JsonRequestBehavior.AllowGet); }
         }
-        public ActionResult ACViewItems()
+        public ActionResult ViewItems()
         {
             return View();
         }
@@ -397,7 +379,7 @@ namespace WebAppSastiServices.Controllers
             //    ViewBag.Message = "You have not specified a file.";
             //}
 
-            return Redirect(Url.Action("ACViewItems", "VendorDashboard"));
+            return Redirect(Url.Action("ViewItems", "VendorDashboard"));
         }
 
 
@@ -414,17 +396,15 @@ namespace WebAppSastiServices.Controllers
             public decimal SellingPrice { get; set; }
         }
 
-        public ActionResult ACEditItems()
-        {
-            return View();
-        }
-        public ActionResult ACDeleteItems()
-        {
-            return View();
-        }
-        //------AC end
 
-      
+        public ActionResult ACEmail()
+        {
+            return View();
+        }
+        public ActionResult ACProfile()
+        {
+            return View();
+        }
 
 
 

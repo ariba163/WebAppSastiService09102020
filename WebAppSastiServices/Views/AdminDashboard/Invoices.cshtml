@@ -1,11 +1,12 @@
-﻿
+﻿@model WebAppSastiServices.Models.DB.TRNInvoice
 
 @{
-    ViewBag.Title = "QuickCallRequest";
+    ViewBag.Title = "Invoices";
     Layout = "~/Views/Shared/_LayoutDashboardAdmin.cshtml";
 }
 
-<div class="modal fadeIn" id="CallRequestModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="background:#61616161;">
+
+<div class="modal fadeIn" id="InvoicesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="background:#61616161;">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -39,17 +40,19 @@
             <div class="col-lg-12 col-md-12">
                 <div class="card card-white">
                     <div class="card-heading clearfix">
-                        <h4 class="card-title">Latest Quick Call Requests</h4>
+                        <h4 class="card-title">Invoices</h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive invoice-table">
-                            <table id="CallRequestTbl" class="display" style="width:100%">
+                            <table id="Invoices" class="display" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th>Request#</th>
+                                        <th>Invoice#</th>
+                                        <th>Order#</th>
                                         <th>Customer Name</th>
                                         <th>Customer Contact</th>
-                                        <th>Created DateTime</th>
+                                        <th>Services</th>
+                                        <th>Products</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -89,7 +92,7 @@
 
 
         $(document).ready(function () {
-            var Table = $("#CallRequestTbl").DataTable();
+            var Table = $("#Invoices").DataTable();
 
             //not take time on first load------start
             var count = 0;
@@ -103,22 +106,24 @@
             function ajax() {
             $.ajax({
                 type: "GET",
-                url: '@Url.Action("QuickCallData")',
+                url: '@Url.Action("InvoicesData")',
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 "beforeSend": function () { $('#ajax-loader').show() },
                 "complete": function () { $('#ajax-loader').hide() },
                 success: function (Requests) {
-                    
+
                 console.log(Requests);
 
             Requests.map((item, index) => {
 
                 Table.row.add([
                     item.ID,
-                    item.UserName,
-                    item.UserContact,
-                    item.CreatedDateTime
+                    item.OrderID,
+                    item.CustomerName,
+                    item.CustomerContact,
+                    item.Services,
+                    item.Products
                 ]).draw(false);
             });
 
@@ -141,4 +146,5 @@
 
     </script>
 }
+
 

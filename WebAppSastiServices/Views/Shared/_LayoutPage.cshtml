@@ -25,9 +25,6 @@
     <link rel="stylesheet" href="~/css/imagehover.min.css" />
     <link rel="stylesheet" href="~/css/custom1.css" />
 
-
-
-
     <!-- Start of Async Callbell Code -->
     <script>
         window.callbellSettings = {
@@ -38,11 +35,6 @@
         (function () { var w = window; var ic = w.callbell; if (typeof ic === "function") { ic('reattach_activator'); ic('update', callbellSettings); } else { var d = document; var i = function () { i.c(arguments) }; i.q = []; i.c = function (args) { i.q.push(args) }; w.Callbell = i; var l = function () { var s = d.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = 'https://dash.callbell.eu/include/' + window.callbellSettings.token + '.js'; var x = d.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x); }; if (w.attachEvent) { w.attachEvent('onload', l); } else { w.addEventListener('load', l, false); } } })()
     </script>
     <!-- End of Async Callbell Code -->
-
-
-
-
-
 </head>
 
 <body>
@@ -111,15 +103,15 @@
                                             <a href="@Url.Action("Service", "Services")">Services</a>
                                         </li>
                                         @*<li>
-            <a href="#!">Shop</a>
-            <ul>
-                <li><a href="@Url.Action("Products", "Shop")">Products</a></li>
-                <li><a href="@Url.Action("ProductGrid", "Shop")">Product Grid</a></li>
-                <li><a href="@Url.Action("ProductDetail", "Shop")">Product Detail</a></li>
-                <li><a href="@Url.Action("ShopCart", "Shop")">Shop Cart</a></li>
-                <li><a href="@Url.Action("ShopCheckout", "Shop")">Shop Checkout</a></li>
-            </ul>
-        </li>*@
+                                                <a href="#!">Shop</a>
+                                                <ul>
+                                                    <li><a href="@Url.Action("Products", "Shop")">Products</a></li>
+                                                    <li><a href="@Url.Action("ProductGrid", "Shop")">Product Grid</a></li>
+                                                    <li><a href="@Url.Action("ProductDetail", "Shop")">Product Detail</a></li>
+                                                    <li><a href="@Url.Action("ShopCart", "Shop")">Shop Cart</a></li>
+                                                    <li><a href="@Url.Action("ShopCheckout", "Shop")">Shop Checkout</a></li>
+                                                </ul>
+                                            </li>*@
 
                                         <li>
                                             <a href="@Url.Action("AboutUs", "Home")">About Us</a>
@@ -167,32 +159,32 @@
                                     <div class="attr-nav sm-no-margin sm-margin-70px-right xs-margin-65px-right">
                                         <ul>
                                             @*<li class="dropdown sm-margin-20px-right xs-margin-15px-right">
-                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                                    <i class="fas fa-shopping-cart"></i>
-                                                    <span class="badge bg-theme">3</span>
-                                                </a>
-                                                <ul class="dropdown-menu cart-list">
-                                                    <li>
-                                                        <a href="#!" class="photo"><img src="~/img/shop/cart-thumb01.jpg" class="cart-thumb" alt="" /></a>
-                                                        <h6><a href="#!">Sneakers Shoe </a></h6>
-                                                        <p>2x - <span class="price">$99.99</span></p>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#!" class="photo"><img src="~/img/shop/cart-thumb02.jpg" class="cart-thumb" alt="" /></a>
-                                                        <h6><a href="#!">Digital Watch</a></h6>
-                                                        <p>1x - <span class="price">$33.33</span></p>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#!" class="photo"><img src="~/img/shop/cart-thumb03.jpg" class="cart-thumb" alt="" /></a>
-                                                        <h6><a href="#!">Headphones</a></h6>
-                                                        <p>2x - <span class="price">$99.99</span></p>
-                                                    </li>
-                                                    <li class="total bg-theme">
-                                                        <span class="pull-left"><strong>Total</strong>: $233.31</span>
-                                                        <a href="#!" class="butn small btn-cart white"><span>View Cart</span></a>
-                                                    </li>
-                                                </ul>
-                                            </li>*@
+                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                        <i class="fas fa-shopping-cart"></i>
+                                                        <span class="badge bg-theme">3</span>
+                                                    </a>
+                                                    <ul class="dropdown-menu cart-list">
+                                                        <li>
+                                                            <a href="#!" class="photo"><img src="~/img/shop/cart-thumb01.jpg" class="cart-thumb" alt="" /></a>
+                                                            <h6><a href="#!">Sneakers Shoe </a></h6>
+                                                            <p>2x - <span class="price">$99.99</span></p>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#!" class="photo"><img src="~/img/shop/cart-thumb02.jpg" class="cart-thumb" alt="" /></a>
+                                                            <h6><a href="#!">Digital Watch</a></h6>
+                                                            <p>1x - <span class="price">$33.33</span></p>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#!" class="photo"><img src="~/img/shop/cart-thumb03.jpg" class="cart-thumb" alt="" /></a>
+                                                            <h6><a href="#!">Headphones</a></h6>
+                                                            <p>2x - <span class="price">$99.99</span></p>
+                                                        </li>
+                                                        <li class="total bg-theme">
+                                                            <span class="pull-left"><strong>Total</strong>: $233.31</span>
+                                                            <a href="#!" class="butn small btn-cart white"><span>View Cart</span></a>
+                                                        </li>
+                                                    </ul>
+                                                </li>*@
                                             <li class="search"><a href="#!"><i class="fas fa-search"></i></a></li>
                                         </ul>
                                     </div>
@@ -270,7 +262,7 @@
                             <p class="margin-20px-bottom">
                                 We are available 24/7 to provide you best quality services.
                             </p>
-                            <a  href="@Url.Action("AboutUs", "Home")" class="butn theme white-hover small"><span>Read More</span></a>
+                            <a href="@Url.Action("AboutUs", "Home")" class="butn theme white-hover small"><span>Read More</span></a>
                         </div>
                     </div>
                 </div>
@@ -295,6 +287,20 @@
     <!-- start scroll to top -->
     <a href="#!" class="scroll-to-top"><i class="fas fa-angle-up" aria-hidden="true"></i></a>
     <!-- end scroll to top -->
+
+
+    <script>
+        setInterval(function ()
+        {
+            $.ajax({
+                url: '@Url.Action("SessionEnd","Account")',
+                dataType:'json',
+                success: function (data) {
+                    if (data == true) {window.location.href = "Account/Login";}
+                }
+                 })
+        }, 30000);
+    </script>
     @Scripts.Render("~/Script/js")
     @RenderSection("scripts", required: false)
 </body>

@@ -36,23 +36,31 @@ namespace WebAppSastiServices.Controllers
                 }
                 else
                 {
-                    StpUser stpUser = new StpUser();
-                    stpUser.UserName = user.UserName;
-                    stpUser.EmailID = user.EmailID;
-                    stpUser.Password = Crypto.Hash(user.Password);
-                    stpUser.Contact = user.Contact;
-                    stpUser.Address = user.Address;
-                    stpUser.CreatedDate = System.DateTime.Now;
-                    stpUser.IsEmailVerified = false;
-                    stpUser.IsEmailActive = false;
-                    stpUser.ActivationCode = Guid.NewGuid();
-                    stpUser.STPRolesID = 1;
-                    stpUser.STPRolesCategoriesID = 17;
-                    db.StpUsers.Add(stpUser);
-                    db.SaveChanges();
+                    try
+                    {
+                        StpUser stpUser = new StpUser();
+                        stpUser.UserName = user.UserName;
+                        stpUser.EmailID = user.EmailID;
+                        stpUser.Password = Crypto.Hash(user.Password);
+                        stpUser.Contact = user.Contact;
+                        stpUser.Address = user.Address;
+                        stpUser.CreatedDate = System.DateTime.Now;
+                        stpUser.IsEmailVerified = false;
+                        stpUser.IsEmailActive = false;
+                        stpUser.ActivationCode = Guid.NewGuid();
+                        stpUser.STPRolesID = 1;
+                        stpUser.STPRolesCategoriesID = 17;
+                        db.StpUsers.Add(stpUser);
+                        db.SaveChanges();
 
-                    TempData["Message"] = "RegisterSuccess";
-                    return Redirect(Url.Action("Login", "Account"));
+                        TempData["Message"] = "RegisterSuccess";
+                        return Redirect(Url.Action("Login", "Account"));
+                    }
+                    catch (Exception ex)
+                    {
+                        TempData["Message"] = "RegisterFail";
+                        return View(user);
+                    }
                 }
             }
             else
@@ -82,7 +90,7 @@ namespace WebAppSastiServices.Controllers
                 DateTime loggedInTime = Convert.ToDateTime(Session["LoggedInTime"]);
                 TimeSpan elapsedtimespan = DateTime.Now.Subtract(loggedInTime);
                 int elapsedtime = Convert.ToInt32(elapsedtimespan.TotalMinutes);
-                elapsedtime = 25;
+
                 if (elapsedtime >= 20) 
                 {
                     Session.Abandon();
@@ -153,7 +161,7 @@ namespace WebAppSastiServices.Controllers
                                 else if (RoleCategory == "CCTV") { serviceType = "CCTV Camera"; }
 
                                 Session["serviceType"] = serviceType;
-                                return Redirect(Url.Action("ACIndex", "VendorDashboard"));
+                                return Redirect(Url.Action("Index", "VendorDashboard"));
 
                             }
                             else if (Role == "Supplier")
@@ -179,8 +187,6 @@ namespace WebAppSastiServices.Controllers
                 ViewBag.Message = "Error";
             }
                 
-
-
                 return View();
             }
 

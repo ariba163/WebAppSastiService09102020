@@ -826,18 +826,18 @@
     <Content Include="Views\Shared\_LayoutDashboardGeneratorsVendor.cshtml" />
     <Content Include="Views\Shared\_LayoutDashboardUser.cshtml" />
     <Content Include="Views\Shared\_LayoutDashboardACVendor.cshtml" />
-    <Content Include="Views\VendorDashboard\ACCreateItems.cshtml" />
-    <Content Include="Views\VendorDashboard\ACCreateServices.cshtml" />
-    <Content Include="Views\VendorDashboard\ACDeleteItems.cshtml" />
-    <Content Include="Views\VendorDashboard\ACDeleteServices.cshtml" />
-    <Content Include="Views\VendorDashboard\ACEditItems.cshtml" />
-    <Content Include="Views\VendorDashboard\ACEditServices.cshtml" />
-    <Content Include="Views\VendorDashboard\ACEmail.cshtml" />
-    <Content Include="Views\VendorDashboard\ACIndex.cshtml" />
-    <Content Include="Views\VendorDashboard\ACOrders.cshtml" />
-    <Content Include="Views\VendorDashboard\ACProfile.cshtml" />
-    <Content Include="Views\VendorDashboard\ACViewItems.cshtml" />
-    <Content Include="Views\VendorDashboard\ACViewServices.cshtml" />
+    <Content Include="Views\VendorDashboard\CreateItems.cshtml" />
+    <Content Include="Views\VendorDashboard\CreateServices.cshtml" />
+    <Content Include="Views\VendorDashboard\DeleteItems.cshtml" />
+    <Content Include="Views\VendorDashboard\DeleteServices.cshtml" />
+    <Content Include="Views\VendorDashboard\EditItems.cshtml" />
+    <Content Include="Views\VendorDashboard\EditServices.cshtml" />
+    <Content Include="Views\VendorDashboard\Email.cshtml" />
+    <Content Include="Views\VendorDashboard\Index.cshtml" />
+    <Content Include="Views\VendorDashboard\Orders.cshtml" />
+    <Content Include="Views\VendorDashboard\Profile.cshtml" />
+    <Content Include="Views\VendorDashboard\ViewItems.cshtml" />
+    <Content Include="Views\VendorDashboard\ViewServices.cshtml" />
     <Content Include="Views\Shared\_LayoutDashboardCCTVVendor.cshtml" />
     <Content Include="Views\Shared\_LayoutDashboardSolarSysVendor.cshtml" />
     <Content Include="Views\Shared\_LayoutDashboardUPSVendor.cshtml" />
@@ -854,7 +854,7 @@
     <Content Include="Views\AdminDashboard\OrderDelete.cshtml" />
     <Content Include="Views\AdminDashboard\OrderDetails.cshtml" />
     <Content Include="Views\AdminDashboard\OrderEdit.cshtml" />
-    <Content Include="Views\VendorDashboard\ACAvailedOrder.cshtml" />
+    <Content Include="Views\VendorDashboard\AvailedOrder.cshtml" />
     <Content Include="Views\VendorDashboard\AvailOrder.cshtml" />
     <Content Include="Views\AdminDashboard\InvItems.cshtml" />
     <Content Include="Views\AdminDashboard\InvService.cshtml" />
@@ -864,6 +864,7 @@
     <Content Include="Views\Home\AboutUs.cshtml" />
     <Content Include="Views\AdminDashboard\QuickCallRequest.cshtml" />
     <Content Include="Views\Shared\_LayoutDashboardAdmin.cshtml" />
+    <Content Include="Views\AdminDashboard\Invoices.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

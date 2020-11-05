@@ -77,7 +77,6 @@
 <div class="page-inner">
     <div class="page-title">
         <h3 class="breadcrumb-header d-inline">Invoice</h3>
-        <a href="~/ReportInvoice.aspx" class="btn btn-outline-dark float-right"><i class="fa fa-print"> Print </i> </a>
     </div>
     <!-- start page main wrapper -->
     <div id="main-wrapper">
@@ -307,6 +306,7 @@
         var ItemsRatetotal =0;
         var ItemCount = 0;
         function btnItemPost() {
+            
             var ItemName = $("#ItemName option:selected").text();
             var ModelNoId = $("#ModelNo").val();
             var ModelNo = $("#ModelNo option:selected").text();
@@ -315,8 +315,6 @@
 
 
             var QTY = $("#QTY").val();
-            //console.log(QTY);
-
 
              var data = JSON.stringify({
                  'ModelNoId': ModelNoId,
@@ -345,6 +343,7 @@
 
                                 total += parseInt(SellingPrice) * QTY;
                                 $('#Total').html(total);
+                                 
                             },
                             error: function (data) {
                                 console.log(data);

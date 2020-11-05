@@ -63,8 +63,30 @@ namespace WebAppSastiServices.Controllers
                                 ID=d.ID,
                                 UserName= d.Name,
                                 UserContact=d.Contact,
-                                CreatedDateTime=d.createdDateTime,
-                                btns= "<div><a type='button' class='btn btn-primary text-light' onclick=OpenEditForm(" + d.ID + ") id='Edit'><i class='far fa-edit'></i> </a></div>"
+                                CreatedDateTime=d.createdDateTime
+                            }
+                            ).ToList();
+
+            return Json(Requests, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Invoices()
+        {
+
+            return View();
+        }
+
+        public ActionResult InvoicesData()
+        {
+            var Requests = (from d in db.TRNInvoices
+                            select new
+                            {
+                                ID = d.ID,
+                                OrderID=d.TRNCustomerOrder.OrderId,
+                                CustomerName = d.TRNCustomerOrder.CustomerName,
+                                CustomerContact = d.TRNCustomerOrder.Contact,
+                                Services= db.TRNCustomerOrders_STPServices.Where(s=>s.TRNCustomerOrderID== d.TRNCustomerOrder.OrderId).Select(s=>s.STPService.ServiceName).ToList(),
+                                Products = db.TRNCustomerOrders_STPProductItems.Where(s=>s.TRNCustomerOrderID== d.TRNCustomerOrder.OrderId).Select(s => s.STPServiceProductItem.ServiceProductName).ToList(),
                             }
                             ).ToList();
 

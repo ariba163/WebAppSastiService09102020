@@ -74,8 +74,18 @@
                             </a>
                         </li>
                         <li>
+                            <a href="@Url.Action("Invoices","AdminDashboard")">
+                                <span>Invoices</span>
+                            </a>
+                        </li>
+                        <li>
                             <a href="@Url.Action("AvailedOrders","AdminDashboard")">
                                 <span>Billing</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("QuickCallRequest","AdminDashboard")">
+                                <span>Call Request</span>
                             </a>
                         </li>
                         <li><a href="@Url.Action("Register","AdminDashboard")"><span>Register</span></a></li>
@@ -457,7 +467,7 @@
                 url: '@Url.Action("SessionEnd","Account")',
                 dataType:'json',
                 success: function (data) {
-                    if (data == true) {window.location.href = "Account/Login";}
+                    if (data == true) {window.location.href = "@Url.Action("Login","Account")";}
                 }
                  })
         }, 30000);

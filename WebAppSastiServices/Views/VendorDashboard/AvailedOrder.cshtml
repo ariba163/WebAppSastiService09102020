@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "ACAvailedOrder";
+    ViewBag.Title = "AvailedOrder";
     Layout = "~/Views/Shared/_LayoutDashboardACVendor.cshtml";
 }
 
@@ -39,7 +39,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive invoice-table">
-                            <table id="ACAvailedOrders" class="display" style="width:100%">
+                            <table id="AvailedOrders" class="display" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>Order#</th>
@@ -82,7 +82,7 @@
     <script>
 
         $(document).ready(function () {
-            var Table = $("#ACAvailedOrders").DataTable();
+            var Table = $("#AvailedOrders").DataTable();
 
             
             //not take time on first load------start
@@ -97,7 +97,7 @@
             function ajax() {
                 $.ajax({
                     type: "GET",
-                    url: '@Url.Action("ACAvailedOrdersData")',
+                    url: '@Url.Action("AvailedOrdersData")',
                     dataType: "json",
                     contentType: "application/json; charset=utf-8",
                     "beforeSend": function () { $('#ajax-loader').show() },

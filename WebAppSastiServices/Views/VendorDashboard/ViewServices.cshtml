@@ -11,7 +11,7 @@
     <script type="text/javascript">
         //swal("Order sent successfully", "", "success");
         swal({
-            title: "Order sent successfully",
+            title: "Service add successfully",
             icon: "success",
         });
     </script>
@@ -21,7 +21,7 @@ else if (message == "NotAddservice")
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript">
         swal({
-            title: "OOPS! Order can't sent",
+            title: "OOPS! Service not add",
             text: "Please Try again.",
             icon: "error",
         });
@@ -87,7 +87,7 @@ else if (message == "NotAddservice")
             var Table = $("#Services").DataTable();
             $.ajax({
                 type: "GET",
-                url: '@Url.Action("ACServiceData")',
+                url: '@Url.Action("ServiceData")',
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 "beforeSend": function () { $('#ajax-loader').show() },

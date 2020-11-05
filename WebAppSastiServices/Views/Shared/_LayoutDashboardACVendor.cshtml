@@ -13,7 +13,7 @@
     <meta name="description" content="Kaam Waley - Responsive Admin Dashboard Template" />
 
     <!-- title  -->
-    <title>Kaam Waley </title>
+    <title>Kaam Waley | Vendor-@Session["serviceType"]</title>
 
     <!-- favicon -->
     <link rel="shortcut icon" href="~/img/Dashboard/logos/favicon.png">
@@ -52,7 +52,7 @@
     <div class="page-container">
         <!-- start page sidebar -->
         <div class="page-sidebar">
-            <a class="logo-box" href="@Url.Action("ACIndex","VendorDashboard")">
+            <a class="logo-box" href="@Url.Action("Index","VendorDashboard")">
                 <span>Kaam Waley</span>
                 <i class="icon-radio_button_unchecked" id="fixed-sidebar-toggle-button"></i>
                 <i class="icon-close" id="sidebar-toggle-button-close"></i>
@@ -69,51 +69,44 @@
                             }
                             else
                             {
-                            <li>
-                                <a href="@Url.Action("ACIndex", "VendorDashboard")">
-                                    <i class="menu-icon icon-home4"></i><span>Dashboard</span>
-                                </a>
-                            </li>}
+                                <li>
+                                    <a href="@Url.Action("Index", "VendorDashboard")">
+                                        <i class="menu-icon icon-home4"></i><span>Dashboard</span>
+                                    </a>
+                                </li>
+                            }
                         }
-                            <li>
-                                <a href="@Url.Action("ACEmail","VendorDashboard")">
-                                    <i class="menu-icon icon-inbox"></i><span>Email</span>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="@Url.Action("ACAvailedOrder","VendorDashboard")">
-                                    <span>Availed Orders</span>
-                                </a>
-                            </li>
-                         
-                            <li>
-                                <a href="#!">
-                                    <i class="menu-icon icon-star"></i><span> @Session["serviceType"] </span><i class="accordion-icon fa fa-angle-left"></i>
-                                </a>
-                                <ul>
-                                    <li><a href="@Url.Action("ACViewServices","VendorDashboard")">View Services</a></li>
-                                    <li><a href="@Url.Action("ACViewItems","VendorDashboard")">View Items</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#!">
-                                    <i class="menu-icon icon-star"></i><span>Extra</span><i class="accordion-icon fa fa-angle-left"></i>
-                                </a>
-                                <ul
-                                <li><a href="@Url.Action("ACProfile","VendorDashboard")">Profile</a></li>
-                                <li><a href="@Url.Action("ACLogin","VendorDashboard")">Login</a></li>
-                                <li><a href="@Url.Action("ACRegister","VendorDashboard")">Register</a></li>
-                                <li><a href="@Url.Action("ACLockscreen","VendorDashboard")">Lockscreen</a></li>
+                        <li>
+                            <a href="@Url.Action("ACEmail","VendorDashboard")">
+                                <i class="menu-icon icon-inbox"></i><span>Email</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#!">
+                                <i class="menu-icon icon-star"></i><span>Orders</span><i class="accordion-icon fa fa-angle-left"></i>
+                            </a>
+                            <ul>
+                                <li><a href="@Url.Action("AvailedOrder","VendorDashboard")"> All Availed Orders </a></li>
+                                @*<li><a href="@Url.Action("Invoices","VendorDashboard")">View Invoices</a></li>*@
                             </ul>
-                            </li>
-                            <li class="menu-divider"></li>
-                            <li>
-                                <a href="#!">
-                                    <i class="menu-icon icon-public"></i><span>Changelog</span><span class="label label-danger">1.0</span>
-                                </a>
-                            </li>
-                        </ul>
+                        </li>
+
+                        <li>
+                            <a href="#!">
+                                <i class="menu-icon icon-star"></i><span> @Session["serviceType"] </span><i class="accordion-icon fa fa-angle-left"></i>
+                            </a>
+                            <ul>
+                                <li><a href="@Url.Action("ViewServices","VendorDashboard")">View Services</a></li>
+                                <li><a href="@Url.Action("ViewItems","VendorDashboard")">View Items</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu-divider"></li>
+                        <li>
+                            <a href="#!">
+                                <i class="fas fa-power-off"></i> by<span> 9Soft Solution</span>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -138,7 +131,7 @@
                         <div class="navbar-header">
                             <div class="logo-sm">
                                 <a href="#!" id="sidebar-toggle-button"><i class="fa fa-bars"></i></a>
-                                <a class="logo-box" href="@Url.Action("ACIndex","VendorDashboard")"><span>Kaam Waley</span></a>
+                                <a class="logo-box" href="@Url.Action("Index","VendorDashboard")"><span>Kaam Waley</span></a>
                             </div>
                             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                                 <i class="fa fa-angle-down"></i>
@@ -452,9 +445,21 @@
     <script src="~/js/Dashboard/main.js"></script>
 
     <!-- all js include end -->
-    <!-- DataTable scripts   --> 
+    <!-- DataTable scripts   -->
     <script src="~/DataTables/js/jquery.dataTables.js"></script>
 
+    <script>
+        setInterval(function ()
+        {
+            $.ajax({
+                url: '@Url.Action("SessionEnd","Account")',
+                dataType:'json',
+                success: function (data) {
+                    if (data == true) {window.location.href = "Account/Login";}
+                }
+                 })
+        }, 30000);
+    </script>
     @RenderSection("scripts", required: false)
 </body>
 
