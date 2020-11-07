@@ -1,4 +1,5 @@
-﻿@{
+﻿@model WebAppSastiServices.Models.DB.TRNCustomerOrder
+@{
     ViewBag.Title = "Invoice";
     Layout = "~/Views/Shared/_LayoutDashboardAdmin.cshtml";
     string message = @ViewBag.Message;
@@ -115,19 +116,20 @@
             <div class="row">
                 <div class="col-md-12" id="Add">
                     <div class="row">
-                        @{Html.RenderAction("InvService", "AdminDashboard", new { fuelTypeID = @Model.FuelTypeId, UnitTypeID = @Model.UnitTypeId });}
-                        @{Html.RenderAction("InvItems", "AdminDashboard", new { fuelTypeID = @Model.FuelTypeId, UnitTypeID = @Model.UnitTypeId });}
+                        @{Html.RenderAction("InvService", "AdminDashboard", new { fuelTypeID = @Model.FuelTypeId, UnitTypeID = @Model.UnitTypeId ,serviceTypeID= @Model.ServiceTypeId});}
+                        @{Html.RenderAction("InvItems", "AdminDashboard", new { fuelTypeID = @Model.FuelTypeId, UnitTypeID = @Model.UnitTypeId ,serviceTypeID= @Model.ServiceTypeId});}
 
                     </div>
                 </div>
             </div>
             <!--Add service and item end-->
+
             <!-- Row -->
             <div class="row">
                 <div class="col-md-12" id="List">
                     <div class="row">
 
-                        <div class="col-md-6">
+                        <div class="col-md-6" id="serviceTbl">
                             <div class="card card-white">
                                 <div class="card-heading clearfix">
                                     <h4 class="card-title">Services Added</h4>
@@ -135,23 +137,13 @@
                                 <div class="card-body">
 
                                     <div class="table-responsive">
-                                        <table class="table table-bordered" id="SerTable">
-                                            <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>Service Name</th>
-                                                    <th>Service Charges</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                            </tbody>
-                                        </table>
+                                        @{Html.RenderAction("InvSerTbl", "AdminDashboard", new { OrderID = @Model.OrderId});}
                                     </div>
 
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6" id="ItemTbl">
                             <div class="card card-white">
                                 <div class="card-heading clearfix">
                                     <h4 class="card-title">Items Added</h4>
@@ -159,19 +151,8 @@
                                 <div class="card-body">
 
                                     <div class="table-responsive">
-                                        <table class="table table-bordered" id="ItemTable">
-                                            <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>Item Name</th>
-                                                    <th>Model No</th>
-                                                    <th>Item Charges</th>
-                                                    <th>Qty</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                            </tbody>
-                                        </table>
+                                        @{Html.RenderAction("InvItemTbl", "AdminDashboard", new { OrderID = @Model.OrderId });}
+                                        
                                     </div>
 
                                 </div>
@@ -257,6 +238,9 @@
 @section scripts{
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
+
+        var isLoading = false;
+
         //data bind with dropdown change start----------------
                 $("#ItemName").change(function () {
                     var ID = this.value;
@@ -301,12 +285,24 @@
                 });
         //data bind with dropdown change end----------------
 
-        var total = 0;
+        //get default values from db and show it on total section start----------
+        var ItemsRatetotal = parseInt($("#itemRate").text());
+        $("#ItemCharges").html(ItemsRatetotal);
+        var ServiceRatetotal = parseInt($("#serRate").text());
+        var servicePlatform = ServiceRatetotal * 2 / 100;
+        ServiceRatetotal += servicePlatform;
+        $("#SerCharges").html(ServiceRatetotal);
+        var total = ItemsRatetotal+ServiceRatetotal;
+        $("#Total").html(total);
+        //get default values from db and show it on total section start----------
+
         //Item Add start-------------
-        var ItemsRatetotal =0;
-        var ItemCount = 0;
+            var ItemCount = $("#ItemTable tr:last .count").text();
+            if (ItemCount < 1) { ItemCount = 1;}
         function btnItemPost() {
+
             
+           $('#AddItem').attr('disabled',true);
             var ItemName = $("#ItemName option:selected").text();
             var ModelNoId = $("#ModelNo").val();
             var ModelNo = $("#ModelNo option:selected").text();
@@ -322,23 +318,31 @@
                  'QTY':QTY
              });
 
-            //console.log(data);
             $.ajax({
                             url: "/AdminDashboard/PostItem",
                             data: data,
                             type: "Post",
                             contentType: 'application/json',
                             success: function (data) {
-                                //console.log("data Add");
-                                ItemCount++;
-                                $("#ItemsCount span").html(ItemCount);
+                                $('#AddItem').attr('disabled',false);
                                 ItemsRatetotal += parseInt(SellingPrice) * QTY;
-                                //console.log(ItemsRatetotal);
 
                                 //show data on table
-                                $('#ItemTable tbody').append('<tr><td>' + ItemCount + '</td><td>' + ItemName + '</td><td>' + ModelNo + '</td><td>' + SellingPrice + '</td><td>' + QTY + '</td></tr>');
+                                $('#ItemTable tbody').append('<tr><td>' + ItemName + '</td><td>' + ModelNo + '</td><td>' + SellingPrice + '</td><td>' + QTY + '</td></tr>');
+
+                                //counter start
+                                if (ServiceCount > 0) {
+                                    ServiceCount++;
+                                    $("#ServiceCount span").html(ServiceCount);
+                                }
+                                else {
+                                    $("#ServiceCount span").html(ServiceCount);
+                                    ServiceCount++;
+                                }
+                                    //counter end
 
                                 $("#ItemCharges").html(ItemsRatetotal);
+
 
 
                                 total += parseInt(SellingPrice) * QTY;
@@ -346,16 +350,77 @@
                                  
                             },
                             error: function (data) {
+                                $('#AddItem').attr('disabled',false);
                                 console.log(data);
                             }
                         });
         }
         //Item Add end-------------
+        
+        //Item Delete start-------------
+        function DeleteTblItem(productID)
+        { 
+            $.ajax({
+                   url: "/AdminDashboard/DeleteInvItem",
+                   data: { "productID": productID },
+                   type: "GET",
+                   contentType: 'application/json',
+                   success: function (data) {
+                    $('#List').load('/AdminDashboard/Invoice?OrderID=@Model.OrderId #ItemTbl');
+                    },
+                   error: function (data) {
+                          console.log(data);
+                    }
+            })
+        }
+        //Item Delete end-------------
+
+        //Service Delete start-------------
+        function DeleteInvSer(rowID,value)
+        {
+
+            if (isLoading == false) {
+                isLoading = true;
+            }
+
+            if (isLoading = true) {
+                $.ajax({
+                   url: "/AdminDashboard/DeleteInvSer",
+                   data: { "rowID": rowID },
+                   type: "GET",
+                   contentType: 'application/json',
+                    success: function (message) {
+
+                        if (message == true) {
+
+                            console.log("succeed");
+                            value.closest("tr").remove();
+                            isLoading = false;
+
+                        } else {
+                            console.log("not found");
+                        }
+                    },
+                   error: function () {
+                    console.log("no succeed");
+                    }
+            })
+
+            }
+           
+
+            
+
+        }
+        //Service Delete end-------------
+
 
         //Services Add start-------------
-        var ServiceRatetotal=0 ;
-            var ServiceCount = 0;
-            function btnServicePost() {
+            let ServiceCount = $( "#SerTable tr:last .count" ).text();
+            if (ServiceCount ==0) { ServiceCount = 1;}
+        function btnServicePost() {
+
+            $('#addServ').attr('disabled',true);
                 var ServiceID = $("#ServiceName").val();
                 var ServiceName = $("#ServiceName option:selected").text();
                 var ServiceRate = $("#ServiceRate").val();
@@ -374,31 +439,39 @@
                             type: "Post",
                             contentType: 'application/json',
                             success: function (data) {
-                                //console.log("Service Add");
                                 
-                                ServiceRatetotal += parseInt(ServiceRate);
-
-                                //counter start
-                                ServiceCount++;
-                                $("#ServiceCount span").html(ServiceCount);
-                                //counter start
-                                
+                                $('#addServ').attr('disabled',false);
                                 //data edit in total charges div start
-                                var PlatformCharges = ServiceRatetotal * 2 / 100;
-                                var ServicePlatform = ServiceRatetotal + PlatformCharges;
-                                //console.log(ServicePlatform);
+                                var PlatformCharges = parseInt(ServiceRate) * 2 / 100;
+                                var ServicePlatform = parseInt(ServiceRate) + PlatformCharges;
+                                ServiceRatetotal += ServicePlatform;
+
+
+                                console.log(ServicePlatform);
+                                
+                                    //counter start
+                                if (ServiceCount > 0) {
+                                    ServiceCount++;
+                                    $("#ServiceCount span").html(ServiceCount);
+                                }
+                                else {
+                                    $("#ServiceCount span").html(ServiceCount);
+                                    ServiceCount++;
+                                }
+                                    //counter end
 
                                 //show data on table start
-                                $('#SerTable tbody').append('<tr><td>' + ServiceCount + '</td><td>' + ServiceName + '</td><td>' + ServicePlatform + '</td></tr>');
+                                $('#SerTable tbody').append('<tr><td>' + ServiceName + '</td><td>' + ServiceRate + '</td></tr>');
                                 //show data on table end
+                                
 
+                                $("#SerCharges").html(ServiceRatetotal);
 
-                                $("#SerCharges").html(ServicePlatform);
-
-                                total += parseInt(ServicePlatform);
+                                total += ServicePlatform;
                                 $('#Total').html(total);
                             },
                             error: function (data) {
+                                $('#addServ').attr('disabled',false);
                                 console.log(data);
                             }
                         });
@@ -409,8 +482,7 @@
         function postInvoice() {
 
             var PlatformCharges = ServiceRatetotal * 2 / 100;
-            var ServiceTotal = ServiceRatetotal + PlatformCharges;
-            var Total = ServiceTotal + ItemsRatetotal;
+            var Total = ServiceRatetotal + ItemsRatetotal;
             var data = JSON.stringify({
                 'OrderID':@Model.OrderId,
                 'PlatformCharges':PlatformCharges,
@@ -419,7 +491,6 @@
                  'Total':Total
              });
 
-            //console.log(data);
             $.ajax({
                url: "/AdminDashboard/PostInvoice",
                data: data,
@@ -437,6 +508,10 @@
                                 });
 
         }
+
+
+
+       
 
     </script>
 

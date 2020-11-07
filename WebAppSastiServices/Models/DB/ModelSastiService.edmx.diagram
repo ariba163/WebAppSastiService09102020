@@ -5,28 +5,28 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="b0db0ec183644b488b57b011daa650b4" Name="Diagram1" ZoomLevel="74">
-        <EntityTypeShape EntityType="SastaServicesDBModel.STPBanner" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="SastaServicesDBModel.STPBannerOffer" Width="1.5" PointX="0.75" PointY="4.75" />
-        <EntityTypeShape EntityType="SastaServicesDBModel.STPCustomerSupport" Width="1.5" PointX="2.75" PointY="6.75" />
-        <EntityTypeShape EntityType="SastaServicesDBModel.STPPrefferedTime" Width="1.5" PointX="6" PointY="7" />
-        <EntityTypeShape EntityType="SastaServicesDBModel.STPProductBrand" Width="1.5" PointX="6" PointY="18.625" />
-        <EntityTypeShape EntityType="SastaServicesDBModel.STPProductType" Width="1.5" PointX="3.75" PointY="18.75" />
-        <EntityTypeShape EntityType="SastaServicesDBModel.STPQuickCall" Width="1.5" PointX="12.75" PointY="5.75" />
-        <EntityTypeShape EntityType="SastaServicesDBModel.StpRole" Width="1.5" PointX="8.75" PointY="2.125" />
-        <EntityTypeShape EntityType="SastaServicesDBModel.STPRolesCategory" Width="1.5" PointX="11" PointY="2" />
-        <EntityTypeShape EntityType="SastaServicesDBModel.STPServiceProductItem" Width="1.5" PointX="8.25" PointY="12.5" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.STPBanner" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.STPBannerOffer" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.STPCustomerSupport" Width="1.5" PointX="7.75" PointY="4.75" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.STPPrefferedTime" Width="1.5" PointX="6" PointY="21.625" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.STPProductBrand" Width="1.5" PointX="3" PointY="18.625" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.STPProductType" Width="1.5" PointX="0.75" PointY="18.75" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.STPQuickCall" Width="1.5" PointX="9.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.StpRole" Width="1.5" PointX="0.75" PointY="2.125" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.STPRolesCategory" Width="1.5" PointX="3" PointY="2" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.STPServiceProductItem" Width="1.5" PointX="5.25" PointY="16.5" />
         <EntityTypeShape EntityType="SastaServicesDBModel.STPService" Width="1.5" PointX="5.25" PointY="11.375" />
-        <EntityTypeShape EntityType="SastaServicesDBModel.STPServicesFuelType" Width="1.5" PointX="3" PointY="11.625" />
-        <EntityTypeShape EntityType="SastaServicesDBModel.STPServicesUnitType" Width="1.5" PointX="3" PointY="15.125" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.STPServicesFuelType" Width="1.5" PointX="3" PointY="14.75" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.STPServicesUnitType" Width="1.5" PointX="3" PointY="11.625" />
         <EntityTypeShape EntityType="SastaServicesDBModel.STPServiceType" Width="1.5" PointX="0.75" PointY="8.625" />
-        <EntityTypeShape EntityType="SastaServicesDBModel.STPStatu" Width="1.5" PointX="6" PointY="3.25" />
-        <EntityTypeShape EntityType="SastaServicesDBModel.STPStatusType" Width="1.5" PointX="3.75" PointY="3.5" />
-        <EntityTypeShape EntityType="SastaServicesDBModel.StpUser" Width="1.5" PointX="13.25" PointY="1" />
-        <EntityTypeShape EntityType="SastaServicesDBModel.TRNCustomerOrder" Width="1.5" PointX="8.25" PointY="6.625" />
-        <EntityTypeShape EntityType="SastaServicesDBModel.TRNCustomerOrders_STPProductItems" Width="1.5" PointX="10.5" PointY="11.5" />
-        <EntityTypeShape EntityType="SastaServicesDBModel.TRNCustomerOrders_STPServices" Width="1.5" PointX="13.5" PointY="9.625" />
-        <EntityTypeShape EntityType="SastaServicesDBModel.TRNInvoice" Width="1.5" PointX="10.5" PointY="7.75" />
-        <EntityTypeShape EntityType="SastaServicesDBModel.TRNSubscription" Width="1.5" PointX="12.75" PointY="12.75" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.STPStatu" Width="1.5" PointX="6" PointY="8" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.STPStatusType" Width="1.5" PointX="3.75" PointY="8.125" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.StpUser" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.TRNCustomerOrder" Width="1.5" PointX="8.25" PointY="10.625" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.TRNCustomerOrders_STPProductItems" Width="1.5" PointX="10.5" PointY="15.5" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.TRNCustomerOrders_STPServices" Width="1.5" PointX="13.5" PointY="12" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.TRNInvoice" Width="1.5" PointX="10.5" PointY="11.75" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.TRNSubscription" Width="1.5" PointX="9.75" PointY="3.75" />
         <AssociationConnector Association="SastaServicesDBModel.FK_CustomerOrders_STPPrefferedTime" />
         <AssociationConnector Association="SastaServicesDBModel.FK_STPProductBrand_STPProductType" />
         <AssociationConnector Association="SastaServicesDBModel.FK_STPProductItems_STPProductBrand" />

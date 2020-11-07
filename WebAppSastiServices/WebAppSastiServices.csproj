@@ -633,13 +633,13 @@
     <Content Include="quform\images\error.png" />
     <Content Include="quform\images\success.png" />
     <Content Include="quform\js\plugins.js" />
-    <Content Include="quform\js\scripts.js" />
     <Content Include="plugins\bootstrap-colorpicker\css\src\less\colorpicker.less" />
     <Content Include="plugins\font-awesome\fonts\fa-brands-400.woff2" />
     <Content Include="plugins\font-awesome\fonts\fa-regular-400.woff2" />
     <Content Include="plugins\font-awesome\fonts\fa-solid-900.woff2" />
     <Content Include="plugins\icomoon\fonts\icomoon.ttf" />
     <Content Include="js\Dashboard\pages\ajax_roots.json" />
+    <Content Include="quform\js\scripts.js" />
     <Content Include="Rotativa\wkhtmltopdf.exe" />
     <EntityDeploy Include="Models\DB\ModelSastiService.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -767,6 +767,7 @@
     <Compile Include="Models\Email.cs" />
     <Compile Include="Models\EntityManager\UserManager.cs" />
     <Compile Include="Models\Extended\STPOrder.cs" />
+    <Compile Include="Models\Extended\STPProductBrand.cs" />
     <Compile Include="Models\Extended\TRNCustomerOrder.cs" />
     <Compile Include="Models\ViewModel\GetInTouch.cs" />
     <Compile Include="Models\ViewModel\QuickCall.cs" />
@@ -865,6 +866,9 @@
     <Content Include="Views\AdminDashboard\QuickCallRequest.cshtml" />
     <Content Include="Views\Shared\_LayoutDashboardAdmin.cshtml" />
     <Content Include="Views\AdminDashboard\Invoices.cshtml" />
+    <Content Include="Views\AdminDashboard\InvItemTbl.cshtml" />
+    <Content Include="Views\AdminDashboard\InvSerTbl.cshtml" />
+    <Content Include="Views\VendorDashboard\AddProductBrand.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

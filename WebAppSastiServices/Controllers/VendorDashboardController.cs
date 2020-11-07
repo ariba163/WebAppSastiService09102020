@@ -231,8 +231,9 @@ namespace WebAppSastiServices.Controllers
             return View();
         }
         [HttpGet]
-        public ActionResult ACCreateServices()
+        public ActionResult CreateServices()
         {
+            try { 
             string serviceType = Session["serviceType"].ToString();
             if (serviceType != null)
             {
@@ -246,6 +247,11 @@ namespace WebAppSastiServices.Controllers
             }
 
             return View();
+            }
+            catch 
+            {
+                return RedirectToAction("Login","Account");
+            }
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -284,7 +290,7 @@ namespace WebAppSastiServices.Controllers
         }
 
 
-        // store data of ACCreateServices
+        // store data of CreateServices
         public class service
         {
             public string ServiceName { get; set; }
@@ -328,9 +334,8 @@ namespace WebAppSastiServices.Controllers
         {
             return View();
         }
-        public ActionResult ACCreateItems()
+        public ActionResult CreateItems()
         {
-
             string serviceType = Session["serviceType"].ToString();
 
             if (serviceType != null)
@@ -342,7 +347,7 @@ namespace WebAppSastiServices.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult ACCreateItems(product obj)
+        public ActionResult CreateItems(product obj)
         {
 
             string serviceType = Session["serviceType"].ToString();
@@ -383,7 +388,7 @@ namespace WebAppSastiServices.Controllers
         }
 
 
-        // store data of ACCreateItems
+        // store data of CreateItems
         public class product
         {
             public string ServiceProductName { get; set; }
@@ -405,7 +410,33 @@ namespace WebAppSastiServices.Controllers
         {
             return View();
         }
+        public ActionResult AddProductBrand()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AddProductBrand(STPProductBrandMetadata product)
+        {
+            string serviceType = Session["serviceType"].ToString();
 
+            if (serviceType != null)
+            {
+                STPProductBrand p = new STPProductBrand()
+                {
+                    Name = product.Name,
+                    STPProductTypeID = db.STPProductTypes.Where(a => a.ProductTypeName == serviceType).Select(a => a.ID).FirstOrDefault()
+                };
+                db.STPProductBrands.Add(p);
+                db.SaveChanges();
+
+                return View(); 
+            }
+            else
+            {
+                TempData["Message"] = "NotVendor";
+                return Redirect(Url.Action("Login", "Account"));
+            }
+        }
 
 
     }

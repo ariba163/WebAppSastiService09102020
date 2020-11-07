@@ -1,0 +1,49 @@
+﻿@model IEnumerable<WebAppSastiServices.Models.DB.TRNCustomerOrders_STPProductItems>
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>InvItemTbl</title>
+</head>
+<body>
+    <table class="table table-bordered" id="ItemTable">
+        <thead>
+            <tr>
+                <th>Item Name</th>
+                <th>Model No</th>
+                <th>Item Charges</th>
+                <th>Qty</th>
+                <th></th>
+            </tr>
+            @if (Model != null)
+            {
+                int price = 0;
+                int count = 1;
+                foreach (var ser in Model)
+                {
+                    <tr>
+                        <td>@ser.STPServiceProductItem.ServiceProductName</td>
+                        <td>@ser.STPServiceProductItem.ServiceModelNo</td>
+                        <td>@ser.STPServiceProductItem.SellingPrice</td>
+                        <td></td>
+                        <td><a class="btn danger rounded" onclick="DeleteTblItem(@ser.ID)"> - </a></td>
+
+                        @{
+                            price += Convert.ToInt32(@ser.STPServiceProductItem.SellingPrice);
+                        }
+
+                    </tr>
+                    count++;
+                }
+
+                <p style="display:none;" id="itemRate">@price</p>
+            }
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</body>
+</html>

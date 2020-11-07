@@ -16,7 +16,7 @@
                     <div class="card-body">
 
                         <div id="rootwizard">
-                            @using (Html.BeginForm("ACCreateServices", "VendorDashboard", FormMethod.Post, new { @enctype = "multipart/form-data" })) {
+                            @using (Html.BeginForm("CreateServices", "VendorDashboard", FormMethod.Post, new { @enctype = "multipart/form-data" })) {
                                                  @Html.AntiForgeryToken()
                                                      @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                                      <div class="row m-b-lg">

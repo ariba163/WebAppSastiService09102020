@@ -334,11 +334,9 @@ namespace WebAppSastiServices.Controllers
             return View();
         }
 
-        public ActionResult InvService(int? fuelTypeID, int? unitTypeID)
+        public ActionResult InvService(int fuelTypeID, int unitTypeID,int serviceTypeID)
         {
-
-            ViewBag.Services = new SelectList(db.STPServices.Where(f => f.UnitTypeId == unitTypeID && f.FuelTypeId == fuelTypeID), "ID", "ServiceName");
-
+            ViewBag.Services = new SelectList(db.STPServices.Where(f => (f.UnitTypeId == unitTypeID && f.FuelTypeId == fuelTypeID)||(f.STPServiceTypeID == serviceTypeID && (f.STPServicesFuelType.Options=="Default"|| f.STPServicesUnitType.Options == "Default"))), "ID", "ServiceName");
             return View();
         }
         [HttpPost]
@@ -351,9 +349,9 @@ namespace WebAppSastiServices.Controllers
 
             return Json(results, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult InvItems(int fuelTypeID, int unitTypeID)
+        public ActionResult InvItems(int fuelTypeID, int unitTypeID,int serviceTypeID)
         {
-            ViewBag.Products = new SelectList(db.STPServiceProductItems.Where(f => f.UnitTypeId == unitTypeID && f.FuelTypeId == fuelTypeID), "ID", "ServiceProductName");
+            ViewBag.Products = new SelectList(db.STPServiceProductItems.Where(f => (f.UnitTypeId == unitTypeID && f.FuelTypeId == fuelTypeID) ||  (f.STPServicesFuelType.Options == "Default" || f.STPServicesUnitType.Options == "Default")), "ID", "ServiceProductName");
 
             List<SelectListItem> ModelNo = new List<SelectListItem>() {
                 new SelectListItem() { Value="0", Text="-- Select Model No --" },
@@ -429,6 +427,58 @@ namespace WebAppSastiServices.Controllers
             return Json(p, JsonRequestBehavior.AllowGet);
 
         }
+
+
+        public ActionResult InvSerTbl(int OrderID)
+        {
+            var service = (from d in db.TRNCustomerOrders_STPServices
+                                    where d.TRNCustomerOrderID == OrderID
+                                    select d).ToList();
+            return View(service);
+        }
+
+        public JsonResult DeleteInvItem(int rowID)
+        {
+            var row = (from d in db.TRNCustomerOrders_STPProductItems
+                       where (d.ID == rowID)
+                       select d).SingleOrDefault();
+            db.TRNCustomerOrders_STPProductItems.Remove(row);
+            db.SaveChanges();
+
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult DeleteInvSer(int rowID)
+        {
+            var row = (from d in db.TRNCustomerOrders_STPServices
+                         where (d.ID == rowID)
+                         select d).SingleOrDefault();
+
+            if(row != null)
+            {
+
+                db.TRNCustomerOrders_STPServices.Remove(row);
+                db.SaveChanges();
+                return Json(true, JsonRequestBehavior.AllowGet);
+
+            }
+            else
+            {
+            return Json(false, JsonRequestBehavior.AllowGet);
+
+            }
+
+        }
+        public ActionResult InvItemTbl(int OrderID)
+        {
+            var item = (from d in db.TRNCustomerOrders_STPProductItems
+                                  where d.TRNCustomerOrderID == OrderID
+                                  select d).ToList();
+            return View(item);
+        }
+
+
+
+
         [HttpPost]
         public ActionResult PostInvoice(int OrderID, decimal ServiceRatetotal, decimal ItemsRatetotal, decimal PlatformCharges, decimal total)
         {
@@ -482,6 +532,8 @@ namespace WebAppSastiServices.Controllers
                 }
             }
         }
+
+
 
         public ActionResult Invoice(int OrderID)
         {
