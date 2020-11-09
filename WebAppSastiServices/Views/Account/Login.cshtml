@@ -23,6 +23,16 @@
             icon: "error",
         });
     </script>
+}else if (message == "SessionExpired")
+{
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript">
+        swal({
+            title: "SessionExpired",
+            text: "Please Login again to continue.",
+            icon: "info",
+        });
+    </script>
 }else if (message == "notFound")
 {
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

@@ -84,28 +84,23 @@ namespace WebAppSastiServices.Controllers
         }
 
         public JsonResult SessionEnd()
-        {
-            if(Session["RoleID"] != null || Session["LoggedInTime"] != null)
+{
+            if (Session["UserName"] != null || Session["LoggedInTime"] != null)
             {
                 DateTime loggedInTime = Convert.ToDateTime(Session["LoggedInTime"]);
                 TimeSpan elapsedtimespan = DateTime.Now.Subtract(loggedInTime);
                 int elapsedtime = Convert.ToInt32(elapsedtimespan.TotalMinutes);
 
-                if (elapsedtime >= 20) 
+                if (elapsedtime >= 1)
                 {
                     Session.Abandon();
                     Dispose();
-                    return Json(true,JsonRequestBehavior.AllowGet);
+                    TempData["Message"] = "SessionExpired";
+                    return Json("true", JsonRequestBehavior.AllowGet);
                 }
-                else
-                {
-                    return Json(false , JsonRequestBehavior.DenyGet);
-                }
+
             }
-            else
-            {
-                return Json(false, JsonRequestBehavior.DenyGet);
-            }
+            return Json("false" , JsonRequestBehavior.AllowGet);
         }
 
 

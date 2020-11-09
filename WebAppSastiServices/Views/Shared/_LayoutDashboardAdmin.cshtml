@@ -216,7 +216,7 @@
                                         <li><a href="#"><span class="badge float-right badge-danger">42</span>Messages</a></li>
                                         <li role="separator" class="divider"></li>
                                         <li><a href="#">Account Settings</a></li>
-                                        <li><a href="#">Log Out</a></li>
+                                        <li><a href="@Url.Action("Logout","Account")">Log Out</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -461,18 +461,24 @@
     <script src="~/js/Dashboard/main.js"></script>
     <script src="~/js/Dashboard/custom.js"></script>
     <script>
-        setInterval(function ()
-        {
-            $.ajax({
-                url: '@Url.Action("SessionEnd","Account")',
-                dataType:'json',
-                success: function (data) {
-                    if (data == true) {window.location.href = "@Url.Action("Login","Account")";}
-                }
-                 })
-        }, 30000);
-    </script>
-
+    setInterval(function ()
+    {
+    $.ajax({
+    url: '@Url.Action("SessionEnd", "Account")',
+    dataType:'json',
+        success: function (data) {
+        console.log(data);
+        if (data == "true") {
+             console.log("Session expired");
+            window.location = "@Url.Action("Login", "Account")";
+        }
+        else if (data == "false") {
+            console.log("Session not expired yet");
+        }
+        }
+    })
+    }, 2000);
+</script>
     @RenderSection("scripts", required: false)
 </body>
-</html>
+</html> 

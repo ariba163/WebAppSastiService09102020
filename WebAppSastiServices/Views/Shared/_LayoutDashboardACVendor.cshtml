@@ -449,16 +449,23 @@
     <script src="~/DataTables/js/jquery.dataTables.js"></script>
 
     <script>
-        setInterval(function ()
-        {
-            $.ajax({
-                url: '@Url.Action("SessionEnd","Account")',
-                dataType:'json',
-                success: function (data) {
-                    if (data == true) {window.location.href = "Account/Login";}
-                }
-                 })
-        }, 30000);
+    setInterval(function ()
+    {
+    $.ajax({
+    url: '@Url.Action("SessionEnd", "Account")',
+    dataType:'json',
+        success: function (data) {
+        console.log(data);
+        if (data == "true") {
+             console.log("Session expired");
+            window.location = "@Url.Action("Login", "Account")";
+        }
+        else if (data == "false") {
+            console.log("Session not expired yet");
+        }
+        }
+    })
+    }, 2000);
     </script>
     @RenderSection("scripts", required: false)
 </body>

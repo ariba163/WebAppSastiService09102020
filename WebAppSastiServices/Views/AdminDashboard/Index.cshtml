@@ -216,171 +216,169 @@ else if (message == "RegisterSuccess")
     <script>
 
 
+    $(document).ready(function () {
+    var Table = $("#Orders").DataTable();
 
-        $(document).ready(function () {
-            var Table = $("#Orders").DataTable();
+    //not take time on first load------start
+    var count = 0;
+    if (count == 0) {
+    ajax();
+    count++;
+    }
+    //not take time on first load------end
 
-            //not take time on first load------start
-            var count = 0;
-            if (count == 0) {
-                ajax();
-                count++;
+
+    function ajax() {
+    $.ajax({
+    type: "GET",
+    url: '@Url.Action("LatestActOrders")',
+    dataType: "json",
+    contentType: "application/json; charset=utf-8",
+    "beforeSend": function () { $('#ajax-loader').show() },
+    "complete": function () { $('#ajax-loader').hide() },
+    success: function (orders) {
+
+
+    orders.map((item, index) => {
+
+    Table.row.add([
+    item.OrderId,
+    item.Description,
+    item.CreateOn,
+    item.status,
+    item.btns
+    ]).draw(false);
+    });
+
+    },
+    error: function (xhr, status) {
+    console.log(xhr, status);
+    }
+    });
+    }
+
+    @*function SessionEnd()
+        {
+            $.ajax({
+            type: "GET",
+            url: '@Url.Action("SessionEnd")',
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+                success: function (response) {
+                    console.log(response);
+                    if (response ==  "Continue") {
+
+                    }
+            },
+            error:function(){
             }
-            //not take time on first load------end
+          });
+        }*@
 
 
-            function ajax() {
-            $.ajax({
-                type: "GET",
-                url: '@Url.Action("LatestActOrders")',
-                dataType: "json",
-                contentType: "application/json; charset=utf-8",
-                "beforeSend": function () { $('#ajax-loader').show() },
-                "complete": function () { $('#ajax-loader').hide() },
-                success: function (orders) {
+    //Auto Refresh Datatable after 10 seconds---start
+    setInterval(
+    function () {
+    Table.clear().draw();
+    ajax();
+    }
+    , 120000);
 
-
-            orders.map((item, index) => {
-
-                Table.row.add([
-                    item.OrderId,
-                    item.Description,
-                    item.CreateOn,
-                    item.status,
-                    item.btns
-                ]).draw(false);
-            });
-
-                },
-                error: function (xhr, status) {
-                    console.log(xhr, status);
-                }
-            });
-            }
-
-            function SessionEnd()
-            {
-                $.ajax({
-                type: "GET",
-                url: '@Url.Action("SessionEnd")',
-                dataType: "json",
-                contentType: "application/json; charset=utf-8",
-                    success: function (response) {
-                        console.log(response);
-                        if (response ==  "Continue") {
-
-                        }
-                },
-                error:function(){
-                }
-              });
-            }
-
-
-            //Auto Refresh Datatable after 10 seconds---start
-            setInterval(
-                function () {
-                    Table.clear().draw();
-                    ajax();
-                    SessionEnd();
-                }
-                , 120000);
-
-            //Auto Refresh Dataatble after 10 seconds---end
-        });
+    //Auto Refresh Dataatble after 10 seconds---end
+    });
 
 
 
 
 
-            function OpenDetailForm(ID) {
+    function OpenDetailForm(ID) {
 
-            var $buttonClicked = $(this);
-            var id = ID;
-            //alert(id);
-            //alert(ID);
-            $('#OrderModal .modal-body').html('Loading.....');
-            $('#OrderModal .modal-title').html('Details:');
-            var options = { "backdrop": "static", keyboard: true };
-            $('#OrderModal').modal(options);
-            $('#OrderModal').modal('show');
-            $.ajax({
-                type: "GET",
-                url: '/AdminDashboard/OrderDetails',
-                contentType: "application/json; charset=utf-8",
-                data: { "ID": ID },
-                datatype: "html",
-                "beforeSend": function () { $('#ajax-loader').show() },
-                "complete": function () { $('#ajax-loader').hide() },
-                success: function (data) {
-                    //$('#exampleModal .ajax-loader').hide();
-                    $('#OrderModal .modal-body').html(data);
-                },
-                error: function (xhr, status) {
-                    $('#OrderModal ajax-loader').hide(),
-                        $.notify(status, "error");
-                }
-            });
-        }
-            function OpenDeleteForm(ID) {
+    var $buttonClicked = $(this);
+    var id = ID;
+    //alert(id);
+    //alert(ID);
+    $('#OrderModal .modal-body').html('Loading.....');
+    $('#OrderModal .modal-title').html('Details:');
+    var options = { "backdrop": "static", keyboard: true };
+    $('#OrderModal').modal(options);
+    $('#OrderModal').modal('show');
+    $.ajax({
+    type: "GET",
+    url: '/AdminDashboard/OrderDetails',
+    contentType: "application/json; charset=utf-8",
+    data: { "ID": ID },
+    datatype: "html",
+    "beforeSend": function () { $('#ajax-loader').show() },
+    "complete": function () { $('#ajax-loader').hide() },
+    success: function (data) {
+    //$('#exampleModal .ajax-loader').hide();
+    $('#OrderModal .modal-body').html(data);
+    },
+    error: function (xhr, status) {
+    $('#OrderModal ajax-loader').hide(),
+    $.notify(status, "error");
+    }
+    });
+    }
+    function OpenDeleteForm(ID) {
 
-            var $buttonClicked = $(this);
-            var id = ID;
-            //alert(id);
-            //alert(ID);
-            $('#OrderModal .modal-body').html('Loading.....');
-            $('#OrderModal .modal-title').html('Are You Sure You Want To Delete This Record?');
-            var options = { "backdrop": "static", keyboard: true };
-            $('#OrderModal').modal(options);
-            $('#OrderModal').modal('show');
-            $.ajax({
-                type: "GET",
-                url: '/AdminDashboard/OrderDelete',
-                contentType: "application/json; charset=utf-8",
-                data: { "ID": ID },
-                datatype: "html",
-                "beforeSend": function () { $('#ajax-loader').show() },
-                "complete": function () { $('#ajax-loader').hide() },
-                success: function (data) {
-                    //$('#exampleModal .ajax-loader').hide();
-                    $('#OrderModal .modal-body').html(data);
-                },
-                error: function (xhr, status) {
-                    $('#OrderModal ajax-loader').hide(),
-                        $.notify(status, "error");
-                }
-            });
-        }
-            function OpenEditForm(ID) {
+    var $buttonClicked = $(this);
+    var id = ID;
+    //alert(id);
+    //alert(ID);
+    $('#OrderModal .modal-body').html('Loading.....');
+    $('#OrderModal .modal-title').html('Are You Sure You Want To Delete This Record?');
+    var options = { "backdrop": "static", keyboard: true };
+    $('#OrderModal').modal(options);
+    $('#OrderModal').modal('show');
+    $.ajax({
+    type: "GET",
+    url: '/AdminDashboard/OrderDelete',
+    contentType: "application/json; charset=utf-8",
+    data: { "ID": ID },
+    datatype: "html",
+    "beforeSend": function () { $('#ajax-loader').show() },
+    "complete": function () { $('#ajax-loader').hide() },
+    success: function (data) {
+    //$('#exampleModal .ajax-loader').hide();
+    $('#OrderModal .modal-body').html(data);
+    },
+    error: function (xhr, status) {
+    $('#OrderModal ajax-loader').hide(),
+    $.notify(status, "error");
+    }
+    });
+    }
+    function OpenEditForm(ID) {
 
-            var $buttonClicked = $(this);
-            var id = ID;
-            //alert(id);
-            //alert(ID);
-            $('#OrderModal .modal-body').html('Loading.....');
-            $('#OrderModal .modal-title').html('Edit');
-            var options = { "backdrop": "static", keyboard: true };
-            $('#OrderModal').modal(options);
-            $('#OrderModal').modal('show');
-            $.ajax({
-                type: "GET",
-                url: '/AdminDashboard/OrderEdit',
-                contentType: "application/json; charset=utf-8",
-                data: { "ID": ID },
-                datatype: "html",
-                "beforeSend": function () { $('#ajax-loader').show() },
-                "complete": function () { $('#ajax-loader').hide() },
-                success: function (data) {
-                    console.log(data);
-                    //$('#exampleModal .ajax-loader').hide();
-                    $('#OrderModal .modal-body').html(data);
-                },
-                error: function (xhr, status) {
-                    console.log(xhr, status);
-                    $('#OrderModal ajax-loader').hide(),
-                        $.notify(status, "error");
-                }
-            });
-        }
+    var $buttonClicked = $(this);
+    var id = ID;
+    //alert(id);
+    //alert(ID);
+    $('#OrderModal .modal-body').html('Loading.....');
+    $('#OrderModal .modal-title').html('Edit');
+    var options = { "backdrop": "static", keyboard: true };
+    $('#OrderModal').modal(options);
+    $('#OrderModal').modal('show');
+    $.ajax({
+    type: "GET",
+    url: '/AdminDashboard/OrderEdit',
+    contentType: "application/json; charset=utf-8",
+    data: { "ID": ID },
+    datatype: "html",
+    "beforeSend": function () { $('#ajax-loader').show() },
+    "complete": function () { $('#ajax-loader').hide() },
+    success: function (data) {
+    console.log(data);
+    //$('#exampleModal .ajax-loader').hide();
+    $('#OrderModal .modal-body').html(data);
+    },
+    error: function (xhr, status) {
+    console.log(xhr, status);
+    $('#OrderModal ajax-loader').hide(),
+    $.notify(status, "error");
+    }
+    });
+    }
     </script>
 }

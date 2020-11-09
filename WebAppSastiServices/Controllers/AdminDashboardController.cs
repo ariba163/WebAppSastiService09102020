@@ -127,22 +127,22 @@ namespace WebAppSastiServices.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult SessionEnd()
-        {
-            string SessionStatus;
+        //public JsonResult SessionEnd()
+        //{
+        //    string SessionStatus;
 
-            if(Session["UserID"] != null)
-            {
-                SessionStatus = "Continue";
-            }
-            else
-            {
-                SessionStatus = "Stop";
-            }
+        //    if(Session["UserID"] != null)
+        //    {
+        //        SessionStatus = "Continue";
+        //    }
+        //    else
+        //    {
+        //        SessionStatus = "Stop";
+        //    }
 
-            return Json(SessionStatus, JsonRequestBehavior.AllowGet);
+        //    return Json(SessionStatus, JsonRequestBehavior.AllowGet);
 
-        }
+        //}
 
 
         public ActionResult OrderDetails(int? ID)
@@ -259,11 +259,24 @@ namespace WebAppSastiServices.Controllers
                 var isNameExist = UserManager.IsUsernameExist(user.UserName);
                 if (isEmailExist)
                 {
+                    ViewBag.Roles = new SelectList(db.StpRoles.Where(d=>d.Description!="Admin"),"ID","Description");
+                    List<SelectListItem> Categories = new List<SelectListItem>() {
+                        new SelectListItem() {Value="0", Text="- Select Role Category -" },
+                   };
+
+                    ViewBag.STPRolesCategoriesID = Categories;
+
                     ModelState.AddModelError("EmailExist", "Email Already Exist");
                     return View(user);
                 }
                 else if (isNameExist)
                 {
+                    ViewBag.Roles = new SelectList(db.StpRoles.Where(d => d.Description != "Admin"), "ID", "Description");
+                    List<SelectListItem> Categories = new List<SelectListItem>() {
+                new SelectListItem() {Value="0", Text="- Select Role Category -" },
+           };
+
+                    ViewBag.STPRolesCategoriesID = Categories;
                     ModelState.AddModelError("UserNameExist", "UserName Already Exist");
                     return View(user);
                 }
@@ -285,11 +298,17 @@ namespace WebAppSastiServices.Controllers
                     db.SaveChanges();
 
                     TempData["Message"] = "RegisterSuccess";
-                    return View("Index");
+                    return RedirectToAction("Index","AdminDashboard");
                 }
             }
             else
             {
+                ViewBag.Roles = new SelectList(db.StpRoles.Where(d => d.Description != "Admin"), "ID", "Description");
+                List<SelectListItem> Categories = new List<SelectListItem>() {
+                new SelectListItem() {Value="0", Text="- Select Role Category -" },
+           };
+
+                ViewBag.STPRolesCategoriesID = Categories;
                 return View(user);
             }
 

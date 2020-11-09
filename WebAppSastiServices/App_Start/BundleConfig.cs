@@ -40,7 +40,7 @@ namespace WebAppSastiServices.App_Start
                 "~/js/rev_slider/extensions/revolution.extension.video.min.js",
                 "~/js/rev_slider/extensions/revolution.addon.typewriter.min.js",
                 "~/js/main.js",
-                //"~/quform/js/plugins.js",
+                "~/quform/js/plugins.js",
                 "~/quform/js/scripts.js",
                 "~/js/custom/site.js"
                 ));
