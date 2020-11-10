@@ -324,12 +324,15 @@
                             type: "Post",
                             contentType: 'application/json',
                             success: function (data) {
-                                $('#AddItem').attr('disabled',false);
-                                ItemsRatetotal += parseInt(SellingPrice) * QTY;
+                                $('#AddItem').attr('disabled', false);
+
+                                var totalSellingprice=parseInt(SellingPrice) * QTY;
+                                ItemsRatetotal += totalSellingprice;
+
+                                console.log(data);
 
                                 //show data on table
-                                $('#ItemTable tbody').append('<tr><td>' + ItemName + '</td><td>' + ModelNo + '</td><td>' + SellingPrice + '</td><td>' + QTY + '</td></tr>');
-
+                                $('#ItemTable tbody').append('<tr><td>' + ItemName + '</td><td>' + ModelNo + '</td><td>' + SellingPrice + '</td><td>' + QTY + '</td><td><a class="btn bg-danger rounded-circle text-light" style="font-size:18px;font-weight:600;"  onclick="DeleteTblItem('+ data.ID +','+ totalSellingprice + ',this)" > - </a></td></tr>'); 
                                 //counter start
                                 if (ServiceCount > 0) {
                                     ServiceCount++;
@@ -358,27 +361,46 @@
         //Item Add end-------------
         
         //Item Delete start-------------
-        function DeleteTblItem(productID)
-        { 
+        function DeleteTblItem(rowID,productRate,value)
+        {
+            debugger
+            if (isLoading == false) {
+                isLoading = true;
+            }
+
+            if (isLoading = true) {
             $.ajax({
                    url: "/AdminDashboard/DeleteInvItem",
-                   data: { "productID": productID },
+                   data: { "rowID": rowID },
                    type: "GET",
                    contentType: 'application/json',
-                   success: function (data) {
-                    $('#List').load('/AdminDashboard/Invoice?OrderID=@Model.OrderId #ItemTbl');
+                    success: function (message) {
+                        if (message == true) {
+
+                            value.closest("tr").remove();
+                            isLoading = false;
+                            ItemsRatetotal -= productRate;
+                            $("#ItemCharges").html(ItemsRatetotal);
+
+                                total -= productRate;
+                                $('#Total').html(total);
+
+
+                        } else {
+                            console.log("not found");
+                        }
                     },
-                   error: function (data) {
-                          console.log(data);
+                   error: function () {
+                    console.log("no succeed");
                     }
             })
+            }
         }
         //Item Delete end-------------
 
         //Service Delete start-------------
-        function DeleteInvSer(rowID,value)
+        function DeleteInvSer(rowID,ServiceRate,value)
         {
-
             if (isLoading == false) {
                 isLoading = true;
             }
@@ -393,9 +415,14 @@
 
                         if (message == true) {
 
-                            console.log("succeed");
                             value.closest("tr").remove();
                             isLoading = false;
+                            ServiceRatetotal -= ServiceRate;
+                            $("#SerCharges").html(ServiceRatetotal);
+
+                                total -= ServiceRate;
+                                $('#Total').html(total);
+
 
                         } else {
                             console.log("not found");
@@ -446,9 +473,6 @@
                                 var ServicePlatform = parseInt(ServiceRate) + PlatformCharges;
                                 ServiceRatetotal += ServicePlatform;
 
-
-                                console.log(ServicePlatform);
-                                
                                     //counter start
                                 if (ServiceCount > 0) {
                                     ServiceCount++;
@@ -459,11 +483,11 @@
                                     ServiceCount++;
                                 }
                                     //counter end
-
                                 //show data on table start
-                                $('#SerTable tbody').append('<tr><td>' + ServiceName + '</td><td>' + ServiceRate + '</td></tr>');
+                                $('#SerTable tbody').append('<tr><td>' + ServiceName + '</td><td>' + ServiceRate + '</td><td><a class="btn bg-danger rounded-circle text-light" style="font-size:18px;font-weight:600;" onclick="DeleteInvSer('+ data.ID +','+ data.Rate + ',this)" id="btnMinus"> - </a></td></tr>');
                                 //show data on table end
                                 
+
 
                                 $("#SerCharges").html(ServiceRatetotal);
 

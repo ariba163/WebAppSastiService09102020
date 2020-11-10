@@ -22,20 +22,19 @@
             {
                 int price = 0;
                 int count = 1;
-                foreach (var ser in Model)
+                foreach (var item in Model)
                 {
-                    <tr>
-                        <td>@ser.STPServiceProductItem.ServiceProductName</td>
-                        <td>@ser.STPServiceProductItem.ServiceModelNo</td>
-                        <td>@ser.STPServiceProductItem.SellingPrice</td>
-                        <td></td>
-                        <td><a class="btn danger rounded" onclick="DeleteTblItem(@ser.ID)"> - </a></td>
+        <tr>
+            <td>@item.STPServiceProductItem.ServiceProductName</td>
+            <td>@item.STPServiceProductItem.ServiceModelNo</td>
+            <td>@item.STPServiceProductItem.SellingPrice</td>
+            <td>@item.QTY</td>
+            <td><a class="btn bg-danger rounded-circle text-light" style="font-size:18px;font-weight:600;" onclick="DeleteTblItem(@item.ID,@item.STPServiceProductItem.SellingPrice,this)" id="btnMinus"> - </a></td>
+            @{
+                price += Convert.ToInt32(item.STPServiceProductItem.SellingPrice);
+            }
 
-                        @{
-                            price += Convert.ToInt32(@ser.STPServiceProductItem.SellingPrice);
-                        }
-
-                    </tr>
+        </tr>
                     count++;
                 }
 

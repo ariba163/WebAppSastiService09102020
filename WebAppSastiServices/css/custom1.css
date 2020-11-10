@@ -44,11 +44,12 @@
         border: 2px solid #096ab2
     }
 
-
-
+    /*pvServices Hover*/
+[class*=" imghvr-"] figcaption, [class^=imghvr-] figcaption {
+    background-color: #dcdcdc9e;
+}
     /*home side button*/
-
-#quickCall {
+    #quickCall {
     padding: 10px 10px;
     background-color: #096ab2;
     color: white;
@@ -62,7 +63,7 @@
     font-weight: 600;
 }
 
-    #QuickCallForm {
+ #QuickCallForm {
         width: 350px;
         cursor: default;
         height: auto;
@@ -113,9 +114,12 @@
 
 
     /*Service Page hover effects*/
-    #Services .hovereffect {
-        transition: box-shadow .3s;
-    }
+#Services .row:first-child div{
+    height: 340px;
+}
+#Services .hovereffect {
+    transition: box-shadow .3s;
+}
 
         #Services .hovereffect:hover {
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.7), 0 6px 20px 0 rgba(0, 0, 0, 0.49);

@@ -287,7 +287,7 @@ namespace WebAppSastiServices.Controllers
 
         {
             var Services = (from d in db.STPServiceTypes
-                            orderby d.ID descending
+                            orderby d.ID ascending
                             select d).Take(5).ToList();
 
             return PartialView(Services);

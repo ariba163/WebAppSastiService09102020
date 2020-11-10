@@ -679,7 +679,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="HelperClass\UserAuth.cs" />
     <Compile Include="Models\DB\ModelSastiService.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

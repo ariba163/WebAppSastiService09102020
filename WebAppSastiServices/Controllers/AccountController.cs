@@ -91,7 +91,7 @@ namespace WebAppSastiServices.Controllers
                 TimeSpan elapsedtimespan = DateTime.Now.Subtract(loggedInTime);
                 int elapsedtime = Convert.ToInt32(elapsedtimespan.TotalMinutes);
 
-                if (elapsedtime >= 1)
+                if (elapsedtime >= 20)
                 {
                     Session.Abandon();
                     Dispose();

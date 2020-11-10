@@ -50,8 +50,15 @@ namespace WebAppSastiServices.Controllers
         }
 
         public ActionResult QuickCallRequest() {
-
-            return View();
+            if (Session["IsAdmin"] == "true")
+            {
+                return View();
+            }
+            else
+            {
+                TempData["Message"] = "NotAdmin";
+                return Redirect(Url.Action("Login", "Account"));
+            }
         }
 
         public ActionResult QuickCallData()
@@ -72,8 +79,15 @@ namespace WebAppSastiServices.Controllers
 
         public ActionResult Invoices()
         {
-
-            return View();
+            if (Session["IsAdmin"] == "true")
+            {
+                return View();
+            }
+            else
+            {
+                TempData["Message"] = "NotAdmin";
+                return Redirect(Url.Action("Login", "Account"));
+            }
         }
 
         public ActionResult InvoicesData()
@@ -94,55 +108,40 @@ namespace WebAppSastiServices.Controllers
         }
         public ActionResult LatestActOrders()
         {
-            db.Configuration.ProxyCreationEnabled = false;
+            if (Session["IsAdmin"] == "true")
+            {
+                db.Configuration.ProxyCreationEnabled = false;
+                var result = (from o in db.TRNCustomerOrders
+                              join t in db.STPPrefferedTimes on o.preferredTimeID equals t.ID
+                              join s in db.STPServiceTypes on o.ServiceTypeId equals s.ID
+                              join st in db.STPStatus on o.OrderStatusId equals st.ID
+                              select new
+                              {
+                                  OrderId = o.OrderId,
+                                  CustomerName = o.CustomerName,
+                                  Contact = o.Contact,
+                                  Address = o.Address,
+                                  Description = s.ServiceTypeName,
+                                  TimeRange = t.TimeRange,
+                                  preferredDate = o.preferredDate.ToString(),
+                                  status = st.Description,
+                                  CreateOn = o.CreateOn.ToString(),
+                                  btns = " <div class='btn-group' role='group'><a type='button' class='btn btn-secondary text-light' onclick=OpenDetailForm(" + o.OrderId + ") id='Detail'><i class='fas fa-info-circle'></i> </a>" +
+                                                        "<a type='button' class='btn btn-danger text-light' onclick=OpenDeleteForm(" + o.OrderId + ") id='Delete'><i class='fas fa-trash'></i> </a>" +
+                                                        "<a type='button' class='btn btn-primary text-light' onclick=OpenEditForm(" + o.OrderId + ") id='Edit'><i class='far fa-edit'></i> </a></div>"
 
-            //---------Single Table Data---------
-            //IList<TRNCustomerOrder> orders = db.TRNCustomerOrders.
-            //    Where(s => s.STPStatu.Description == "Not Availed").
-            //    ToList<TRNCustomerOrder>();
-
-
-            var result = (from o in db.TRNCustomerOrders
-                          join t in db.STPPrefferedTimes on o.preferredTimeID equals t.ID
-                          join s in db.STPServiceTypes on o.ServiceTypeId equals s.ID
-                          join st in db.STPStatus on o.OrderStatusId equals st.ID
-                          select new
-                          {
-                              OrderId = o.OrderId,
-                              CustomerName = o.CustomerName,
-                              Contact = o.Contact,
-                              Address = o.Address,
-                              Description = s.ServiceTypeName,
-                              TimeRange = t.TimeRange,
-                              preferredDate = o.preferredDate.ToString(),
-                              status = st.Description,
-                              CreateOn = o.CreateOn.ToString(),
-                              btns = " <div class='btn-group' role='group'><a type='button' class='btn btn-secondary text-light' onclick=OpenDetailForm(" + o.OrderId + ") id='Detail'><i class='fas fa-info-circle'></i> </a>" +
-                                                    "<a type='button' class='btn btn-danger text-light' onclick=OpenDeleteForm(" + o.OrderId + ") id='Delete'><i class='fas fa-trash'></i> </a>" +
-                                                    "<a type='button' class='btn btn-primary text-light' onclick=OpenEditForm(" + o.OrderId + ") id='Edit'><i class='far fa-edit'></i> </a></div>"
-
-                          }).ToList();
+                              }).ToList();
 
 
-            return Json(result, JsonRequestBehavior.AllowGet);
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                TempData["Message"] = "NotAdmin";
+                return Redirect(Url.Action("Login", "Account"));
+            }
         }
 
-        //public JsonResult SessionEnd()
-        //{
-        //    string SessionStatus;
-
-        //    if(Session["UserID"] != null)
-        //    {
-        //        SessionStatus = "Continue";
-        //    }
-        //    else
-        //    {
-        //        SessionStatus = "Stop";
-        //    }
-
-        //    return Json(SessionStatus, JsonRequestBehavior.AllowGet);
-
-        //}
 
 
         public ActionResult OrderDetails(int? ID)
@@ -216,7 +215,15 @@ namespace WebAppSastiServices.Controllers
 
         public ActionResult AvailedOrders()
         {
-            return View();
+            if (Session["IsAdmin"] == "true")
+            {
+                return View();
+            }
+            else
+            {
+                TempData["Message"] = "NotAdmin";
+                return Redirect(Url.Action("Login", "Account"));
+            }
         }
 
         public ActionResult AvailedOrdersData()
@@ -327,13 +334,21 @@ namespace WebAppSastiServices.Controllers
 
         public ActionResult Register()
         {
-            ViewBag.Roles = new SelectList(db.StpRoles.Where(d=>d.Description!="Admin"),"ID","Description");
-            List<SelectListItem> Categories = new List<SelectListItem>() {
+            if (Session["IsAdmin"] == "true")
+            {
+                ViewBag.Roles = new SelectList(db.StpRoles.Where(d => d.Description != "Admin"), "ID", "Description");
+                List<SelectListItem> Categories = new List<SelectListItem>() {
                 new SelectListItem() {Value="0", Text="- Select Role Category -" },
            };
 
-            ViewBag.STPRolesCategoriesID = Categories;
-            return View();
+                ViewBag.STPRolesCategoriesID = Categories;
+                return View();
+            }
+            else
+            {
+                TempData["Message"] = "NotAdmin";
+                return Redirect(Url.Action("Login", "Account"));
+            }
         }
 
         public ActionResult Email()
@@ -344,10 +359,6 @@ namespace WebAppSastiServices.Controllers
         {
             return View();
         }
-        //public ActionResult Supplier()
-        //{
-        //    return View();
-        //}
         public ActionResult AdminProfile()
         {
             return View();
@@ -461,10 +472,16 @@ namespace WebAppSastiServices.Controllers
             var row = (from d in db.TRNCustomerOrders_STPProductItems
                        where (d.ID == rowID)
                        select d).SingleOrDefault();
-            db.TRNCustomerOrders_STPProductItems.Remove(row);
-            db.SaveChanges();
-
-            return Json(true, JsonRequestBehavior.AllowGet);
+            if (row != null)
+            {
+                db.TRNCustomerOrders_STPProductItems.Remove(row);
+                db.SaveChanges();
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
         }
         public JsonResult DeleteInvSer(int rowID)
         {
@@ -556,6 +573,17 @@ namespace WebAppSastiServices.Controllers
 
         public ActionResult Invoice(int OrderID)
         {
+
+            bool isAlready = (from d in db.TRNInvoices
+                              where (d.STPOrdersID == OrderID)
+                              select d).Any();
+
+            if (isAlready)
+            {
+                TempData["Message"] = "Invoiced";
+                return View();
+            }
+            else { 
             ViewBag.Message = TempData["Message"];
             ViewBag.InvoiceID = TempData["InvoiceID"];
             var order = (from d in db.TRNCustomerOrders
@@ -563,14 +591,13 @@ namespace WebAppSastiServices.Controllers
                          select d).
                         FirstOrDefault();
 
-            return View(order);
+                return View(order);
+            }
         }
         public ActionResult PrintInvoice(int invId)
         {
             try
             {
-
-
                 var results =(from d in db.TRNInvoices
                               where (d.ID == invId)
                               select d).SingleOrDefault();
@@ -578,8 +605,6 @@ namespace WebAppSastiServices.Controllers
                 if(results != null)
                 {
                     int OrderID = results.STPOrdersID;
-
-
                     var row1 = (from d in db.TRNCustomerOrders_STPServices
                               where d.TRNCustomerOrderID == OrderID
                               select d).ToList();

@@ -8,7 +8,12 @@
 
     <div class="col-lg-4 col-md-6 margin-30px-bottom xs-margin-20px-bottom">
         <div class="feature-box-02">
-            <div class="img-box IDinfo" data-id="@item.ID" data-toggle="modal" onclick="OpenModelForm(@item.ID)" id="@item.ID"><img src="@item.ImageFilePath" alt=""></div>
+            <div class="img-box IDinfo imghvr-slide-up" data-id="@item.ID" data-toggle="modal" onclick="OpenModelForm(@item.ID)" id="@item.ID">
+                <img src="@item.ImageFilePath" alt="">
+                <figcaption>
+                    <button class="butn dark" style="position:absolute;top:0;right:0;"><span>Order Now</span></button>
+                </figcaption>
+            </div>
             <div class="feature-textbox padding-25px-all sm-padding-20px-tb sm-padding-15px-lr text-center bg-light-gray">
                 <h4 class="title font-size16 sm-font-size15 font-weight-600 alt-font margin-10px-bottom">@item.ServiceTypeName</h4>
                 <p class="feature-desc sm-font-size14 sm-line-height-26 sm-margin-15px-bottom serviceContent">@item.Description </p>

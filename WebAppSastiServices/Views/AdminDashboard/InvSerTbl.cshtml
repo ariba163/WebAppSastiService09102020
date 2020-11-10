@@ -26,12 +26,12 @@
             @*<td class="count"> @count </td>*@
             <td>@ser.STPService.ServiceName</td>
             <td class="serviceRate">@ser.STPService.ServiceRate</td>
-
+            
 
             @{
                 price += Convert.ToInt32(@ser.STPService.ServiceRate);
             }
-            <td><a class="btn bg-danger rounded-circle text-light" style="font-size:18px;font-weight:600;" onclick="DeleteInvSer(@ser.ID,this)" id="btnMinus"> - </a></td>
+            <td><a class="btn bg-danger rounded-circle text-light" style="font-size:18px;font-weight:600;" onclick="DeleteInvSer(@ser.ID,@ser.Rate,this)" id="btnMinus"> - </a></td>
         </tr>
 
 
