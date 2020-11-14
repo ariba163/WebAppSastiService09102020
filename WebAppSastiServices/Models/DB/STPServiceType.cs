@@ -17,11 +17,11 @@ namespace WebAppSastiServices.Models.DB
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public STPServiceType()
         {
-            this.STPServices = new HashSet<STPService>();
             this.STPServicesFuelTypes = new HashSet<STPServicesFuelType>();
             this.STPServicesFuelTypes1 = new HashSet<STPServicesFuelType>();
             this.STPServicesUnitTypes = new HashSet<STPServicesUnitType>();
             this.TRNCustomerOrders = new HashSet<TRNCustomerOrder>();
+            this.STPServices = new HashSet<STPService>();
         }
     
         public int ID { get; set; }
@@ -33,8 +33,6 @@ namespace WebAppSastiServices.Models.DB
         public string ImageFilePath { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<STPService> STPServices { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<STPServicesFuelType> STPServicesFuelTypes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<STPServicesFuelType> STPServicesFuelTypes1 { get; set; }
@@ -42,5 +40,7 @@ namespace WebAppSastiServices.Models.DB
         public virtual ICollection<STPServicesUnitType> STPServicesUnitTypes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TRNCustomerOrder> TRNCustomerOrders { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<STPService> STPServices { get; set; }
     }
 }

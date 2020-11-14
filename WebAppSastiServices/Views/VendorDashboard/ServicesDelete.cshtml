@@ -1,0 +1,27 @@
+﻿@model WebAppSastiServices.Models.DB.STPService
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-6">
+            <p>Service#: <span class="float-right text-black-50">@Model.ID </span></p>
+            <p>Service Name: <span class="float-right text-black-50">@Model.ServiceName </span></p>
+        </div>
+        <div class="col-md-6">
+            <p>Service Rate: <span class="float-right text-black-50">@Model.ServiceRate</span></p>
+            <p>@Model.STPServicesFuelType.Label: <span class="float-right text-black-50">@Model.STPServicesFuelType.Options</span></p>
+            <p>Unit: <span class="float-right text-black-50">@Model.STPServicesUnitType.Options</span></p>
+        </div>
+        @using (Html.BeginForm("ServicesDelete", "VendorDashboard", FormMethod.Post))
+        {
+            @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "form-control input-md", @type = "hidden", @value = @Model.ID } })
+            <button class="btn btn-danger" type="submit"><span>Delete</span></button>
+        }
+    </div>
+</body>
+</html>

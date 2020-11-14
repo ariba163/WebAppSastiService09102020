@@ -24,16 +24,14 @@
         margin-left: 0 !important;
     }
     /*banner side customer review*/
+#rev_slider_151_1_wrapper{overflow:hidden;}
 #rev_slider_151_1_wrapper #reviewBanner {
     position: absolute;
-    height: 200px;
     right: 0;
     bottom: 10px;
     z-index: 999;
-    color: #fff;
-    background: rgba(255, 255, 255, 0.05);
-    padding: 20px 10px;
     overflow: hidden;
+    margin-bottom: -80px;
 }
 
     #reviewBanner .section-heading {
@@ -256,11 +254,7 @@
 
     /*xs screen*/
     @media(max-width: 575px) {
-        /*hide review*/
-        #reviewBanner {
-            display: none
-        }
-
+       
         #product {
             margin-top: 20px;
         }

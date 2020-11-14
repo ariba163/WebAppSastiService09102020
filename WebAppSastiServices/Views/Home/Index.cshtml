@@ -5,7 +5,8 @@
 }
 <div id="fb-root"></div>
 
-@if (message == "success"){
+@if (message == "success")
+{
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript">
         //swal("Order sent successfully", "", "success");
@@ -14,7 +15,8 @@
             icon: "success",
         });
     </script>
-}else if (message == "error")
+}
+else if (message == "error")
 {
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript">
@@ -74,12 +76,12 @@
 
 <div class="wrapModal">
     <!-- start revolution slideshow-->
-    <div id="rev_slider_151_1_wrapper" class="rev_slider_wrapper fullscreen-container" data-alias="blur-effect-slider" data-source="gallery" style="background-color:#2d3032;padding:0px;">
+    <div id="rev_slider_151_1_wrapper" class="rev_slider_wrapper fullscreen-container" data-source="gallery" style="background-color:#2d3032;padding:0px;">
 
         <video autoplay muted loop style="width:100%;">
             <source src="~/video/HomeVideo.mp4" type="video/mp4" />
         </video>
-        <div id="reviewBanner" class="col-lg-5 d-lg-block d-md-none d-sm-none" style="">
+        <div id="reviewBanner" class="col-lg-5" style="">
             <script src="https://apps.elfsight.com/p/platform.js" defer></script>
             <div class="elfsight-app-891be47f-f968-485f-b882-141bab11e9a7"></div>
 
@@ -99,7 +101,6 @@
                                 book an appointment, you may fill our form available on our website. A customer representative
                                 will contact you shortly.
                             </p>
-
                         </div>
                         @{Html.RenderAction("PVservices");}
 
@@ -128,7 +129,7 @@
             </div>
 
 
-            <div class="pricing-content">
+            <div class="pricing-content" >
                 <div class="row">
 
                     <div class="col-lg-4 sm-margin-30px-bottom">
@@ -138,15 +139,13 @@
                             </div>
                             <div class="body-plan">
                                 <div class="price-plan">
-                                    <h3><sup>$</sup>49</h3>
                                     <span>Monthly</span>
                                     <i class="icon-briefcase"></i>
                                 </div>
                                 <div class="feat-plan">
                                     <ul>
-                                        <li>Business Analysing</li>
-                                        <li>Finance Analysing</li>
-                                        <li>Custom Management</li>
+                                        <li>AC Maintainance</li>
+                                        <li>CCTV Maintainance</li>
                                     </ul>
                                 </div>
                             </div>
@@ -165,15 +164,13 @@
                             </div>
                             <div class="body-plan">
                                 <div class="price-plan">
-                                    <h3><sup>$</sup>39</h3>
-                                    <span>Quaterly</span>
-                                    <i class="icon-lightbulb"></i>
+                                    <span>Monthly</span>
+                                    <i class="icon-briefcase"></i>
                                 </div>
                                 <div class="feat-plan">
                                     <ul>
-                                        <li>Business Analysing</li>
-                                        <li>Finance Analysing</li>
-                                        <li>Growth Tracking</li>
+                                        <li>AC Maintainance</li>
+                                        <li>CCTV Maintainance</li>
                                     </ul>
                                 </div>
                             </div>
@@ -192,15 +189,13 @@
                             </div>
                             <div class="body-plan">
                                 <div class="price-plan">
-                                    <h3><sup>Rs.</sup>30,000</h3>
-                                    <span>Annually</span>
-                                    <i class="icon-layers"></i>
+                                    <span>Monthly</span>
+                                    <i class="icon-briefcase"></i>
                                 </div>
                                 <div class="feat-plan">
                                     <ul>
-                                        <li>Free Service/Labor Charges</li>
-                                        <li></li>
-                                        <li>Training & Workshop</li>
+                                        <li>AC Maintainance</li>
+                                        <li>CCTV Maintainance</li>
                                     </ul>
                                 </div>
                             </div>

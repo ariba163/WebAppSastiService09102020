@@ -33,8 +33,9 @@ namespace WebAppSastiServices.Models.ViewModel
 
         [Display(Name = "Mobile Number")]
         [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"^[\d]{11}$", ErrorMessage = "Entered phone format is not valid.")]
         //[RegularExpression(@"^\(?([0-9]{2})[-. ]?([0-9]{4})[-. ]?([0-9]{3})[-. ]?([0-9]{3})$", ErrorMessage = "Not a valid Phone number")]
-        [RegularExpression(@"^([0-9]{14})$", ErrorMessage = "Invalid Mobile Number. 00923000000000")]
+        //[RegularExpression(@"^([0-9]{14})$", ErrorMessage = "Invalid Mobile Number. 00923000000000")]
         [MaxLength(50)]
         public string Contact { get; set; }
 

@@ -77,7 +77,7 @@
                             }
                         }
                         <li>
-                            <a href="@Url.Action("ACEmail","VendorDashboard")">
+                            <a href="@Url.Action("Email","VendorDashboard")">
                                 <i class="menu-icon icon-inbox"></i><span>Email</span>
                             </a>
                         </li>
@@ -449,13 +449,12 @@
     <script src="~/DataTables/js/jquery.dataTables.js"></script>
 
     <script>
-    setInterval(function ()
+    @*setInterval(function ()
     {
     $.ajax({
     url: '@Url.Action("SessionEnd", "Account")',
     dataType:'json',
         success: function (data) {
-        console.log(data);
         if (data == "true") {
              console.log("Session expired");
             window.location = "@Url.Action("Login", "Account")";
@@ -465,7 +464,7 @@
         }
         }
     })
-    }, 2000);
+    }, 120000);*@
     </script>
     @RenderSection("scripts", required: false)
 </body>

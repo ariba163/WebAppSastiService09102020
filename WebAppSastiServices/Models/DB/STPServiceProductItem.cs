@@ -24,7 +24,7 @@ namespace WebAppSastiServices.Models.DB
         public string ServiceProductName { get; set; }
         public string ServiceModelNo { get; set; }
         public string ServiceProductDescription { get; set; }
-        public Nullable<int> STPProductBrandID { get; set; }
+        public int STPProductBrandID { get; set; }
         public bool IsAvailible { get; set; }
         public System.DateTime CreatedDateTime { get; set; }
         public string ImageFilePath { get; set; }
@@ -32,8 +32,10 @@ namespace WebAppSastiServices.Models.DB
         public decimal SellingPrice { get; set; }
         public int FuelTypeId { get; set; }
         public int UnitTypeId { get; set; }
+        public int STPProductTypeID { get; set; }
     
         public virtual STPProductBrand STPProductBrand { get; set; }
+        public virtual STPProductType STPProductType { get; set; }
         public virtual STPServicesFuelType STPServicesFuelType { get; set; }
         public virtual STPServicesUnitType STPServicesUnitType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

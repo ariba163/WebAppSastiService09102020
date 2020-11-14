@@ -1,0 +1,81 @@
+﻿@model WebAppSastiServices.Models.DB.STPServiceProductItem
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+        @using (Html.BeginForm("ItemEdit", "VendorDashboard", FormMethod.Post)){
+    <div class="row col-md-12">
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "form-control", @value = Model.ID, @type = "hidden" } })
+        @Html.EditorFor(model => model.STPProductTypeID, new { htmlAttributes = new { @class = "form-control", @value = ViewBag.ProductTypeID, @type = "hidden" } })
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.ServiceProductName, "Service Product Name", htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.ServiceProductName, new { htmlAttributes = new { @class = "form-control"} })
+                @Html.ValidationMessageFor(model => model.ServiceProductName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.ServiceModelNo, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.ServiceModelNo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ServiceModelNo, "", new { @class = "text-danger" })
+
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                @Html.LabelFor(model => model.CostPrice, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.CostPrice, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CostPrice, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                @Html.LabelFor(model => model.SellingPrice, "Description", htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.SellingPrice, new { htmlAttributes = new { @class = "form-control"} })
+                @Html.ValidationMessageFor(model => model.SellingPrice, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.FuelTypeId, "Fuel", htmlAttributes: new { @class = "control-label" })
+                @Html.DropDownListFor(model => model.FuelTypeId, (SelectList)ViewBag.FuelType, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.FuelTypeId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.UnitTypeId, "Unit", htmlAttributes: new { @class = "control-label" })
+                @Html.DropDownListFor(model => model.UnitTypeId, (SelectList)ViewBag.UnitType, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.UnitTypeId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.STPProductBrandID, "Brand", htmlAttributes: new { @class = "control-label" })
+                @Html.DropDownListFor(model => model.STPProductBrandID, (SelectList)ViewBag.BrandName, htmlAttributes: new { @class = "form-control"})
+                @Html.ValidationMessageFor(model => model.STPProductBrandID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.ServiceProductDescription, "ServiceProductDescription", htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.ServiceProductDescription, new { htmlAttributes = new { @class = "form-control"} } )
+                @Html.ValidationMessageFor(model => model.ServiceProductDescription, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                <button class="btn btn-outline-secondary d-inline" type="submit"><span>Edit</span></button>
+                <button class="btn btn-outline-secondary d-inline" data-dismiss="modal"><span>Close</span></button>
+            </div>
+        </div>
+    </div>}
+</body>
+</html>

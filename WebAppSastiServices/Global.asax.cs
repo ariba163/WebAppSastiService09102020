@@ -18,12 +18,5 @@ namespace WebAppSastiServices
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
-        protected void Application_BeginRequest()
-        {
-            if (!Request.IsSecureConnection)
-            {
-                Response.Redirect(Request.Url.AbsoluteUri.Replace("http://", "https://"));
-            }
-        }
     }
 }

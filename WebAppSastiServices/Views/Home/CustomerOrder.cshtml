@@ -1,21 +1,10 @@
 ﻿@model WebAppSastiServices.Models.DB.TRNCustomerOrderMetadata
-
 @{
     ViewBag.Title = "Customer Order";
     Layout = null;
-}
-
-
-<html>
-<head>
-
-</head>
+}<html>
+<head></head>
 <body>
-
-
-
-
-
         @using (Html.BeginForm("CustomerOrder", "Home", FormMethod.Post, new { @id = "Order" }))
         {
             <div class="row col-md-12">
@@ -29,14 +18,14 @@
                         <div class="col-md-6">
                             <div class="form-group col-md-12">
                                 @Html.LabelFor(model => model.CustomerName, "Name", htmlAttributes: new { @class = "control-label" })
-                                @Html.EditorFor(model => model.CustomerName, new { htmlAttributes = new { @class = "form-control input-md" } })
+                                @Html.EditorFor(model => model.CustomerName, new { htmlAttributes = new { @class = "form-control input-md" , @placeholder ="Name"} })
                                 @Html.ValidationMessageFor(model => model.CustomerName, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group col-md-12">
                                 @Html.LabelFor(model => model.Contact, new { @class = "control-label" })
-                                @Html.EditorFor(model => model.Contact, new { @class = "form-control" })
+                                @Html.EditorFor(model => model.Contact, new { htmlAttributes = new { @class = "form-control", @placeholder = "03xxxxxxxxx" } })
                                 @Html.ValidationMessageFor(model => model.Contact, "", new { @class = "text-danger" })
 
                             </div>
@@ -47,7 +36,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             @Html.LabelFor(model => model.Email, new { @class = "control-label" })
-                            @Html.EditorFor(model => model.Email, new { @class = "form-control"})
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email Address" } })
                             @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
 
                         </div>
@@ -55,7 +44,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label" })
-                            @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", @placeholder = "Address"} })
                             @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
 
                         </div>
@@ -64,7 +53,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             @Html.LabelFor(model => model.OrderDescription, "Description", htmlAttributes: new { @class = "control-label" })
-                            @Html.EditorFor(model => model.OrderDescription, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.OrderDescription, new { htmlAttributes = new { @class = "form-control" ,@placeholder="Say something about your Problem!"} })
                             @Html.ValidationMessageFor(model => model.OrderDescription, "", new { @class = "text-danger" })
 
                         </div>
@@ -132,7 +121,7 @@
 
 
 
-
+<script src="~/plugins/jquery/jquery-3.1.0.min.js"></script>
     <script src="~/Scripts/jquery.validate.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 

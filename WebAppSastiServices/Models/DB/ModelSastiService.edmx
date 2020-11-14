@@ -99,8 +99,8 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ServiceProductName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ServiceModelNo" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="ServiceProductDescription" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="STPProductBrandID" Type="int" />
+          <Property Name="ServiceProductDescription" Type="nvarchar(max)" />
+          <Property Name="STPProductBrandID" Type="int" Nullable="false" />
           <Property Name="IsAvailible" Type="bit" Nullable="false" />
           <Property Name="CreatedDateTime" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="ImageFilePath" Type="nvarchar(max)" />
@@ -108,6 +108,7 @@
           <Property Name="SellingPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="FuelTypeId" Type="int" Nullable="false" />
           <Property Name="UnitTypeId" Type="int" Nullable="false" />
+          <Property Name="STPProductTypeID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="STPServices">
           <Key>
@@ -118,7 +119,7 @@
           <Property Name="ServiceDescrption" Type="nvarchar" MaxLength="1000" />
           <Property Name="STPServiceTypeID" Type="int" Nullable="false" />
           <Property Name="IsAvailible" Type="bit" Nullable="false" />
-          <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="datetime2" Precision="2" />
           <Property Name="FuelTypeId" Type="int" Nullable="false" />
           <Property Name="UnitTypeId" Type="int" Nullable="false" />
           <Property Name="ServiceRate" Type="decimal" Precision="18" Scale="2" Nullable="false" />
@@ -329,7 +330,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_STPProductItems_STPProductBrand">
-          <End Role="STPProductBrand" Type="Self.STPProductBrand" Multiplicity="0..1" />
+          <End Role="STPProductBrand" Type="Self.STPProductBrand" Multiplicity="1" />
           <End Role="STPServiceProductItems" Type="Self.STPServiceProductItems" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="STPProductBrand">
@@ -373,6 +374,18 @@
             </Principal>
             <Dependent Role="STPRolesCategories">
               <PropertyRef Name="STPRolesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STPServiceProductItems_STPProductType">
+          <End Role="STPProductType" Type="Self.STPProductType" Multiplicity="1" />
+          <End Role="STPServiceProductItems" Type="Self.STPServiceProductItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STPProductType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="STPServiceProductItems">
+              <PropertyRef Name="STPProductTypeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -601,6 +614,10 @@
             <End Role="StpRoles" EntitySet="StpRoles" />
             <End Role="STPRolesCategories" EntitySet="STPRolesCategories" />
           </AssociationSet>
+          <AssociationSet Name="FK_STPServiceProductItems_STPProductType" Association="Self.FK_STPServiceProductItems_STPProductType">
+            <End Role="STPProductType" EntitySet="STPProductType" />
+            <End Role="STPServiceProductItems" EntitySet="STPServiceProductItems" />
+          </AssociationSet>
           <AssociationSet Name="FK_STPServices_STPServicesFuelTypes" Association="Self.FK_STPServices_STPServicesFuelTypes">
             <End Role="STPServicesFuelTypes" EntitySet="STPServicesFuelTypes" />
             <End Role="STPServices" EntitySet="STPServices" />
@@ -670,7 +687,6 @@
           <EntitySet Name="StpRoles" EntityType="SastaServicesDBModel.StpRole" />
           <EntitySet Name="STPRolesCategories" EntityType="SastaServicesDBModel.STPRolesCategory" />
           <EntitySet Name="STPServiceProductItems" EntityType="SastaServicesDBModel.STPServiceProductItem" />
-          <EntitySet Name="STPServices" EntityType="SastaServicesDBModel.STPService" />
           <EntitySet Name="STPServicesFuelTypes" EntityType="SastaServicesDBModel.STPServicesFuelType" />
           <EntitySet Name="STPServicesUnitTypes" EntityType="SastaServicesDBModel.STPServicesUnitType" />
           <EntitySet Name="STPServiceTypes" EntityType="SastaServicesDBModel.STPServiceType" />
@@ -692,6 +708,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_STPProductItems_STPProductBrand" Association="SastaServicesDBModel.FK_STPProductItems_STPProductBrand">
             <End Role="STPProductBrand" EntitySet="STPProductBrands" />
+            <End Role="STPServiceProductItem" EntitySet="STPServiceProductItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STPServiceProductItems_STPProductType" Association="SastaServicesDBModel.FK_STPServiceProductItems_STPProductType">
+            <End Role="STPProductType" EntitySet="STPProductTypes" />
             <End Role="STPServiceProductItem" EntitySet="STPServiceProductItems" />
           </AssociationSet>
           <AssociationSet Name="FK_STPRolesCategories_StpRoles" Association="SastaServicesDBModel.FK_STPRolesCategories_StpRoles">
@@ -717,22 +737,6 @@
           <AssociationSet Name="FK_TRNCustomerOrders_STPProductItems_STPServiceProductItems" Association="SastaServicesDBModel.FK_TRNCustomerOrders_STPProductItems_STPServiceProductItems">
             <End Role="STPServiceProductItem" EntitySet="STPServiceProductItems" />
             <End Role="TRNCustomerOrders_STPProductItems" EntitySet="TRNCustomerOrders_STPProductItems" />
-          </AssociationSet>
-          <AssociationSet Name="FK_STPServices_STPServicesFuelTypes" Association="SastaServicesDBModel.FK_STPServices_STPServicesFuelTypes">
-            <End Role="STPServicesFuelType" EntitySet="STPServicesFuelTypes" />
-            <End Role="STPService" EntitySet="STPServices" />
-          </AssociationSet>
-          <AssociationSet Name="FK_STPServices_STPServicesUnitTypes" Association="SastaServicesDBModel.FK_STPServices_STPServicesUnitTypes">
-            <End Role="STPServicesUnitType" EntitySet="STPServicesUnitTypes" />
-            <End Role="STPService" EntitySet="STPServices" />
-          </AssociationSet>
-          <AssociationSet Name="FK_STPServices_STPServiceType" Association="SastaServicesDBModel.FK_STPServices_STPServiceType">
-            <End Role="STPServiceType" EntitySet="STPServiceTypes" />
-            <End Role="STPService" EntitySet="STPServices" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TRNCustomerOrders_STPServices_STPServices" Association="SastaServicesDBModel.FK_TRNCustomerOrders_STPServices_STPServices">
-            <End Role="STPService" EntitySet="STPServices" />
-            <End Role="TRNCustomerOrders_STPServices" EntitySet="TRNCustomerOrders_STPServices" />
           </AssociationSet>
           <AssociationSet Name="FK_CustomerOrders_STPServicesFuelTypes" Association="SastaServicesDBModel.FK_CustomerOrders_STPServicesFuelTypes">
             <End Role="STPServicesFuelType" EntitySet="STPServicesFuelTypes" />
@@ -777,6 +781,23 @@
           <AssociationSet Name="FK_TRNInvoice_TRNCustomerOrders" Association="SastaServicesDBModel.FK_TRNInvoice_TRNCustomerOrders">
             <End Role="TRNCustomerOrder" EntitySet="TRNCustomerOrders" />
             <End Role="TRNInvoice" EntitySet="TRNInvoices" />
+          </AssociationSet>
+          <EntitySet Name="STPServices" EntityType="SastaServicesDBModel.STPService" />
+          <AssociationSet Name="FK_STPServices_STPServicesFuelTypes" Association="SastaServicesDBModel.FK_STPServices_STPServicesFuelTypes">
+            <End Role="STPServicesFuelType" EntitySet="STPServicesFuelTypes" />
+            <End Role="STPService" EntitySet="STPServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STPServices_STPServicesUnitTypes" Association="SastaServicesDBModel.FK_STPServices_STPServicesUnitTypes">
+            <End Role="STPServicesUnitType" EntitySet="STPServicesUnitTypes" />
+            <End Role="STPService" EntitySet="STPServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STPServices_STPServiceType" Association="SastaServicesDBModel.FK_STPServices_STPServiceType">
+            <End Role="STPServiceType" EntitySet="STPServiceTypes" />
+            <End Role="STPService" EntitySet="STPServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRNCustomerOrders_STPServices_STPServices" Association="SastaServicesDBModel.FK_TRNCustomerOrders_STPServices_STPServices">
+            <End Role="STPService" EntitySet="STPServices" />
+            <End Role="TRNCustomerOrders_STPServices" EntitySet="TRNCustomerOrders_STPServices" />
           </AssociationSet>
           </EntityContainer>
         <ComplexType Name="ReportInvoice_Result">
@@ -858,6 +879,7 @@
           <Property Name="ProductTypeName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="ProductTypeDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="STPProductBrands" Relationship="SastaServicesDBModel.FK_STPProductBrand_STPProductType" FromRole="STPProductType" ToRole="STPProductBrand" />
+          <NavigationProperty Name="STPServiceProductItems" Relationship="SastaServicesDBModel.FK_STPServiceProductItems_STPProductType" FromRole="STPProductType" ToRole="STPServiceProductItem" />
         </EntityType>
         <EntityType Name="STPQuickCall">
           <Key>
@@ -895,8 +917,8 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ServiceProductName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ServiceModelNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ServiceProductDescription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="STPProductBrandID" Type="Int32" />
+          <Property Name="ServiceProductDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="STPProductBrandID" Type="Int32" Nullable="false" />
           <Property Name="IsAvailible" Type="Boolean" Nullable="false" />
           <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="ImageFilePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -904,28 +926,12 @@
           <Property Name="SellingPrice" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="FuelTypeId" Type="Int32" Nullable="false" />
           <Property Name="UnitTypeId" Type="Int32" Nullable="false" />
+          <Property Name="STPProductTypeID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="STPProductBrand" Relationship="SastaServicesDBModel.FK_STPProductItems_STPProductBrand" FromRole="STPServiceProductItem" ToRole="STPProductBrand" />
+          <NavigationProperty Name="STPProductType" Relationship="SastaServicesDBModel.FK_STPServiceProductItems_STPProductType" FromRole="STPServiceProductItem" ToRole="STPProductType" />
           <NavigationProperty Name="STPServicesFuelType" Relationship="SastaServicesDBModel.FK_STPProductItems_STPServicesFuelTypes" FromRole="STPServiceProductItem" ToRole="STPServicesFuelType" />
           <NavigationProperty Name="STPServicesUnitType" Relationship="SastaServicesDBModel.FK_STPProductItems_STPServicesUnitTypes" FromRole="STPServiceProductItem" ToRole="STPServicesUnitType" />
           <NavigationProperty Name="TRNCustomerOrders_STPProductItems" Relationship="SastaServicesDBModel.FK_TRNCustomerOrders_STPProductItems_STPServiceProductItems" FromRole="STPServiceProductItem" ToRole="TRNCustomerOrders_STPProductItems" />
-        </EntityType>
-        <EntityType Name="STPService">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ServiceName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="ServiceDescrption" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="STPServiceTypeID" Type="Int32" Nullable="false" />
-          <Property Name="IsAvailible" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="FuelTypeId" Type="Int32" Nullable="false" />
-          <Property Name="UnitTypeId" Type="Int32" Nullable="false" />
-          <Property Name="ServiceRate" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <NavigationProperty Name="STPServicesFuelType" Relationship="SastaServicesDBModel.FK_STPServices_STPServicesFuelTypes" FromRole="STPService" ToRole="STPServicesFuelType" />
-          <NavigationProperty Name="STPServicesUnitType" Relationship="SastaServicesDBModel.FK_STPServices_STPServicesUnitTypes" FromRole="STPService" ToRole="STPServicesUnitType" />
-          <NavigationProperty Name="STPServiceType" Relationship="SastaServicesDBModel.FK_STPServices_STPServiceType" FromRole="STPService" ToRole="STPServiceType" />
-          <NavigationProperty Name="TRNCustomerOrders_STPServices" Relationship="SastaServicesDBModel.FK_TRNCustomerOrders_STPServices_STPServices" FromRole="STPService" ToRole="TRNCustomerOrders_STPServices" />
         </EntityType>
         <EntityType Name="STPServicesFuelType">
           <Key>
@@ -936,10 +942,10 @@
           <Property Name="Label" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="true" />
           <Property Name="Options" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="STPServiceProductItems" Relationship="SastaServicesDBModel.FK_STPProductItems_STPServicesFuelTypes" FromRole="STPServicesFuelType" ToRole="STPServiceProductItem" />
-          <NavigationProperty Name="STPServices" Relationship="SastaServicesDBModel.FK_STPServices_STPServicesFuelTypes" FromRole="STPServicesFuelType" ToRole="STPService" />
           <NavigationProperty Name="TRNCustomerOrders" Relationship="SastaServicesDBModel.FK_CustomerOrders_STPServicesFuelTypes" FromRole="STPServicesFuelType" ToRole="TRNCustomerOrder" />
           <NavigationProperty Name="STPServiceType" Relationship="SastaServicesDBModel.FK_STPDependent_STPServiceType" FromRole="STPServicesFuelType" ToRole="STPServiceType" />
           <NavigationProperty Name="STPServiceType1" Relationship="SastaServicesDBModel.FK_STPServicesFuelTypes_STPServiceType" FromRole="STPServicesFuelType" ToRole="STPServiceType" />
+          <NavigationProperty Name="STPServices" Relationship="SastaServicesDBModel.FK_STPServices_STPServicesFuelTypes" FromRole="STPServicesFuelType" ToRole="STPService" />
         </EntityType>
         <EntityType Name="STPServicesUnitType">
           <Key>
@@ -949,9 +955,9 @@
           <Property Name="Options" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="STPServiceTypeID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="STPServiceProductItems" Relationship="SastaServicesDBModel.FK_STPProductItems_STPServicesUnitTypes" FromRole="STPServicesUnitType" ToRole="STPServiceProductItem" />
-          <NavigationProperty Name="STPServices" Relationship="SastaServicesDBModel.FK_STPServices_STPServicesUnitTypes" FromRole="STPServicesUnitType" ToRole="STPService" />
           <NavigationProperty Name="TRNCustomerOrders" Relationship="SastaServicesDBModel.FK_CustomerOrders_STPServicesUnitTypes" FromRole="STPServicesUnitType" ToRole="TRNCustomerOrder" />
           <NavigationProperty Name="STPServiceType" Relationship="SastaServicesDBModel.FK_STPServicesUnitTypes_STPServiceType" FromRole="STPServicesUnitType" ToRole="STPServiceType" />
+          <NavigationProperty Name="STPServices" Relationship="SastaServicesDBModel.FK_STPServices_STPServicesUnitTypes" FromRole="STPServicesUnitType" ToRole="STPService" />
         </EntityType>
         <EntityType Name="STPServiceType">
           <Key>
@@ -964,11 +970,11 @@
           <Property Name="Datetime" Type="DateTime" Precision="3" />
           <Property Name="IsAvailible" Type="Boolean" Nullable="false" />
           <Property Name="ImageFilePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="STPServices" Relationship="SastaServicesDBModel.FK_STPServices_STPServiceType" FromRole="STPServiceType" ToRole="STPService" />
           <NavigationProperty Name="STPServicesFuelTypes" Relationship="SastaServicesDBModel.FK_STPDependent_STPServiceType" FromRole="STPServiceType" ToRole="STPServicesFuelType" />
           <NavigationProperty Name="STPServicesFuelTypes1" Relationship="SastaServicesDBModel.FK_STPServicesFuelTypes_STPServiceType" FromRole="STPServiceType" ToRole="STPServicesFuelType" />
           <NavigationProperty Name="STPServicesUnitTypes" Relationship="SastaServicesDBModel.FK_STPServicesUnitTypes_STPServiceType" FromRole="STPServiceType" ToRole="STPServicesUnitType" />
           <NavigationProperty Name="TRNCustomerOrders" Relationship="SastaServicesDBModel.FK_CustomerOrders_STPServiceType" FromRole="STPServiceType" ToRole="TRNCustomerOrder" />
+          <NavigationProperty Name="STPServices" Relationship="SastaServicesDBModel.FK_STPServices_STPServiceType" FromRole="STPServiceType" ToRole="STPService" />
         </EntityType>
         <EntityType Name="STPStatu">
           <Key>
@@ -1053,8 +1059,8 @@
           <Property Name="TRNCustomerOrderID" Type="Int32" Nullable="false" />
           <Property Name="STPServicesID" Type="Int32" Nullable="false" />
           <Property Name="Rate" Type="Decimal" Precision="18" Scale="2" />
-          <NavigationProperty Name="STPService" Relationship="SastaServicesDBModel.FK_TRNCustomerOrders_STPServices_STPServices" FromRole="TRNCustomerOrders_STPServices" ToRole="STPService" />
           <NavigationProperty Name="TRNCustomerOrder" Relationship="SastaServicesDBModel.FK_TRNCustomerOrders_STPServices_TRNCustomerOrders" FromRole="TRNCustomerOrders_STPServices" ToRole="TRNCustomerOrder" />
+          <NavigationProperty Name="STPService" Relationship="SastaServicesDBModel.FK_TRNCustomerOrders_STPServices_STPServices" FromRole="TRNCustomerOrders_STPServices" ToRole="STPService" />
         </EntityType>
         <EntityType Name="TRNInvoice">
           <Key>
@@ -1105,7 +1111,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_STPProductItems_STPProductBrand">
-          <End Type="SastaServicesDBModel.STPProductBrand" Role="STPProductBrand" Multiplicity="0..1" />
+          <End Type="SastaServicesDBModel.STPProductBrand" Role="STPProductBrand" Multiplicity="1" />
           <End Type="SastaServicesDBModel.STPServiceProductItem" Role="STPServiceProductItem" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="STPProductBrand">
@@ -1113,6 +1119,18 @@
             </Principal>
             <Dependent Role="STPServiceProductItem">
               <PropertyRef Name="STPProductBrandID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STPServiceProductItems_STPProductType">
+          <End Type="SastaServicesDBModel.STPProductType" Role="STPProductType" Multiplicity="1" />
+          <End Type="SastaServicesDBModel.STPServiceProductItem" Role="STPServiceProductItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STPProductType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="STPServiceProductItem">
+              <PropertyRef Name="STPProductTypeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1187,54 +1205,6 @@
             </Principal>
             <Dependent Role="TRNCustomerOrders_STPProductItems">
               <PropertyRef Name="STPProductItemsID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_STPServices_STPServicesFuelTypes">
-          <End Type="SastaServicesDBModel.STPServicesFuelType" Role="STPServicesFuelType" Multiplicity="1" />
-          <End Type="SastaServicesDBModel.STPService" Role="STPService" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="STPServicesFuelType">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="STPService">
-              <PropertyRef Name="FuelTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_STPServices_STPServicesUnitTypes">
-          <End Type="SastaServicesDBModel.STPServicesUnitType" Role="STPServicesUnitType" Multiplicity="1" />
-          <End Type="SastaServicesDBModel.STPService" Role="STPService" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="STPServicesUnitType">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="STPService">
-              <PropertyRef Name="UnitTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_STPServices_STPServiceType">
-          <End Type="SastaServicesDBModel.STPServiceType" Role="STPServiceType" Multiplicity="1" />
-          <End Type="SastaServicesDBModel.STPService" Role="STPService" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="STPServiceType">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="STPService">
-              <PropertyRef Name="STPServiceTypeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TRNCustomerOrders_STPServices_STPServices">
-          <End Type="SastaServicesDBModel.STPService" Role="STPService" Multiplicity="1" />
-          <End Type="SastaServicesDBModel.TRNCustomerOrders_STPServices" Role="TRNCustomerOrders_STPServices" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="STPService">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="TRNCustomerOrders_STPServices">
-              <PropertyRef Name="STPServicesID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1370,6 +1340,72 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="STPService">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ServiceName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ServiceDescrption" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="STPServiceTypeID" Type="Int32" Nullable="false" />
+          <Property Name="IsAvailible" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" Precision="2" />
+          <Property Name="FuelTypeId" Type="Int32" Nullable="false" />
+          <Property Name="UnitTypeId" Type="Int32" Nullable="false" />
+          <Property Name="ServiceRate" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <NavigationProperty Name="STPServicesFuelType" Relationship="SastaServicesDBModel.FK_STPServices_STPServicesFuelTypes" FromRole="STPService" ToRole="STPServicesFuelType" />
+          <NavigationProperty Name="STPServicesUnitType" Relationship="SastaServicesDBModel.FK_STPServices_STPServicesUnitTypes" FromRole="STPService" ToRole="STPServicesUnitType" />
+          <NavigationProperty Name="STPServiceType" Relationship="SastaServicesDBModel.FK_STPServices_STPServiceType" FromRole="STPService" ToRole="STPServiceType" />
+          <NavigationProperty Name="TRNCustomerOrders_STPServices" Relationship="SastaServicesDBModel.FK_TRNCustomerOrders_STPServices_STPServices" FromRole="STPService" ToRole="TRNCustomerOrders_STPServices" />
+        </EntityType>
+        <Association Name="FK_STPServices_STPServicesFuelTypes">
+          <End Type="SastaServicesDBModel.STPServicesFuelType" Role="STPServicesFuelType" Multiplicity="1" />
+          <End Type="SastaServicesDBModel.STPService" Role="STPService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STPServicesFuelType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="STPService">
+              <PropertyRef Name="FuelTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STPServices_STPServicesUnitTypes">
+          <End Type="SastaServicesDBModel.STPServicesUnitType" Role="STPServicesUnitType" Multiplicity="1" />
+          <End Type="SastaServicesDBModel.STPService" Role="STPService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STPServicesUnitType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="STPService">
+              <PropertyRef Name="UnitTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STPServices_STPServiceType">
+          <End Type="SastaServicesDBModel.STPServiceType" Role="STPServiceType" Multiplicity="1" />
+          <End Type="SastaServicesDBModel.STPService" Role="STPService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STPServiceType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="STPService">
+              <PropertyRef Name="STPServiceTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRNCustomerOrders_STPServices_STPServices">
+          <End Type="SastaServicesDBModel.STPService" Role="STPService" Multiplicity="1" />
+          <End Type="SastaServicesDBModel.TRNCustomerOrders_STPServices" Role="TRNCustomerOrders_STPServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STPService">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TRNCustomerOrders_STPServices">
+              <PropertyRef Name="STPServicesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1475,6 +1511,7 @@
           <EntitySetMapping Name="STPServiceProductItems">
             <EntityTypeMapping TypeName="SastaServicesDBModel.STPServiceProductItem">
               <MappingFragment StoreEntitySet="STPServiceProductItems">
+                <ScalarProperty Name="STPProductTypeID" ColumnName="STPProductTypeID" />
                 <ScalarProperty Name="UnitTypeId" ColumnName="UnitTypeId" />
                 <ScalarProperty Name="FuelTypeId" ColumnName="FuelTypeId" />
                 <ScalarProperty Name="SellingPrice" ColumnName="SellingPrice" />
@@ -1486,21 +1523,6 @@
                 <ScalarProperty Name="ServiceProductDescription" ColumnName="ServiceProductDescription" />
                 <ScalarProperty Name="ServiceModelNo" ColumnName="ServiceModelNo" />
                 <ScalarProperty Name="ServiceProductName" ColumnName="ServiceProductName" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="STPServices">
-            <EntityTypeMapping TypeName="SastaServicesDBModel.STPService">
-              <MappingFragment StoreEntitySet="STPServices">
-                <ScalarProperty Name="ServiceRate" ColumnName="ServiceRate" />
-                <ScalarProperty Name="UnitTypeId" ColumnName="UnitTypeId" />
-                <ScalarProperty Name="FuelTypeId" ColumnName="FuelTypeId" />
-                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
-                <ScalarProperty Name="IsAvailible" ColumnName="IsAvailible" />
-                <ScalarProperty Name="STPServiceTypeID" ColumnName="STPServiceTypeID" />
-                <ScalarProperty Name="ServiceDescrption" ColumnName="ServiceDescrption" />
-                <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1633,6 +1655,21 @@
                 <ScalarProperty Name="SubscriptionDetails" ColumnName="SubscriptionDetails" />
                 <ScalarProperty Name="SubscriptionCost" ColumnName="SubscriptionCost" />
                 <ScalarProperty Name="SubscriptionName" ColumnName="SubscriptionName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STPServices">
+            <EntityTypeMapping TypeName="SastaServicesDBModel.STPService">
+              <MappingFragment StoreEntitySet="STPServices">
+                <ScalarProperty Name="ServiceRate" ColumnName="ServiceRate" />
+                <ScalarProperty Name="UnitTypeId" ColumnName="UnitTypeId" />
+                <ScalarProperty Name="FuelTypeId" ColumnName="FuelTypeId" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="IsAvailible" ColumnName="IsAvailible" />
+                <ScalarProperty Name="STPServiceTypeID" ColumnName="STPServiceTypeID" />
+                <ScalarProperty Name="ServiceDescrption" ColumnName="ServiceDescrption" />
+                <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

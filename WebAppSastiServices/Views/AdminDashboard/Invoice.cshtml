@@ -99,7 +99,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <p>Service Category/Type: <span class="float-right text-black-50">@Model.STPServiceType.ServiceTypeName</span></p>
-                                            <p>AC Type: <span class="float-right text-black-50">@Model.STPServicesFuelType.Options</span></p>
+                                            <p>@Model.STPServicesFuelType.Label <span class="float-right text-black-50">@Model.STPServicesFuelType.Options</span></p>
                                             <p>Unit: <span class="float-right text-black-50">@Model.STPServicesUnitType.Options</span></p>
                                         </div>
                                     </div>
@@ -250,9 +250,10 @@
                             data: { "ID": ID ,"fuelTypeId": @Model.FuelTypeId,"unitTypeId":@Model.UnitTypeId},
                             type: "Post",
                             dataType: "json",
-                            success: function (response) {
-                                $.each(response, function (index, value) {
-
+                        success: function (response) {
+                            $('#ModelNo option').remove();
+                            $('#ModelNo').html("<option> --Select Model No-- </option>")
+                            $.each(response, function (index, value) {
                                     $("#ModelNo").append(
                                     $('<option></option>').val(value.ID).html(value.ServiceModelNo));
                                 });
@@ -363,7 +364,6 @@
         //Item Delete start-------------
         function DeleteTblItem(rowID,productRate,value)
         {
-            debugger
             if (isLoading == false) {
                 isLoading = true;
             }

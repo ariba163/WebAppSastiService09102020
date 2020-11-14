@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -16,31 +17,33 @@ namespace WebAppSastiServices.Controllers
         // GET: VendorDashboard
         public ActionResult Index()
         {
-            
             ViewBag.Message = TempData["Message"];
             int? ID = Convert.ToInt32(Session["UserID"]);
             if (Session["UserID"] == null)
             {
                 ID = null;
             }
-
+            if(Session["serviceType"] != null) { 
             bool isValid = (from d in db.StpUsers
                             where (d.ID == ID && (d.StpRole.Description == "Vendor"|| d.StpRole.Description=="Admin"))
                             select d).Any();
-
-            if (isValid)
-            {
-                return View();
+                if (isValid)
+                {
+                    return View();
+                }
+                else
+                {
+                    TempData["Message"] = "NotVendor";
+                    return Redirect(Url.Action("Login", "Account"));
+                }
             }
             else
             {
-                TempData["Message"] = "NotVendor";
-                return Redirect(Url.Action("Login", "Account"));
+                TempData["Message"] = "AdminSelctOpt";
+                return Redirect(Url.Action("Index", "AdminDashboard"));
             }
 
         }
-
-
         public ActionResult ChooseService(string ServiceName)
         {
             string value = "";
@@ -74,9 +77,9 @@ namespace WebAppSastiServices.Controllers
             Session["serviceType"] = value;
             return RedirectToAction("Index");
         }
-
         public ActionResult LatestActOrders()
         {
+            try { 
             string serviceType = Session["serviceType"].ToString();
 
             if (serviceType != null)
@@ -87,6 +90,7 @@ namespace WebAppSastiServices.Controllers
                               join s in db.STPServiceTypes on o.ServiceTypeId equals s.ID
                               join st in db.STPStatus on o.OrderStatusId equals st.ID
                               where (s.ServiceTypeName == serviceType && o.STPStatu.Description == "Not Availed")
+                              orderby o.CreateOn descending
                               select new
                               {
                                   OrderId = o.OrderId,
@@ -111,16 +115,19 @@ namespace WebAppSastiServices.Controllers
             {
                 return Json(new { orders = false }, JsonRequestBehavior.AllowGet);
             }
-        
-    }
+            }
+             catch
+            {
+                TempData["Message"] = "NotVendor";
+                return Redirect(Url.Action("Login", "Account"));
+            }
+        }
         public ActionResult AvailedOrder()
         {
             return View();
         }
-
         public ActionResult AvailedOrdersData()
         {
-
             string serviceType = Session["serviceType"].ToString();
 
             if (serviceType != null)
@@ -161,9 +168,6 @@ namespace WebAppSastiServices.Controllers
 
 
         }
-
-
-
         public ActionResult AvailOrder(int? ID)
         {
             var Order = (from d in db.TRNCustomerOrders
@@ -185,11 +189,8 @@ namespace WebAppSastiServices.Controllers
 
             return Redirect(Url.Action("Index", "VendorDashboard"));
         }
-
         public ActionResult ServiceData()
         {
-
-
             string serviceType = Session["serviceType"].ToString();
 
             if (serviceType != null)
@@ -208,7 +209,10 @@ namespace WebAppSastiServices.Controllers
                                     ServiceType = s.ServiceTypeName,
                                     FuelType = f.Options,
                                     UnitType = u.Options,
-                                    ServiceRate = o.ServiceRate
+                                    ServiceRate = o.ServiceRate,
+                                    btns = " <div class='btn-group' role='group'>" +
+                                    "<a type='button' class='btn btn-danger text-light' onclick=OpenDeleteForm(" + o.ID + ") id='Delete'><i class='fas fa-trash'></i> </a>" +
+                                    "<a type='button' class='btn btn-primary text-light' onclick=OpenEditForm(" + o.ID + ") id='Edit'><i class='far fa-edit'></i> </a></div>"
                                 }).ToList();
 
 
@@ -220,11 +224,7 @@ namespace WebAppSastiServices.Controllers
             {
                 return Json(new { services = false }, JsonRequestBehavior.AllowGet);
             }
-
-
-
         }
-
         public ActionResult ViewServices()
         {
             ViewBag.Message = TempData["Message"];
@@ -255,19 +255,19 @@ namespace WebAppSastiServices.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateServices(service obj)
+        public ActionResult CreateServices(STPServiceMetadata obj)
         {
             string serviceType = Session["serviceType"].ToString();
             if (serviceType != null)
             {
-                if (ModelState.IsValid)
+                try
                 {
-                    try
+                    if (ModelState.IsValid)
                     {
                         STPService service = new STPService()
                         {
                             ServiceName = obj.ServiceName,
-                            ServiceDescrption = obj.ServiceDescription,
+                            ServiceDescrption = obj.ServiceDescrption,
                             STPServiceTypeID = db.STPServiceTypes.Where(d => d.ServiceTypeName == serviceType).Select(d => d.ID).FirstOrDefault(),
                             IsAvailible = true,
                             FuelTypeId = obj.FuelTypeId,
@@ -279,32 +279,27 @@ namespace WebAppSastiServices.Controllers
                         db.SaveChanges();
                         TempData["Message"] = "AddService";
                     }
-                    catch
+                    else
                     {
                         TempData["Message"] = "NotAddservice";
                     }
                 }
+                catch
+                {
+                    TempData["Message"] = "NotAddservice";
+                }
             }
+            else
+            {
+                TempData["Message"] = "NotAddservice";
+            }
+
             return Redirect(Url.Action("ViewServices", "VendorDashboard"));
-
         }
-
-
-        // store data of CreateServices
-        public class service
-        {
-            public string ServiceName { get; set; }
-            public string ServiceDescription { get; set; }
-            public int FuelTypeId { get; set; }
-            public int UnitTypeId { get; set; }
-            public decimal ServiceRate { get; set; }
-        }
-
 
         public ActionResult ItemsData()
         {
-
-
+            try { 
             string serviceType = Session["serviceType"].ToString();
 
             if (serviceType != null)
@@ -314,7 +309,7 @@ namespace WebAppSastiServices.Controllers
                                 join b in db.STPProductBrands on p.STPProductBrandID equals b.ID
                                 join f in db.STPServicesFuelTypes on p.FuelTypeId equals f.ID
                                 join u in db.STPServicesUnitTypes on p.UnitTypeId equals u.ID
-                                where (p.STPProductBrand.STPProductType.ProductTypeName == serviceType)
+                                where (p.STPProductType.ProductTypeName == serviceType)
                                 select new
                                 {
                                     ProductName = p.ServiceProductName,
@@ -323,21 +318,31 @@ namespace WebAppSastiServices.Controllers
                                     FuelType = f.Options,
                                     UnitType = u.Options,
                                     CostPrice = p.CostPrice,
-                                    SellingPrice = p.SellingPrice
+                                    SellingPrice = p.SellingPrice,
+                                    ProductType=p.STPProductType.ProductTypeName,
+                                    btns= " <div class='btn-group' role='group'>"+
+                                    "<a type='button' class='btn btn-danger text-light' onclick=OpenDeleteForm(" + p.ID + ") id='Delete'><i class='fas fa-trash'></i> </a>" +
+                                    "<a type='button' class='btn btn-primary text-light' onclick=OpenEditForm(" + p.ID + ") id='Edit'><i class='far fa-edit'></i> </a></div>"
                                 }).ToList();
 
                 return Json(products, JsonRequestBehavior.AllowGet);
             }
             else { return Json(new { products = false }, JsonRequestBehavior.AllowGet); }
+            }
+            catch
+            {
+                return RedirectToAction("Login","Account");
+            }
         }
         public ActionResult ViewItems()
-        {
+        { 
+            ViewBag.Message = TempData["Message"];
             return View();
         }
         public ActionResult CreateItems()
         {
             string serviceType = Session["serviceType"].ToString();
-
+            ViewBag.Message = TempData["Message"];
             if (serviceType != null)
             {
                 ViewBag.UnitType = new SelectList(db.STPServicesUnitTypes.Where(s => s.STPServiceType.ServiceTypeName == serviceType), "ID", "Options");
@@ -347,10 +352,14 @@ namespace WebAppSastiServices.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult CreateItems(product obj)
+        public ActionResult CreateItems(STPServiceProductItemMetadata obj)
         {
 
             string serviceType = Session["serviceType"].ToString();
+            var productTypeID = (from d in db.STPProductTypes
+                                where (d.ProductTypeName == serviceType)
+                                select d.ID).FirstOrDefault();
+
 
             if (serviceType != null)
             {
@@ -366,15 +375,16 @@ namespace WebAppSastiServices.Controllers
                     UnitTypeId = obj.UnitTypeId,
                     CostPrice = obj.CostPrice,
                     SellingPrice = obj.SellingPrice,
-                    CreatedDateTime = System.DateTime.Now
+                    CreatedDateTime = System.DateTime.Now,
+                    STPProductTypeID= productTypeID
                 };
                 db.STPServiceProductItems.Add(product);
                 db.SaveChanges();
-
+                    TempData["Message"] = "AddItem";
                 }
                 catch (Exception ex)
                 {
-                    ViewBag.Message = "ERROR:" + ex.Message.ToString();
+                    TempData["Message"] = "NotAddItem";
                 }
             }
 
@@ -386,22 +396,6 @@ namespace WebAppSastiServices.Controllers
 
             return Redirect(Url.Action("ViewItems", "VendorDashboard"));
         }
-
-
-        // store data of CreateItems
-        public class product
-        {
-            public string ServiceProductName { get; set; }
-            public string ServiceProductDescription { get; set; }
-            public int FuelTypeId { get; set; }
-            public int UnitTypeId { get; set; }
-            public string ServiceModelNo { get; set; }
-            public int STPProductBrandID { get; set; }
-            public decimal CostPrice { get; set; }
-            public decimal SellingPrice { get; set; }
-        }
-
-
         public ActionResult ACEmail()
         {
             return View();
@@ -419,8 +413,15 @@ namespace WebAppSastiServices.Controllers
         {
             string serviceType = Session["serviceType"].ToString();
 
+            bool isAlready = (from d in db.STPProductBrands
+                              where d.Name == product.Name
+                              select d)
+                              .Any();
+
+
             if (serviceType != null)
             {
+                if (!isAlready) { 
                 STPProductBrand p = new STPProductBrand()
                 {
                     Name = product.Name,
@@ -428,8 +429,13 @@ namespace WebAppSastiServices.Controllers
                 };
                 db.STPProductBrands.Add(p);
                 db.SaveChanges();
-
-                return View(); 
+                 TempData["Message"] = "brandAdd";
+                }
+                else
+                {
+                    TempData["Message"] ="brandAlready";
+                }
+                return RedirectToAction("CreateItems");
             }
             else
             {
@@ -437,7 +443,139 @@ namespace WebAppSastiServices.Controllers
                 return Redirect(Url.Action("Login", "Account"));
             }
         }
+        public ActionResult ItemDelete(int? ID)
+        {
+            var details = (from d in db.STPServiceProductItems
+                           where (d.ID == ID)
+                           select d).SingleOrDefault();
 
+            return View(details);
+        }
+        [HttpPost]
+        public ActionResult ItemDelete(int ID)
+        {
+            try { 
+            var details = (from d in db.STPServiceProductItems
+                         where (d.ID == ID)
+                         select d).SingleOrDefault();
+            db.STPServiceProductItems.Remove(details);
+            db.SaveChanges();
+                TempData["Message"] = "Deleted";
+            }
+            catch
+            {
+                TempData["Message"] = "InUse";
+            }
+            return Redirect(Url.Action("ViewItems", "VendorDashboard"));
+        }
+        [HttpGet]
+        public ActionResult ItemEdit(int? ID)
+        {
+            var ProductTypeName = (from d in db.STPServiceProductItems where (d.ID == ID) select d.STPProductType.ProductTypeName).FirstOrDefault();
+            var ProductTypeID = (from d in db.STPServiceProductItems where (d.ID == ID) select d.STPProductTypeID).FirstOrDefault();
+            var serviceTypeID = (from d in db.STPServiceTypes where (d.ServiceTypeName == ProductTypeName) select d.ID).FirstOrDefault();
 
+            ViewBag.FuelType = new SelectList(db.STPServicesFuelTypes.Where(s => s.STPServiceTypeID == serviceTypeID), "ID", "Options");
+            ViewBag.UnitType = new SelectList(db.STPServicesUnitTypes.Where(s => s.STPServiceTypeID == serviceTypeID), "ID", "Options");
+            ViewBag.BrandName = new SelectList(db.STPProductBrands.Where(s => s.STPProductTypeID == ProductTypeID), "ID", "Name");
+            ViewBag.ProductTypeID = ProductTypeID;
+            var details = (from d in db.STPServiceProductItems
+                           where (d.ID == ID)
+                           select d).SingleOrDefault();
+
+            return View(details);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ItemEdit(STPServiceProductItem item)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+
+                    db.Entry(item).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    TempData["Message"] = "Edited";
+                }
+            }
+            catch(Exception ex)
+            {
+                TempData["Message"] = "NotEdited";
+            }
+            return Redirect(Url.Action("ViewItems", "VendorDashboard"));
+        }
+        public ActionResult ServicesDelete(int? ID)
+        {
+            var details = (from d in db.STPServices
+                           where (d.ID == ID)
+                           select d).SingleOrDefault();
+
+            return View(details);
+        }
+        [HttpPost]
+        public ActionResult ServicesDelete(int ID)
+        {
+            try { 
+            var details = (from d in db.STPServices
+                           where (d.ID == ID)
+                         select d).SingleOrDefault();
+
+            db.STPServices.Remove(details);
+            db.SaveChanges();
+                TempData["Message"] = "Deleted";
+            }
+            catch
+            {
+                TempData["Message"] = "InUse";
+            }
+            return Redirect(Url.Action("ViewServices", "VendorDashboard"));
+        }
+        [HttpGet]
+        public ActionResult ServicesEdit(int? ID)
+        {
+            try
+            {
+                string serviceType = Session["serviceType"].ToString();
+                int serviceTypeId = (from d in db.STPServiceTypes
+                                    where d.ServiceTypeName == serviceType
+                                    select d.ID).FirstOrDefault();
+
+                ViewBag.FuelType = new SelectList(db.STPServicesFuelTypes.Where(s =>s.STPServiceTypeID == serviceTypeId), "ID", "Options");
+                ViewBag.UnitType = new SelectList(db.STPServicesUnitTypes.Where(s => s.STPServiceTypeID == serviceTypeId), "ID", "Options");
+                var details = (from d in db.STPServices
+                               where (d.ID == ID)
+                               select d).SingleOrDefault();
+
+                return View(details);
+            }
+            catch
+            {
+                return RedirectToAction("ViewServices","VendorDashboard");
+            }
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ServicesEdit(STPService item)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+
+                    db.Entry(item).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    TempData["Message"] = "Edited";
+                }
+                else { }
+            }
+            catch(Exception ex)
+            {
+                TempData["Message"] = "NotEdited";
+            }
+            return Redirect(Url.Action("ViewServices", "VendorDashboard"));
+        }
     }
 }

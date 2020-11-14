@@ -37,7 +37,6 @@ namespace WebAppSastiServices.Models.DB
         public virtual DbSet<StpRole> StpRoles { get; set; }
         public virtual DbSet<STPRolesCategory> STPRolesCategories { get; set; }
         public virtual DbSet<STPServiceProductItem> STPServiceProductItems { get; set; }
-        public virtual DbSet<STPService> STPServices { get; set; }
         public virtual DbSet<STPServicesFuelType> STPServicesFuelTypes { get; set; }
         public virtual DbSet<STPServicesUnitType> STPServicesUnitTypes { get; set; }
         public virtual DbSet<STPServiceType> STPServiceTypes { get; set; }
@@ -49,6 +48,7 @@ namespace WebAppSastiServices.Models.DB
         public virtual DbSet<TRNCustomerOrders_STPServices> TRNCustomerOrders_STPServices { get; set; }
         public virtual DbSet<TRNInvoice> TRNInvoices { get; set; }
         public virtual DbSet<TRNSubscription> TRNSubscriptions { get; set; }
+        public virtual DbSet<STPService> STPServices { get; set; }
     
         public virtual ObjectResult<ReportInvoice_Result> ReportInvoice()
         {

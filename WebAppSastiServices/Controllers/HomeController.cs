@@ -62,7 +62,7 @@ namespace WebAppSastiServices.Controllers
                 try { 
 
                 SendEmail("sastiService123@gmail.com",
-                          "aribajawed163@gmail.com", //Email of customer support employee
+                          "muhammadmoosahaider@gmail.com", //Email of customer support employee
                           g.Email,
                           "Email Received by " + g.Name,
                           g.Message,
@@ -88,18 +88,19 @@ namespace WebAppSastiServices.Controllers
                 db.STPCustomerSupports.Add(cp);
                 db.SaveChanges();
                 TempData["Message"] = "Emailsuccess";
-
+                    
                     return RedirectToAction("Index");
                 }
-                catch
+                catch(Exception ex)
                 {
-                    return PartialView(g);
+                    throw ex;
+                    return RedirectToAction("Index");
                 }
 
             }
             else
             {
-                return PartialView(g);
+                return RedirectToAction("Index");
             }
         }
 
@@ -220,7 +221,7 @@ namespace WebAppSastiServices.Controllers
                 mail.To.Add(emailToAddress);
                 mail.CC.Add(emailUser);
                 mail.Subject = subject;
-                string strBody = "<html><head><Title> Sasti Service </Title></head><body bgcolor='#ccc'>  <h1>Email Notification from Customer</h1><br /> <p>The message has been received by $$$emailUser$$$</p><br /> <h3>Request Number: $$$RequestNumber$$$</h3><br />  <h3>Message: $$$body$$$</h3><br /></body></html>";
+                string strBody = "<html><head><Title> Kaam Waley </Title></head><body bgcolor='#ccc'>  <h1>Email Notification from Customer</h1><br /> <p>The message has been received by $$$emailUser$$$</p><br /> <h3>Request Number: $$$RequestNumber$$$</h3><br />  <h3>Message: $$$body$$$</h3><br /></body></html>";
                 strBody = strBody.Replace("$$$emailUser$$$", emailUser);
                 strBody = strBody.Replace("$$$RequestNumber$$$", RequestNumber);
                 strBody = strBody.Replace("$$$body$$$", body);
@@ -229,8 +230,8 @@ namespace WebAppSastiServices.Controllers
                 //mail.Attachments.Add(new Attachment("D:\\TestFile.txt"));//--Uncomment this to send any attachment  
                 using (SmtpClient smtp = new SmtpClient(smtpAddress, portNumber))
                 {
+                    smtp.UseDefaultCredentials = false;
                     smtp.Credentials = new NetworkCredential(emailFromAddress, password);
-
                     smtp.EnableSsl = enableSSL;
                     smtp.Send(mail);
 
@@ -284,7 +285,6 @@ namespace WebAppSastiServices.Controllers
         //}
         // [HttpGet]
         public PartialViewResult PVservices()
-
         {
             var Services = (from d in db.STPServiceTypes
                             orderby d.ID ascending

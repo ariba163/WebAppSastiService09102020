@@ -1,7 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "ViewServices";
-    Layout = "~/Views/Shared/_LayoutDashboardACVendor.cshtml";;
+    Layout = "~/Views/Shared/_LayoutDashboardACVendor.cshtml";
     string message = @ViewBag.Message;
 }
 
@@ -27,8 +27,65 @@ else if (message == "NotAddservice")
         });
     </script>
 }
+else if (message == "InUse")
+{
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript">
+        swal({
+            title: "Service Is In Use!",
+            text: "This Service can't be Deleted",
+            icon: "warning",
+        });
+    </script>
+}
+else if (message == "Deleted")
+{
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript">
+        swal({
+            title: "Service Deleted successfully",
+            icon: "success",
+        });
+    </script>
+}
+else if (message == "NotEdited")
+{
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript">
+        swal({
+            title: "Service can't Edit!",
+            icon: "warning",
+        });
+    </script>
+}
+else if (message == "Edited")
+{
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript">
+        swal({
+            title: "Service Edited successfully",
+            icon: "success",
+        });
+    </script>
+}
 
+<div class="modal fadeIn" id="ServiceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="background:#61616161;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
 
+                <!-- form start -->
+                <!-- form end -->
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- start page inner -->
 <div class="page-inner">
@@ -54,6 +111,7 @@ else if (message == "NotAddservice")
                                         <th>Fuel Type</th>
                                         <th>Unit Type</th>
                                         <th>Service Rate</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -102,8 +160,8 @@ else if (message == "NotAddservice")
                             item.ServiceType,
                             item.FuelType,
                             item.UnitType,
-                            item.ServiceRate
-
+                            item.ServiceRate,
+                            item.btns
                         ]).draw(false);
                     });
                 },
@@ -113,6 +171,66 @@ else if (message == "NotAddservice")
             });
              });
 
+    function OpenDeleteForm(ID) {
+
+    var $buttonClicked = $(this);
+    var id = ID;
+    //alert(id);
+    //alert(ID);
+    $('#ServiceModal .modal-body').html('Loading.....');
+    $('#ServiceModal .modal-title').html('Are You Sure You Want To Delete This Record?');
+    var options = { "backdrop": "static", keyboard: true };
+    $('#ServiceModal').modal(options);
+    $('#ServiceModal').modal('show');
+    $.ajax({
+    type: "GET",
+    url: '/VendorDashboard/ServicesDelete',
+    contentType: "application/json; charset=utf-8",
+    data: { "ID": ID },
+    datatype: "html",
+    "beforeSend": function () { $('#ajax-loader').show() },
+    "complete": function () { $('#ajax-loader').hide() },
+    success: function (data) {
+    //$('#exampleModal .ajax-loader').hide();
+    $('#ServiceModal .modal-body').html(data);
+    },
+    error: function (xhr, status) {
+    $('#ServiceModal ajax-loader').hide(),
+    $.notify(status, "error");
+    }
+    });
+    }
+    function OpenEditForm(ID) {
+
+    var $buttonClicked = $(this);
+    var id = ID;
+    //alert(id);
+    //alert(ID);
+    $('#ServiceModal .modal-body').html('Loading.....');
+    $('#ServiceModal .modal-title').html('Edit');
+    var options = { "backdrop": "static", keyboard: true };
+    $('#ServiceModal').modal(options);
+    $('#ServiceModal').modal('show');
+    $.ajax({
+    type: "GET",
+    url: '/VendorDashboard/ServicesEdit',
+    contentType: "application/json; charset=utf-8",
+    data: { "ID": ID },
+    datatype: "html",
+    "beforeSend": function () { $('#ajax-loader').show() },
+    "complete": function () { $('#ajax-loader').hide() },
+    success: function (data) {
+    console.log(data);
+    //$('#exampleModal .ajax-loader').hide();
+    $('#ServiceModal .modal-body').html(data);
+    },
+    error: function (xhr, status) {
+    console.log(xhr, status);
+    $('#ServiceModal ajax-loader').hide(),
+    $.notify(status, "error");
+    }
+    });
+    }
     </script>
 }
 

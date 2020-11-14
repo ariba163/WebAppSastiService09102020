@@ -16,8 +16,6 @@ namespace WebAppSastiServices.Controllers
 
     public class AdminDashboardController : Controller
     {
-        
-
         SastaServicesDBEntities db = new SastaServicesDBEntities();
 
 
@@ -93,6 +91,7 @@ namespace WebAppSastiServices.Controllers
         public ActionResult InvoicesData()
         {
             var Requests = (from d in db.TRNInvoices
+                            orderby d.ID descending
                             select new
                             {
                                 ID = d.ID,
@@ -115,6 +114,7 @@ namespace WebAppSastiServices.Controllers
                               join t in db.STPPrefferedTimes on o.preferredTimeID equals t.ID
                               join s in db.STPServiceTypes on o.ServiceTypeId equals s.ID
                               join st in db.STPStatus on o.OrderStatusId equals st.ID
+                              orderby o.CreateOn descending
                               select new
                               {
                                   OrderId = o.OrderId,
@@ -141,9 +141,6 @@ namespace WebAppSastiServices.Controllers
                 return Redirect(Url.Action("Login", "Account"));
             }
         }
-
-
-
         public ActionResult OrderDetails(int? ID)
         {
             var details = (from d in db.TRNCustomerOrders
@@ -154,7 +151,6 @@ namespace WebAppSastiServices.Controllers
         }
         public ActionResult OrderDelete(int? ID)
         {
-
             var details = (from d in db.TRNCustomerOrders
                            where (d.OrderId == ID)
                            select d).SingleOrDefault();
@@ -233,7 +229,8 @@ namespace WebAppSastiServices.Controllers
                           join t in db.STPPrefferedTimes on o.preferredTimeID equals t.ID
                           join s in db.STPServiceTypes on o.ServiceTypeId equals s.ID
                           join st in db.STPStatus on o.OrderStatusId equals st.ID
-                          where (o.STPStatu.Description == "Availed")
+                          orderby o.CreateOn descending
+                          where (o.STPStatu.Description == "Availed" && o.STPStatu.Description !="Finished")
                           select new
                           {
                               OrderId = o.OrderId,
@@ -381,7 +378,15 @@ namespace WebAppSastiServices.Controllers
         }
         public ActionResult InvItems(int fuelTypeID, int unitTypeID,int serviceTypeID)
         {
-            ViewBag.Products = new SelectList(db.STPServiceProductItems.Where(f => (f.UnitTypeId == unitTypeID && f.FuelTypeId == fuelTypeID) ||  (f.STPServicesFuelType.Options == "Default" || f.STPServicesUnitType.Options == "Default")), "ID", "ServiceProductName");
+            var CategoryName = (from d in db.STPServiceTypes
+                                where (d.ID == serviceTypeID)
+                                select d.ServiceTypeName).FirstOrDefault();
+
+            var productTypeID = (from d in db.STPProductTypes
+                                where(d.ProductTypeName== CategoryName)
+                                select d.ID).FirstOrDefault();
+
+            ViewBag.Products = new SelectList(db.STPServiceProductItems.Where(f => ((f.STPServicesFuelType.Options == "Default" || f.FuelTypeId == fuelTypeID) &&  (f.UnitTypeId == unitTypeID || f.STPServicesUnitType.Options == "Default"))&&(f.STPProductTypeID== productTypeID)), "ID", "ServiceProductName");
 
             List<SelectListItem> ModelNo = new List<SelectListItem>() {
                 new SelectListItem() { Value="0", Text="-- Select Model No --" },
@@ -402,10 +407,8 @@ namespace WebAppSastiServices.Controllers
                                select d.ServiceProductName).FirstOrDefault();
 
             var product = (from d in db.STPServiceProductItems
-                           where (d.ServiceProductName == ProductName && d.UnitTypeId == unitTypeID && d.FuelTypeId == fuelTypeID)
+                           where (d.ServiceProductName == ProductName && (d.STPServicesFuelType.Options == "Default"||d.STPServicesFuelType.ID== fuelTypeID) && (d.STPServicesUnitType.Options == "Default"||d.STPServicesUnitType.ID== unitTypeID))
                            select d).ToList();
-
-
             return Json(product, JsonRequestBehavior.AllowGet);
         }
 
@@ -457,8 +460,6 @@ namespace WebAppSastiServices.Controllers
             return Json(p, JsonRequestBehavior.AllowGet);
 
         }
-
-
         public ActionResult InvSerTbl(int OrderID)
         {
             var service = (from d in db.TRNCustomerOrders_STPServices
@@ -512,18 +513,12 @@ namespace WebAppSastiServices.Controllers
             return View(item);
         }
 
-
-
-
         [HttpPost]
         public ActionResult PostInvoice(int OrderID, decimal ServiceRatetotal, decimal ItemsRatetotal, decimal PlatformCharges, decimal total)
         {
-
             bool isAlready = (from d in db.TRNInvoices
                             where (d.STPOrdersID == OrderID)
                             select d).Any();
-
-
             if (isAlready)
             {
                 TempData["Message"] = "Invoiced";
@@ -550,7 +545,7 @@ namespace WebAppSastiServices.Controllers
 
                     db.SaveChanges();
 
-                        TempData["InvoiceID"] = (from i in db.TRNInvoices
+                    TempData["InvoiceID"] = (from i in db.TRNInvoices
                                             where (i.STPOrdersID == OrderID)
                                             select i.ID).FirstOrDefault(); 
 
@@ -574,29 +569,18 @@ namespace WebAppSastiServices.Controllers
         public ActionResult Invoice(int OrderID)
         {
 
-            bool isAlready = (from d in db.TRNInvoices
-                              where (d.STPOrdersID == OrderID)
-                              select d).Any();
+                    ViewBag.Message = TempData["Message"];
+                    ViewBag.InvoiceID = TempData["InvoiceID"];
+                    var order = (from d in db.TRNCustomerOrders
+                                 where (d.OrderId == OrderID)
+                                 select d).
+                                FirstOrDefault();
 
-            if (isAlready)
-            {
-                TempData["Message"] = "Invoiced";
-                return View();
-            }
-            else { 
-            ViewBag.Message = TempData["Message"];
-            ViewBag.InvoiceID = TempData["InvoiceID"];
-            var order = (from d in db.TRNCustomerOrders
-                         where (d.OrderId == OrderID)
-                         select d).
-                        FirstOrDefault();
-
-                return View(order);
-            }
+                    return View(order);
         }
         public ActionResult PrintInvoice(int invId)
         {
-            try
+                try
             {
                 var results =(from d in db.TRNInvoices
                               where (d.ID == invId)
@@ -628,13 +612,13 @@ namespace WebAppSastiServices.Controllers
                 //throw ex;
                 return View();
             }
-
         }
         public ActionResult GeneratePDF(int invId)
         {
-            return new Rotativa.ActionAsPdf("PrintInvoice",
+            
+                return new Rotativa.ActionAsPdf("PrintInvoice",
                                          new { invId = invId });
-
+            
         }
 
 

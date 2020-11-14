@@ -1,0 +1,30 @@
+﻿@model WebAppSastiServices.Models.DB.STPServiceProductItem
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-6">
+            <p>Product#: <span class="float-right text-black-50">@Model.ID </span></p>
+            <p>Product Name: <span class="float-right text-black-50">@Model.ServiceProductName </span></p>
+            <p>ModelNo: <span class="float-right text-black-50">@Model.ServiceModelNo</span></p>
+            <p>Brand Name: <span class="float-right text-black-50">@Model.STPProductBrand.Name</span></p>
+        </div>
+        <div class="col-md-6">
+            <p>Cost Price: <span class="float-right text-black-50">@Model.CostPrice</span></p>
+            <p>Selling Price: <span class="float-right text-black-50">@Model.SellingPrice</span></p>
+            <p>@Model.STPServicesFuelType.Label: <span class="float-right text-black-50">@Model.STPServicesFuelType.Options</span></p>
+            <p>Unit: <span class="float-right text-black-50">@Model.STPServicesUnitType.Options</span></p>
+        </div>
+        @using (Html.BeginForm("ItemDelete", "VendorDashboard", FormMethod.Post))
+        {
+            @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "form-control input-md", @type = "hidden", @value = @Model.ID } })
+            <button class="btn btn-danger" type="submit"><span>Delete</span></button>
+        }
+    </div>
+</body>
+</html>

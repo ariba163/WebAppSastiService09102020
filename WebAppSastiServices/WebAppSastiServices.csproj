@@ -178,6 +178,7 @@
     <Content Include="img\avatar\avatar-04.jpg" />
     <Content Include="img\avatar\avatar-05.jpg" />
     <Content Include="img\avatar\avatar-06.jpg" />
+    <Content Include="img\bg\about.jpeg" />
     <Content Include="img\bg\bg-pattern.png" />
     <Content Include="img\bg\bg1.jpg" />
     <Content Include="img\bg\bg11.jpg" />
@@ -194,7 +195,10 @@
     <Content Include="img\bg\dotted-map.png" />
     <Content Include="img\bg\error-404.jpg" />
     <Content Include="img\bg\pagetitle.jpg" />
+    <Content Include="img\bg\services.jpeg" />
     <Content Include="img\bg\shape-01.png" />
+    <Content Include="img\bg\WhatsApp Image 2020-11-11 at 11.36.27 AM.jpeg" />
+    <Content Include="img\bg\WhatsApp Image 2020-11-11 at 11.36.28 AM.jpeg" />
     <Content Include="img\content\about-01.jpg" />
     <Content Include="img\content\about-02.jpg" />
     <Content Include="img\content\about-03.jpg" />
@@ -305,6 +309,8 @@
     <Content Include="img\Dashboard\screen-bg.jpg" />
     <Content Include="img\Dashboard\signature-black.png" />
     <Content Include="img\Dashboard\timeline-banner.jpg" />
+    <Content Include="img\InvoiceHeaderFooter\letterheadfooter.png" />
+    <Content Include="img\InvoiceHeaderFooter\LetterHeadheader.jpg" />
     <Content Include="img\logos\9 logo.png" />
     <Content Include="img\logos\favicon.ico" />
     <Content Include="img\logos\Final-Kaam-Waley.png" />
@@ -765,8 +771,9 @@
     </Compile>
     <Compile Include="Models\Email.cs" />
     <Compile Include="Models\EntityManager\UserManager.cs" />
-    <Compile Include="Models\Extended\STPOrder.cs" />
     <Compile Include="Models\Extended\STPProductBrand.cs" />
+    <Compile Include="Models\Extended\STPServiceProductItems.cs" />
+    <Compile Include="Models\Extended\STPService.cs" />
     <Compile Include="Models\Extended\TRNCustomerOrder.cs" />
     <Compile Include="Models\ViewModel\GetInTouch.cs" />
     <Compile Include="Models\ViewModel\QuickCall.cs" />
@@ -828,10 +835,6 @@
     <Content Include="Views\Shared\_LayoutDashboardACVendor.cshtml" />
     <Content Include="Views\VendorDashboard\CreateItems.cshtml" />
     <Content Include="Views\VendorDashboard\CreateServices.cshtml" />
-    <Content Include="Views\VendorDashboard\DeleteItems.cshtml" />
-    <Content Include="Views\VendorDashboard\DeleteServices.cshtml" />
-    <Content Include="Views\VendorDashboard\EditItems.cshtml" />
-    <Content Include="Views\VendorDashboard\EditServices.cshtml" />
     <Content Include="Views\VendorDashboard\Email.cshtml" />
     <Content Include="Views\VendorDashboard\Index.cshtml" />
     <Content Include="Views\VendorDashboard\Orders.cshtml" />
@@ -868,6 +871,10 @@
     <Content Include="Views\AdminDashboard\InvItemTbl.cshtml" />
     <Content Include="Views\AdminDashboard\InvSerTbl.cshtml" />
     <Content Include="Views\VendorDashboard\AddProductBrand.cshtml" />
+    <Content Include="Views\VendorDashboard\ItemDelete.cshtml" />
+    <Content Include="Views\VendorDashboard\ItemEdit.cshtml" />
+    <Content Include="Views\VendorDashboard\ServicesEdit.cshtml" />
+    <Content Include="Views\VendorDashboard\ServicesDelete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -19,7 +19,7 @@ namespace WebAppSastiServices.Models.DB
         public int STPServicesID { get; set; }
         public Nullable<decimal> Rate { get; set; }
     
-        public virtual STPService STPService { get; set; }
         public virtual TRNCustomerOrder TRNCustomerOrder { get; set; }
+        public virtual STPService STPService { get; set; }
     }
 }

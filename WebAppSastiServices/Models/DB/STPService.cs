@@ -25,7 +25,7 @@ namespace WebAppSastiServices.Models.DB
         public string ServiceDescrption { get; set; }
         public int STPServiceTypeID { get; set; }
         public bool IsAvailible { get; set; }
-        public System.DateTime CreatedDateTime { get; set; }
+        public Nullable<System.DateTime> CreatedDateTime { get; set; }
         public int FuelTypeId { get; set; }
         public int UnitTypeId { get; set; }
         public decimal ServiceRate { get; set; }

@@ -1,57 +1,39 @@
 ﻿@model WebAppSastiServices.Models.DB.STPProductBrandMetadata
 @{
     ViewBag.Title = "AddProductBrand";
-    Layout = "~/Views/Shared/_LayoutDashboardACVendor.cshtml";
+    Layout = null;
 }
 
-    <div class="page-inner">
-        <div class="page-title">
-            <div class="page-title">
-                <h3 class="breadcrumb-header">Add New Product Item</h3>
-            </div>
-            <!-- start page main wrapper -->
-            <div id="main-wrapper">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card card-white">
-                            <div class="card-body">
-                                <div id="rootwizard">
-                                    @using (Html.BeginForm("AddProductBrand", "VendorDashboard", FormMethod.Post))
-                                    {
-                                        <div>
-                                            <div class=" fade show active" id="home3">
-                                                <div class="row m-b-lg">
-                                                    <div class="col-md-12">
-                                                        <div class="row">
-                                                            <div class="form-group col-md-6">
-                                                                @Html.LabelFor(model => model.Name, "Brand Name", htmlAttributes: new { @class = "control-label" })
-                                                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control input-md" } })
-                                                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <ul class="pagination wizard">
-                                                <li class="previous"><a href="#" class="btn btn-outline-primary">Previous</a></li>
-                                                <li class="next ml-auto"><button href="#" type="submit" class="btn btn-outline-primary">Add</button></li>
-                                            </ul>
-                                        </div>
-                                    }
+<div class="card card-white">
+    <div class="card-body">
+        <div id="rootwizard">
+            @using (Html.BeginForm("AddProductBrand", "VendorDashboard", FormMethod.Post))
+            {
+                <div>
+                    <div class=" fade show active" id="home3">
+                        <div class="row m-b-lg">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        @Html.LabelFor(model => model.Name, "Brand Name", htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control input-md" } })
+                                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <ul class="pagination wizard">
+                        <li class="previous"><a href="#" class="btn btn-outline-primary">Previous</a></li>
+                        <li class="next ml-auto"><button href="#" type="submit" class="btn btn-outline-primary">Add</button></li>
+                    </ul>
                 </div>
-                <!-- Row -->
-            </div>
-            <!-- end page main wrapper -->
-            <div class="page-footer">
-                <p>
-                    Copyright &copy;
-                    <script>document.write(new Date().getFullYear())</script> Kaam Waley All rights reserved.
-                </p>
-            </div>
+            }
         </div>
-        <!-- end page inner -->
+    </div>
+</div>
+
+<script src="~/plugins/jquery/jquery-3.1.0.min.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 
