@@ -111,17 +111,13 @@
                                         <li>
                                             <a href="@Url.Action("Service", "Services")">Services</a>
                                         </li>
-                                        @*<li>
-                                                <a href="#!">Shop</a>
-                                                <ul>
-                                                    <li><a href="@Url.Action("Products", "Shop")">Products</a></li>
-                                                    <li><a href="@Url.Action("ProductGrid", "Shop")">Product Grid</a></li>
-                                                    <li><a href="@Url.Action("ProductDetail", "Shop")">Product Detail</a></li>
-                                                    <li><a href="@Url.Action("ShopCart", "Shop")">Shop Cart</a></li>
-                                                    <li><a href="@Url.Action("ShopCheckout", "Shop")">Shop Checkout</a></li>
-                                                </ul>
-                                            </li>*@
-
+                                        <li>
+                                            <a href="@Url.Action("ProductGrid", "Shop")">Products</a>
+                                            <ul class="row megamenu">
+                                                @Html.Action("_MegaMenu", "Home")
+                                                
+                                            </ul>
+                                        </li>
                                         <li>
                                             <a href="@Url.Action("AboutUs", "Home")">About Us</a>
                                         </li>

@@ -1,0 +1,16 @@
+﻿@model IEnumerable<WebAppSastiServices.Models.DB.STPProductType>
+@{
+    Layout = null;
+    foreach (var item in Model) { 
+
+    <li class="col-lg-3 col-sm-12">
+        <a href="@Url.Action("ProductGrid", "Shop", new { Category = @item.ProductTypeName })">
+            <span class="margin-10px-bottom display-block sm-no-margin sm-padding-10px-tb sm-padding-30px-lr font-size13 text-uppercase sub-title">@item.ProductTypeName</span>
+            <span>
+                @item.ProductTypeDescription
+            </span>
+        </a>
+        
+    </li>
+    }
+}

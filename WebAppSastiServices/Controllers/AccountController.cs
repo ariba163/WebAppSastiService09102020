@@ -79,6 +79,7 @@ namespace WebAppSastiServices.Controllers
 
         public ActionResult Logout()
         {
+
             Session.Abandon();
             return RedirectToAction("Index", "Home");
         }
@@ -161,7 +162,16 @@ namespace WebAppSastiServices.Controllers
                             }
                             else if (Role == "Supplier")
                             {
+                                var ProductType = "";
 
+                                if (RoleCategory == "Air Condition") { ProductType = "Air Condition"; }
+                                else if (RoleCategory == "UPS") { ProductType = "UPS"; }
+                                else if (RoleCategory == "Generator") { ProductType = "Generator"; }
+                                else if (RoleCategory == "Solar System") { ProductType = "Solar System"; }
+                                else if (RoleCategory == "CCTV") { ProductType = "CCTV Camera"; }
+
+                                Session["ProductType"] = ProductType;
+                                return Redirect(Url.Action("Index", "SupplierDashboard"));
                             }
 
                             TempData["Message"] = Message;

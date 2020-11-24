@@ -1,0 +1,6 @@
+﻿
+@model IEnumerable<WebAppSastiServices.Models.DB.STPConType_STPServiceType>
+
+@foreach (var item in Model) {
+<li>@item.STPServiceType.ServiceTypeName</li>
+}

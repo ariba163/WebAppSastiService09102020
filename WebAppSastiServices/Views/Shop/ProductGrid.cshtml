@@ -1,5 +1,5 @@
-﻿
-@{
+﻿@model IEnumerable < WebAppSastiServices.Models.DB.STPProductList>
+    @{
     ViewBag.Title = "ProductGrid";
     Layout = "~/Views/Shared/_LayoutPage.cshtml";
 }
@@ -15,7 +15,7 @@
             <div class="col-md-12">
                 <ul>
                     <li><a href="@Url.Action("Index", "Home")">Home</a></li>
-                    <li><a href="#">Shop Product Grid</a></li>
+                    <li><a href="#">Products</a></li>
                 </ul>
             </div>
         </div>
@@ -36,165 +36,21 @@
                     <div class="widget">
 
                         <div id="accordion" class="accordion-style2">
-                            <div class="card">
-                                <div class="card-header" id="headingOne">
-                                    <h5 class="mb-0">
-                                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> Electrical</button>
-                                    </h5>
-                                </div>
-                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                                    <div class="card-body">
-                                        <ul class="mb-0">
-                                            <li><a href="#!">Flash Lights</a></li>
-                                            <li><a href="#!">Tool Organisers</a></li>
-                                            <li><a href="#!">Safety Cables</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header" id="headingTwo">
-                                    <h5 class="mb-0">
-                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                            Watch
+
+                            @foreach (var item in ViewBag.categories)
+                            {
+                            <a href="@Url.Action("ProductGrid", "Shop", new { Category = @item.ProductTypeName })">
+                                <div class="card">
+                                    <div class="card-header" id="headingOne">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                @item.ProductTypeName
                                         </button>
                                     </h5>
                                 </div>
-                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                                    <div class="card-body">
-                                        <ul class="mb-0">
-                                            <li><a href="#!">Women's Watch</a></li>
-                                            <li><a href="#!">Men's Watch</a></li>
-                                            <li><a href="#!">Kids Watch</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
                             </div>
-                            <div class="card">
-                                <div class="card-header" id="headingThree">
-                                    <h5 class="mb-0">
-                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                            Accessories
-                                        </button>
-                                    </h5>
-                                </div>
-                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                                    <div class="card-body">
-                                        <ul class="mb-0">
-                                            <li><a href="#!">Drives &amp; Storage</a></li>
-                                            <li><a href="#!">Networking Devices</a></li>
-                                            <li><a href="#!">Software</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header" id="headingFour">
-                                    <h5 class="mb-0">
-                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                            Clothes
-                                        </button>
-                                    </h5>
-                                </div>
-                                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
-                                    <div class="card-body">
-                                        <ul class="mb-0">
-                                            <li><a href="#!">T-Shirt</a></li>
-                                            <li><a href="#!">Pants</a></li>
-                                            <li><a href="#!">Saree</a></li>
-                                            <li><a href="#!">Joggers</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header" id="headingFive">
-                                    <h5 class="mb-0">
-                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                            Mobile
-                                        </button>
-                                    </h5>
-                                </div>
-                                <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
-                                    <div class="card-body">
-                                        <ul class="mb-0">
-                                            <li><a href="#!">Intex</a></li>
-                                            <li><a href="#!">Google</a></li>
-                                            <li><a href="#!">Samsung</a></li>
-                                            <li><a href="#!">Apple</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="widget">
-
-                        <div class="widget-title">
-                            <h5>Popular Products</h5>
-                        </div>
-
-                        <div class="media margin-20px-bottom">
-                            <img class="mr-3" src="~/img/shop/thumb-01.jpg" alt="...">
-                            <div class="media-body">
-                                <a href="#!" class="margin-5px-bottom font-weight-600 text-extra-dark-gray">Echo Dot Speaker</a>
-                                <span class="d-block">$15.00</span>
-                            </div>
-                        </div>
-
-                        <div class="media margin-20px-bottom">
-                            <img class="mr-3" src="~/img/shop/thumb-02.jpg" alt="...">
-                            <div class="media-body">
-                                <a href="#!" class="margin-5px-bottom font-weight-600 text-extra-dark-gray">Steel Wall Clock</a>
-                                <span class="d-block">$12.10</span>
-                            </div>
-                        </div>
-
-                        <div class="media">
-                            <img class="mr-3" src="~/img/shop/thumb-03.jpg" alt="...">
-                            <div class="media-body">
-                                <a href="#!" class="margin-5px-bottom font-weight-600 text-extra-dark-gray">Sony Digital Device</a>
-                                <span class="d-block">$10.20</span>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="widget">
-
-                        <div class="widget-title">
-                            <h5>Select by Discount</h5>
-                        </div>
-
-                        <ul class="mb-0 ml-2">
-
-                            <li class="custom-control custom-checkbox">
-                                <input class="custom-control-input" type="checkbox" id="ten_pecentage">
-                                <label class="custom-control-label text-left" for="ten_pecentage">10% off or more</label>
-                            </li>
-
-                            <li class="custom-control custom-checkbox">
-                                <input class="custom-control-input" type="checkbox" id="twenty_pecentage">
-                                <label class="custom-control-label text-left" for="twenty_pecentage">20% off or more</label>
-                            </li>
-
-                            <li class="custom-control custom-checkbox">
-                                <input class="custom-control-input" type="checkbox" id="thirty_pecentage">
-                                <label class="custom-control-label text-left" for="thirty_pecentage">30% off or more</label>
-                            </li>
-
-                            <li class="custom-control custom-checkbox">
-                                <input class="custom-control-input" type="checkbox" id="fourty_pecentage">
-                                <label class="custom-control-label text-left" for="fourty_pecentage">40% off or more</label>
-                            </li>
-
-                        </ul>
-                    </div>
-
-                    <div class="widget">
-                        <div class="offer-banner bg-theme text-center sm-display-none">
-                            <a href="#!"><img src="~/img/shop/left-panel-banner.png" alt="" /></a>
+                            </a>
+                            }
                         </div>
                     </div>
 
@@ -210,35 +66,10 @@
                     <div class="col-12">
                         <div class="float-left bg-light-gray width-100 padding-10px-tb padding-15px-lr">
                             <div class="float-left xs-width-100 text-center">
-                                <p class="no-margin line-height-50">Showing 1–9 of 27 results</p>
+                                <p class="no-margin line-height-50">Showing <span id="CurrentRecords"></span> of <span id="TotalRecord"></span> results</p>
                             </div>
                             <div class="float-right margin-5px-top xs-no-margin-top xs-width-100 text-center">
 
-                                <div class="float-right xs-float-none xs-width-100 xs-margin-15px-bottom">
-                                    <label>Show:</label>
-                                    <select class="width-auto display-inline-block no-margin">
-                                        <option value="#?limit=24" selected="selected">24</option>
-                                        <option value="#?limit=25">25</option>
-                                        <option value="#?limit=50">50</option>
-                                        <option value="#?limit=75">75</option>
-                                        <option value="#?limit=100">100</option>
-                                    </select>
-                                </div>
-
-                                <div class="float-right margin-20px-right xs-float-none xs-width-100 xs-no-margin-right xs-margin-10px-bottom">
-                                    <label>Sort By:</label>
-                                    <select class="width-120px display-inline-block no-margin">
-                                        <option value="#?sort=p.sort_order&amp;order=ASC" selected="selected">Default</option>
-                                        <option value="#?sort=pd.name&amp;order=ASC">Name (A - Z)</option>
-                                        <option value="#?sort=pd.name&amp;order=DESC">Name (Z - A)</option>
-                                        <option value="#?sort=p.price&amp;order=ASC">Price (Low &gt; High)</option>
-                                        <option value="#?sort=p.price&amp;order=DESC">Price (High &gt; Low)</option>
-                                        <option value="#?sort=rating&amp;order=DESC">Rating (Highest)</option>
-                                        <option value="#?sort=rating&amp;order=ASC">Rating (Lowest)</option>
-                                        <option value="#?sort=p.model&amp;order=ASC">Model (A - Z)</option>
-                                        <option value="#?sort=p.model&amp;order=DESC">Model (Z - A)</option>
-                                    </select>
-                                </div>
 
                             </div>
                         </div>
@@ -246,234 +77,73 @@
 
                 </div>
 
-                <div class="row product-grid">
+                <div class="row product-grid" id="RowProductGrid">
+                    @if (ViewBag.products != null) { 
+                    foreach (var pro in ViewBag.products)
+                    {
+                        <div class="col-xl-4 col-sm-6">
 
-                    <div class="col-xl-4 col-sm-6">
+                            <div class="product-details">
+                                @if (pro.isDiscount == true)
+                                {
+                                    <div class="product-img">
 
-                        <div class="product-details">
+                                        <div class="label-offer bg-red">Sale</div>
 
-                            <div class="product-img">
+                                        <img src="@pro.ImageOne" alt="" />
 
-                                <div class="label-offer bg-red">Sale</div><img src="~/img/shop/product-01.jpg" alt="" />
+                                        <div class="product-cart">
+                                            <a href="#!"><i class="fas fa-plus"></i></a>
+                                            <a href="#!"><i class="fas fa-cart-plus"></i></a>
+                                            <a href="#!"><i class="fas fa-heart"></i></a>
+                                        </div>
+                                    </div>
 
-                                <div class="product-cart">
-                                    <a href="#!"><i class="fas fa-plus"></i></a>
-                                    <a href="#!"><i class="fas fa-cart-plus"></i></a>
-                                    <a href="#!"><i class="fas fa-heart"></i></a>
-                                </div>
+                                    <div class="product-info">
+                                        <a href="/Shop/ProductDetail?productID=@pro.ID">@pro.ProductName</a>
+                                        <p class="price text-center no-margin">
+                                            <span class="red line-through margin-10px-right">@pro.ProductPrice</span>
+                                            <span>@pro.DiscountedAmount</span>
+                                        </p>
+                                    </div>
 
-                            </div>
+                                }
+                                else
+                                {
+                                    <div class="product-img">
+                                        <img src="@pro.ImageOne" alt="" />
 
-                            <div class="product-info">
-                                <a href="#!">Sneakers Shoe</a>
-                                <p class="price text-center no-margin">
-                                    <span class="red line-through margin-10px-right">$600</span>
-                                    <span>$599</span>
-                                </p>
-                            </div>
+                                        <div class="product-cart">
+                                            <a href="#!"><i class="fas fa-plus"></i></a>
+                                            <a href="#!"><i class="fas fa-cart-plus"></i></a>
+                                            <a href="#!"><i class="fas fa-heart"></i></a>
+                                        </div>
+                                    </div>
 
-                        </div>
+                                    <div class="product-info">
+                                        <a href="/Shop/ProductDetail?productID=@pro.ID">@pro.ProductName</a>
+                                        <p class="price text-center no-margin">
+                                            <span>@pro.ProductPrice</span>
+                                        </p>
+                                    </div>
 
-                    </div>
-                    <div class="col-xl-4 col-sm-6">
-
-                        <div class="product-details">
-                            <div class="product-img">
-
-                                <img src="~/img/shop/product-02.jpg" alt="" />
-
-                                <div class="product-cart">
-                                    <a href="#!"><i class="fas fa-plus"></i></a>
-                                    <a href="#!"><i class="fas fa-cart-plus"></i></a>
-                                    <a href="#!"><i class="fas fa-heart"></i></a>
-                                </div>
-
-                            </div>
-                            <div class="product-info">
-                                <a href="#!">Digital Watch</a>
-                                <p class="price text-center no-margin ">
-                                    <span class="red line-through margin-10px-right">$500</span>
-                                    <span>$300</span>
-                                </p>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-sm-6">
-
-                        <div class="product-details">
-                            <div class="product-img">
-
-                                <div class="label-offer bg-theme">New</div><img src="~/img/shop/product-03.jpg" alt="" />
-
-                                <div class="product-cart">
-                                    <a href="#!"><i class="fas fa-plus"></i></a>
-                                    <a href="#!"><i class="fas fa-cart-plus"></i></a>
-                                    <a href="#!"><i class="fas fa-heart"></i></a>
-                                </div>
-
-                            </div>
-                            <div class="product-info">
-                                <a href="#!">Headphones</a>
-                                <p class="price text-center no-margin">
-                                    <span class="red line-through margin-10px-right">$200</span>
-                                    <span>$100</span>
-                                </p>
+                                }
                             </div>
 
                         </div>
-
-                    </div>
-                    <div class="col-xl-4 col-sm-6">
-                        <div class="product-details">
-                            <div class="product-img">
-
-                                <div class="label-offer bg-red">Sale</div><img src="~/img/shop/product-04.jpg" alt="" />
-
-                                <div class="product-cart">
-                                    <a href="#!"><i class="fas fa-plus"></i></a>
-                                    <a href="#!"><i class="fas fa-cart-plus"></i></a>
-                                    <a href="#!"><i class="fas fa-heart"></i></a>
-                                </div>
-
-                            </div>
-                            <div class="product-info">
-                                <a href="#!">Apple laptop</a>
-                                <p class="price text-center no-margin">
-                                    <span class="red line-through margin-10px-right">$1200</span>
-                                    <span>$900</span>
-                                </p>
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <div class="col-xl-4 col-sm-6">
-
-                        <div class="product-details">
-                            <div class="product-img">
-
-                                <img src="~/img/shop/product-05.jpg" alt="" />
-                                <div class="product-cart">
-                                    <a href="#!"><i class="fas fa-plus"></i></a>
-                                    <a href="#!"><i class="fas fa-cart-plus"></i></a>
-                                    <a href="#!"><i class="fas fa-heart"></i></a>
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <a href="#!">Nikon Camera</a>
-                                <p class="price text-center no-margin">
-                                    <span class="red line-through margin-10px-right">$399</span>
-                                    <span>$199</span>
-                                </p>
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <div class="col-xl-4 col-sm-6">
-
-                        <div class="product-details">
-                            <div class="product-img">
-
-                                <div class="label-offer bg-theme">New</div><img src="~/img/shop/product-06.jpg" alt="" />
-                                <div class="product-cart">
-                                    <a href="#!"><i class="fas fa-plus"></i></a>
-                                    <a href="#!"><i class="fas fa-cart-plus"></i></a>
-                                    <a href="#!"><i class="fas fa-heart"></i></a>
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <a href="#!">Table Lamp</a>
-                                <p class="price text-center no-margin">
-                                    <span class="red line-through margin-10px-right">$800</span>
-                                    <span>$699</span>
-                                </p>
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <div class="col-xl-4 col-sm-6">
-
-                        <div class="product-details">
-                            <div class="product-img">
-
-                                <div class="label-offer bg-red">Sale</div><img src="~/img/shop/product-07.jpg" alt="" />
-                                <div class="product-cart">
-                                    <a href="#!"><i class="fas fa-plus"></i></a>
-                                    <a href="#!"><i class="fas fa-cart-plus"></i></a>
-                                    <a href="#!"><i class="fas fa-heart"></i></a>
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <a href="#!">Coffee Cups</a>
-                                <p class="price text-center no-margin">
-                                    <span class="red line-through margin-10px-right">$199</span>
-                                    <span>$99</span>
-                                </p>
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <div class="col-xl-4 col-sm-6">
-
-                        <div class="product-details">
-                            <div class="product-img">
-
-                                <div class="label-offer bg-red">Sale</div><img src="~/img/shop/product-08.jpg" alt="" />
-
-                                <div class="product-cart">
-                                    <a href="#!"><i class="fas fa-plus"></i></a>
-                                    <a href="#!"><i class="fas fa-cart-plus"></i></a>
-                                    <a href="#!"><i class="fas fa-heart"></i></a>
-                                </div>
-
-                            </div>
-                            <div class="product-info">
-                                <a href="#!">Apple iPhone</a>
-                                <p class="price text-center no-margin">
-                                    <span class="red line-through margin-10px-right">$99</span>
-                                    <span>$59</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-sm-6">
-
-                        <div class="product-details">
-                            <div class="product-img">
-                                <img src="~/img/shop/product-09.jpg" alt="" />
-                                <div class="product-cart">
-                                    <a href="#!"><i class="fas fa-plus"></i></a>
-                                    <a href="#!"><i class="fas fa-cart-plus"></i></a>
-                                    <a href="#!"><i class="fas fa-heart"></i></a>
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <a href="#!">Audio Jack</a>
-                                <p class="price text-center no-margin">
-                                    <span class="red line-through margin-10px-right">$99</span>
-                                    <span>$59</span>
-                                </p>
-                            </div>
-                        </div>
-
-                    </div>
-
+                        }
+                    }
                 </div>
 
                 <div class="row margin-50px-top sm-margin-35px-top">
                     <div class="col-12">
                         <div class="pagination text-small text-uppercase text-extra-dark-gray">
-                            <ul>
-                                <li><a href="#!"><i class="fas fa-long-arrow-alt-left margin-5px-right xs-display-none"></i> Prev</a></li>
-                                <li class="active"><a href="#!">1</a></li>
-                                <li><a href="#!">2</a></li>
-                                <li><a href="#!">3</a></li>
-                                <li><a href="#!">Next <i class="fas fa-long-arrow-alt-right margin-5px-left xs-display-none"></i></a></li>
+                            @*<li><a href="#!"><i class="fas fa-long-arrow-alt-left margin-5px-right xs-display-none"></i> Prev</a></li>
+        <li class="active"><a href="#!">1</a></li>
+        <li><a href="#!">2</a></li>
+        <li><a href="#!">3</a></li>
+        <li><a href="#!">Next <i class="fas fa-long-arrow-alt-right margin-5px-left xs-display-none"></i></a></li>*@
+                            <ul id="load-pagination">
                             </ul>
                         </div>
                     </div>
@@ -499,4 +169,180 @@
         </div>
     </div>
 </div>
-<!-- end clients section -->
+
+
+<script src="~/js/jquery-3.3.1.min.js"></script>
+<script>
+
+    var ProductJson = [];
+    const urlParams = new URLSearchParams(window.location.search);
+    const myParam = urlParams.get('Category');
+    if (myParam != null) {
+        ProductList();
+    }
+
+        function ProductList(SelectedPage) {
+
+            if (SelectedPage == undefined) {
+                SelectedPage = 1;
+            }
+
+             $.ajax({
+                   type: "GET",
+                   url: '@Url.Action("ProductGridList", "Shop")',
+                   data: { Category: myParam, page: SelectedPage},
+                 success: function (services) {
+
+                       DeleteAll();
+
+                       document.getElementById("CurrentRecords").innerText = services.currentRecords;
+                       document.getElementById("TotalRecord").innerText = services.totalItem;
+
+
+                       services.data.map((item, index) => {
+                           CreateProduct(item.ProductName, item.ProductPrice, item.DiscountedAmount, item.ImageOne,item.ID);
+
+                       });
+
+
+                       var pagination_string = "";
+                       var pageCurrent = services.pageCurrent;
+                       var numSize = services.numSize;
+
+                       //create button previous
+                       if (pageCurrent > 1) {
+                           var pagePrevious = pageCurrent - 1;
+
+                           //pagination_string += '<li class="page-item"><a href="" class="page-link" data-page=' + pagePrevious + '>Previous</a></li>';
+                           pagination_string += '<li><a onclick="ProductList(' + pagePrevious + ')" data-page=' + pagePrevious + '><i class="fas fa-long-arrow-alt-left margin-5px-right xs-display-none"></i> Prev</a></li>'
+
+                       }
+
+                       for (i = 1; i <= numSize; i++) {
+                           if (i == pageCurrent) {
+                               pagination_string += '<li class="active"><a href="#!" data-page=' + i + '>' + i + '</a></li>';
+                               //pagination_string += '<li class="page-item active"><a href="" class="page-link" data-page=' + i + '>' + pageCurrent + '</a></li>';
+                           } else {
+                               //pagination_string += '<li class="page-item"><a href="" class="page-link" data-page=' + i + '>' + i + '</a></li>';
+                               pagination_string += '<li><a href="#!" data-page=' + i + '>' + i + '</a></li>';
+                           }
+                       }
+
+                       //create button next
+                       if (pageCurrent > 0 && pageCurrent < numSize) {
+                           var pageNext = pageCurrent + 1;
+                           pagination_string += '<li><a onclick="ProductList(' + pageNext + ')" id="NextProductList" data-page=' + pageNext + '>Next <i class="fas fa-long-arrow-alt-right margin-5px-left xs-display-none"></i></a></li>';
+                           //pagination_string += '<li class="page-item"><a href="" class="page-link"  data-page=' + pageNext + '>Next</a></li>';
+                       }
+
+
+                       $("#load-pagination").html(pagination_string);
+
+                     //console.log(services);
+
+
+                   }
+             });
+
+        }
+
+        function DeleteAll() {
+            var rowGrid = document.getElementById("RowProductGrid");
+            rowGrid.innerHTML = "";
+        }
+
+        function CreateProduct(ProductName, OldPrice, NewPrice,image,ProductId) {
+
+
+            var productRow = document.getElementById('RowProductGrid');
+            var divProductColumn = document.createElement('div');
+            var divProductDetail = document.createElement('div');
+            var divProductImageContainer = document.createElement('div');
+            var imgProductImage = document.createElement('img');
+            var divProductCart = document.createElement('div');
+
+            var hrefPlus = document.createElement('a');
+            var hrefCartPlus = document.createElement('a');
+            var hrefHeart = document.createElement('a');
+
+            var iconPlus = document.createElement('i');
+            var iconCartPlus = document.createElement('i');
+            var iconHeart = document.createElement('i');
+
+            var divProductInfo = document.createElement('div');
+            var hrefProductTitle = document.createElement('a');
+            var paragraphPrice = document.createElement('p');
+            var discountSpan = document.createElement('span');
+            var newSpan = document.createElement('span');
+
+
+            divProductColumn.setAttribute('class', 'col-xl-4 col-sm-6');
+            divProductDetail.setAttribute('class', 'product-details');
+            divProductImageContainer.setAttribute('class', 'product-img');
+
+            imgProductImage.setAttribute('src', image);
+            imgProductImage.setAttribute('alt', 'Product');
+
+            divProductCart.setAttribute('class', 'product-cart');
+
+            hrefPlus.setAttribute('href', '#');
+            hrefCartPlus.setAttribute('href', '#');
+            hrefHeart.setAttribute('href', '#');
+
+            iconPlus.setAttribute('class', 'fas fa-plus');
+            iconCartPlus.setAttribute('class', 'fas fa-cart-plus');
+            iconHeart.setAttribute('class', 'fas fa-heart');
+
+            divProductInfo.setAttribute('class', 'product-info');
+            hrefProductTitle.setAttribute('href','/Shop/ProductDetail?productID='+ ProductId);
+            hrefProductTitle.innerText = ProductName;
+
+            paragraphPrice.setAttribute('class', 'price text-center no-margin');
+
+            if (NewPrice != null) {
+                discountSpan.setAttribute('class', 'red line-through margin-10px-right');
+                discountSpan.innerText = OldPrice;
+                newSpan.innerText = NewPrice;
+            }
+            else {
+                newSpan.innerText = OldPrice;
+            }
+
+            paragraphPrice.appendChild(discountSpan);
+            paragraphPrice.appendChild(newSpan);
+
+            divProductInfo.appendChild(hrefProductTitle);
+            divProductInfo.appendChild(paragraphPrice);
+
+            hrefPlus.appendChild(iconPlus);
+            hrefCartPlus.appendChild(iconCartPlus);
+            hrefHeart.appendChild(iconHeart);
+
+            divProductCart.appendChild(hrefHeart);
+            divProductCart.appendChild(hrefCartPlus);
+            divProductCart.appendChild(hrefPlus);
+
+            divProductImageContainer.appendChild(divProductCart);
+            divProductImageContainer.appendChild(imgProductImage);
+
+            divProductDetail.appendChild(divProductImageContainer);
+            divProductDetail.appendChild(divProductInfo);
+            divProductColumn.appendChild(divProductDetail);
+
+            productRow.appendChild(divProductColumn);
+
+        }
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+

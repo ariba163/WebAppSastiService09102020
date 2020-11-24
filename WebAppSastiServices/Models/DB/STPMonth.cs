@@ -12,14 +12,9 @@ namespace WebAppSastiServices.Models.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class TRNCustomerOrders_STPServices
+    public partial class STPMonth
     {
         public int ID { get; set; }
-        public int TRNCustomerOrderID { get; set; }
-        public int STPServicesID { get; set; }
-        public Nullable<decimal> Rate { get; set; }
-    
-        public virtual STPService STPService { get; set; }
-        public virtual TRNCustomerOrder TRNCustomerOrder { get; set; }
+        public string MonthName { get; set; }
     }
 }

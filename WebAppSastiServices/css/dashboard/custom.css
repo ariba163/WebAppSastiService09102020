@@ -6,6 +6,12 @@
 #Add .card-white {
     height: 320px;
 }
+/*change background color-profile toast notification*/
+.toast-info {
+    background-color: #096ab2!important;
+    color: aliceblue!important;
+    opacity:0.90!important;
+}
 
 .LockOn {
     display: block;

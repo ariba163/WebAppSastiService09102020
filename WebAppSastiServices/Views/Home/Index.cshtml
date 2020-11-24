@@ -70,7 +70,6 @@ else if (message == "error")
 
 
     @Html.Partial("pvQuickCall")
-    @*@{Html.RenderAction("pvQuickCall");}*@
 </div>
 <!--end side quick call-->
 
@@ -131,81 +130,7 @@ else if (message == "error")
 
             <div class="pricing-content" >
                 <div class="row">
-
-                    <div class="col-lg-4 sm-margin-30px-bottom">
-                        <div class="single-plan text-center" data-toggle="modal" data-target="#exampleModalLongPackage1" id="PackageOne">
-                            <div class="head-plan bg-dark-gray">
-                                <h4 class="font-size22 sm-font-size20 xs-font-size18">Silver</h4>
-                            </div>
-                            <div class="body-plan">
-                                <div class="price-plan">
-                                    <span>Monthly</span>
-                                    <i class="icon-briefcase"></i>
-                                </div>
-                                <div class="feat-plan">
-                                    <ul>
-                                        <li>AC Maintainance</li>
-                                        <li>CCTV Maintainance</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="footer-plan">
-                                <a href="#!" class="butn medium">
-                                    <span>Book Now</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 sm-margin-30px-bottom">
-                        <div class="single-plan text-center">
-                            <div class="head-plan bg-theme">
-                                <h4 class="font-size22 sm-font-size20 xs-font-size18">Golden</h4>
-                            </div>
-                            <div class="body-plan">
-                                <div class="price-plan">
-                                    <span>Monthly</span>
-                                    <i class="icon-briefcase"></i>
-                                </div>
-                                <div class="feat-plan">
-                                    <ul>
-                                        <li>AC Maintainance</li>
-                                        <li>CCTV Maintainance</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="footer-plan">
-                                <a href="#!" class="butn medium">
-                                    <span>Book Now</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4">
-                        <div class="single-plan text-center">
-                            <div class="head-plan bg-dark-gray">
-                                <h4 class="font-size22 sm-font-size20 xs-font-size18">Premium</h4>
-                            </div>
-                            <div class="body-plan">
-                                <div class="price-plan">
-                                    <span>Monthly</span>
-                                    <i class="icon-briefcase"></i>
-                                </div>
-                                <div class="feat-plan">
-                                    <ul>
-                                        <li>AC Maintainance</li>
-                                        <li>CCTV Maintainance</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="footer-plan">
-                                <a href="#!" class="butn medium">
-                                    <span>Book Now</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    @{Html.RenderAction("PVContract");}
                 </div>
             </div>
         </div>

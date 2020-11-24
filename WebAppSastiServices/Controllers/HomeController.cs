@@ -19,12 +19,11 @@ namespace WebAppSastiServices.Controllers
         SastaServicesDBEntities db = new SastaServicesDBEntities();
         // GET: Home
 
-
         public ActionResult Index()
         {
 
-            if (TempData["Message"] != null) { 
-            ViewBag.Message = TempData["Message"];
+            if (TempData["Message"] != null) {
+                ViewBag.Message = TempData["Message"];
             }
             return View();
         }
@@ -59,39 +58,50 @@ namespace WebAppSastiServices.Controllers
                                    DateTime.Now.Hour.ToString() +
                                    DateTime.Now.Minute.ToString() +
                                    DateTime.Now.Second.ToString();
-                try { 
+                try {
 
-                SendEmail("sastiService123@gmail.com",
-                          "muhammadmoosahaider@gmail.com", //Email of customer support employee
-                          g.Email,
-                          "Email Received by " + g.Name,
-                          g.Message,
-                          "smtp.gmail.com",
-                          587,
-                          "sastiService123456",
-                          RequestNumber,
-                          true);
+                    //SendEmail("sastiService123@gmail.com",
+                    //          "muhammadmoosahaider@gmail.com", //Email of customer support employee
+                    //          g.Email,
+                    //          "Email Received by " + g.Name,
+                    //          g.Message,
+                    //          "smtp.gmail.com",
+                    //          587,
+                    //          "sastiService123456",
+                    //          RequestNumber,
+                    //          true);
 
-                //Entry into the Database
 
-                STPCustomerSupport cp = new STPCustomerSupport()
-                {
-                    Name = g.Name,
-                    ContactNo = g.ContactNo,
-                    Subject = g.Subject,
-                    Email = g.Email,
-                    Message = g.Message,
-                    RequestNumber = RequestNumber
+                    SendEmail("umair.madni@idealpower.com.pk",
+                             "info@kaamwaley.com", //Email of customer support employee
+                             g.Email,
+                             "Email Received by " + g.Name,
+                             g.Message,
+                             "smtp-mail.outlook.com",
+                             25,
+                             "umair@123",
+                             RequestNumber,
+                             true);
+                    //Entry into the Database
 
-                };
+                    STPCustomerSupport cp = new STPCustomerSupport()
+                    {
+                        Name = g.Name,
+                        ContactNo = g.ContactNo,
+                        Subject = g.Subject,
+                        Email = g.Email,
+                        Message = g.Message,
+                        RequestNumber = RequestNumber
 
-                db.STPCustomerSupports.Add(cp);
-                db.SaveChanges();
-                TempData["Message"] = "Emailsuccess";
-                    
+                    };
+
+                    db.STPCustomerSupports.Add(cp);
+                    db.SaveChanges();
+                    TempData["Message"] = "Emailsuccess";
+
                     return RedirectToAction("Index");
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     throw ex;
                     return RedirectToAction("Index");
@@ -126,6 +136,14 @@ namespace WebAppSastiServices.Controllers
                         Contact = q.Contact
                     };
 
+                    STPNotification n = new STPNotification
+                    {
+                        Message = q.Name + " Request a Call!",
+                        Is_Notify = false,
+                        CreatedDate = DateTime.Now
+                    };
+
+                    db.STPNotifications.Add(n);
                     db.STPQuickCalls.Add(Qcall);
                     db.SaveChanges();
                     Session["Message"] = "QCallSucceed";
@@ -145,7 +163,7 @@ namespace WebAppSastiServices.Controllers
             return View();
         }
 
-        
+
         public ActionResult CustomerOrder(int? serviceTypeId)
         {
             ViewBag.ServiceType = new SelectList(db.STPServiceTypes.Where(s => s.ID == serviceTypeId), "ID", "ServiceTypeName");
@@ -162,36 +180,45 @@ namespace WebAppSastiServices.Controllers
         public ActionResult CustomerOrder(TRNCustomerOrderMetadata model)
         {
 
-            try { 
-            if (ModelState.IsValid)
-            {
-                TRNCustomerOrder o = new TRNCustomerOrder()
+            try {
+                if (ModelState.IsValid)
                 {
-                    CustomerName = model.CustomerName,
-                    Contact = model.Contact,
-                    Email=model.Email,
-                    Address = model.Address,
-                    OrderDescription = model.OrderDescription,
-                    preferredDate = model.preferredDate,
-                    preferredTimeID = model.preferredTimeID,
-                    FuelTypeId = model.FuelTypeId,
-                    UnitTypeId = model.UnitTypeId,
-                    ServiceTypeId = model.ServiceTypeId,
-                    CreateOn = System.DateTime.Now,
-                    OrderStatusId = 6
+                    TRNCustomerOrder o = new TRNCustomerOrder()
+                    {
+                        CustomerName = model.CustomerName,
+                        Contact = model.Contact,
+                        Email = model.Email,
+                        Address = model.Address,
+                        OrderDescription = model.OrderDescription,
+                        preferredDate = model.preferredDate,
+                        preferredTimeID = model.preferredTimeID,
+                        FuelTypeId = model.FuelTypeId,
+                        UnitTypeId = model.UnitTypeId,
+                        ServiceTypeId = model.ServiceTypeId,
+                        CreateOn = System.DateTime.Now,
+                        OrderStatusId = 6
+                    };
+                    string serviceType = db.STPServiceTypes.Find(model.ServiceTypeId).ServiceTypeName;
 
 
-                };
-                db.TRNCustomerOrders.Add(o);
-                db.SaveChanges();
-                TempData["Message"] = "success";
+                    STPNotification n = new STPNotification
+                    {
+                        Message = serviceType + " Order Placed",
+                        Is_Notify = false,
+                        CreatedDate = DateTime.Now
+                    };
 
-                return Redirect(Url.Action("Index", "Home"));
+                    db.TRNCustomerOrders.Add(o);
+                    db.STPNotifications.Add(n);
+                    db.SaveChanges();
+                    TempData["Message"] = "success";
+
+                    return Redirect(Url.Action("Index", "Home"));
 
                 }
-                else { 
-                TempData["Message"] = "error";
-                return Redirect(Url.Action("Index", "Home"));
+                else {
+                    TempData["Message"] = "error";
+                    return Redirect(Url.Action("Index", "Home"));
                 }
             }
             catch {
@@ -250,40 +277,17 @@ namespace WebAppSastiServices.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public ActionResult Login()
-        //{
-        //    return View();
-        //}
-
         [HttpGet]
         public ActionResult Register()
         {
             return View();
         }
 
-        //[HttpPost]
-        //public ActionResult Register()
-        //{
-        //    return View();
-        //}
-
         [HttpGet]
         public ActionResult ForgotPassword()
         {
             return View();
         }
-
-
-
-
-
-        //[HttpPost]
-        //public ActionResult ForgotPassword()
-        //{
-        //    return View();
-        //}
-        // [HttpGet]
         public PartialViewResult PVservices()
         {
             var Services = (from d in db.STPServiceTypes
@@ -293,6 +297,57 @@ namespace WebAppSastiServices.Controllers
             return PartialView(Services);
 
         }
+
+        public ActionResult _Notification()
+        {
+            return View();
+        }
+
+        public JsonResult _NotificationAjax()
+        {
+            var row = (from d in db.STPNotifications
+                       orderby d.CreatedDate descending
+                       select new
+                       {
+                           d.ID,
+                           d.Message,
+                           CreatedDate = d.CreatedDate.ToString()
+                       });
+
+
+            return Json(row, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public ActionResult _MegaMenu() 
+        {
+            var categories = db.STPProductTypes.ToList();
+
+            return View(categories);
+        }
+
+        public PartialViewResult PVContract (){
+
+            var contractTypes = (from d in db.STPContractTypes
+                                 join ser in db.STPConType_STPServiceType on d.ID equals ser.ContractTypeID
+                                 select d)
+                                .Take(3)
+                                .ToList();
+            return PartialView(contractTypes);
+        }
+        public PartialViewResult PVConServices(int contypeId)
+        {
+
+            var services = (from d in db.STPConType_STPServiceType
+                           where d.ContractTypeID == contypeId
+                           select d)
+                           .Distinct()
+                           .ToList();
+
+
+            return PartialView(services);
+        }
+
 
     }
 

@@ -18,6 +18,7 @@ namespace WebAppSastiServices.Models.DB
         public STPProductType()
         {
             this.STPProductBrands = new HashSet<STPProductBrand>();
+            this.STPProductLists = new HashSet<STPProductList>();
             this.STPServiceProductItems = new HashSet<STPServiceProductItem>();
         }
     
@@ -27,6 +28,8 @@ namespace WebAppSastiServices.Models.DB
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<STPProductBrand> STPProductBrands { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<STPProductList> STPProductLists { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<STPServiceProductItem> STPServiceProductItems { get; set; }
     }

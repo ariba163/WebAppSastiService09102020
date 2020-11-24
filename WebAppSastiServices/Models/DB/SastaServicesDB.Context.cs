@@ -12,8 +12,6 @@ namespace WebAppSastiServices.Models.DB
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    using System.Data.Entity.Core.Objects;
-    using System.Linq;
     
     public partial class SastaServicesDBEntities : DbContext
     {
@@ -29,14 +27,24 @@ namespace WebAppSastiServices.Models.DB
     
         public virtual DbSet<STPBanner> STPBanners { get; set; }
         public virtual DbSet<STPBannerOffer> STPBannerOffers { get; set; }
+        public virtual DbSet<STPConInspection> STPConInspections { get; set; }
+        public virtual DbSet<STPContract_StpContUnitOptions> STPContract_StpContUnitOptions { get; set; }
+        public virtual DbSet<STPContract> STPContracts { get; set; }
+        public virtual DbSet<STPContractType> STPContractTypes { get; set; }
+        public virtual DbSet<STPConType_STPServiceType> STPConType_STPServiceType { get; set; }
+        public virtual DbSet<STPConUnitOption> STPConUnitOptions { get; set; }
         public virtual DbSet<STPCustomerSupport> STPCustomerSupports { get; set; }
+        public virtual DbSet<STPMonth> STPMonths { get; set; }
+        public virtual DbSet<STPNotification> STPNotifications { get; set; }
         public virtual DbSet<STPPrefferedTime> STPPrefferedTimes { get; set; }
         public virtual DbSet<STPProductBrand> STPProductBrands { get; set; }
+        public virtual DbSet<STPProductList> STPProductLists { get; set; }
         public virtual DbSet<STPProductType> STPProductTypes { get; set; }
         public virtual DbSet<STPQuickCall> STPQuickCalls { get; set; }
         public virtual DbSet<StpRole> StpRoles { get; set; }
         public virtual DbSet<STPRolesCategory> STPRolesCategories { get; set; }
         public virtual DbSet<STPServiceProductItem> STPServiceProductItems { get; set; }
+        public virtual DbSet<STPService> STPServices { get; set; }
         public virtual DbSet<STPServicesFuelType> STPServicesFuelTypes { get; set; }
         public virtual DbSet<STPServicesUnitType> STPServicesUnitTypes { get; set; }
         public virtual DbSet<STPServiceType> STPServiceTypes { get; set; }
@@ -48,11 +56,5 @@ namespace WebAppSastiServices.Models.DB
         public virtual DbSet<TRNCustomerOrders_STPServices> TRNCustomerOrders_STPServices { get; set; }
         public virtual DbSet<TRNInvoice> TRNInvoices { get; set; }
         public virtual DbSet<TRNSubscription> TRNSubscriptions { get; set; }
-        public virtual DbSet<STPService> STPServices { get; set; }
-    
-        public virtual ObjectResult<ReportInvoice_Result> ReportInvoice()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ReportInvoice_Result>("ReportInvoice");
-        }
     }
 }

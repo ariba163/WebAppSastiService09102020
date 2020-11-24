@@ -13,10 +13,9 @@
     <meta name="description" content="Kaam Waley - Responsive Admin Dashboard Template" />
 
     <!-- title  -->
-    <title>Kaam Waley </title>
+    <title>Kaam Waley | Supplier-@Session["ProductType"]</title>
 
     <!-- favicon -->
-    <link rel="shortcut icon" href="~/img/Dashboard/logos/favicon.png">
     <link rel="shortcut icon" href="~/img/Dashboard/logos/favicon.png">
     <link rel="apple-touch-icon" href="~/img/Dashboard/logos/apple-touch-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="72x72" href="~/img/Dashboard/logos/apple-touch-icon-72x72.png">
@@ -31,9 +30,33 @@
 
     <!-- custom css -->
     <link rel="stylesheet" href="~/css/dashboard/styles.css" />
-    <link rel="stylesheet" href="~/css/dashboard/DarkBlue.css" />
+
+    @if (@Session["ProductType"] == "Generator")
+    {
+        <link rel="stylesheet" href="~/css/dashboard/DarkGray.css" />
+    }
+    @if (@Session["ProductType"] == "Air Condition")
+    {
+        <link rel="stylesheet" href="~/css/dashboard/LightBlue.css" />
+    }
+    @if (@Session["ProductType"] == "CCTV")
+    {
+        <link rel="stylesheet" href="~/css/dashboard/Green.css" />
+    }
+    @if (@Session["ProductType"] == "Solar Sys")
+    {
+        <link rel="stylesheet" href="~/css/dashboard/DarkYellow.css" />
+    }
+    @if (@Session["ProductType"] == "UPS")
+    {
+        <link rel="stylesheet" href="~/css/dashboard/Red.css" />
+    }
     <link rel="stylesheet" href="~/css/dashboard/custom.css" />
 
+    <!-- DataTable css -->
+    <link rel="stylesheet" href="~/DataTables/css/jquery.dataTables.css" />
+
+    @RenderSection("styles", required: false)
 </head>
 
 <body>
@@ -57,102 +80,45 @@
             <div class="page-sidebar-inner">
                 <div class="page-sidebar-menu">
                     <ul class="accordion-menu">
-                        <li>
-                            <a href="@Url.Action("Index","SupplierDashboard")">
-                                <i class="menu-icon icon-home4"></i><span>Dashboard</span>
-                            </a>
-                        </li>
+                        @if (Session["RoleID"] != null)
+                        {
+                            if (Session["RoleID"].ToString() == "0")
+                            {
+                                <li><a href="@Url.Action("Index", "AdminDashboard")">Dashboard</a></li>
+
+                            }
+                            else
+                            {
+                                <li>
+                                    <a href="@Url.Action("Index", "SupplierDashboard")">
+                                        <i class="menu-icon icon-home4"></i><span>Dashboard</span>
+                                    </a>
+                                </li>
+                            }
+                        }
                         <li>
                             <a href="@Url.Action("Email","SupplierDashboard")">
                                 <i class="menu-icon icon-inbox"></i><span>Email</span>
                             </a>
                         </li>
-                        @*<li>
+                        <li>
                             <a href="#!">
-                                <i class="menu-icon icon-flash_on"></i><span>UI Kits</span><i class="accordion-icon fa fa-angle-left"></i>
+                                <i class="menu-icon icon-star"></i><span>Orders</span><i class="accordion-icon fa fa-angle-left"></i>
                             </a>
                             <ul>
-                                <li><a href="ui-alerts.html">Alerts</a></li>
-                                <li><a href="ui-accordion.html">Accordion</a></li>
-                                <li><a href="ui-buttons.html">Buttons</a></li>
-                                <li><a href="ui-icons.html">Icons</a></li>
-                                <li><a href="ui-typography.html">Typography</a></li>
-                                <li><a href="ui-notifications.html">Notifications</a></li>
-                                <li><a href="ui-modals.html">Modals</a></li>
-                                <li><a href="ui-progress.html">Progress Bars</a></li>
-                                <li><a href="ui-tabs.html">Tabs</a></li>
-                                <li><a href="ui-tree-view.html">Tree View</a></li>
-                                <li><a href="ui-nestable.html">Nestable</a></li>
+                                <li><a href="@Url.Action("AvailedOrder","SupplierDashboard")"> All Availed Orders </a></li>
                             </ul>
                         </li>
+
                         <li>
-                            <a href="#!">
-                                <i class="menu-icon icon-layers"></i><span>Layouts</span><i class="accordion-icon fa fa-angle-left"></i>
+                            <a href="@Url.Action("ProductList","SupplierDashboard")">
+                                <i class="menu-icon icon-star"></i><span> @Session["ProductType"] </span>
                             </a>
-                            <ul>
-                                <li><a href="layout-blank.html">Blank Page</a></li>
-                                <li><a href="layout-boxed.html">Boxed Layout</a></li>
-                                <li><a href="layout-collapsed-sidebar.html">Collapsed Sidebar</a></li>
-                                <li><a href="layout-fixed-header.html">Fixed Header</a></li>
-                                <li><a href="layout-fixed-sidebar.html">Fixed Sidebar</a></li>
-                                <li><a href="layout-fixed-sidebar-header.html">Fixed Sidebar &amp; Header</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#!">
-                                <i class="menu-icon icon-code"></i><span>Forms</span><i class="accordion-icon fa fa-angle-left"></i>
-                            </a>
-                            <ul>
-                                <li><a href="form-elements.html">Elements</a></li>
-                                <li><a href="form-wizard.html">Form Wizard</a></li>
-                                <li><a href="form-file-upload.html">File Upload</a></li>
-                                <li><a href="form-image-crop.html">Image Crop</a></li>
-                                <li><a href="form-image-zoom.html">Image Zoom</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#!">
-                                <i class="menu-icon icon-format_list_bulleted"></i><span>Tables</span><i class="accordion-icon fa fa-angle-left"></i>
-                            </a>
-                            <ul>
-                                <li><a href="table-static.html">Static</a></li>
-                                <li><a href="table-responsive.html">Responsive</a></li>
-                                <li><a href="table-data.html">Data Tables</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="charts.html">
-                                <i class="menu-icon icon-show_chart"></i><span>Charts</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#!">
-                                <i class="menu-icon icon-my_location"></i><span>Maps</span><i class="accordion-icon"></i>
-                            </a>
-                        </li>*@
-                        <li>
-                            <a href="#!">
-                                <i class="menu-icon icon-star"></i><span>Extra</span><i class="accordion-icon fa fa-angle-left"></i>
-                            </a>
-                            <ul>
-                                <li><a href="@Url.Action("Invoice","SupplierDashboard")">Invoice</a></li>
-                                @*<li><a href="404.html">404 Page</a></li>
-                                <li><a href="500.html">500 Page</a></li>*@
-                                <li><a href="@Url.Action("Profile","SupplierDashboard")">Profile</a></li>
-                                <li><a href="@Url.Action("Login","SupplierDashboard")">Login</a></li>
-                                <li><a href="@Url.Action("Register","SupplierDashboard")">Register</a></li>
-                                <li><a href="@Url.Action("Lockscreen","SupplierDashboard")">Lockscreen</a></li>
-                                @*<li><a href="todo.html">Todo</a></li>
-                                <li><a href="gallery.html">Gallery</a></li>
-                                <li><a href="pricing-tables.html">Pricing Tables</a></li>
-                                <li><a href="timeline.html">Timeline</a></li>
-                                <li><a href="calendar.html">Calendar</a></li>*@
-                            </ul>
                         </li>
                         <li class="menu-divider"></li>
                         <li>
                             <a href="#!">
-                                <i class="menu-icon icon-public"></i><span>Changelog</span><span class="label label-danger">1.0</span>
+                                <i class="fas fa-power-off"></i> by<span> 9Soft Solution</span>
                             </a>
                         </li>
                     </ul>
@@ -251,7 +217,7 @@
                                         <li><a href="#"><span class="badge float-right badge-danger">42</span>Messages</a></li>
                                         <li role="separator" class="divider"></li>
                                         <li><a href="#">Account Settings</a></li>
-                                        <li><a href="#">Log Out</a></li>
+                                        <li><a href="@Url.Action("Logout","Account")">Log Out</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -494,7 +460,13 @@
     <script src="~/js/Dashboard/main.js"></script>
 
     <!-- all js include end -->
+    <!-- DataTable scripts   -->
+    <script src="~/DataTables/js/jquery.dataTables.js"></script>
 
+    <script>
+
+    </script>
+    @RenderSection("scripts", required: false)
 </body>
 
 </html>

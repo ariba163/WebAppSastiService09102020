@@ -6,7 +6,6 @@
 
     <!-- metas -->
     <meta charset="utf-8">
-    <meta name="author" content="Chitrakoot Web" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="keywords" content="admin,dashboard" />
@@ -30,7 +29,27 @@
 
     <!-- custom css -->
     <link rel="stylesheet" href="~/css/dashboard/styles.css" />
-    <link rel="stylesheet" href="~/css/dashboard/LightBlue.css" />
+
+    @if (@Session["serviceType"] == "Generator")
+    {
+        <link rel="stylesheet" href="~/css/dashboard/DarkGray.css" />
+    }
+    @if (@Session["serviceType"] == "Air Condition")
+    {
+        <link rel="stylesheet" href="~/css/dashboard/LightBlue.css" />
+    }
+    @if (@Session["serviceType"] == "CCTV")
+    {
+        <link rel="stylesheet" href="~/css/dashboard/Green.css" />
+    }
+    @if (@Session["serviceType"] == "Solar Sys")
+    {
+        <link rel="stylesheet" href="~/css/dashboard/DarkYellow.css" />
+    }
+    @if (@Session["serviceType"] == "UPS")
+    {
+        <link rel="stylesheet" href="~/css/dashboard/Red.css" />
+    }
     <link rel="stylesheet" href="~/css/dashboard/custom.css" />
 
     <!-- DataTable css -->
@@ -449,22 +468,7 @@
     <script src="~/DataTables/js/jquery.dataTables.js"></script>
 
     <script>
-    @*setInterval(function ()
-    {
-    $.ajax({
-    url: '@Url.Action("SessionEnd", "Account")',
-    dataType:'json',
-        success: function (data) {
-        if (data == "true") {
-             console.log("Session expired");
-            window.location = "@Url.Action("Login", "Account")";
-        }
-        else if (data == "false") {
-            console.log("Session not expired yet");
-        }
-        }
-    })
-    }, 120000);*@
+    
     </script>
     @RenderSection("scripts", required: false)
 </body>

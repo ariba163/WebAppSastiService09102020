@@ -536,15 +536,15 @@
     <Content Include="js\rev_slider\jquery.themepunch.tools.min.js" />
     <Content Include="js\setup.js" />
     <Content Include="js\xzoom.js" />
-    <Content Include="Models\DB\ModelSastiService.Context.tt">
+    <Content Include="Models\DB\SastaServicesDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelSastiService.edmx</DependentUpon>
-      <LastGenOutput>ModelSastiService.Context.cs</LastGenOutput>
+      <DependentUpon>SastaServicesDB.edmx</DependentUpon>
+      <LastGenOutput>SastaServicesDB.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\DB\ModelSastiService.tt">
+    <Content Include="Models\DB\SastaServicesDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelSastiService.edmx</DependentUpon>
-      <LastGenOutput>ModelSastiService.cs</LastGenOutput>
+      <DependentUpon>SastaServicesDB.edmx</DependentUpon>
+      <LastGenOutput>SastaServicesDB.cs</LastGenOutput>
     </Content>
     <Content Include="plugins\bootstrap-clockpicker\css\bootstrap-clockpicker.min.css" />
     <Content Include="plugins\bootstrap-clockpicker\js\bootstrap-clockpicker.min.js" />
@@ -647,14 +647,14 @@
     <Content Include="js\Dashboard\pages\ajax_roots.json" />
     <Content Include="quform\js\scripts.js" />
     <Content Include="Rotativa\wkhtmltopdf.exe" />
-    <EntityDeploy Include="Models\DB\ModelSastiService.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModelSastiService.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\DB\ModelSastiService.edmx.diagram">
-      <DependentUpon>ModelSastiService.edmx</DependentUpon>
-    </Content>
     <Content Include="App_Browsers\qt.browser" />
+    <EntityDeploy Include="Models\DB\SastaServicesDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SastaServicesDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\DB\SastaServicesDB.edmx.diagram">
+      <DependentUpon>SastaServicesDB.edmx</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -685,89 +685,113 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\DB\ModelSastiService.Context.cs">
+    <Compile Include="Models\DB\SastaServicesDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelSastiService.Context.tt</DependentUpon>
+      <DependentUpon>SastaServicesDB.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DB\ModelSastiService.cs">
+    <Compile Include="Models\DB\SastaServicesDB.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelSastiService.tt</DependentUpon>
+      <DependentUpon>SastaServicesDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DB\ModelSastiService.Designer.cs">
+    <Compile Include="Models\DB\SastaServicesDB.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelSastiService.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DB\ReportInvoice_Result.cs">
-      <DependentUpon>ModelSastiService.tt</DependentUpon>
+      <DependentUpon>SastaServicesDB.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\DB\STPBanner.cs">
-      <DependentUpon>ModelSastiService.tt</DependentUpon>
+      <DependentUpon>SastaServicesDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DB\STPBannerOffer.cs">
-      <DependentUpon>ModelSastiService.tt</DependentUpon>
+      <DependentUpon>SastaServicesDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\STPConInspection.cs">
+      <DependentUpon>SastaServicesDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\STPContract.cs">
+      <DependentUpon>SastaServicesDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\STPContractType.cs">
+      <DependentUpon>SastaServicesDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\STPContract_StpContUnitOptions.cs">
+      <DependentUpon>SastaServicesDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\STPConType_STPServiceType.cs">
+      <DependentUpon>SastaServicesDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\STPConUnitOption.cs">
+      <DependentUpon>SastaServicesDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DB\STPCustomerSupport.cs">
-      <DependentUpon>ModelSastiService.tt</DependentUpon>
+      <DependentUpon>SastaServicesDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\STPMonth.cs">
+      <DependentUpon>SastaServicesDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\STPNotification.cs">
+      <DependentUpon>SastaServicesDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DB\STPPrefferedTime.cs">
-      <DependentUpon>ModelSastiService.tt</DependentUpon>
+      <DependentUpon>SastaServicesDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DB\STPProductBrand.cs">
-      <DependentUpon>ModelSastiService.tt</DependentUpon>
+      <DependentUpon>SastaServicesDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\STPProductList.cs">
+      <DependentUpon>SastaServicesDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DB\STPProductType.cs">
-      <DependentUpon>ModelSastiService.tt</DependentUpon>
+      <DependentUpon>SastaServicesDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DB\STPQuickCall.cs">
-      <DependentUpon>ModelSastiService.tt</DependentUpon>
+      <DependentUpon>SastaServicesDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DB\StpRole.cs">
-      <DependentUpon>ModelSastiService.tt</DependentUpon>
+      <DependentUpon>SastaServicesDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DB\STPRolesCategory.cs">
-      <DependentUpon>ModelSastiService.tt</DependentUpon>
+      <DependentUpon>SastaServicesDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DB\STPService.cs">
-      <DependentUpon>ModelSastiService.tt</DependentUpon>
+      <DependentUpon>SastaServicesDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DB\STPServiceProductItem.cs">
-      <DependentUpon>ModelSastiService.tt</DependentUpon>
+      <DependentUpon>SastaServicesDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DB\STPServicesFuelType.cs">
-      <DependentUpon>ModelSastiService.tt</DependentUpon>
+      <DependentUpon>SastaServicesDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DB\STPServicesUnitType.cs">
-      <DependentUpon>ModelSastiService.tt</DependentUpon>
+      <DependentUpon>SastaServicesDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DB\STPServiceType.cs">
-      <DependentUpon>ModelSastiService.tt</DependentUpon>
+      <DependentUpon>SastaServicesDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DB\STPStatu.cs">
-      <DependentUpon>ModelSastiService.tt</DependentUpon>
+      <DependentUpon>SastaServicesDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DB\STPStatusType.cs">
-      <DependentUpon>ModelSastiService.tt</DependentUpon>
+      <DependentUpon>SastaServicesDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DB\StpUser.cs">
-      <DependentUpon>ModelSastiService.tt</DependentUpon>
+      <DependentUpon>SastaServicesDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DB\TRNCustomerOrder.cs">
-      <DependentUpon>ModelSastiService.tt</DependentUpon>
+      <DependentUpon>SastaServicesDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DB\TRNCustomerOrders_STPProductItems.cs">
-      <DependentUpon>ModelSastiService.tt</DependentUpon>
+      <DependentUpon>SastaServicesDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DB\TRNCustomerOrders_STPServices.cs">
-      <DependentUpon>ModelSastiService.tt</DependentUpon>
+      <DependentUpon>SastaServicesDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DB\TRNInvoice.cs">
-      <DependentUpon>ModelSastiService.tt</DependentUpon>
+      <DependentUpon>SastaServicesDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DB\TRNSubscription.cs">
-      <DependentUpon>ModelSastiService.tt</DependentUpon>
+      <DependentUpon>SastaServicesDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Email.cs" />
     <Compile Include="Models\EntityManager\UserManager.cs" />
@@ -811,7 +835,6 @@
     <Content Include="Views\AdminDashboard\AdminProfile.cshtml" />
     <Content Include="Views\AdminDashboard\Email.cshtml" />
     <Content Include="Views\AdminDashboard\Invoice.cshtml" />
-    <Content Include="Views\Shared\_LayoutDashboardAuthentication.cshtml" />
     <Content Include="Views\AdminDashboard\Register.cshtml" />
     <Content Include="Views\SupplierDashboard\Email.cshtml" />
     <Content Include="Views\SupplierDashboard\Index.cshtml" />
@@ -830,9 +853,8 @@
     <Content Include="Views\UserDashboard\UserProfile.cshtml" />
     <Content Include="Views\UserDashboard\Register.cshtml" />
     <Content Include="Views\Shared\_LayoutDashboardSupplier.cshtml" />
-    <Content Include="Views\Shared\_LayoutDashboardGeneratorsVendor.cshtml" />
     <Content Include="Views\Shared\_LayoutDashboardUser.cshtml" />
-    <Content Include="Views\Shared\_LayoutDashboardACVendor.cshtml" />
+    <Content Include="Views\Shared\_LayoutDashboardVendor.cshtml" />
     <Content Include="Views\VendorDashboard\CreateItems.cshtml" />
     <Content Include="Views\VendorDashboard\CreateServices.cshtml" />
     <Content Include="Views\VendorDashboard\Email.cshtml" />
@@ -841,9 +863,6 @@
     <Content Include="Views\VendorDashboard\Profile.cshtml" />
     <Content Include="Views\VendorDashboard\ViewItems.cshtml" />
     <Content Include="Views\VendorDashboard\ViewServices.cshtml" />
-    <Content Include="Views\Shared\_LayoutDashboardCCTVVendor.cshtml" />
-    <Content Include="Views\Shared\_LayoutDashboardSolarSysVendor.cshtml" />
-    <Content Include="Views\Shared\_LayoutDashboardUPSVendor.cshtml" />
     <Content Include="Views\AdminDashboard\Vendor.cshtml" />
     <Content Include="Views\AdminDashboard\Supplier.cshtml" />
     <Content Include="Views\Home\CustomerOrder.cshtml" />
@@ -875,6 +894,13 @@
     <Content Include="Views\VendorDashboard\ItemEdit.cshtml" />
     <Content Include="Views\VendorDashboard\ServicesEdit.cshtml" />
     <Content Include="Views\VendorDashboard\ServicesDelete.cshtml" />
+    <Content Include="Views\Home\_Notification.cshtml" />
+    <Content Include="Views\Home\PVContract.cshtml" />
+    <Content Include="Views\Home\PVConServices.cshtml" />
+    <Content Include="Views\Home\_MegaMenu.cshtml" />
+    <Content Include="Views\Shop\RelatedProducts.cshtml" />
+    <Content Include="Views\SupplierDashboard\ProductList.cshtml" />
+    <Content Include="Views\AdminDashboard\ProductDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

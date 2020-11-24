@@ -12,26 +12,23 @@ namespace WebAppSastiServices.Models.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class STPServicesUnitType
+    public partial class STPContractType
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public STPServicesUnitType()
+        public STPContractType()
         {
-            this.STPServiceProductItems = new HashSet<STPServiceProductItem>();
-            this.STPServices = new HashSet<STPService>();
-            this.TRNCustomerOrders = new HashSet<TRNCustomerOrder>();
+            this.STPContracts = new HashSet<STPContract>();
+            this.STPConType_STPServiceType = new HashSet<STPConType_STPServiceType>();
         }
     
         public int ID { get; set; }
-        public string Options { get; set; }
-        public int STPServiceTypeID { get; set; }
+        public string Name { get; set; }
+        public System.DateTime CreatedOn { get; set; }
+        public string Description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<STPServiceProductItem> STPServiceProductItems { get; set; }
+        public virtual ICollection<STPContract> STPContracts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<STPService> STPServices { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TRNCustomerOrder> TRNCustomerOrders { get; set; }
-        public virtual STPServiceType STPServiceType { get; set; }
+        public virtual ICollection<STPConType_STPServiceType> STPConType_STPServiceType { get; set; }
     }
 }

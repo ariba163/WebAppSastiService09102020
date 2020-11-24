@@ -33,6 +33,9 @@
     <link rel="stylesheet" href="~/DataTables/css/jquery.dataTables.css" />
 
 
+    <!--Dashboard Notification -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+
     <!-- custom css -->
     <link rel="stylesheet" href="~/css/dashboard/styles.css" />
     <link rel="stylesheet" href="~/css/dashboard/custom.css" />
@@ -162,51 +165,11 @@
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a href="#!" class="right-sidebar-toggle" data-sidebar-id="main-right-sidebar"><i class="fa fa-envelope"></i></a></li>
+
                                 <li class="dropdown">
                                     <a href="#!" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bell"></i></a>
-                                    <ul class="dropdown-menu dropdown-lg dropdown-content">
-                                        <li class="drop-title">Notifications<a href="#" class="drop-title-link"><i class="fa fa-angle-right"></i></a></li>
-                                        <li class="slimscroll dropdown-notifications">
-                                            <ul class="list-unstyled dropdown-oc">
-                                                <li>
-                                                    <a href="#">
-                                                        <span class="notification-badge bg-primary"><i class="fa fa-photo"></i></span>
-                                                        <span class="notification-info">
-                                                            Finished uploading photos to gallery <b>"South Africa"</b>.
-                                                            <small class="notification-date">20:00</small>
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <span class="notification-badge bg-primary"><i class="fa fa-at"></i></span>
-                                                        <span class="notification-info">
-                                                            <b>John Doe</b> mentioned you in a post "Update v1.5".
-                                                            <small class="notification-date">06:07</small>
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <span class="notification-badge bg-danger"><i class="fa fa-bolt"></i></span>
-                                                        <span class="notification-info">
-                                                            4 new special offers from the apps you follow!
-                                                            <small class="notification-date">Yesterday</small>
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <span class="notification-badge bg-success"><i class="fa fa-bullhorn"></i></span>
-                                                        <span class="notification-info">
-                                                            There is a meeting with <b>Ethan</b> in 15 minutes!
-                                                            <small class="notification-date">Yesterday</small>
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
+                                    @Html.Action("_Notification", "Home")
+
                                 </li>
                                 <li class="dropdown user-dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="~/img/Dashboard/avatars/user-dropdown.jpg" alt="" class="rounded-circle"></a>
@@ -220,6 +183,7 @@
                                     </ul>
                                 </li>
                             </ul>
+
                         </div>
                         <!-- /.navbar-collapse -->
                     </div>
@@ -460,23 +424,107 @@
     <!-- custom scripts -->
     <script src="~/js/Dashboard/main.js"></script>
     <script src="~/js/Dashboard/custom.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script>
-    @*setInterval(function ()
-    {
-    $.ajax({
-    url: '@Url.Action("SessionEnd", "Account")',
-    dataType:'json',
-        success: function (data) {
-        if (data == "true") {
-             console.log("Session expired");
-            window.location = "@Url.Action("Login", "Account")";
+
+        toastr.options = {
+          "closeButton": true,
+          "debug": false,
+          "newestOnTop": false,
+          "progressBar": false,
+          "positionClass": "toast-bottom-right",
+          "preventDuplicates": false,
+          "onclick": null,
+          "showDuration": "300",
+          "hideDuration": "1000",
+          "timeOut": "60000",
+          "extendedTimeOut": "60000",
+          "showEasing": "swing",
+          "hideEasing": "linear",
+          "showMethod": "fadeIn",
+          "hideMethod": "fadeOut"
+        };
+
+        function Notify()
+        {
+            $.ajax({
+            url: '@Url.Action("Notification", "AdminDashboard")',
+            dataType:'json',
+                success: function (data) {
+                    if (data != false) {
+                        $.each(data, function (k, v) {
+                            toastr.info(v.Message);
+                       });
+
+                        NotifySuccess();
+                    }
+                    else {
+                        console.log("No Notification found");
+                    }
+                }
+            })
         }
-        else if (data == "false") {
-            console.log("Session not expired yet");
+
+        function NotifyHeader() {
+           $.ajax({
+            url: '@Url.Action("_NotificationAjax", "Home")',
+            dataType:'json',
+               success: function (data) {
+                   var count = 0;
+                   $.each(data, function (k, v) {
+                       
+                          CreateNotificationList(v.Message,v.CreatedDate)
+                     });
+
+                }
+            })
+
         }
+
+        function CreateNotificationList(Message,Date) {
+
+            var NotificationParent = document.getElementById('Update');
+            var list = document.createElement('li');
+            var listHref = document.createElement('a');
+            var spanNotification = document.createElement('span');
+            var smallDate = document.createElement('small');
+
+            listHref.setAttribute('href', '#');
+            spanNotification.setAttribute('class', 'notification-info');
+            smallDate.setAttribute('class', 'notification-date');
+
+            spanNotification.innerText = Message;
+            smallDate.innerText = Date;
+
+
+            spanNotification.appendChild(smallDate);
+            listHref.appendChild(spanNotification);
+            list.appendChild(listHref);
+            NotificationParent.appendChild(list);
+
         }
-    })
-    }, 120000);*@
+
+        $(document).ready(function () {
+            NotifyHeader();
+            Notify();
+        });
+
+        setInterval(function ()
+        {
+             Notify();
+             var NotificationParent = document.getElementById('Update');
+             NotificationParent.innerHTML = "";
+             NotifyHeader();
+        }, 60000);
+
+
+        function NotifySuccess() {
+            $.ajax({
+            url: '@Url.Action("NotificationSuccess", "AdminDashboard")',
+            dataType:'json',
+                success: function () {}
+            })
+        }
 </script>
     @RenderSection("scripts", required: false)
 </body>

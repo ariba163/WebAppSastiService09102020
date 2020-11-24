@@ -251,6 +251,19 @@ namespace WebAppSastiServices.Controllers
 
         }
 
+
+        public ActionResult ProductDetails(int? ID)
+        {
+            var details = (from d in db.STPProductLists
+                           where (d.ID == ID)
+                           select d).SingleOrDefault();
+
+            return View(details);
+        }
+
+
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterVendorSupplierView user)
@@ -386,7 +399,7 @@ namespace WebAppSastiServices.Controllers
                                 where(d.ProductTypeName== CategoryName)
                                 select d.ID).FirstOrDefault();
 
-            ViewBag.Products = new SelectList(db.STPServiceProductItems.Where(f => ((f.STPServicesFuelType.Options == "Default" || f.FuelTypeId == fuelTypeID) &&  (f.UnitTypeId == unitTypeID || f.STPServicesUnitType.Options == "Default"))&&(f.STPProductTypeID== productTypeID)), "ID", "ServiceProductName");
+            ViewBag.Products = new SelectList(db.STPServiceProductItems.Where(f => ((f.STPServicesFuelType.Options == "Default" || f.FuelTypeId == fuelTypeID) &&  (f.UnitTypeId == unitTypeID || f.STPServicesUnitType.Options == "Default"))&&(f.STPProductType.ID== productTypeID)), "ID", "ServiceProductName");
 
             List<SelectListItem> ModelNo = new List<SelectListItem>() {
                 new SelectListItem() { Value="0", Text="-- Select Model No --" },
@@ -621,6 +634,45 @@ namespace WebAppSastiServices.Controllers
             
         }
 
+        public JsonResult Notification()
+        {
+            var msg = (from d in db.STPNotifications
+                       where d.Is_Notify == false
+                       select d).ToList();
+            if (msg.Count > 0)
+            {
+                return Json(msg, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
 
+        public JsonResult NotificationSuccess()
+        {
+            try { 
+            var data = (from d in db.STPNotifications
+                       where d.Is_Notify == false
+                       select d).ToList();
+
+
+            foreach (var item in data)
+            {
+                STPNotification f = db.STPNotifications.FirstOrDefault(x=> x.ID==item.ID);
+                f.Is_Notify = true;
+                db.SaveChanges();
+            }
+
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+
+
+        }
     }
 }

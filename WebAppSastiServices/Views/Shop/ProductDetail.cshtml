@@ -1,4 +1,4 @@
-﻿
+﻿@model WebAppSastiServices.Models.DB.STPProductList
 @{
     ViewBag.Title = "ProductDetail";
     Layout = "~/Views/Shared/_LayoutPage.cshtml";
@@ -33,12 +33,12 @@
 
                 <!-- product left start -->
                 <div class="xzoom-container">
-                    <img class="xzoom5 margin-30px-bottom" id="xzoom-magnific" src="~/img/shop/preview/01_product.jpg" xoriginal="~/img/shop/original/01_product.jpg" alt="" />
+                    <img class="xzoom5 margin-30px-bottom" id="xzoom-magnific" src="@Model.ImageOne" xoriginal="@Model.ImageOne" alt="" />
                     <div class="xzoom-thumbs no-margin">
-                        <a href="~/img/shop/original/01_product.jpg"><img class="xzoom-gallery5" width="80" src="~/img/shop/thumbs/01_product.jpg" xpreview="~/img/shop/preview/01_product.jpg" alt="" title="The description goes here"></a>
-                        <a href="~/img/shop/original/02_product.jpg"><img class="xzoom-gallery5" width="80" src="~/img/shop/preview/02_product.jpg" alt="" title="The description goes here"></a>
-                        <a href="~/img/shop/original/03_product.jpg"><img class="xzoom-gallery5" width="80" src="~/img/shop/preview/03_product.jpg" alt="" title="The description goes here"></a>
-                        <a href="~/img/shop/original/04_product.jpg"><img class="xzoom-gallery5" width="80" src="~/img/shop/preview/04_product.jpg" alt="" title="The description goes here"></a>
+                        <a href="@Model.ImageOne"><img class="xzoom-gallery5" width="80" src="@Model.ImageOne" xpreview="@Model.ImageOne" alt="" title="The description goes here"></a>
+                        <a href="@Model.ImageTwo"><img class="xzoom-gallery5" width="80" src="@Model.ImageTwo" alt="" title="The description goes here"></a>
+                        <a href="@Model.ImageThree"><img class="xzoom-gallery5" width="80" src="@Model.ImageThree" alt="" title="The description goes here"></a>
+                        <a href="@Model.ImageFour"><img class="xzoom-gallery5" width="80" src="@Model.ImageFour" alt="" title="The description goes here"></a>
                     </div>
                 </div>
                 <!-- product left end -->
@@ -46,31 +46,61 @@
             </div>
             <div class="col-lg-7 padding-40px-left sm-padding-15px-lr">
                 <div class="product-detail">
-                    <h3 class="margin-8px-bottom">Crop Top for Girls <span class="label-sale bg-theme text-white text-uppercase font-size14">Sale</span></h3>
-                    <div class="bg-theme separator-line-horrizontal-full margin-20px-bottom"></div>
-                    <p class="rating-text"><span>SKU:</span> <span class="font-500 theme-color">290397</span></p>
-                    <p>Lorem ipsum dolor ut sit ame dolore adipiscing elit, sed nonumy nibh sed euismod laoreet dolore magna aliquarm erat volutpat Nostrud duis molestie at dolore.</p>
 
-                    <div class="margin-20px-bottom">
+                    @if (Model.isDiscount == true)
+                    {
+                        <h3 class="margin-8px-bottom">@Model.ProductName <span class="label-sale bg-theme text-white text-uppercase font-size14">Sale</span></h3>
+                        <div class="bg-theme separator-line-horrizontal-full margin-20px-bottom"></div>
+                        <p class="rating-text"><span>SKU:</span> <span class="font-500 theme-color">@Model.ProductSKU</span></p>
+                        <p>@Model.ProductShortDescription</p>
 
-                        <div class="display-inline-block margin-15px-right padding-15px-right border-right border-color-extra-medium-gray">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
+                        <div class="margin-20px-bottom">
+
+                            @*<div class="display-inline-block margin-15px-right padding-15px-right border-right border-color-extra-medium-gray">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+
+                            <div class="display-inline-block">
+                                <a class="text-theme-color" href="#!">Write a review</a>
+                            </div>*@
+
                         </div>
-
-                        <div class="display-inline-block">
-                            <a class="text-theme-color" href="#!">Write a review</a>
+                        <div class="margin-20px-bottom">
+                            <span class="margin-15px-right font-size24 font-weight-600 offer-price">@Model.ProductPrice</span>
+                            <span class="font-size24 font-weight-700 text-theme-color">@Model.DiscountedAmount</span>
                         </div>
+                    }
+                    else
 
-                    </div>
-                    <div class="margin-20px-bottom">
-                        <span class="margin-15px-right font-size24 font-weight-600 offer-price">$499.00</span>
-                        <span class="font-size24 font-weight-700 text-theme-color">$299.00</span>
-                    </div>
+                    {
+                        <h3 class="margin-8px-bottom">@Model.ProductName</h3>
+                        <div class="bg-theme separator-line-horrizontal-full margin-20px-bottom"></div>
+                        <p class="rating-text"><span>SKU:</span> <span class="font-500 theme-color">@Model.ProductSKU</span></p>
+                        <p>@Model.ProductShortDescription</p>
 
+                        <div class="margin-20px-bottom">
+
+                            @*<div class="display-inline-block margin-15px-right padding-15px-right border-right border-color-extra-medium-gray">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+
+                            <div class="display-inline-block">
+                                <a class="text-theme-color" href="#!">Write a review</a>
+                            </div>*@
+
+                        </div>
+                        <div class="margin-20px-bottom">
+                            <span class="font-size24 font-weight-700 text-theme-color">@Model.ProductPrice</span>
+                        </div>
+                    }
                     <div class="row">
                         <div class="col-4 col-lg-2 col-md-2">
                             <label>Size:</label>
@@ -143,19 +173,7 @@
                     <div class="resp-tabs-container hor_1">
 
                         <div>
-
-                            <p>
-                                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto in ea voluptate velit. Sed ut perspiciatis
-                                unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto in ea voluptate velit.
-                            </p>
-                            <ul class="list-style-14 margin-25px-bottom">
-                                <li>Sed ut perspiciatis unde omnis iste</li>
-                                <li>Inventore veritatis et quasi architecto</li>
-                                <li>Voluptatem accusantium doloremque</li>
-                                <li>Quasi architecto in ea voluptate veli</li>
-                            </ul>
-                            <p class="no-margin">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto in ea voluptate velit.</p>
-
+                            @Html.Raw(HttpUtility.HtmlDecode(@Model.LongDescription))
                         </div>
 
                         <div>
@@ -377,145 +395,9 @@
         </div>
         <!-- End Product Description -->
         <!-- Start Related Product -->
-        <div class="row">
-            <div class="col-12">
-                <div class="section-heading title-style3">
-                    <h3 class="font-size22 xs-font-size18">Related Products</h3>
-                </div>
-            </div>
+        @*@{Html.RenderPartial("RelatedProducts", new { productTypeID = @Model.STPProductTypeID });}*@
 
-            <div class="carousel-style1 col-12">
-                <div class="product-grid control-top owl-carousel owl-theme">
-
-                    <div>
-
-                        <div class="product-details">
-
-                            <div class="product-img">
-
-                                <div class="label-offer bg-red">Sale</div><img src="~/img/shop/product-01.jpg" alt="" />
-
-                                <div class="product-cart">
-                                    <a href="#!"><i class="fas fa-plus"></i></a>
-                                    <a href="#!"><i class="fas fa-cart-plus"></i></a>
-                                    <a href="#!"><i class="fas fa-heart"></i></a>
-                                </div>
-
-                            </div>
-
-                            <div class="product-info">
-                                <a href="#!">Sneakers Shoe</a>
-                                <p class="price text-center no-margin">
-                                    <span class="red line-through margin-10px-right">$600</span>
-                                    <span>$599</span>
-                                </p>
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <div>
-
-                        <div class="product-details">
-                            <div class="product-img">
-
-                                <img src="~/img/shop/product-02.jpg" alt="" />
-
-                                <div class="product-cart">
-                                    <a href="#!"><i class="fas fa-plus"></i></a>
-                                    <a href="#!"><i class="fas fa-cart-plus"></i></a>
-                                    <a href="#!"><i class="fas fa-heart"></i></a>
-                                </div>
-
-                            </div>
-                            <div class="product-info">
-                                <a href="#!">Digital Watch</a>
-                                <p class="price text-center no-margin ">
-                                    <span class="red line-through margin-10px-right">$500</span>
-                                    <span>$300</span>
-                                </p>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div>
-
-                        <div class="product-details">
-                            <div class="product-img">
-
-                                <div class="label-offer bg-theme">New</div><img src="~/img/shop/product-03.jpg" alt="" />
-
-                                <div class="product-cart">
-                                    <a href="#!"><i class="fas fa-plus"></i></a>
-                                    <a href="#!"><i class="fas fa-cart-plus"></i></a>
-                                    <a href="#!"><i class="fas fa-heart"></i></a>
-                                </div>
-
-                            </div>
-                            <div class="product-info">
-                                <a href="#!">Headphones</a>
-                                <p class="price text-center no-margin">
-                                    <span class="red line-through margin-10px-right">$200</span>
-                                    <span>$100</span>
-                                </p>
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <div>
-                        <div class="product-details">
-                            <div class="product-img">
-
-                                <div class="label-offer bg-red">Sale</div><img src="~/img/shop/product-04.jpg" alt="" />
-
-                                <div class="product-cart">
-                                    <a href="#!"><i class="fas fa-plus"></i></a>
-                                    <a href="#!"><i class="fas fa-cart-plus"></i></a>
-                                    <a href="#!"><i class="fas fa-heart"></i></a>
-                                </div>
-
-                            </div>
-                            <div class="product-info">
-                                <a href="#!">Apple laptop</a>
-                                <p class="price text-center no-margin">
-                                    <span class="red line-through margin-10px-right">$1200</span>
-                                    <span>$900</span>
-                                </p>
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <div>
-
-                        <div class="product-details">
-                            <div class="product-img">
-
-                                <img src="~/img/shop/product-05.jpg" alt="" />
-                                <div class="product-cart">
-                                    <a href="#!"><i class="fas fa-plus"></i></a>
-                                    <a href="#!"><i class="fas fa-cart-plus"></i></a>
-                                    <a href="#!"><i class="fas fa-heart"></i></a>
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <a href="#!">Nikon Camera</a>
-                                <p class="price text-center no-margin">
-                                    <span class="red line-through margin-10px-right">$399</span>
-                                    <span>$199</span>
-                                </p>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
+        
         <!-- End Related Product -->
 
     </div>

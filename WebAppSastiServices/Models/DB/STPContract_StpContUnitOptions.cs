@@ -12,14 +12,15 @@ namespace WebAppSastiServices.Models.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class TRNCustomerOrders_STPServices
+    public partial class STPContract_StpContUnitOptions
     {
         public int ID { get; set; }
-        public int TRNCustomerOrderID { get; set; }
-        public int STPServicesID { get; set; }
-        public Nullable<decimal> Rate { get; set; }
+        public int STPContractID { get; set; }
+        public int STPConUnitOptionsID { get; set; }
+        public int QTY { get; set; }
+        public decimal Price { get; set; }
     
-        public virtual STPService STPService { get; set; }
-        public virtual TRNCustomerOrder TRNCustomerOrder { get; set; }
+        public virtual STPContract STPContract { get; set; }
+        public virtual STPConUnitOption STPConUnitOption { get; set; }
     }
 }

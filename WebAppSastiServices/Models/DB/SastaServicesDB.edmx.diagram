@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="574480f8c43743949a3e1217b8841ab8" Name="Diagram1">
+        <EntityTypeShape EntityType="SastaServicesDBModel.STPBanner" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.STPBannerOffer" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.STPConInspection" Width="1.5" PointX="5.25" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.STPContract_StpContUnitOptions" Width="1.5" PointX="5.25" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.STPContract" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.STPContractType" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.STPConType_STPServiceType" Width="1.5" PointX="3" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.STPConUnitOption" Width="1.5" PointX="3" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.STPCustomerSupport" Width="1.5" PointX="8.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.STPMonth" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.STPNotification" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.STPPrefferedTime" Width="1.5" PointX="6" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.STPProductBrand" Width="1.5" PointX="3" PointY="31.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.STPProductList" Width="1.5" PointX="3" PointY="34.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.STPProductType" Width="1.5" PointX="0.75" PointY="31.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.STPQuickCall" Width="1.5" PointX="9.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.StpRole" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.STPRolesCategory" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.STPServiceProductItem" Width="1.5" PointX="5.25" PointY="22" IsExpanded="true" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.STPService" Width="1.5" PointX="5.25" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.STPServicesFuelType" Width="1.5" PointX="3" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.STPServicesUnitType" Width="1.5" PointX="3" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.STPServiceType" Width="1.5" PointX="0.75" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.STPStatu" Width="1.5" PointX="6" PointY="27.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.STPStatusType" Width="1.5" PointX="3.75" PointY="27.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.StpUser" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.TRNCustomerOrder" Width="1.5" PointX="8.25" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.TRNCustomerOrders_STPProductItems" Width="1.5" PointX="10.5" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.TRNCustomerOrders_STPServices" Width="1.5" PointX="13.5" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.TRNInvoice" Width="1.5" PointX="10.5" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SastaServicesDBModel.TRNSubscription" Width="1.5" PointX="10.75" PointY="6.75" IsExpanded="true" />
+        <AssociationConnector Association="SastaServicesDBModel.FK_STPConInspection_STPContracts" ManuallyRouted="false" />
+        <AssociationConnector Association="SastaServicesDBModel.FK_STPContract_StpContUnitOptions_STPContracts" ManuallyRouted="false" />
+        <AssociationConnector Association="SastaServicesDBModel.FK_STPContract_StpContUnitOptions_STPConUnitOptions" ManuallyRouted="false" />
+        <AssociationConnector Association="SastaServicesDBModel.FK_STPContracts_STPContractType1" ManuallyRouted="false" />
+        <AssociationConnector Association="SastaServicesDBModel.FK_STPConType_STPServiceType_STPContractType" ManuallyRouted="false" />
+        <AssociationConnector Association="SastaServicesDBModel.FK_STPConType_STPServiceType_STPServiceType" ManuallyRouted="false" />
+        <AssociationConnector Association="SastaServicesDBModel.FK_STPConUnitOptions_STPServiceType" ManuallyRouted="false" />
+        <AssociationConnector Association="SastaServicesDBModel.FK_CustomerOrders_STPPrefferedTime" ManuallyRouted="false" />
+        <AssociationConnector Association="SastaServicesDBModel.FK_STPProductBrand_STPProductType" ManuallyRouted="false" />
+        <AssociationConnector Association="SastaServicesDBModel.FK_STPProductItems_STPProductBrand" ManuallyRouted="false" />
+        <AssociationConnector Association="SastaServicesDBModel.FK_STPProductList_STPProductType1" ManuallyRouted="false" />
+        <AssociationConnector Association="SastaServicesDBModel.FK_STPServiceProductItems_STPProductType" ManuallyRouted="false" />
+        <AssociationConnector Association="SastaServicesDBModel.FK_STPRolesCategories_StpRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="SastaServicesDBModel.FK_StpUser_StpUserType" ManuallyRouted="false" />
+        <AssociationConnector Association="SastaServicesDBModel.FK_StpUser_STPRolesCategories" ManuallyRouted="false" />
+        <AssociationConnector Association="SastaServicesDBModel.FK_STPProductItems_STPServicesFuelTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="SastaServicesDBModel.FK_STPProductItems_STPServicesUnitTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="SastaServicesDBModel.FK_TRNCustomerOrders_STPProductItems_STPServiceProductItems" ManuallyRouted="false" />
+        <AssociationConnector Association="SastaServicesDBModel.FK_STPServices_STPServicesFuelTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="SastaServicesDBModel.FK_STPServices_STPServicesUnitTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="SastaServicesDBModel.FK_STPServices_STPServiceType" ManuallyRouted="false" />
+        <AssociationConnector Association="SastaServicesDBModel.FK_TRNCustomerOrders_STPServices_STPServices" ManuallyRouted="false" />
+        <AssociationConnector Association="SastaServicesDBModel.FK_CustomerOrders_STPServicesFuelTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="SastaServicesDBModel.FK_STPDependent_STPServiceType" ManuallyRouted="false" />
+        <AssociationConnector Association="SastaServicesDBModel.FK_STPServicesFuelTypes_STPServiceType" ManuallyRouted="false" />
+        <AssociationConnector Association="SastaServicesDBModel.FK_CustomerOrders_STPServicesUnitTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="SastaServicesDBModel.FK_STPServicesUnitTypes_STPServiceType" ManuallyRouted="false" />
+        <AssociationConnector Association="SastaServicesDBModel.FK_CustomerOrders_STPServiceType" ManuallyRouted="false" />
+        <AssociationConnector Association="SastaServicesDBModel.FK_CustomerOrders_STPStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="SastaServicesDBModel.FK_STPStatus_STPStatusType" ManuallyRouted="false" />
+        <AssociationConnector Association="SastaServicesDBModel.FK_TRNCustomerOrders_STPProductItems_TRNCustomerOrders" ManuallyRouted="false" />
+        <AssociationConnector Association="SastaServicesDBModel.FK_TRNCustomerOrders_STPServices_TRNCustomerOrders" ManuallyRouted="false" />
+        <AssociationConnector Association="SastaServicesDBModel.FK_TRNInvoice_TRNCustomerOrders" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -12,14 +12,11 @@ namespace WebAppSastiServices.Models.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class TRNCustomerOrders_STPServices
+    public partial class STPNotification
     {
         public int ID { get; set; }
-        public int TRNCustomerOrderID { get; set; }
-        public int STPServicesID { get; set; }
-        public Nullable<decimal> Rate { get; set; }
-    
-        public virtual STPService STPService { get; set; }
-        public virtual TRNCustomerOrder TRNCustomerOrder { get; set; }
+        public string Message { get; set; }
+        public bool Is_Notify { get; set; }
+        public System.DateTime CreatedDate { get; set; }
     }
 }

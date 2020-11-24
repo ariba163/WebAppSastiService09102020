@@ -7,6 +7,12 @@
 #top-bar {
     background: #595959bf!important;
 }
+
+.product-img{
+    height:230px;
+}
+
+
 @media screen and (min-width: 992px) {
     .scrollHeader .navbar-brand img {
         max-height: 55px;
@@ -251,27 +257,37 @@
             transform: scale(1.05);
             box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
         }
-
-    /*xs screen*/
-    @media(max-width: 575px) {
-       
-        #product {
-            margin-top: 20px;
-        }
-
-
-        .hovereffect .info {
-            font-size: larger;
-        }
-
-
-        /*home service section*/
-        .serviceContent {
-            height: 70px !important;
-            overflow: hidden !important;
-            display: -webkit-box !important;
-            -webkit-line-clamp: 3 !important;
-            -webkit-box-orient: vertical !important;
-            text-overflow: ellipsis;
-        }
+@media(max-width:768px) {
+    #reviewBanner{
+        display:none;
     }
+    .navbar-brand img {
+        max-height: 50px;
+    }
+    .keypad-popup {
+        z-index: 1051;
+    }
+}
+/*xs screen*/
+@media(max-width: 575px) {
+
+    #product {
+        margin-top: 20px;
+    }
+
+
+    .hovereffect .info {
+        font-size: larger;
+    }
+
+
+    /*home service section*/
+    .serviceContent {
+        height: 70px !important;
+        overflow: hidden !important;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 3 !important;
+        -webkit-box-orient: vertical !important;
+        text-overflow: ellipsis;
+    }
+}

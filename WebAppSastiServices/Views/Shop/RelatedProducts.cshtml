@@ -1,0 +1,72 @@
+﻿@model IEnumerable<WebAppSastiServices.Models.DB.STPProductList>
+@{
+    Layout = null;
+}
+    <div class="row">
+        <div class="col-12">
+            <div class="section-heading title-style3">
+                <h3 class="font-size22 xs-font-size18">Related Products</h3>
+            </div>
+        </div>
+
+        <div class="carousel-style1 col-12">
+            <div class="product-grid control-top owl-carousel owl-theme">
+                @foreach (var item in Model)
+                {
+                    <div>
+
+                        <div class="product-details">
+                            @if (@item.isDiscount == true)
+                            {
+                                <div class="product-img">
+
+                                    <div class="label-offer bg-red">Sale</div>
+
+                                    <img src="@item.ImageOne" alt="" />
+
+                                    <div class="product-cart">
+                                        <a href="#!"><i class="fas fa-plus"></i></a>
+                                        <a href="#!"><i class="fas fa-cart-plus"></i></a>
+                                        <a href="#!"><i class="fas fa-heart"></i></a>
+                                    </div>
+                                </div>
+
+                                <div class="product-info">
+                                    <a href="/Shop/ProductDetail?productID=@item.ID">@item.ProductName</a>
+                                    <p class="price text-center no-margin">
+                                        <span class="red line-through margin-10px-right">@item.ProductPrice</span>
+                                        <span>@item.DiscountedAmount</span>
+                                    </p>
+                                </div>
+
+                            }
+                            else
+                            {
+                                <div class="product-img">
+                                    <img src="@item.ImageOne" alt="" />
+
+                                    <div class="product-cart">
+                                        <a href="#!"><i class="fas fa-plus"></i></a>
+                                        <a href="#!"><i class="fas fa-cart-plus"></i></a>
+                                        <a href="#!"><i class="fas fa-heart"></i></a>
+                                    </div>
+                                </div>
+
+                                <div class="product-info">
+                                    <a href="/Shop/ProductDetail?productID=@item.ID">@item.ProductName</a>
+                                    <p class="price text-center no-margin">
+                                        <span>@item.ProductPrice</span>
+                                    </p>
+                                </div>
+
+                            }
+                        </div>
+
+                    </div>
+                }
+
+
+            </div>
+        </div>
+
+    </div>
